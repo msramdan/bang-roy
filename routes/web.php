@@ -9,7 +9,7 @@ use App\Http\Controllers\{
 
 Route::middleware(['auth', 'web'])->group(function () {
     Route::get('/', fn () => view('dashboard'));
-    Route::get('/dashboard', fn () => view('dashboard'));
+    Route::get('/dashboard', fn () => view('dashboard'))->name('dashboard');
 
     Route::get('/profile', ProfileController::class)->name('profile');
 
@@ -17,6 +17,4 @@ Route::middleware(['auth', 'web'])->group(function () {
     Route::resource('roles', RoleAndPermissionController::class);
 });
 
-Route::middleware(['auth', 'permission:test view'])->get('/tests', function () {
-    dd('This is just a test and an example for permission and sidebar menu. You can remove this line on web.php, config/permission.php and config/generator.php');
-})->name('tests.index');
+Route::resource('gateways', App\Http\Controllers\GatewayController::class)->middleware('auth')->only(['index']);;

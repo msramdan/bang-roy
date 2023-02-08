@@ -43,20 +43,14 @@
                                 <label>Email Address</label>
                                 <div class="input-group"><span class="input-group-text"><i class="icon-email"></i></span>
                                     <input class="form-control" type="email" name="email" required="" placeholder=""
-                                        required>
-                                    {{-- @error('email')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror --}}
+                                        value="admin@example.com" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
                                 <div class="input-group"><span class="input-group-text"><i class="icon-lock"></i></span>
                                     <input class="form-control" type="password" name="password" id="password"
-                                        required="" placeholder="" required>
-                                    {{-- @error('password')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror --}}
+                                        value="password" required="" placeholder="" required>
                                 </div>
                             </div>
                             <div class="form-group">

@@ -110,30 +110,6 @@ return [
      */
     'sidebars' => [
         [
-            'header' => 'Main',
-            'permissions' => [
-                'test view'
-            ],
-            'menus' => [
-                [
-                    'title' => 'Master Data',
-                    'icon' => '<i data-feather="list"></i>',
-                    'route' => null,
-                    'permission' => null,
-                    'permissions' => [
-                        'test view'
-                    ],
-                    'submenus' => [
-                        [
-                            'title' => 'Tests',
-                            'route' => '/tests',
-                            'permission' => 'test view'
-                        ]
-                    ]
-                ]
-            ]
-        ],
-        [
             'header' => 'Users',
             'permissions' => [
                 'user view',
@@ -155,8 +131,24 @@ return [
                     'permission' => 'role & permission view',
                     'permissions' => [],
                     'submenus' => []
-                ],
+                ]
             ]
         ],
-    ],
+        [
+            'header' => 'Gatewaies',
+            'permissions' => [
+                'gateway view'
+            ],
+            'menus' => [
+                [
+                    'title' => 'Gateways',
+                    'icon' => '<i data-feather="user-check"></i>',
+                    'route' => '/gateways',
+                    'permission' => 'gateway view',
+                    'permissions' => [],
+                    'submenus' => []
+                ]
+            ]
+        ]
+    ]
 ];

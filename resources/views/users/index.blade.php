@@ -5,7 +5,7 @@
 @section('content')
     <div class="page-body">
         <div class="container-fluid">
-            <div class="page-header">
+            <div class="page-header" style="margin-top: 5px">
                 <div class="row">
                     <div class="col-sm-6">
                         <h3>Sample Page</h3>
@@ -24,6 +24,14 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-12">
+                    @can('user create')
+                        <div class="d-flex justify-content-end">
+                            <a href="{{ route('users.create') }}" class="btn btn-primary mb-3">
+                                <i class="fas fa-plus"></i>
+                                {{ __('Create a new user') }}
+                            </a>
+                        </div>
+                    @endcan
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive p-1">
@@ -49,8 +57,6 @@
     </div>
 @endsection
 
-@push('css')
-@endpush
 @push('js')
     <script>
         $('#data-table').DataTable({

@@ -47,7 +47,6 @@
                     </a>
                     <p class="mb-0 font-roboto">{{ Auth::user()->roles->first()->name }}</p>
                 </div>
-
                 {{-- sidebar --}}
                 @include('layouts.sidebar')
             </header>
@@ -59,6 +58,8 @@
     </div>
     {{-- script --}}
     @include('layouts.script')
+
+
 </body>
 
 </html>
