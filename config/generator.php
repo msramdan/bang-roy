@@ -126,6 +126,22 @@ return [
             ]
         ],
         [
+            'header' => 'Instances',
+            'permissions' => [
+                'instance view'
+            ],
+            'menus' => [
+                [
+                    'title' => 'Instances',
+                    'icon' => '<i data-feather="database"></i>',
+                    'route' => '/instances',
+                    'permission' => 'instance view',
+                    'permissions' => [],
+                    'submenus' => []
+                ]
+            ]
+        ],
+        [
             'header' => 'Gatewaies',
             'permissions' => [
                 'gateway view'

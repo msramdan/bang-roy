@@ -38,9 +38,15 @@
             <header class="main-nav">
                 {{-- profile --}}
                 <div class="sidebar-user text-center"><a class="setting-primary" href="{{ route('profile') }}"><i
-                            data-feather="settings"></i></a><img class="img-90 rounded-circle"
-                        src="https://www.gravatar.com/avatar/{{ md5(strtolower(trim(auth()->user()->email))) }}&s=30"
-                        alt="">
+                            data-feather="settings"></i></a>
+                    @if (auth()->user()->avatar == null)
+                        <img class="img-90 rounded-circle"
+                            src="https://www.gravatar.com/avatar/{{ md5(strtolower(trim(auth()->user()->email))) }}&s=30"
+                            alt="">
+                    @else
+                        <img class="img-90 rounded-circle"
+                            src="{{ asset('uploads/images/avatars/' . auth()->user()->avatar) }}" alt="">
+                    @endif
                     <div class="badge-bottom"><span class="badge badge-primary">New</span></div><a
                         href="{{ route('profile') }}">
                         <h6 class="mt-3 f-14 f-w-600">{{ Auth::user()->name }}</h6>

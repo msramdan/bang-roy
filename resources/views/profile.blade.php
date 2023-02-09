@@ -72,20 +72,20 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <div class="avatar avatar-xl mb-3">
                                             @if (auth()->user()->avatar == null)
                                                 <img src="https://www.gravatar.com/avatar/{{ md5(strtolower(trim(auth()->user()->email))) }}&s=500"
                                                     alt="Avatar">
                                             @else
-                                                <img style="width:200px"
+                                                <img style="width:80px"
                                                     src="{{ asset('uploads/images/avatars/' . auth()->user()->avatar) }}"
                                                     alt="Avatar">
                                             @endif
                                         </div>
                                     </div>
 
-                                    <div class="col-md-9">
+                                    <div class="col-md-10">
                                         <div class="form-group">
                                             <label for="avatar">{{ __('Avatar') }}</label>
                                             <input type="file" name="avatar"

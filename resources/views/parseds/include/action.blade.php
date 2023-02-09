@@ -1,12 +1,12 @@
 <td>
     @can('parsed view')
-    <a href="{{ route('parseds.show', $model->id) }}" class="btn btn-info btn-md">
-        <i class="fa fa-eye"></i>
-    </a>
+        <a href="{{ route('parseds.show', $model->id) }}" class="btn btn-info btn-md">
+            <i class="fa fa-eye"></i>
+        </a>
     @endcan
 
     @can('parsed edit')
-        <a href="{{ route('parseds.edit', $model->id) }}" class="btn btn-primary btn-md">
+        <a href="{{ route('parseds.edit', $model->id) }}" class="btn btn-primary btn-sm">
             <i class="fa fa-pencil-alt"></i>
         </a>
     @endcan
@@ -17,7 +17,7 @@
             @csrf
             @method('delete')
 
-            <button class="btn btn-danger btn-md">
+            <button class="btn btn-danger btn-sm">
                 <i class="ace-icon fa fa-trash-alt"></i>
             </button>
         </form>

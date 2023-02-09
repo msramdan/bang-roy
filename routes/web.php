@@ -34,3 +34,4 @@ Route::resource('provinces', App\Http\Controllers\ProvinceController::class)->mi
 Route::resource('kabkots', App\Http\Controllers\KabkotController::class)->middleware('auth');
 Route::resource('kecamatans', App\Http\Controllers\KecamatanController::class)->middleware('auth');
 Route::resource('kelurahans', App\Http\Controllers\KelurahanController::class)->middleware('auth');
+Route::resource('instances', App\Http\Controllers\InstanceController::class)->middleware('auth');

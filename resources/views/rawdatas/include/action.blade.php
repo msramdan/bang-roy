@@ -5,7 +5,7 @@
             @csrf
             @method('delete')
 
-            <button class="btn btn-danger btn-md">
+            <button class="btn btn-danger btn-sm">
                 <i class="ace-icon fa fa-trash-alt"></i>
             </button>
         </form>

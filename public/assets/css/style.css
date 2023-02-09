@@ -16425,9 +16425,9 @@ div.DTS div.dataTables_scrollBody table {
 }
 
 .dataTables_wrapper button {
-    font-weight: 400;
+    /* font-weight: 400;
     padding: 0.375rem 0.75rem;
-    font-size: 1rem;
+    font-size: 1rem; */
     border-radius: 0.25rem;
     color: #fff;
     background-color: #24695c;

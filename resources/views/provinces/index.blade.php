@@ -3,34 +3,34 @@
 @section('title', __('Provinces'))
 
 @section('content')
-<div class="page-body">
-                <div class="container-fluid">
-                    <div class="page-header" style="margin-top: 5px">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <h3>{{ __('Provinces') }}</h3>
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">{{ __('Dashboard') }}</a></li>
-                                    <li class="breadcrumb-item active">{{ __('Provinces') }}</li>
-                                </ol>
-                            </div>
-                            <div class="col-sm-6">
-                            </div>
-                        </div>
+    <div class="page-body">
+        <div class="container-fluid">
+            <div class="page-header" style="margin-top: 5px">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h3>{{ __('Provinces') }}</h3>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">{{ __('Dashboard') }}</a></li>
+                            <li class="breadcrumb-item active">{{ __('Provinces') }}</li>
+                        </ol>
+                    </div>
+                    <div class="col-sm-6">
                     </div>
                 </div>
-                <div class="container-fluid">
+            </div>
+        </div>
+        <div class="container-fluid">
 
             <div class="row">
                 <div class="col-sm-12">
-                @can('province create')
-                <div class="d-flex justify-content-end">
-                    <a href="{{ route('provinces.create') }}" class="btn btn-primary mb-3">
-                        <i class="fas fa-plus"></i>
-                        {{ __('Create a new province') }}
-                    </a>
-                </div>
-                @endcan
+                    @can('province create')
+                        <div class="d-flex justify-content-end">
+                            <a href="{{ route('provinces.create') }}" class="btn btn-primary mb-3">
+                                <i class="fas fa-plus"></i>
+                                {{ __('Create a new province') }}
+                            </a>
+                        </div>
+                    @endcan
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive p-1">
@@ -38,8 +38,8 @@
                                     <thead>
                                         <tr>
                                             <th>{{ __('Provinsi') }}</th>
-											<th>{{ __('Ibukota') }}</th>
-											<th>{{ __('P Bsni') }}</th>
+                                            <th>{{ __('Ibukota') }}</th>
+                                            <th>{{ __('P Bsni') }}</th>
                                             <th>{{ __('Created At') }}</th>
                                             <th>{{ __('Updated At') }}</th>
                                             <th>{{ __('Action') }}</th>
@@ -62,16 +62,15 @@
             processing: true,
             serverSide: true,
             ajax: "{{ route('provinces.index') }}",
-            columns: [
-                {
+            columns: [{
                     data: 'provinsi',
                     name: 'provinsi',
                 },
-				{
+                {
                     data: 'ibukota',
                     name: 'ibukota',
                 },
-				{
+                {
                     data: 'p_bsni',
                     name: 'p_bsni',
                 },

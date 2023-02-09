@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('Subnets'))
+@section('title', __('Instances'))
 
 @section('content')
     <div class="page-body">
@@ -8,10 +8,10 @@
             <div class="page-header" style="margin-top: 5px">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h3>{{ __('Subnets') }}</h3>
+                        <h3>{{ __('Instances') }}</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html">{{ __('Dashboard') }}</a></li>
-                            <li class="breadcrumb-item active">{{ __('Subnets') }}</li>
+                            <li class="breadcrumb-item active">{{ __('Instances') }}</li>
                         </ol>
                     </div>
                     <div class="col-sm-6">
@@ -23,11 +23,11 @@
 
             <div class="row">
                 <div class="col-sm-12">
-                    @can('subnet create')
+                    @can('instance create')
                         <div class="d-flex justify-content-end">
-                            <a href="{{ route('subnets.create') }}" class="btn btn-primary mb-3">
+                            <a href="{{ route('instances.create') }}" class="btn btn-primary mb-3">
                                 <i class="fas fa-plus"></i>
-                                {{ __('Create a new subnet') }}
+                                {{ __('Create a new instance') }}
                             </a>
                         </div>
                     @endcan
@@ -37,9 +37,12 @@
                                 <table class="display dataTable no-footer" id="data-table" role="grid">
                                     <thead>
                                         <tr>
-                                            <th>{{ __('Subnet') }}</th>
-                                            <th>{{ __('Created At') }}</th>
-                                            <th>{{ __('Updated At') }}</th>
+                                            <th>{{ __('App Id') }}</th>
+                                            <th>{{ __('App Name') }}</th>
+                                            <th>{{ __('Instance Name') }}</th>
+                                            <th>{{ __('Kabkot') }}</th>
+                                            <th>{{ __('Email') }}</th>
+                                            <th>{{ __('Phone') }}</th>
                                             <th>{{ __('Action') }}</th>
                                         </tr>
                                     </thead>
@@ -59,18 +62,30 @@
         $('#data-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('subnets.index') }}",
+            ajax: "{{ route('instances.index') }}",
             columns: [{
-                    data: 'subnet',
-                    name: 'subnet',
+                    data: 'app_id',
+                    name: 'app_id',
                 },
                 {
-                    data: 'created_at',
-                    name: 'created_at'
+                    data: 'app_name',
+                    name: 'app_name',
                 },
                 {
-                    data: 'updated_at',
-                    name: 'updated_at'
+                    data: 'instance_name',
+                    name: 'instance_name',
+                },
+                {
+                    data: 'kabkot',
+                    name: 'kabkot.provinsi_id'
+                },
+                {
+                    data: 'email',
+                    name: 'email',
+                },
+                {
+                    data: 'phone',
+                    name: 'phone',
                 },
                 {
                     data: 'action',

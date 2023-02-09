@@ -32,24 +32,9 @@
                                             <th>{{ __('Dev Eui') }}</th>
                                             <th>{{ __('App Id') }}</th>
                                             <th>{{ __('Type') }}</th>
-                                            <th>{{ __('Time') }}</th>
-                                            <th>{{ __('Gwid') }}</th>
-                                            <th>{{ __('Rssi') }}</th>
-                                            <th>{{ __('Snr') }}</th>
                                             <th>{{ __('Freq') }}</th>
-                                            <th>{{ __('Dr') }}</th>
-                                            <th>{{ __('Adr') }}</th>
-                                            <th>{{ __('Class') }}</th>
-                                            <th>{{ __('Fcnt') }}</th>
                                             <th>{{ __('Fport') }}</th>
-                                            <th>{{ __('Confirmed') }}</th>
-                                            <th>{{ __('Data') }}</th>
-                                            <th>{{ __('Gws') }}</th>
-                                            <th>{{ __('Payload Data') }}</th>
-                                            <th>{{ __('Convert') }}</th>
-                                            <th>{{ __('Type Payload') }}</th>
-                                            <th>{{ __('Created At') }}</th>
-                                            <th>{{ __('Updated At') }}</th>
+                                            <th>{{ __('Date') }}</th>
                                             <th>{{ __('Action') }}</th>
                                         </tr>
                                     </thead>
@@ -83,76 +68,16 @@
                     name: 'type',
                 },
                 {
-                    data: 'time',
-                    name: 'time',
-                },
-                {
-                    data: 'gwid',
-                    name: 'gwid',
-                },
-                {
-                    data: 'rssi',
-                    name: 'rssi',
-                },
-                {
-                    data: 'snr',
-                    name: 'snr',
-                },
-                {
                     data: 'freq',
                     name: 'freq',
-                },
-                {
-                    data: 'dr',
-                    name: 'dr',
-                },
-                {
-                    data: 'adr',
-                    name: 'adr',
-                },
-                {
-                    data: 'class',
-                    name: 'class',
-                },
-                {
-                    data: 'fcnt',
-                    name: 'fcnt',
                 },
                 {
                     data: 'fport',
                     name: 'fport',
                 },
                 {
-                    data: 'confirmed',
-                    name: 'confirmed',
-                },
-                {
-                    data: 'data',
-                    name: 'data',
-                },
-                {
-                    data: 'gws',
-                    name: 'gws',
-                },
-                {
-                    data: 'payload_data',
-                    name: 'payload_data',
-                },
-                {
-                    data: 'convert',
-                    name: 'convert',
-                },
-                {
-                    data: 'type_payload',
-                    name: 'type_payload',
-                },
-                {
                     data: 'created_at',
                     name: 'created_at'
-                },
-                {
-                    data: 'updated_at',
-                    name: 'updated_at'
                 },
                 {
                     data: 'action',
