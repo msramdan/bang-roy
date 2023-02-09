@@ -7,7 +7,8 @@
                     <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2"
                             aria-hidden="true"></i></div>
                 </li>
-                <li><a class="nav-link menu-title link-nav" href="{{ route('dashboard') }}"> <span>Dashboard</span></a>
+                <li><a class="nav-link menu-title link-nav" href="{{ route('dashboard') }}"><i data-feather="home"></i>
+                        <span>Dashboard</span></a>
                 </li>
                 @foreach (config('generator.sidebars') as $sidebar)
                     @if (isset($sidebar['permissions']))
