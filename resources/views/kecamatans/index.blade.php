@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('Devices'))
+@section('title', __('Kecamatans'))
 
 @section('content')
     <div class="page-body">
@@ -8,10 +8,10 @@
             <div class="page-header" style="margin-top: 5px">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h3>{{ __('Devices') }}</h3>
+                        <h3>{{ __('Kecamatans') }}</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html">{{ __('Dashboard') }}</a></li>
-                            <li class="breadcrumb-item active">{{ __('Devices') }}</li>
+                            <li class="breadcrumb-item active">{{ __('Kecamatans') }}</li>
                         </ol>
                     </div>
                     <div class="col-sm-6">
@@ -23,21 +23,22 @@
 
             <div class="row">
                 <div class="col-sm-12">
-                    @can('device create')
+                    @can('kecamatan create')
                         <div class="d-flex justify-content-end">
-                            <a href="{{ route('devices.create') }}" class="btn btn-primary mb-3">
+                            <a href="{{ route('kecamatans.create') }}" class="btn btn-primary mb-3">
                                 <i class="fas fa-plus"></i>
-                                {{ __('Create a new device') }}
+                                {{ __('Create a new kecamatan') }}
                             </a>
                         </div>
                     @endcan
                     <div class="card">
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-sm" id="data-table">
+                            <div class="table-responsive p-1">
+                                <table class="display dataTable no-footer" id="data-table" role="grid">
                                     <thead>
                                         <tr>
-                                            <th>{{ __('Dev Eui') }}</th>
+                                            <th>{{ __('Kabkot') }}</th>
+                                            <th>{{ __('Kecamatan') }}</th>
                                             <th>{{ __('Created At') }}</th>
                                             <th>{{ __('Updated At') }}</th>
                                             <th>{{ __('Action') }}</th>
@@ -59,10 +60,13 @@
         $('#data-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('devices.index') }}",
+            ajax: "{{ route('kecamatans.index') }}",
             columns: [{
-                    data: 'dev_eui',
-                    name: 'dev_eui',
+                    data: 'kabkot',
+                },
+                {
+                    data: 'kecamatan',
+                    name: 'kecamatan',
                 },
                 {
                     data: 'created_at',

@@ -3,21 +3,26 @@
 @section('title', __('Profile'))
 
 @section('content')
-    <div class="page-heading">
-        <div class="page-title">
-            <div class="row">
-                <div class="col-12 col-md-8 order-md-1 order-last">
-                    <h3>{{ __('Profile') }}</h3>
-                    <p class="text-subtitle text-muted">
-                        {{ __('Change your profile information, password and enable/disable two factor authentication.') }}
-                    </p>
+    <div class="page-body">
+        <div class="container-fluid">
+            <div class="page-header" style="margin-top: 5px">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h3>{{ __('Profile') }}</h3>
+                        <p class="text-subtitle text-muted">
+                            {{ __('Change your profile information, password and enable/disable two factor authentication.') }}
+                        </p>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/">{{ __('Dashboard') }}</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                        </ol>
+                    </div>
+                    <div class="col-sm-6">
+                    </div>
                 </div>
-                <x-breadcrumb>
-                    <li class="breadcrumb-item"><a href="/">{{ __('Dashboard') }}</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Profile</li>
-                </x-breadcrumb>
             </div>
         </div>
+
 
         <section class="section mt-4">
             <div class="row">
@@ -67,19 +72,20 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-1">
+                                    <div class="col-md-3">
                                         <div class="avatar avatar-xl mb-3">
                                             @if (auth()->user()->avatar == null)
                                                 <img src="https://www.gravatar.com/avatar/{{ md5(strtolower(trim(auth()->user()->email))) }}&s=500"
                                                     alt="Avatar">
                                             @else
-                                                <img src="{{ asset('uploads/images/avatars/' . auth()->user()->avatar) }}"
+                                                <img style="width:200px"
+                                                    src="{{ asset('uploads/images/avatars/' . auth()->user()->avatar) }}"
                                                     alt="Avatar">
                                             @endif
                                         </div>
                                     </div>
 
-                                    <div class="col-md-11">
+                                    <div class="col-md-9">
                                         <div class="form-group">
                                             <label for="avatar">{{ __('Avatar') }}</label>
                                             <input type="file" name="avatar"
@@ -154,9 +160,7 @@
                     </div>
                 </div>
             </div>
-
-            {{-- 2FA --}}
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-md-12">
                     <hr class="mb-5">
                 </div>
@@ -169,7 +173,6 @@
                         <div class="card-body">
                             <form method="post" action="/user/two-factor-authentication">
                                 @csrf
-                                {{-- if user activate two factor authentication --}}
                                 @if (auth()->user()->two_factor_secret)
                                     @method('delete')
 
@@ -196,8 +199,6 @@
                                         type="submit">{{ __('Enable Two Factor Authentication') }}</button>
                                 @endif
                             </form>
-
-                            {{-- generate recovery codes --}}
                             @if (auth()->user()->two_factor_secret)
                                 <form method="POST" action="/user/two-factor-recovery-codes">
                                     @csrf
@@ -209,7 +210,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </section>
     </div>
 @endsection
