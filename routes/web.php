@@ -24,7 +24,7 @@ Route::resource('rawdatas', App\Http\Controllers\RawdataController::class)->midd
 Route::resource('subnets', App\Http\Controllers\SubnetController::class)->middleware('auth');
 Route::resource('devices', App\Http\Controllers\DeviceController::class)->middleware('auth');
 Route::resource('tickets', App\Http\Controllers\TicketController::class)->middleware('auth');
-Route::resource('settings', App\Http\Controllers\SettingController::class)->middleware('auth')->only(['index','edit','update']);
+Route::resource('settings', App\Http\Controllers\SettingController::class)->middleware('auth')->only(['index', 'edit', 'update']);
 
 Route::resource('rawdatas', App\Http\Controllers\RawdataController::class)->middleware('auth');
 

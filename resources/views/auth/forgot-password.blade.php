@@ -7,71 +7,64 @@
 @endpush
 
 @section('content')
-    <div class="row h-100">
-        <div class="col-lg-7 col-12">
-            <div id="auth-left">
-                <div class="auth-logo" class="mb-0">
-                    <a href="/"><img src="{{ asset('mazer') }}/images/logo/logo.svg" alt="Logo"></a>
-                </div>
+    {{-- =========================== --}}
+    <section>
+        <div class="container-fluid p-0">
+            <div class="row">
+                <div class="col-12">
+                    <div class="login-card">
 
-                <h1 class="auth-title">{{ __('Forgot Password.') }}</h1>
+                        <form class="theme-form login-form" method="POST" action="{{ route('password.email') }}">
+                            @csrf
+                            <center>
+                                <img src="{{ asset('assets/logo.png') }}" alt="" style="width: 60%">
+                                <h6>{{ __('Enter your email and we\'ll send your a link to reset your password.') }}</h6>
 
-                <p class="auth-subtitle mb-3">
-                    {{ __('Enter your email and we\'ll send your a link to reset your password.') }}</p>
+                                @if ($errors->any())
+                                    <div class="alert alert-danger alert-dismissible show fade">
+                                        <ul class="ms-0 mb-0">
+                                            @foreach ($errors->all() as $error)
+                                                <li>
+                                                    <p>{{ $error }}</p>
+                                                </li>
+                                            @endforeach
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                aria-label="Close"></button>
+                                        </ul>
+                                    </div>
+                                @endif
 
-                @if ($errors->any())
-                    <div class="alert alert-danger alert-dismissible show fade">
-                        <ul class="ms-0 mb-0">
-                            @foreach ($errors->all() as $error)
-                                <li>
-                                    <p>{{ $error }}</p>
-                                </li>
-                            @endforeach
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </ul>
+                                @if (session('status'))
+                                    <div class="alert alert-success alert-dismissible show fade">
+                                        {{ session('status') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @endif
+                            </center>
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <div class="input-group"><span class="input-group-text"><i class="icon-email"></i></span>
+                                    <input class="form-control" type="email" name="email" required placeholder=""
+                                        autocomplete="current-email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox">
+                                </div><a class="link" href="/login">{{ __('Already have an account') }}?</a>
+                            </div>
+
+                            <div class="form-group">
+                                <button class="btn btn-primary btn-block"
+                                    type="submit">{{ __('Send Password Reset Link') }}</button>
+                            </div>
+
+                        </form>
+
                     </div>
-                @endif
-
-                @if (session('status'))
-                    <div class="alert alert-success alert-dismissible show fade">
-                        {{ session('status') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif
-
-                <form method="POST" action="{{ route('password.email') }}">
-                    @csrf
-
-                    <div class="form-group position-relative has-icon-left mb-4">
-                        <input type="email" class="form-control form-control-xl @error('email') is-invalid @enderror"
-                            placeholder="{{ __('E-Mail Address') }}" name="email" required autocomplete="current-email">
-                        <div class="form-control-icon">
-                            <i class="bi bi-person"></i>
-                        </div>
-                    </div>
-
-                    <button
-                        class="btn btn-primary btn-block btn-lg shadow-lg mt-3">{{ __('Send Password Reset Link') }}</button>
-                </form>
-
-                <div class="text-center mt-4 text-lg fs-4">
-                    <p class="text-gray-600">{{ __("Don't have an account") }}?
-                        <a href="/register" class="font-bold">
-                            {{ __('Sign up.') }}
-                        </a>
-                    </p>
-
-                    <p class="text-gray-600">{{ __('Already have an account') }}?
-                        <a href="/login" class="font-bold">{{ __('Log in.') }}</a>
-                    </p>
                 </div>
             </div>
         </div>
-
-        <div class="col-lg-5 d-none d-lg-block">
-            <div id="auth-right">
-            </div>
-        </div>
-    </div>
+    </section>
 
 @endsection

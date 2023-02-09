@@ -20,7 +20,7 @@
                                 @canany($permissions)
                                     @if (empty($menu['submenus']))
                                         @can($menu['permission'])
-                                            <li><a class="nav-link menu-title link-nav {{ is_active_menu($menu['route']) }}"
+                                            <li><a class="nav-link menu-title link-nav"
                                                     href="{{ route(str($menu['route'])->remove('/')->plural() . '.index') }}">{!! $menu['icon'] !!}<span>{{ __($menu['title']) }}</span></a>
                                             </li>
                                         @endcan
@@ -45,7 +45,6 @@
                         @endcanany
                     @endif
                 @endforeach
-
             </ul>
         </div>
         <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
