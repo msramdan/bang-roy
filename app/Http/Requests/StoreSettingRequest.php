@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateGatewayRequest extends FormRequest
+class StoreSettingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,9 @@ class UpdateGatewayRequest extends FormRequest
     public function rules()
     {
         return [
-            'gwid' => 'required|string|min:1|max:100',
-			'status_online' => 'required|boolean',
-			'pktfwd_status' => 'required|boolean',
+            'aplication_name' => 'required|string|min:1|max:255',
+			'endpoint_nms' => 'required|string|min:1|max:255',
+			'is_notif_tele' => 'required|boolean',
         ];
     }
 }

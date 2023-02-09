@@ -1,44 +1,43 @@
 @extends('layouts.app')
 
-@section('title', __('Roles'))
+@section('title', __('Subnets'))
 
 @section('content')
-    <div class="page-body">
-        <div class="container-fluid">
-            <div class="page-header" style="margin-top: 5px">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h3>{{ __('Roles') }}</h3>
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="/">{{ __('Dashboard') }}</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">{{ __('Role') }}</li>
-                        </ol>
-                    </div>
-                    <div class="col-sm-6">
+<div class="page-body">
+                <div class="container-fluid">
+                    <div class="page-header" style="margin-top: 5px">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h3>{{ __('Subnets') }}</h3>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.html">{{ __('Dashboard') }}</a></li>
+                                    <li class="breadcrumb-item active">{{ __('Subnets') }}</li>
+                                </ol>
+                            </div>
+                            <div class="col-sm-6">
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <section class="section">
-            @can('role & permission create')
-                <div class="d-flex justify-content-end">
-                    <a href="{{ route('roles.create') }}" class="btn btn-primary mb-3">
-                        <i class="fas fa-plus"></i>
-                        {{ __('Create a new role') }}
-                    </a>
-                </div>
-            @endcan
+                <div class="container-fluid">
 
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-sm-12">
+                @can('subnet create')
+                <div class="d-flex justify-content-end">
+                    <a href="{{ route('subnets.create') }}" class="btn btn-primary mb-3">
+                        <i class="fas fa-plus"></i>
+                        {{ __('Create a new subnet') }}
+                    </a>
+                </div>
+                @endcan
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive p-1">
-                                <table class="table table-striped" id="data-table" width="100%">
+                                <table class="display dataTable no-footer" id="data-table" role="grid">
                                     <thead>
                                         <tr>
-                                            <th>{{ __('Name') }}</th>
+                                            <th>{{ __('Subnet') }}</th>
                                             <th>{{ __('Created At') }}</th>
                                             <th>{{ __('Updated At') }}</th>
                                             <th>{{ __('Action') }}</th>
@@ -50,18 +49,21 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     </div>
 @endsection
+
+
 @push('js')
     <script>
         $('#data-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('roles.index') }}",
-            columns: [{
-                    data: 'name',
-                    name: 'name'
+            ajax: "{{ route('subnets.index') }}",
+            columns: [
+                {
+                    data: 'subnet',
+                    name: 'subnet',
                 },
                 {
                     data: 'created_at',

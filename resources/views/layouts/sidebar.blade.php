@@ -45,10 +45,7 @@
                         @endcanany
                     @endif
                 @endforeach
-                @if (env('APP_ENV') === 'local')
-                    <li><a class="nav-link menu-title link-nav" href="{{ route('generators.create') }}"><i
-                                data-feather="settings"></i><span>{{ __('CRUD Generator') }}</span></a></li>
-                @endif
+
             </ul>
         </div>
         <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>

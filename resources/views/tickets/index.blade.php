@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('Roles'))
+@section('title', __('Tickets'))
 
 @section('content')
     <div class="page-body">
@@ -8,10 +8,10 @@
             <div class="page-header" style="margin-top: 5px">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h3>{{ __('Roles') }}</h3>
+                        <h3>{{ __('Tickets') }}</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="/">{{ __('Dashboard') }}</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">{{ __('Role') }}</li>
+                            <li class="breadcrumb-item"><a href="index.html">{{ __('Dashboard') }}</a></li>
+                            <li class="breadcrumb-item active">{{ __('Tickets') }}</li>
                         </ol>
                     </div>
                     <div class="col-sm-6">
@@ -19,26 +19,20 @@
                 </div>
             </div>
         </div>
-
-        <section class="section">
-            @can('role & permission create')
-                <div class="d-flex justify-content-end">
-                    <a href="{{ route('roles.create') }}" class="btn btn-primary mb-3">
-                        <i class="fas fa-plus"></i>
-                        {{ __('Create a new role') }}
-                    </a>
-                </div>
-            @endcan
+        <div class="container-fluid">
 
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-sm-12">
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive p-1">
-                                <table class="table table-striped" id="data-table" width="100%">
+                                <table class="display dataTable no-footer" id="data-table" role="grid">
                                     <thead>
                                         <tr>
-                                            <th>{{ __('Name') }}</th>
+                                            <th>{{ __('Subject') }}</th>
+                                            <th>{{ __('Description') }}</th>
+                                            <th>{{ __('Device') }}</th>
+                                            <th>{{ __('Status') }}</th>
                                             <th>{{ __('Created At') }}</th>
                                             <th>{{ __('Updated At') }}</th>
                                             <th>{{ __('Action') }}</th>
@@ -50,18 +44,32 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     </div>
 @endsection
+
+
 @push('js')
     <script>
         $('#data-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('roles.index') }}",
+            ajax: "{{ route('tickets.index') }}",
             columns: [{
-                    data: 'name',
-                    name: 'name'
+                    data: 'subject',
+                    name: 'subject',
+                },
+                {
+                    data: 'description',
+                    name: 'description',
+                },
+                {
+                    data: 'device',
+                    name: 'device.dev_eui'
+                },
+                {
+                    data: 'status',
+                    name: 'status',
                 },
                 {
                     data: 'created_at',

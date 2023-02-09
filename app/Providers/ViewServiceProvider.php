@@ -31,5 +31,14 @@ class ViewServiceProvider extends ServiceProvider
                 Role::select('id', 'name')->get()
             );
         });
-    }
+  
+
+				View::composer(['tickets.create', 'tickets.edit'], function ($view) {
+            return $view->with(
+                'devices',
+                \App\Models\Device::select('id', 'dev_eui')->get()
+            );
+        });
+
+	}
 }

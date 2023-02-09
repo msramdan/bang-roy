@@ -109,46 +109,147 @@ return [
      * This code below always changes when you use a generator and maybe you must lint or format the code.
      */
     'sidebars' => [
-        [
-            'header' => 'Users',
-            'permissions' => [
-                'user view',
-                'role & permission view'
-            ],
-            'menus' => [
-                [
-                    'title' => 'Users',
-                    'icon' => '<i data-feather="users"></i>',
-                    'route' => '/users',
-                    'permission' => 'user view',
-                    'permissions' => [],
-                    'submenus' => []
-                ],
-                [
-                    'title' => 'Roles & permissions',
-                    'icon' => '<i data-feather="user-check"></i>',
-                    'route' => '/roles',
-                    'permission' => 'role & permission view',
-                    'permissions' => [],
-                    'submenus' => []
-                ]
-            ]
+    [
+        'header' => 'Main',
+        'permissions' => [
+            'subnet view'
         ],
-        [
-            'header' => 'Gatewaies',
-            'permissions' => [
-                'gateway view'
-            ],
-            'menus' => [
-                [
-                    'title' => 'Gateways',
-                    'icon' => '<i data-feather="user-check"></i>',
-                    'route' => '/gateways',
-                    'permission' => 'gateway view',
-                    'permissions' => [],
-                    'submenus' => []
+        'menus' => [
+            [
+                'title' => 'Main Data',
+                'icon' => '<i data-feather="list"></i>',
+                'route' => null,
+                'permission' => null,
+                'permissions' => [
+                    'subnet view'
+                ],
+                'submenus' => [
+                    [
+                        'title' => 'Tests',
+                        'route' => '/tests',
+                        'permission' => 'test view'
+                    ],
+                    [
+                        'title' => 'Subnets',
+                        'route' => '/subnets',
+                        'permission' => 'subnet view'
+                    ]
                 ]
             ]
         ]
+    ],
+    [
+        'header' => 'System Log',
+        'permissions' => [
+            'test view'
+        ],
+        'menus' => [
+            [
+                'title' => 'System Log',
+                'icon' => '<i data-feather="log"></i>',
+                'route' => null,
+                'permission' => null,
+                'permissions' => [
+                    'test view'
+                ],
+                'submenus' => [
+                    [
+                        'title' => 'Tests',
+                        'route' => '/tests',
+                        'permission' => 'test view'
+                    ]
+                ]
+            ]
+        ]
+    ],
+    [
+        'header' => 'Devices',
+        'permissions' => [
+            'device view'
+        ],
+        'menus' => [
+            [
+                'title' => 'Devices',
+                'icon' => '<i data-feather="airplay"></i>',
+                'route' => '/devices',
+                'permission' => 'device view',
+                'permissions' => [],
+                'submenus' => []
+            ]
+        ]
+    ],
+    [
+        'header' => 'Gatewaies',
+        'permissions' => [
+            'gateway view'
+        ],
+        'menus' => [
+            [
+                'title' => 'Gateway',
+                'icon' => '<i data-feather="hard-drive"></i>',
+                'route' => '/gateways',
+                'permission' => 'gateway view',
+                'permissions' => [],
+                'submenus' => []
+            ]
+        ]
+    ],
+    [
+        'header' => 'Tickets',
+        'permissions' => [
+            'ticket view'
+        ],
+        'menus' => [
+            [
+                'title' => 'Tickets',
+                'icon' => '<i data-feather="file-text"></i>',
+                'route' => '/tickets',
+                'permission' => 'ticket view',
+                'permissions' => [],
+                'submenus' => []
+            ]
+        ]
+    ],
+    [
+        'header' => 'Settings',
+        'permissions' => [
+            'setting view'
+        ],
+        'menus' => [
+            [
+                'title' => 'Settings',
+                'icon' => '<i data-feather="settings"></i>',
+                'route' => '/settings',
+                'permission' => 'setting view',
+                'permissions' => [],
+                'submenus' => []
+            ]
+        ]
+            ],
+    [
+        'header' => 'Users',
+        'permissions' => [
+            'user view',
+            'role & permission view'
+        ],
+        'menus' => [
+            [
+                'title' => 'Users',
+                'icon' => '<i data-feather="users"></i>',
+                'route' => '/users',
+                'permission' => 'user view',
+                'permissions' => [],
+                'submenus' => []
+            ],
+            [
+                'title' => 'Roles & permissions',
+                'icon' => '<i data-feather="unlock"></i>',
+                'route' => '/roles',
+                'permission' => 'role & permission view',
+                'permissions' => [],
+                'submenus' => []
+            ]
+        ]
     ]
+]
 ];

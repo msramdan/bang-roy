@@ -182,5 +182,8 @@ return [
             ]
         ],
         ['group' => 'gateways', 'access' => ['gateway view']],
-    ],
-];
+        ['group' => 'subnets', 'access' => ['subnet view', 'subnet create', 'subnet edit', 'subnet delete']],
+        ['group' => 'devices', 'access' => ['device view', 'device create', 'device edit', 'device delete']],
+        ['group' => 'tickets', 'access' => ['ticket view', 'ticket edit']],
+        ['group' => 'settings', 'access' => ['setting view','setting edit']],
+		],];

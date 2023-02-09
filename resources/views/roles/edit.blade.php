@@ -3,27 +3,30 @@
 @section('title', __('Edit Role'))
 
 @section('content')
-    <div class="page-heading">
-        <div class="page-title">
-            <div class="row">
-                <div class="col-12 col-md-8 order-md-1 order-last">
-                    <h3>{{ __('Role') }}</h3>
-                    <p class="text-subtitle text-muted">
-                        {{ __('Edit an new role.') }}
-                    </p>
+    <div class="page-body">
+        <div class="container-fluid">
+            <div class="page-header" style="margin-top: 5px">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h3>{{ __('Role') }}</h3>
+                        <p class="text-subtitle text-muted">
+                            {{ __('Edit an role.') }}
+                        </p>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="/">{{ __('Dashboard') }}</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="{{ route('roles.index') }}">{{ __('Role') }}</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">
+                                {{ __('Edit') }}
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="col-sm-6">
+                    </div>
                 </div>
-
-                <x-breadcrumb>
-                    <li class="breadcrumb-item">
-                        <a href="/">{{ __('Dashboard') }}</a>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <a href="{{ route('roles.index') }}">{{ __('Role') }}</a>
-                    </li>
-                    <li class="breadcrumb-item active" aria-current="page">
-                        {{ __('Edit') }}
-                    </li>
-                </x-breadcrumb>
             </div>
         </div>
 
