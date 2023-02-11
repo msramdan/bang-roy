@@ -6,10 +6,6 @@ use Carbon\Carbon;
 use App\Models\Rawdata;
 use App\Models\Ticket;
 use App\Models\Device;
-use App\Models\DailyUsageDevice;
-use App\Models\ParsedWaterMater;
-use App\Models\ParsedPowerMater;
-use App\Models\ParsedGasMater;
 
 if (!function_exists('set_active')) {
     function set_active($uri)
@@ -30,7 +26,7 @@ if (!function_exists('set_active')) {
 
 function setting_web()
 {
-    $setting = DB::table('setting_app')->first();
+    $setting = DB::table('settings')->first();
     return $setting;
 }
 
@@ -47,14 +43,6 @@ function set_show($uri)
             return 'show';
         }
     }
-}
-
-
-function rupiah($angka)
-{
-
-    $hasil_rupiah = "Rp " . number_format($angka, 2, ',', '.');
-    echo $hasil_rupiah;
 }
 
 function errorMessage($errorCode)

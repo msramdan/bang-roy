@@ -28,10 +28,13 @@ Route::resource('settings', App\Http\Controllers\SettingController::class)->midd
 
 Route::resource('rawdatas', App\Http\Controllers\RawdataController::class)->middleware('auth');
 
-Route::resource('parseds', App\Http\Controllers\ParsedController::class)->middleware('auth');
 
 Route::resource('provinces', App\Http\Controllers\ProvinceController::class)->middleware('auth');
 Route::resource('kabkots', App\Http\Controllers\KabkotController::class)->middleware('auth');
 Route::resource('kecamatans', App\Http\Controllers\KecamatanController::class)->middleware('auth');
 Route::resource('kelurahans', App\Http\Controllers\KelurahanController::class)->middleware('auth');
 Route::resource('instances', App\Http\Controllers\InstanceController::class)->middleware('auth');
+
+Route::resource('parseds', App\Http\Controllers\ParsedController::class)->middleware('auth');
+
+Route::resource('maintenances', App\Http\Controllers\MaintenanceController::class)->middleware('auth');

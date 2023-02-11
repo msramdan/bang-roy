@@ -187,6 +187,12 @@ return [
         ['group' => 'tickets', 'access' => ['ticket view', 'ticket edit']],
         ['group' => 'settings', 'access' => ['setting view', 'setting edit']],
         ['group' => 'rawdatas', 'access' => ['rawdata view', 'rawdata delete']],
+        ['group' => 'provinces', 'access' => ['province view', 'province create', 'province edit', 'province delete']],
+        ['group' => 'kabkots', 'access' => ['kabkot view', 'kabkot create', 'kabkot edit', 'kabkot delete']],
+        ['group' => 'kecamatans', 'access' => ['kecamatan view', 'kecamatan create', 'kecamatan edit', 'kecamatan delete']],
+        ['group' => 'kelurahans', 'access' => ['kelurahan view', 'kelurahan create', 'kelurahan edit', 'kelurahan delete']],
+        ['group' => 'instances', 'access' => ['instance view', 'instance create', 'instance edit', 'instance delete']],
         ['group' => 'parseds', 'access' => ['parsed view']],
-  ['group' => 'provinces', 'access' => ['province view', 'province create', 'province edit', 'province delete']],['group' => 'kabkots', 'access' => ['kabkot view', 'kabkot create', 'kabkot edit', 'kabkot delete']],['group' => 'kecamatans', 'access' => ['kecamatan view', 'kecamatan create', 'kecamatan edit', 'kecamatan delete']],['group' => 'kelurahans', 'access' => ['kelurahan view', 'kelurahan create', 'kelurahan edit', 'kelurahan delete']],['group' => 'instances', 'access' => ['instance view', 'instance create', 'instance edit', 'instance delete']], 
-		],];
+        ['group' => 'maintenances', 'access' => ['maintenance view', 'maintenance create', 'maintenance edit', 'maintenance delete']],
+    ],
+];

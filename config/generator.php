@@ -134,10 +134,18 @@ return [
                 [
                     'title' => 'Instances',
                     'icon' => '<i data-feather="database"></i>',
-                    'route' => '/instances',
-                    'permission' => 'instance view',
-                    'permissions' => [],
-                    'submenus' => []
+                    'route' => null,
+                    'permission' => null,
+                    'permissions' => [
+                        'instance view'
+                    ],
+                    'submenus' => [
+                        [
+                            'title' => 'Data Instances',
+                            'route' => '/instances',
+                            'permission' => 'instance view'
+                        ]
+                    ]
                 ]
             ]
         ],
@@ -196,7 +204,7 @@ return [
                             'permission' => 'rawdata view'
                         ],
                         [
-                            'title' => 'Parsed Data',
+                            'title' => 'Parseds',
                             'route' => '/parseds',
                             'permission' => 'parsed view'
                         ]
@@ -211,7 +219,9 @@ return [
                 'province view',
                 'kabkot view',
                 'kecamatan view',
-                'kelurahan view'
+                'kelurahan view',
+                'maintenance view',
+                'maintenance view'
             ],
             'menus' => [
                 [
@@ -220,6 +230,7 @@ return [
                     'route' => null,
                     'permission' => null,
                     'permissions' => [
+                        'maintenance view',
                         'subnet view',
                         'province view',
                         'kabkot view',
@@ -227,6 +238,11 @@ return [
                         'kelurahan view'
                     ],
                     'submenus' => [
+                        [
+                            'title' => 'Maintenances',
+                            'route' => '/maintenances',
+                            'permission' => 'maintenance view'
+                        ],
                         [
                             'title' => 'Subnets',
                             'route' => '/subnets',
@@ -257,43 +273,40 @@ return [
             ]
         ],
         [
-            'header' => 'Settings',
+            'header' => 'Utilities',
             'permissions' => [
-                'setting view'
+                'setting view',
+                'role & permission view',
+                'user view'
             ],
             'menus' => [
                 [
-                    'title' => 'Settings',
+                    'title' => 'Utilities',
                     'icon' => '<i data-feather="settings"></i>',
-                    'route' => '/settings',
-                    'permission' => 'setting view',
-                    'permissions' => [],
-                    'submenus' => []
-                ]
-            ]
-        ],
-        [
-            'header' => 'Users',
-            'permissions' => [
-                'user view',
-                'role & permission view'
-            ],
-            'menus' => [
-                [
-                    'title' => 'Users',
-                    'icon' => '<i data-feather="users"></i>',
-                    'route' => '/users',
-                    'permission' => 'user view',
-                    'permissions' => [],
-                    'submenus' => []
-                ],
-                [
-                    'title' => 'Roles & permissions',
-                    'icon' => '<i data-feather="unlock"></i>',
-                    'route' => '/roles',
-                    'permission' => 'role & permission view',
-                    'permissions' => [],
-                    'submenus' => []
+                    'route' => null,
+                    'permission' => null,
+                    'permissions' => [
+                        'setting view',
+                        'role & permission view',
+                        'user view'
+                    ],
+                    'submenus' => [
+                        [
+                            'title' => 'Settings App',
+                            'route' => '/settings',
+                            'permission' => 'setting view'
+                        ],
+                        [
+                            'title' => 'Users',
+                            'route' => '/users',
+                            'permission' => 'user view'
+                        ],
+                        [
+                            'title' => 'Roles & permissions',
+                            'route' => '/roles',
+                            'permission' => 'role & permission view'
+                        ]
+                    ]
                 ]
             ]
         ]

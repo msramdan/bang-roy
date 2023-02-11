@@ -3,34 +3,26 @@
 @section('title', __('Parseds'))
 
 @section('content')
-<div class="page-body">
-                <div class="container-fluid">
-                    <div class="page-header" style="margin-top: 5px">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <h3>{{ __('Parseds') }}</h3>
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">{{ __('Dashboard') }}</a></li>
-                                    <li class="breadcrumb-item active">{{ __('Parseds') }}</li>
-                                </ol>
-                            </div>
-                            <div class="col-sm-6">
-                            </div>
-                        </div>
+    <div class="page-body">
+        <div class="container-fluid">
+            <div class="page-header" style="margin-top: 5px">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h3>{{ __('Parseds') }}</h3>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">{{ __('Dashboard') }}</a></li>
+                            <li class="breadcrumb-item active">{{ __('Parseds') }}</li>
+                        </ol>
+                    </div>
+                    <div class="col-sm-6">
                     </div>
                 </div>
-                <div class="container-fluid">
+            </div>
+        </div>
+        <div class="container-fluid">
 
             <div class="row">
                 <div class="col-sm-12">
-                @can('parsed create')
-                <div class="d-flex justify-content-end">
-                    <a href="{{ route('parseds.create') }}" class="btn btn-primary mb-3">
-                        <i class="fas fa-plus"></i>
-                        {{ __('Create a new parsed') }}
-                    </a>
-                </div>
-                @endcan
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive p-1">
@@ -38,17 +30,14 @@
                                     <thead>
                                         <tr>
                                             <th>{{ __('Device') }}</th>
-											<th>{{ __('Rawdata') }}</th>
-											<th>{{ __('Frame Id') }}</th>
-											<th>{{ __('Temperature') }}</th>
-											<th>{{ __('Humidity') }}</th>
-											<th>{{ __('Period') }}</th>
-											<th>{{ __('Rssi') }}</th>
-											<th>{{ __('Snr') }}</th>
-											<th>{{ __('Battery') }}</th>
-                                            <th>{{ __('Created At') }}</th>
-                                            <th>{{ __('Updated At') }}</th>
-                                            <th>{{ __('Action') }}</th>
+                                            <th>{{ __('Frame Id') }}</th>
+                                            <th>{{ __('Temperature') }}</th>
+                                            <th>{{ __('Humidity') }}</th>
+                                            <th>{{ __('Period') }}</th>
+                                            <th>{{ __('Rssi') }}</th>
+                                            <th>{{ __('Snr') }}</th>
+                                            <th>{{ __('Battery') }}</th>
+                                            <th>{{ __('Date') }}</th>
                                         </tr>
                                     </thead>
                                 </table>
@@ -68,56 +57,41 @@
             processing: true,
             serverSide: true,
             ajax: "{{ route('parseds.index') }}",
-            columns: [
-                {
+            columns: [{
                     data: 'device',
                     name: 'device.dev_eui'
                 },
-				{
-                    data: 'rawdata',
-                    name: 'rawdata.dev_eui'
-                },
-				{
+                {
                     data: 'frame_id',
                     name: 'frame_id',
                 },
-				{
+                {
                     data: 'temperature',
                     name: 'temperature',
                 },
-				{
+                {
                     data: 'humidity',
                     name: 'humidity',
                 },
-				{
+                {
                     data: 'period',
                     name: 'period',
                 },
-				{
+                {
                     data: 'rssi',
                     name: 'rssi',
                 },
-				{
+                {
                     data: 'snr',
                     name: 'snr',
                 },
-				{
+                {
                     data: 'battery',
                     name: 'battery',
                 },
                 {
                     data: 'created_at',
                     name: 'created_at'
-                },
-                {
-                    data: 'updated_at',
-                    name: 'updated_at'
-                },
-                {
-                    data: 'action',
-                    name: 'action',
-                    orderable: false,
-                    searchable: false
                 }
             ],
         });

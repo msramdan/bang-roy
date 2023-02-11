@@ -13,6 +13,7 @@ class SettingSeeder extends Seeder
         Setting::create([
             'aplication_name' => 'Smart Temperature',
             'endpoint_nms' => 'https://wspiot.xyz',
+            'token' => 'W4OBctr1nstGjv5ePcd42ypMqI3UsXSTfNGNAcjLP+c=',
             'is_notif_tele' => 0,
         ]);
     }

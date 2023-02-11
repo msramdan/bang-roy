@@ -6,6 +6,10 @@ use App\Models\Instance;
 use App\Http\Requests\{StoreInstanceRequest, UpdateInstanceRequest};
 use Yajra\DataTables\Facades\DataTables;
 use RealRashid\SweetAlert\Facades\Alert;
+use Exception;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 
 class InstanceController extends Controller
 {
@@ -25,16 +29,15 @@ class InstanceController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $instances = Instance::with('province:id,provinsi', 'kabkot:id,provinsi_id', 'kecamatan:id,kabkot_id', 'kelurahan:id,kecamatan_id', );
-
+            $instances = Instance::with('province:id,provinsi', 'kabkot:id,kabupaten_kota', 'kecamatan:id,kabkot_id', 'kelurahan:id,kecamatan_id',);
             return DataTables::of($instances)
-                ->addColumn('address', function($row){
+                ->addColumn('address', function ($row) {
                     return str($row->address)->limit(100);
                 })
-				->addColumn('province', function ($row) {
+                ->addColumn('province', function ($row) {
                     return $row->province ? $row->province->provinsi : '';
                 })->addColumn('kabkot', function ($row) {
-                    return $row->kabkot ? $row->kabkot->provinsi_id : '';
+                    return $row->kabkot ? $row->kabkot->kabupaten_kota : '';
                 })->addColumn('kecamatan', function ($row) {
                     return $row->kecamatan ? $row->kecamatan->kabkot_id : '';
                 })->addColumn('kelurahan', function ($row) {
@@ -53,7 +56,17 @@ class InstanceController extends Controller
      */
     public function create()
     {
-        return view('instances.create');
+        $days = [
+            'sunday',
+            'monday',
+            'tuesday',
+            'wednesday',
+            'thursday',
+            'friday',
+            'saturday'
+        ];
+
+        return view('instances.create', compact('days'));
     }
 
     /**
@@ -62,13 +75,34 @@ class InstanceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreInstanceRequest $request)
+    public function store(Request $request)
     {
-        
-        Instance::create($request->validated());
-        Alert::toast('The instance was created successfully.', 'success');
-        return redirect()->route('instances.index');
+        try {
+            $response = Http::withHeaders(['x-access-token' => setting_web()->token])
+                ->withOptions(['verify' => false])
+                ->post(setting_web()->endpoint_nms . '/openapi/app/create', [
+                    "appName" =>  Str::slug(request('instance_name', '_')),
+                    "pushURL" => $request->push_url,
+                    "enableMQTT" => false
+                ]);
 
+            if ($response['code'] == 0) {
+                $data = $request->except(['_token']);
+                $data['app_id'] = $response['appID'];
+                $data['app_name'] = Str::slug(request('instance_name', '_'));
+                $instances = Instance::create($data);
+                if ($instances) {
+                    Alert::toast('Data success saved', 'success');
+                    return redirect()->route('instances.index');
+                }
+            } else {
+                Alert::toast('There is something wrong with respond api.', 'error');
+                return redirect()->route('instances.index');
+            }
+        } catch (Exception $e) {
+            Alert::toast('Data failed to save', 'error');
+            return redirect()->route('instances.index');
+        }
     }
 
     /**
@@ -79,9 +113,9 @@ class InstanceController extends Controller
      */
     public function show(Instance $instance)
     {
-        $instance->load('province:id,provinsi', 'kabkot:id,provinsi_id', 'kecamatan:id,kabkot_id', 'kelurahan:id,kecamatan_id', );
+        $instance->load('province:id,provinsi', 'kabkot:id,provinsi_id', 'kecamatan:id,kabkot_id', 'kelurahan:id,kecamatan_id',);
 
-		return view('instances.show', compact('instance'));
+        return view('instances.show', compact('instance'));
     }
 
     /**
@@ -92,9 +126,9 @@ class InstanceController extends Controller
      */
     public function edit(Instance $instance)
     {
-        $instance->load('province:id,provinsi', 'kabkot:id,provinsi_id', 'kecamatan:id,kabkot_id', 'kelurahan:id,kecamatan_id', );
+        $instance->load('province:id,provinsi', 'kabkot:id,provinsi_id', 'kecamatan:id,kabkot_id', 'kelurahan:id,kecamatan_id',);
 
-		return view('instances.edit', compact('instance'));
+        return view('instances.edit', compact('instance'));
     }
 
     /**
@@ -106,7 +140,7 @@ class InstanceController extends Controller
      */
     public function update(UpdateInstanceRequest $request, Instance $instance)
     {
-        
+
         $instance->update($request->validated());
         Alert::toast('The instance was updated successfully.', 'success');
         return redirect()
@@ -122,9 +156,19 @@ class InstanceController extends Controller
     public function destroy(Instance $instance)
     {
         try {
-            $instance->delete();
-            Alert::toast('The instance was deleted successfully.', 'success');
-            return redirect()->route('instances.index');
+            $response = Http::withHeaders(['x-access-token' => setting_web()->token])
+                ->withOptions(['verify' => false])
+                ->post(setting_web()->endpoint_nms . '/openapi/app/delete', [
+                    "appIDs" => [$instance->app_id],
+                ]);
+            if ($response['code'] == 0) {
+                $instance->delete();
+                Alert::toast('The instance was deleted successfully.', 'success');
+                return redirect()->route('instances.index');
+            } else {
+                Alert::toast('There is something wrong with respond api.', 'error');
+                return redirect()->route('instances.index');
+            }
         } catch (\Throwable $th) {
             Alert::toast('The instance cant be deleted because its related to another table.', 'error');
             return redirect()->route('instances.index');

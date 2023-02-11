@@ -76,35 +76,49 @@ class ViewServiceProvider extends ServiceProvider
                 \App\Models\Kecamatan::select('id', 'kecamatan')->get()
             );
         });
-  
 
-				View::composer(['instances.create', 'instances.edit'], function ($view) {
+
+        View::composer(['instances.create', 'instances.edit'], function ($view) {
             return $view->with(
                 'provinces',
                 \App\Models\Province::select('id', 'provinsi')->get()
             );
         });
 
-		View::composer(['instances.create', 'instances.edit'], function ($view) {
+        View::composer(['instances.create', 'instances.edit'], function ($view) {
             return $view->with(
                 'kabkots',
                 \App\Models\Kabkot::select('id', 'provinsi_id')->get()
             );
         });
 
-		View::composer(['instances.create', 'instances.edit'], function ($view) {
+        View::composer(['instances.create', 'instances.edit'], function ($view) {
             return $view->with(
                 'kecamatans',
                 \App\Models\Kecamatan::select('id', 'kabkot_id')->get()
             );
         });
 
-		View::composer(['instances.create', 'instances.edit'], function ($view) {
+        View::composer(['instances.create', 'instances.edit'], function ($view) {
             return $view->with(
                 'kelurahans',
                 \App\Models\Kelurahan::select('id', 'kecamatan_id')->get()
             );
         });
 
-	}
+
+        View::composer(['maintenances.create', 'maintenances.edit'], function ($view) {
+            return $view->with(
+                'instances',
+                \App\Models\Instance::select('id', 'instance_name')->get()
+            );
+        });
+
+        View::composer(['maintenances.create', 'maintenances.edit'], function ($view) {
+            return $view->with(
+                'users',
+                \App\Models\User::select('id', 'name')->get()
+            );
+        });
+    }
 }

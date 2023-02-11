@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('aplication_name', 255);
 			$table->string('endpoint_nms', 255);
+            $table->string('token', 255);
 			$table->boolean('is_notif_tele');
             $table->timestamps();
         });

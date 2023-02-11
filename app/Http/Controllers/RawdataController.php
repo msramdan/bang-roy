@@ -26,19 +26,16 @@ class RawdataController extends Controller
             $rawdatas = Rawdata::query();
 
             return DataTables::of($rawdatas)
-                ->addColumn('data', function ($row) {
-                    return str($row->data)->limit(100);
+                ->addColumn('payload', function ($row) {
+                    $payload = json_decode($row->payload_data, true);
+                    return json_encode($payload, JSON_PRETTY_PRINT);
                 })
-                ->addColumn('gws', function ($row) {
-                    return str($row->gws)->limit(100);
-                })
-                ->addColumn('payload_data', function ($row) {
-                    return str($row->payload_data)->limit(100);
-                })
-                ->addColumn('convert', function ($row) {
-                    return str($row->convert)->limit(100);
+                ->addColumn('parsed', function ($row) {
+                    return  '<center>
+                    <a href="' . url('/panel/parsed-gm?parsed_data=' . $row->id) . '" style="width:120px" target="_blank" class="btn btn-sm  btn-success"> Parsed Data</a></center>';
                 })
                 ->addColumn('action', 'rawdatas.include.action')
+                ->rawColumns(['parsed', 'action'])
                 ->toJson();
         }
 

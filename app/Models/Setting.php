@@ -14,7 +14,7 @@ class Setting extends Model
      *
      * @var string[]
      */
-    protected $fillable = ['aplication_name', 'endpoint_nms', 'is_notif_tele'];
+    protected $fillable = ['aplication_name', 'endpoint_nms', 'is_notif_tele', 'token'];
 
     /**
      * The attributes that should be cast.
@@ -22,7 +22,4 @@ class Setting extends Model
      * @var string[]
      */
     protected $casts = ['aplication_name' => 'string', 'endpoint_nms' => 'string', 'is_notif_tele' => 'boolean', 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i'];
-
-    
-
 }

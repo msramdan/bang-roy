@@ -26,6 +26,7 @@ class StoreSettingRequest extends FormRequest
         return [
             'aplication_name' => 'required|string|min:1|max:255',
 			'endpoint_nms' => 'required|string|min:1|max:255',
+            'token' => 'required|string|min:1|max:255',
 			'is_notif_tele' => 'required|boolean',
         ];
     }
