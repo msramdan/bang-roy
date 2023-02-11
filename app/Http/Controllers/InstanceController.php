@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Instance;
 use App\Http\Requests\{StoreInstanceRequest, UpdateInstanceRequest};
+use App\Models\SettingToleranceAlert;
 use Yajra\DataTables\Facades\DataTables;
 use RealRashid\SweetAlert\Facades\Alert;
 use Exception;
@@ -90,7 +91,36 @@ class InstanceController extends Controller
                 $data = $request->except(['_token']);
                 $data['app_id'] = $response['appID'];
                 $data['app_name'] = Str::slug(request('instance_name', '_'));
+                // create local intance
                 $instances = Instance::create($data);
+
+                // insert day operational
+                $days = $request->day;
+                $open_hour = $request->opening_hour;
+                $closing_hour = $request->closing_hour;
+
+                foreach ($days as $i => $day) {
+                    $operational_time = OperationalTime::create([
+                        'instance_id' => $instances->id,
+                        'day' => $day,
+                        'open_hour' => $open_hour[$i],
+                        'closed_hour' => $closing_hour[$i]
+                    ]);
+                }
+
+                // insert tolerance
+                $field_data = $request->field_data;
+                $min_tolerance = $request->min_tolerance;
+                $max_tolerance = $request->max_tolerance;
+
+                foreach ($field_data as $a => $field) {
+                    $setting_tolerance = SettingToleranceAlert::create([
+                        'instance_id' => $instances->id,
+                        'field_data' => $field,
+                        'min_tolerance' => $min_tolerance[$a],
+                        'max_tolerance' => $max_tolerance[$a]
+                    ]);
+                }
                 if ($instances) {
                     Alert::toast('Data success saved', 'success');
                     return redirect()->route('instances.index');

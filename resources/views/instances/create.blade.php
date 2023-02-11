@@ -304,7 +304,7 @@
                                             <tr>
                                                 <td>
                                                     <input type="text" required class="form-control" name="field_data[]"
-                                                        readonly value="bateray">
+                                                        readonly value="battery">
                                                     @error('field_data.1')
                                                         <span style="color: red;">{{ $message }}</span>
                                                     @enderror
@@ -320,6 +320,29 @@
                                                     <input type="number" required step="any" class="form-control"
                                                         name="max_tolerance[]" value="{{ old('max_tolerance.1') }}">
                                                     @error('max_tolerance.1')
+                                                        <span style="color: red;">{{ $message }}</span>
+                                                    @enderror
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="text" required class="form-control" name="field_data[]"
+                                                        readonly value="humidity">
+                                                    @error('field_data.2')
+                                                        <span style="color: red;">{{ $message }}</span>
+                                                    @enderror
+                                                </td>
+                                                <td>
+                                                    <input type="number" required step="any" class="form-control"
+                                                        name="min_tolerance[]" value="{{ old('min_tolerance.1') }}">
+                                                    @error('min_tolerance.2')
+                                                        <span style="color: red;">{{ $message }}</span>
+                                                    @enderror
+                                                </td>
+                                                <td>
+                                                    <input type="number" required step="any" class="form-control"
+                                                        name="max_tolerance[]" value="{{ old('max_tolerance.1') }}">
+                                                    @error('max_tolerance.2')
                                                         <span style="color: red;">{{ $message }}</span>
                                                     @enderror
                                                 </td>
