@@ -38,6 +38,7 @@
                                 <table class="display dataTable no-footer" id="data-table" role="grid">
                                     <thead>
                                         <tr>
+                                            <th>#</th>
                                             <th>{{ __('Avatar') }}</th>
                                             <th>{{ __('Name') }}</th>
                                             <th>{{ __('Email') }}</th>
@@ -64,6 +65,11 @@
             serverSide: true,
             ajax: "{{ route('users.index') }}",
             columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    orderable: false,
+                    searchable: false
+                }, {
                     data: 'avatar',
                     name: 'avatar',
                     orderable: false,

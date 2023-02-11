@@ -26,10 +26,11 @@ class TicketController extends Controller
             $tickets = Ticket::with('device:id,dev_eui');
 
             return DataTables::of($tickets)
-                ->addColumn('description', function($row){
+                ->addIndexColumn()
+                ->addColumn('description', function ($row) {
                     return str($row->description)->limit(100);
                 })
-				->addColumn('device', function ($row) {
+                ->addColumn('device', function ($row) {
                     return $row->device ? $row->device->dev_eui : '';
                 })->addColumn('action', 'tickets.include.action')
                 ->toJson();
@@ -42,7 +43,7 @@ class TicketController extends Controller
     {
         $ticket->load('device:id,dev_eui');
 
-		return view('tickets.show', compact('ticket'));
+        return view('tickets.show', compact('ticket'));
     }
 
     /**
@@ -55,7 +56,7 @@ class TicketController extends Controller
     {
         $ticket->load('device:id,dev_eui');
 
-		return view('tickets.edit', compact('ticket'));
+        return view('tickets.edit', compact('ticket'));
     }
 
     /**

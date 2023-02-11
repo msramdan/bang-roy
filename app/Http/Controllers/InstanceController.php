@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Instance;
 use App\Http\Requests\{StoreInstanceRequest, UpdateInstanceRequest};
+use App\Models\OperationalTime;
 use App\Models\SettingToleranceAlert;
 use Yajra\DataTables\Facades\DataTables;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -11,6 +12,7 @@ use Exception;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+
 
 class InstanceController extends Controller
 {
@@ -32,6 +34,7 @@ class InstanceController extends Controller
         if (request()->ajax()) {
             $instances = Instance::with('province:id,provinsi', 'kabkot:id,kabupaten_kota', 'kecamatan:id,kabkot_id', 'kelurahan:id,kecamatan_id',);
             return DataTables::of($instances)
+                ->addIndexColumn()
                 ->addColumn('address', function ($row) {
                     return str($row->address)->limit(100);
                 })
@@ -157,8 +160,9 @@ class InstanceController extends Controller
     public function edit(Instance $instance)
     {
         $instance->load('province:id,provinsi', 'kabkot:id,provinsi_id', 'kecamatan:id,kabkot_id', 'kelurahan:id,kecamatan_id',);
-
-        return view('instances.edit', compact('instance'));
+        $operational_times = OperationalTime::where('instance_id', $instance->id)->orderBy('id', 'asc')->get();
+        $tolerance = SettingToleranceAlert::where('instance_id', $instance->id)->orderBy('id', 'asc')->get();
+        return view('instances.edit', compact('instance', 'operational_times', 'tolerance'));
     }
 
     /**
@@ -170,11 +174,87 @@ class InstanceController extends Controller
      */
     public function update(UpdateInstanceRequest $request, Instance $instance)
     {
+        try {
+            // dd($request->push_url);
+            $response = Http::withHeaders(['x-access-token' => setting_web()->token])
+                ->withOptions(['verify' => false])
+                ->post(setting_web()->endpoint_nms . '/openapi/app/update', [
+                    "appID" => (int)  $request->app_id,
+                    "appName" =>  Str::slug(request('instance_name', '_')),
+                    "pushURL" => $request->push_url,
+                    "enableMQTT" => false
+                ]);
+            if ($response['code'] == 0) {
+                $data = $request->except('_token');
+                $data['app_name'] = Str::slug(request('instance_name', '_'));
+                $instance->update($data);
 
-        $instance->update($request->validated());
-        Alert::toast('The instance was updated successfully.', 'success');
-        return redirect()
-            ->route('instances.index');
+
+                /** Update Operational Time */
+                $operational_id = $request->operational_id; // array operational id
+                $days = $request->day; // array days
+                $opening_hours = $request->opening_hour; // array opening hour
+                $closing_hours = $request->closing_hour; // array closing hour
+
+
+                foreach ($operational_id as $i => $operational) {
+                    $operational_time = OperationalTime::where('instance_id', $instance->id)
+                        ->where('id', $operational)
+                        ->first();
+                    if ($operational_time) {
+                        $operational_time->update([
+                            'day' => $days[$i],
+                            'open_hour' => $opening_hours[$i],
+                            'close_hour' => $closing_hours[$i],
+                        ]);
+                    } else {
+                        $operational_time = OperationalTime::create([
+                            'instance_id' => $instance->id,
+                            'day' => $days[$i],
+                            'open_hour' => $opening_hours[$i],
+                            'close_hour' => $closing_hours[$i]
+                        ]);
+                    }
+                }
+
+
+
+
+
+                $tolerance_id = $request->tolerance_id;
+                $field_datas = $request->field_data;
+                $min_tolerances = $request->min_tolerance;
+                $max_tolerances = $request->max_tolerance;
+                foreach ($tolerance_id as $a => $tolerance_id) {
+                    $device_tolerance = SettingToleranceAlert::where('instance_id', $instance->id)
+                        ->where('id', $tolerance_id)
+                        ->first();
+                    if ($device_tolerance) {
+                        $device_tolerance->update([
+                            'field_data' => $field_datas[$a],
+                            'min_tolerance' => $min_tolerances[$a],
+                            'max_tolerance' => $max_tolerances[$a],
+                        ]);
+                    } else {
+                        $setting_tolerance = SettingToleranceAlert::create([
+                            'subinstance_id' => $instance->id,
+                            'field_data' => $field_datas[$a],
+                            'min_tolerance' => $min_tolerances[$a],
+                            'max_tolerance' => $max_tolerances[$a]
+                        ]);
+                    }
+                }
+                Alert::toast('The instance was updated successfully.', 'success');
+                return redirect()
+                    ->route('instances.index');
+            } else {
+                Alert::toast('There is something wrong with respond api.', 'error');
+                return redirect()->route('instances.index');
+            }
+        } catch (Exception $e) {
+            Alert::toast('Data failed to save', 'error');
+            return redirect()->route('instances.index');
+        }
     }
 
     /**
@@ -186,18 +266,20 @@ class InstanceController extends Controller
     public function destroy(Instance $instance)
     {
         try {
-            $response = Http::withHeaders(['x-access-token' => setting_web()->token])
-                ->withOptions(['verify' => false])
-                ->post(setting_web()->endpoint_nms . '/openapi/app/delete', [
-                    "appIDs" => [$instance->app_id],
-                ]);
-            if ($response['code'] == 0) {
-                $instance->delete();
-                Alert::toast('The instance was deleted successfully.', 'success');
-                return redirect()->route('instances.index');
-            } else {
-                Alert::toast('There is something wrong with respond api.', 'error');
-                return redirect()->route('instances.index');
+            if ($instance->delete()) {
+                $response = Http::withHeaders(['x-access-token' => setting_web()->token])
+                    ->withOptions(['verify' => false])
+                    ->post(setting_web()->endpoint_nms . '/openapi/app/delete', [
+                        "appIDs" => [$instance->app_id],
+                    ]);
+                if ($response['code'] == 0) {
+
+                    Alert::toast('The instance was deleted successfully.', 'success');
+                    return redirect()->route('instances.index');
+                } else {
+                    Alert::toast('There is something wrong with respond api.', 'error');
+                    return redirect()->route('instances.index');
+                }
             }
         } catch (\Throwable $th) {
             Alert::toast('The instance cant be deleted because its related to another table.', 'error');

@@ -38,6 +38,7 @@
                                 <table class="table table-striped" id="data-table" width="100%">
                                     <thead>
                                         <tr>
+                                            <th>#</th>
                                             <th>{{ __('Name') }}</th>
                                             <th>{{ __('Created At') }}</th>
                                             <th>{{ __('Updated At') }}</th>
@@ -60,6 +61,11 @@
             serverSide: true,
             ajax: "{{ route('roles.index') }}",
             columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    orderable: false,
+                    searchable: false
+                }, {
                     data: 'name',
                     name: 'name'
                 },

@@ -37,6 +37,7 @@
                                 <table class="display dataTable no-footer" id="data-table" role="grid">
                                     <thead>
                                         <tr>
+                                            <th>#</th>
                                             <th>{{ __('App Id') }}</th>
                                             <th>{{ __('App Name') }}</th>
                                             <th>{{ __('Instance Name') }}</th>
@@ -64,6 +65,11 @@
             serverSide: true,
             ajax: "{{ route('instances.index') }}",
             columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    orderable: false,
+                    searchable: false
+                }, {
                     data: 'app_id',
                     name: 'app_id',
                 },

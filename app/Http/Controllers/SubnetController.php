@@ -28,6 +28,7 @@ class SubnetController extends Controller
             $subnets = Subnet::query();
 
             return DataTables::of($subnets)
+                ->addIndexColumn()
                 ->addColumn('action', 'subnets.include.action')
                 ->toJson();
         }
@@ -53,11 +54,10 @@ class SubnetController extends Controller
      */
     public function store(StoreSubnetRequest $request)
     {
-        
+
         Subnet::create($request->validated());
         Alert::toast('The subnet was created successfully.', 'success');
         return redirect()->route('subnets.index');
-
     }
 
     /**
@@ -91,7 +91,7 @@ class SubnetController extends Controller
      */
     public function update(UpdateSubnetRequest $request, Subnet $subnet)
     {
-        
+
         $subnet->update($request->validated());
         Alert::toast('The subnet was updated successfully.', 'success');
         return redirect()

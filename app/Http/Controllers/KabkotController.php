@@ -27,6 +27,7 @@ class KabkotController extends Controller
         if (request()->ajax()) {
             $kabkots = Kabkot::with('province:id,provinsi');
             return DataTables::of($kabkots)
+                ->addIndexColumn()
                 ->addColumn('province', function ($row) {
                     return $row->province ? $row->province->provinsi : '';
                 })

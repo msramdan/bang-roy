@@ -27,6 +27,7 @@ class DeviceController extends Controller
         if (request()->ajax()) {
             $devices = Device::with('subnet:id,subnet', 'instance:id,instance_name,app_id', 'cluster:id,cluster_name',);
             return DataTables::of($devices)
+                ->addIndexColumn()
                 ->addColumn('subnet', function ($row) {
                     return $row->subnet ? $row->subnet->subnet : '';
                 })->addColumn('instance', function ($row) {

@@ -28,6 +28,7 @@ class ClusterController extends Controller
             $clusters = Cluster::with('instance:id,instance_name');
 
             return DataTables::of($clusters)
+                ->addIndexColumn()
                 ->addColumn('instance', function ($row) {
                     return $row->instance ? $row->instance->instance_name : '';
                 })->addColumn('action', 'clusters.include.action')

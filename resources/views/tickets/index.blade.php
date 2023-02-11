@@ -29,6 +29,7 @@
                                 <table class="display dataTable no-footer" id="data-table" role="grid">
                                     <thead>
                                         <tr>
+                                            <th>#</th>
                                             <th>{{ __('Subject') }}</th>
                                             <th>{{ __('Description') }}</th>
                                             <th>{{ __('Device') }}</th>
@@ -56,6 +57,11 @@
             serverSide: true,
             ajax: "{{ route('tickets.index') }}",
             columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    orderable: false,
+                    searchable: false
+                }, {
                     data: 'subject',
                     name: 'subject',
                 },

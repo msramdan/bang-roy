@@ -28,6 +28,7 @@ class RoleAndPermissionController extends Controller
 
             return DataTables::of($users)
                 ->addIndexColumn()
+                ->addIndexColumn()
                 ->addColumn('created_at', function ($row) {
                     return $row->created_at->format('d/m/Y H:i');
                 })->addColumn('updated_at', function ($row) {

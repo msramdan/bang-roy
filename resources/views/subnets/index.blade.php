@@ -37,6 +37,7 @@
                                 <table class="display dataTable no-footer" id="data-table" role="grid">
                                     <thead>
                                         <tr>
+                                            <th>#</th>
                                             <th>{{ __('Subnet') }}</th>
                                             <th>{{ __('Created At') }}</th>
                                             <th>{{ __('Updated At') }}</th>
@@ -61,6 +62,11 @@
             serverSide: true,
             ajax: "{{ route('subnets.index') }}",
             columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    orderable: false,
+                    searchable: false
+                }, {
                     data: 'subnet',
                     name: 'subnet',
                 },

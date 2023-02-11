@@ -29,6 +29,7 @@
                                 <table class="table table-striped" id="data-table" width="100%">
                                     <thead>
                                         <tr>
+                                            <th>#</th>
                                             <th>{{ __('Gwid') }}</th>
                                             <th>{{ __('Status Online') }}</th>
                                             <th>{{ __('Pktfwd Status') }}</th>
@@ -54,6 +55,11 @@
             serverSide: true,
             ajax: "{{ route('gateways.index') }}",
             columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    orderable: false,
+                    searchable: false
+                }, {
                     data: 'gwid',
                     name: 'gwid',
                 },

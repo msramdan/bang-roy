@@ -28,6 +28,7 @@ class ParsedController extends Controller
             $parseds = Parsed::with('device:id,dev_eui');
 
             return DataTables::of($parseds)
+                ->addIndexColumn()
                 ->addColumn('device', function ($row) {
                     return $row->device ? $row->device->dev_eui : '';
                 })->addColumn('rawdata', function ($row) {

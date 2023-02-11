@@ -25,9 +25,10 @@ class MaintenanceController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $maintenances = Maintenance::with('instance:id,instance_name', 'user:id,name',);
+            $maintenances = Maintenance::with('instance:id,instance_name', 'user:id,name');
 
             return DataTables::of($maintenances)
+                ->addIndexColumn()
                 ->addColumn('instance', function ($row) {
                     return $row->instance ? $row->instance->instance_name : '';
                 })->addColumn('user', function ($row) {

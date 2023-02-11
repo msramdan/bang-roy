@@ -37,6 +37,7 @@
                                 <table class="display dataTable no-footer" id="data-table" role="grid">
                                     <thead>
                                         <tr>
+                                            <th>#</th>
                                             <th>{{ __('Provinsi') }}</th>
                                             <th>{{ __('Ibukota') }}</th>
                                             <th>{{ __('P Bsni') }}</th>
@@ -63,6 +64,11 @@
             serverSide: true,
             ajax: "{{ route('provinces.index') }}",
             columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    orderable: false,
+                    searchable: false
+                }, {
                     data: 'provinsi',
                     name: 'provinsi',
                 },

@@ -25,6 +25,7 @@ class GatewayController extends Controller
             $gateways = Gateway::query();
 
             return DataTables::of($gateways)
+                ->addIndexColumn()
                 ->addColumn('action', 'gateways.include.action')
                 ->toJson();
         }

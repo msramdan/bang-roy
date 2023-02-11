@@ -28,6 +28,7 @@ class ProvinceController extends Controller
             $provinces = Province::query();
 
             return DataTables::of($provinces)
+                ->addIndexColumn()
                 ->addColumn('action', 'provinces.include.action')
                 ->toJson();
         }
@@ -53,11 +54,10 @@ class ProvinceController extends Controller
      */
     public function store(StoreProvinceRequest $request)
     {
-        
+
         Province::create($request->validated());
         Alert::toast('The province was created successfully.', 'success');
         return redirect()->route('provinces.index');
-
     }
 
     /**
@@ -91,7 +91,7 @@ class ProvinceController extends Controller
      */
     public function update(UpdateProvinceRequest $request, Province $province)
     {
-        
+
         $province->update($request->validated());
         Alert::toast('The province was updated successfully.', 'success');
         return redirect()

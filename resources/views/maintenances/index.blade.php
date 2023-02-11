@@ -37,6 +37,7 @@
                                 <table class="display dataTable no-footer" id="data-table" role="grid">
                                     <thead>
                                         <tr>
+                                            <th>#</th>
                                             <th>{{ __('Instance') }}</th>
                                             <th>{{ __('Date') }}</th>
                                             <th>{{ __('Start Time') }}</th>
@@ -65,6 +66,11 @@
             serverSide: true,
             ajax: "{{ route('maintenances.index') }}",
             columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    orderable: false,
+                    searchable: false
+                }, {
                     data: 'instance',
                     name: 'instance.app_id'
                 },
