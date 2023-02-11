@@ -194,5 +194,7 @@ return [
         ['group' => 'parseds', 'access' => ['parsed view']],
         ['group' => 'maintenances', 'access' => ['maintenance view', 'maintenance create', 'maintenance edit', 'maintenance delete']],
         ['group' => 'clusters', 'access' => ['cluster view', 'cluster create', 'cluster edit', 'cluster delete']],
-  ['group' => 'devices', 'access' => ['device view', 'device create', 'device edit', 'device delete']], 
-		],];
+        ['group' => 'devices', 'access' => ['device view', 'device create', 'device edit', 'device delete']],
+        ['group' => 'latest datas', 'access' => ['latest data view']],
+    ],
+];

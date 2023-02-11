@@ -110,6 +110,22 @@ return [
      */
     'sidebars' => [
         [
+            'header' => 'Latest Datas',
+            'permissions' => [
+                'latest data view'
+            ],
+            'menus' => [
+                [
+                    'title' => 'Latest Data Device',
+                    'icon' => '<i data-feather="airplay"></i>',
+                    'route' => '/latest-datas',
+                    'permission' => 'latest data view',
+                    'permissions' => [],
+                    'submenus' => []
+                ]
+            ]
+        ],
+        [
             'header' => 'Devices',
             'permissions' => [
                 'device view'
