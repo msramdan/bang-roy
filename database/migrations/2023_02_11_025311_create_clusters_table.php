@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('devices', function (Blueprint $table) {
+        Schema::create('clusters', function (Blueprint $table) {
             $table->id();
-            $table->string('dev_eui', 255);
+            $table->foreignId('instance_id')->constrained('instances')->restrictOnUpdate()->cascadeOnDelete();
+			$table->string('cluster_kode', 50);
+			$table->string('cluster_name', 200);
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('devices');
+        Schema::dropIfExists('clusters');
     }
 };

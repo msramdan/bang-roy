@@ -24,7 +24,8 @@ class UpdateClusterRequest extends FormRequest
     public function rules()
     {
         return [
-            'cluster_kode' => 'required|string|min:1|max:100',
+            'instance_id' => 'required|exists:App\Models\Instance,id',
+			'cluster_kode' => 'required|string|min:1|max:50',
 			'cluster_name' => 'required|string|min:1|max:200',
         ];
     }

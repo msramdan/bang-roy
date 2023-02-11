@@ -1,13 +1,13 @@
 <td>
 
-    @can('device edit')
-        <a href="{{ route('devices.edit', $model->id) }}" class="btn btn-primary btn-sm">
+    @can('cluster edit')
+        <a href="{{ route('clusters.edit', $model->id) }}" class="btn btn-primary btn-sm">
             <i class="fa fa-pencil-alt"></i>
         </a>
     @endcan
 
-    @can('device delete')
-        <form action="{{ route('devices.destroy', $model->id) }}" method="post" class="d-inline"
+    @can('cluster delete')
+        <form action="{{ route('clusters.destroy', $model->id) }}" method="post" class="d-inline"
             onsubmit="return confirm('Are you sure to delete this record?')">
             @csrf
             @method('delete')

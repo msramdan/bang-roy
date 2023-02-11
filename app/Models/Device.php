@@ -14,7 +14,7 @@ class Device extends Model
      *
      * @var string[]
      */
-    protected $fillable = ['dev_eui'];
+    protected $guarded = ['id'];
 
     /**
      * The attributes that should be cast.
@@ -23,6 +23,18 @@ class Device extends Model
      */
     protected $casts = ['dev_eui' => 'string', 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i'];
 
-    
+    public function subnet()
+    {
+        return $this->belongsTo(\App\Models\Subnet::class);
+    }
 
+    public function instance()
+    {
+        return $this->belongsTo(\App\Models\Instance::class);
+    }
+
+    public function cluster()
+    {
+        return $this->belongsTo(\App\Models\Cluster::class);
+    }
 }

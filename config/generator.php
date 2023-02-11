@@ -116,7 +116,7 @@ return [
             ],
             'menus' => [
                 [
-                    'title' => 'Devices',
+                    'title' => 'Management Devices',
                     'icon' => '<i data-feather="airplay"></i>',
                     'route' => '/devices',
                     'permission' => 'device view',
@@ -128,7 +128,8 @@ return [
         [
             'header' => 'Instances',
             'permissions' => [
-                'instance view'
+                'instance view',
+                'cluster view'
             ],
             'menus' => [
                 [
@@ -137,13 +138,19 @@ return [
                     'route' => null,
                     'permission' => null,
                     'permissions' => [
-                        'instance view'
+                        'instance view',
+                        'cluster view'
                     ],
                     'submenus' => [
                         [
                             'title' => 'Data Instances',
                             'route' => '/instances',
                             'permission' => 'instance view'
+                        ],
+                        [
+                            'title' => 'Clusters',
+                            'route' => '/clusters',
+                            'permission' => 'cluster view'
                         ]
                     ]
                 ]

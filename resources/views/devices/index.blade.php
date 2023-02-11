@@ -33,13 +33,18 @@
                     @endcan
                     <div class="card">
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-sm" id="data-table">
+                            <div class="table-responsive p-1">
+                                <table class="display dataTable no-footer" id="data-table" role="grid">
                                     <thead>
                                         <tr>
+                                            <th>{{ __('App ID') }}</th>
+                                            <th>{{ __('Instance') }}</th>
+                                            <th>{{ __('Cluster') }}</th>
                                             <th>{{ __('Dev Eui') }}</th>
+                                            <th>{{ __('Dev Name') }}</th>
+                                            <th>{{ __('Subnet') }}</th>
+                                            <th>{{ __('Auth Type') }}</th>
                                             <th>{{ __('Created At') }}</th>
-                                            <th>{{ __('Updated At') }}</th>
                                             <th>{{ __('Action') }}</th>
                                         </tr>
                                     </thead>
@@ -61,16 +66,36 @@
             serverSide: true,
             ajax: "{{ route('devices.index') }}",
             columns: [{
+                    data: 'app_id',
+                    name: 'app_id',
+                },
+                {
+                    data: 'instance',
+                    name: 'instance.instance_name'
+                },
+                {
+                    data: 'cluster',
+                    name: 'cluster.instance_id'
+                }, {
                     data: 'dev_eui',
                     name: 'dev_eui',
                 },
                 {
-                    data: 'created_at',
-                    name: 'created_at'
+                    data: 'dev_name',
+                    name: 'dev_name',
                 },
                 {
-                    data: 'updated_at',
-                    name: 'updated_at'
+                    data: 'subnet',
+                    name: 'subnet.subnet'
+                },
+                {
+                    data: 'auth_type',
+                    name: 'auth_type',
+                },
+
+                {
+                    data: 'created_at',
+                    name: 'created_at'
                 },
                 {
                     data: 'action',
