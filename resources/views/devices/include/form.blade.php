@@ -2,7 +2,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label for="app-id">{{ __('Instance') }}</label>
-            <select class="form-select @error('instance_id') is-invalid @enderror" name="instance_id" id="app-id"
+            <select class="form-select @error('instance_id') is-invalid @enderror" name="instance_id" id="instance-id"
                 class="form-control" required>
                 <option value="" selected disabled>-- {{ __('Select instance') }} --</option>
 
@@ -20,6 +20,29 @@
             @enderror
         </div>
     </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="cluster-id">{{ __('Cluster') }}</label>
+            <select class="form-select @error('cluster_id') is-invalid @enderror" name="cluster_id" id="cluster-id"
+                class="form-control" required>
+                <option value="" selected disabled>-- {{ __('Select cluster') }} --</option>
+
+                @foreach ($clusters as $cluster)
+                    <option value="{{ $cluster->id }}"
+                        {{ isset($device) && $device->cluster_id == $cluster->id ? 'selected' : (old('cluster_id') == $cluster->id ? 'selected' : '') }}>
+                        {{ $cluster->cluster_kode }} - {{ $cluster->cluster_name }}
+                    </option>
+                @endforeach
+            </select>
+            @error('cluster_id')
+                <span class="text-danger">
+                    {{ $message }}
+                </span>
+            @enderror
+        </div>
+    </div>
+
 
     <div class="col-md-6">
         <div class="form-group">
@@ -49,27 +72,20 @@
             @enderror
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="dev-addr">{{ __('Dev Addr') }}</label>
-            <input type="text" name="dev_addr" id="dev-addr"
-                class="form-control @error('dev_addr') is-invalid @enderror"
-                value="{{ isset($device) ? $device->dev_addr : old('dev_addr') }}" placeholder="{{ __('Dev Addr') }}"
-                required />
-            @error('dev_addr')
-                <span class="text-danger">
-                    {{ $message }}
-                </span>
-            @enderror
-        </div>
-    </div>
+
     <div class="col-md-6">
         <div class="form-group">
             <label for="dev-type">{{ __('Dev Type') }}</label>
-            <input type="text" name="dev_type" id="dev-type"
-                class="form-control @error('dev_type') is-invalid @enderror"
-                value="{{ isset($device) ? $device->dev_type : old('dev_type') }}" placeholder="{{ __('Dev Type') }}"
-                required />
+            <select class="form-select @error('dev_type') is-invalid @enderror" name="dev_type" id="dev-type"
+                class="form-control" required>
+                <option value="" selected disabled>-- {{ __('Select Dev Type') }} --</option>
+                <option value="abp-type"
+                    {{ isset($device) && $device->dev_type == 'abp-type' ? 'selected' : (old('dev_type') == 'abp-type' ? 'selected' : '') }}>
+                    {{ __('Abp Type') }}</option>
+                <option value="otaa-type"
+                    {{ isset($device) && $device->dev_type == 'otaa-type' ? 'selected' : (old('dev_type') == 'otaa-type' ? 'selected' : '') }}>
+                    {{ __('Otaa Type') }}</option>
+            </select>
             @error('dev_type')
                 <span class="text-danger">
                     {{ $message }}
@@ -77,6 +93,9 @@
             @enderror
         </div>
     </div>
+    <input readonly type="hidden" name="auth_type" id="auth-type"
+        class="form-control @error('auth_type') is-invalid @enderror"
+        value="{{ isset($device) ? $device->auth_type : old('auth_type') }}" placeholder="" required />
     <div class="col-md-6">
         <div class="form-group">
             <label for="region">{{ __('Region') }}</label>
@@ -114,62 +133,6 @@
     </div>
     <div class="col-md-6">
         <div class="form-group">
-            <label for="auth-type">{{ __('Auth Type') }}</label>
-            <input type="text" name="auth_type" id="auth-type"
-                class="form-control @error('auth_type') is-invalid @enderror"
-                value="{{ isset($device) ? $device->auth_type : old('auth_type') }}"
-                placeholder="{{ __('Auth Type') }}" required />
-            @error('auth_type')
-                <span class="text-danger">
-                    {{ $message }}
-                </span>
-            @enderror
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="fcnt">{{ __('Fcnt') }}</label>
-            <input type="text" name="fcnt" id="fcnt" class="form-control @error('fcnt') is-invalid @enderror"
-                value="{{ isset($device) ? $device->fcnt : old('fcnt') }}" placeholder="{{ __('Fcnt') }}"
-                required />
-            @error('fcnt')
-                <span class="text-danger">
-                    {{ $message }}
-                </span>
-            @enderror
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="fport">{{ __('Fport') }}</label>
-            <input type="text" name="fport" id="fport"
-                class="form-control @error('fport') is-invalid @enderror"
-                value="{{ isset($device) ? $device->fport : old('fport') }}" placeholder="{{ __('Fport') }}"
-                required />
-            @error('fport')
-                <span class="text-danger">
-                    {{ $message }}
-                </span>
-            @enderror
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="last-seen">{{ __('Last Seen') }}</label>
-            <input type="text" name="last_seen" id="last-seen"
-                class="form-control @error('last_seen') is-invalid @enderror"
-                value="{{ isset($device) ? $device->last_seen : old('last_seen') }}"
-                placeholder="{{ __('Last Seen') }}" required />
-            @error('last_seen')
-                <span class="text-danger">
-                    {{ $message }}
-                </span>
-            @enderror
-        </div>
-    </div>
-
-    <div class="col-md-6">
-        <div class="form-group">
             <label for="app-eui">{{ __('App Eui') }}</label>
             <input type="text" name="app_eui" id="app-eui"
                 class="form-control @error('app_eui') is-invalid @enderror"
@@ -196,34 +159,7 @@
             @enderror
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="app-key">{{ __('App Key') }}</label>
-            <input type="text" name="app_key" id="app-key"
-                class="form-control @error('app_key') is-invalid @enderror"
-                value="{{ isset($device) ? $device->app_key : old('app_key') }}" placeholder="{{ __('App Key') }}"
-                required />
-            @error('app_key')
-                <span class="text-danger">
-                    {{ $message }}
-                </span>
-            @enderror
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="nwk-s-key">{{ __('Nwk S Key') }}</label>
-            <input type="text" name="nwk_s_key" id="nwk-s-key"
-                class="form-control @error('nwk_s_key') is-invalid @enderror"
-                value="{{ isset($device) ? $device->nwk_s_key : old('nwk_s_key') }}"
-                placeholder="{{ __('Nwk S Key') }}" required />
-            @error('nwk_s_key')
-                <span class="text-danger">
-                    {{ $message }}
-                </span>
-            @enderror
-        </div>
-    </div>
+
     <div class="col-md-6">
         <div class="form-group">
             <label for="support-class-b">{{ __('Support Class B') }}</label>
@@ -264,13 +200,13 @@
             @enderror
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6" id="dev-mac-version">
         <div class="form-group">
             <label for="mac-version">{{ __('Mac Version') }}</label>
             <input type="text" name="mac_version" id="mac-version"
                 class="form-control @error('mac_version') is-invalid @enderror"
                 value="{{ isset($device) ? $device->mac_version : old('mac_version') }}"
-                placeholder="{{ __('Mac Version') }}" required />
+                placeholder="{{ __('Mac Version') }}" />
             @error('mac_version')
                 <span class="text-danger">
                     {{ $message }}
@@ -278,25 +214,47 @@
             @enderror
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6" id="dev-app-s-key">
         <div class="form-group">
-            <label for="cluster-id">{{ __('Cluster') }}</label>
-            <select class="form-select @error('cluster_id') is-invalid @enderror" name="cluster_id" id="cluster-id"
-                class="form-control" required>
-                <option value="" selected disabled>-- {{ __('Select cluster') }} --</option>
-
-                @foreach ($clusters as $cluster)
-                    <option value="{{ $cluster->id }}"
-                        {{ isset($device) && $device->cluster_id == $cluster->id ? 'selected' : (old('cluster_id') == $cluster->id ? 'selected' : '') }}>
-                        {{ $cluster->cluster_kode }} - {{ $cluster->cluster_name }}
-                    </option>
-                @endforeach
-            </select>
-            @error('cluster_id')
+            <label for="app-s-key">{{ __('App SKey') }}</label>
+            <input type="text" name="app_s_key" id="app-s-key"
+                class="form-control @error('app_s_key') is-invalid @enderror"
+                value="{{ isset($device) ? $device->app_key : old('app_s_key') }}"
+                placeholder="{{ __('App SKey') }}" />
+            @error('app_s_key')
                 <span class="text-danger">
                     {{ $message }}
                 </span>
             @enderror
         </div>
     </div>
+    <div class="col-md-6" id="div-nwk-s-key">
+        <div class="form-group">
+            <label for="nwk-s-key">{{ __('Nwk SKey') }}</label>
+            <input type="text" name="nwk_s_key" id="nwk-s-key"
+                class="form-control @error('nwk_s_key') is-invalid @enderror"
+                value="{{ isset($device) ? $device->nwk_s_key : old('nwk_s_key') }}"
+                placeholder="{{ __('Nwk SKey') }}" />
+            @error('nwk_s_key')
+                <span class="text-danger">
+                    {{ $message }}
+                </span>
+            @enderror
+        </div>
+    </div>
+    <div class="col-md-6" id="div-dev-addr">
+        <div class="form-group">
+            <label for="dev-addr">{{ __('Dev Addr') }}</label>
+            <input type="text" name="dev_addr" id="dev-addr"
+                class="form-control @error('dev_addr') is-invalid @enderror"
+                value="{{ isset($device) ? $device->dev_addr : old('dev_addr') }}"
+                placeholder="{{ __('Dev Addr') }}" />
+            @error('dev_addr')
+                <span class="text-danger">
+                    {{ $message }}
+                </span>
+            @enderror
+        </div>
+    </div>
+
 </div>

@@ -12,6 +12,7 @@ use Exception;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class InstanceController extends Controller
@@ -285,5 +286,13 @@ class InstanceController extends Controller
             Alert::toast('The instance cant be deleted because its related to another table.', 'error');
             return redirect()->route('instances.index');
         }
+    }
+
+    public function get_cluster($instance_id)
+    {
+        $data = DB::table('clusters')->where('instance_id', $instance_id)->get();
+        $message = 'Berhasil mengambil data kota';
+
+        return response()->json(compact('message', 'data'));
     }
 }

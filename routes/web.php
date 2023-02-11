@@ -6,12 +6,14 @@ use App\Http\Controllers\{
     UserController,
     ProfileController,
     RoleAndPermissionController,
-    WilayahController
+    WilayahController,
+    InstanceController
 };
 
 Route::get('kota/{provinsiId}', [WilayahController::class, 'kota'])->name('api.kota');
 Route::get('kecamatan/{kotaId}', [WilayahController::class, 'kecamatan'])->name('api.kecamatan');
 Route::get('kelurahan/{kecamatanId}', [WilayahController::class, 'kelurahan'])->name('api.kelurahan');
+Route::get('cluster/{instance_id}', [InstanceController::class, 'get_cluster'])->name('api.cluster');
 
 Route::middleware(['auth', 'web'])->group(function () {
     Route::get('/', fn () => view('dashboard'));
@@ -38,5 +40,4 @@ Route::resource('parseds', App\Http\Controllers\ParsedController::class)->middle
 Route::resource('maintenances', App\Http\Controllers\MaintenanceController::class)->middleware('auth');
 Route::resource('clusters', App\Http\Controllers\ClusterController::class)->middleware('auth');
 Route::resource('devices', App\Http\Controllers\DeviceController::class)->middleware('auth');
-
 Route::resource('latest-datas', App\Http\Controllers\LatestDataController::class)->middleware('auth');

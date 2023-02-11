@@ -1,5 +1,9 @@
 <td>
-
+    @can('device view')
+        <a href="{{ route('devices.show', $model->id) }}" class="btn btn-info btn-sm">
+            <i class="fa fa-eye"></i>
+        </a>
+    @endcan
     @can('device edit')
         <a href="{{ route('devices.edit', $model->id) }}" class="btn btn-primary btn-sm">
             <i class="fa fa-pencil-alt"></i>
