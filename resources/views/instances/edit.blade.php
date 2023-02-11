@@ -208,7 +208,7 @@
                                 @csrf
                                 @method('PUT')
 
-                                @include('instances.include.form')
+                                @include('instances.include.form_edit')
                                 <input type="hidden" name="app_id" value="{{ $instance->app_id }}">
                         </div>
                     </div>
@@ -256,7 +256,7 @@
                                                     <td><input type="time"
                                                             class="form-control @error('closing_hour{{ $i }}') is-invalid @enderror"
                                                             name="closing_hour[]" placeholder=""
-                                                            value="{{ old("closing_hour.{$i}") ? old("closing_hour.{$i}") : $operational->closed_hour }}"
+                                                            value="{{ old("closing_hour.{$i}") ? old("closing_hour.{$i}") : $operational->close_hour }}"
                                                             autocomplete="off">
                                                         @error('closing_hour{{ $i }}')
                                                             <span style="color: red;">{{ $message }}</span>

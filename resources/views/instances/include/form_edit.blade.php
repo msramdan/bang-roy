@@ -67,6 +67,13 @@
             <select class="form-select @error('kabkot_id') is-invalid @enderror" name="kabkot_id" id="kabkot-id"
                 class="form-control" required>
                 <option value="" selected disabled>-- {{ __('Select kabkot') }} --</option>
+
+                @foreach ($kabkots as $kabkot)
+                    <option value="{{ $kabkot->id }}"
+                        {{ isset($instance) && $instance->kabkot_id == $kabkot->id ? 'selected' : (old('kabkot_id') == $kabkot->id ? 'selected' : '') }}>
+                        {{ $kabkot->kabupaten_kota }}
+                    </option>
+                @endforeach
             </select>
             @error('kabkot_id')
                 <span class="text-danger">
@@ -85,7 +92,7 @@
                 @foreach ($kecamatans as $kecamatan)
                     <option value="{{ $kecamatan->id }}"
                         {{ isset($instance) && $instance->kecamatan_id == $kecamatan->id ? 'selected' : (old('kecamatan_id') == $kecamatan->id ? 'selected' : '') }}>
-                        {{ $kecamatan->kabkot_id }}
+                        {{ $kecamatan->kecamatan }}
                     </option>
                 @endforeach
             </select>
@@ -106,7 +113,7 @@
                 @foreach ($kelurahans as $kelurahan)
                     <option value="{{ $kelurahan->id }}"
                         {{ isset($instance) && $instance->kelurahan_id == $kelurahan->id ? 'selected' : (old('kelurahan_id') == $kelurahan->id ? 'selected' : '') }}>
-                        {{ $kelurahan->kecamatan_id }}
+                        {{ $kelurahan->kelurahan }}
                     </option>
                 @endforeach
             </select>

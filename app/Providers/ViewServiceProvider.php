@@ -57,21 +57,21 @@ class ViewServiceProvider extends ServiceProvider
         View::composer(['instances.create', 'instances.edit', 'kecamatans.create', 'kecamatans.edit'], function ($view) {
             return $view->with(
                 'kabkots',
-                \App\Models\Kabkot::select('id', 'provinsi_id')->get()
+                \App\Models\Kabkot::select('id', 'kabupaten_kota')->get()
             );
         });
 
         View::composer(['instances.create', 'instances.edit', 'kelurahans.create', 'kelurahans.edit'], function ($view) {
             return $view->with(
                 'kecamatans',
-                \App\Models\Kecamatan::select('id', 'kabkot_id')->get()
+                \App\Models\Kecamatan::select('id', 'kecamatan')->get()
             );
         });
 
         View::composer(['instances.create', 'instances.edit'], function ($view) {
             return $view->with(
                 'kelurahans',
-                \App\Models\Kelurahan::select('id', 'kecamatan_id')->get()
+                \App\Models\Kelurahan::select('id', 'kelurahan')->get()
             );
         });
 

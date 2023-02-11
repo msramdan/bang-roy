@@ -5,8 +5,13 @@ use App\Http\Controllers\CallbackController;
 use App\Http\Controllers\{
     UserController,
     ProfileController,
-    RoleAndPermissionController
+    RoleAndPermissionController,
+    WilayahController
 };
+
+Route::get('kota/{provinsiId}', [WilayahController::class, 'kota'])->name('api.kota');
+Route::get('kecamatan/{kotaId}', [WilayahController::class, 'kecamatan'])->name('api.kecamatan');
+Route::get('kelurahan/{kecamatanId}', [WilayahController::class, 'kelurahan'])->name('api.kelurahan');
 
 Route::middleware(['auth', 'web'])->group(function () {
     Route::get('/', fn () => view('dashboard'));
@@ -32,5 +37,4 @@ Route::resource('instances', App\Http\Controllers\InstanceController::class)->mi
 Route::resource('parseds', App\Http\Controllers\ParsedController::class)->middleware('auth');
 Route::resource('maintenances', App\Http\Controllers\MaintenanceController::class)->middleware('auth');
 Route::resource('clusters', App\Http\Controllers\ClusterController::class)->middleware('auth');
-
 Route::resource('devices', App\Http\Controllers\DeviceController::class)->middleware('auth');
