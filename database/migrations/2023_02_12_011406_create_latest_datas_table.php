@@ -16,14 +16,14 @@ return new class extends Migration
         Schema::create('latest_datas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('device_id')->constrained('devices')->restrictOnUpdate()->cascadeOnDelete();
-			$table->foreignId('rawdata_id')->nullable()->constrained('rawdatas')->nullOnDelete();
-			$table->string('frame_id', 20);
-			$table->float('temperature');
-			$table->float('humidity');
-			$table->integer('period');
-			$table->float('rssi');
-			$table->float('snr');
-			$table->float('battery');
+            $table->foreignId('rawdata_id')->nullable()->constrained('rawdatas')->nullOnDelete();
+            $table->string('frame_id', 20)->nullable();
+            $table->float('temperature')->nullable();
+            $table->float('humidity')->nullable();
+            $table->integer('period')->nullable();
+            $table->float('rssi')->nullable();
+            $table->float('snr')->nullable();
+            $table->float('battery')->nullable();
             $table->timestamps();
         });
     }

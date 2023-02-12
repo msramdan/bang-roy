@@ -60,6 +60,20 @@
     </div>
     <div class="col-md-6">
         <div class="form-group">
+            <label for="app-eui">{{ __('App Eui') }}</label>
+            <input type="text" name="app_eui" id="app-eui"
+                class="form-control @error('app_eui') is-invalid @enderror"
+                value="{{ isset($device) ? $device->app_eui : old('app_eui') }}" placeholder="{{ __('App Eui') }}"
+                required />
+            @error('app_eui')
+                <span class="text-danger">
+                    {{ $message }}
+                </span>
+            @enderror
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
             <label for="dev-name">{{ __('Dev Name') }}</label>
             <input type="text" name="dev_name" id="dev-name"
                 class="form-control @error('dev_name') is-invalid @enderror"
@@ -131,20 +145,7 @@
             @enderror
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="app-eui">{{ __('App Eui') }}</label>
-            <input type="text" name="app_eui" id="app-eui"
-                class="form-control @error('app_eui') is-invalid @enderror"
-                value="{{ isset($device) ? $device->app_eui : old('app_eui') }}" placeholder="{{ __('App Eui') }}"
-                required />
-            @error('app_eui')
-                <span class="text-danger">
-                    {{ $message }}
-                </span>
-            @enderror
-        </div>
-    </div>
+
     <div class="col-md-6">
         <div class="form-group">
             <label for="app-key">{{ __('App Key') }}</label>

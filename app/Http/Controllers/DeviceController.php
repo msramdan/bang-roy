@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Device;
 use App\Http\Requests\{StoreDeviceRequest, UpdateDeviceRequest};
+use App\Models\Instance;
+use App\Models\Subnet;
+use GuzzleHttp\Client;
 use Yajra\DataTables\Facades\DataTables;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\DB;
+use Exception;
 
 class DeviceController extends Controller
 {
@@ -61,8 +66,75 @@ class DeviceController extends Controller
      */
     public function store(StoreDeviceRequest $request)
     {
+        try {
+            $subnet = Subnet::Where('id', $request->subnet_id)->first();
+            $app = Instance::Where('id', $request->instance_id)->first();
+            $url_endpoint = setting_web()->endpoint_nms . '/openapi/device/create';
+            $api_token   = setting_web()->token;
+            $payload = [
+                "devEUI" => $request->dev_eui,
+                "appEUI" =>  $request->app_eui,
+                "devType" =>  $request->dev_type,
+                "devName" => $request->dev_name,
+                "region" => $request->region,
+                "subnet" => $subnet->subnet,
+                "authType" => $request->auth_type,
+                "appID" => (int) $app->app_id,
+                "appKey" => $request->app_key,
+                "supportClassB" =>  $request->support_class_b == '1' ? false : true,
+                "supportClassC" =>  $request->support_class_c == '1' ? false : true,
+            ];
+            if ($request->dev_type == 'otaa-type') {
+                $payload['macVersion'] = $request->mac_version;
+            }
 
-        Device::create($request->validated());
+            if ($request->dev_type == 'abp-type') {
+                $payload['appSKey'] = $request->app_s_key;
+                $payload['nwkSKey'] = $request->nwk_s_key;
+                $payload['devAddr'] = $request->dev_addr;
+            }
+            $client = new Client;
+
+            $headers = [
+                'Content-Type'          => 'application/json',
+                'x-access-token' => $api_token,
+            ];
+
+            $res = $client->post($url_endpoint, [
+                'headers'           => $headers,
+                'json'              => $payload,
+                'force_ip_resolve'  => 'v4',
+                'http_errors'       => false,
+                'timeout'           => 120,
+                'connect_timeout'   => 10,
+                'allow_redirects'   => false,
+                'verify'            => false,
+            ]);
+
+            $response = $res->getBody()->getContents();
+
+            $response = json_decode($response);
+
+            if ($response->code != 0) {
+                $errorMessage = errorMessage($response->code);
+
+                if (!empty($errorMessage)) {
+                    Alert::toast('Failed to create device. ' . $errorMessage['message'], 'error');
+                } else {
+                    Alert::toast('Failed to create device. ', 'error');
+                }
+                return redirect()->route('devices.index');
+            }
+            $data = $request->except('_token');
+            $save = Device::create($data);
+            $lastInsertedId = $save->id;
+            DB::table('latest_datas')->insert([
+                'device_id' => $lastInsertedId,
+            ]);
+        } catch (Exception $err) {
+            \Log::error($err);
+            Alert::toast('Failed to save records', 'error');
+        }
         Alert::toast('The device was created successfully.', 'success');
         return redirect()->route('devices.index');
     }
@@ -75,7 +147,7 @@ class DeviceController extends Controller
      */
     public function show(Device $device)
     {
-        $device->load('subnet:id,subnet', 'instance:id,app_id', 'cluster:id,instance_id',);
+        $device->load('subnet:id,subnet', 'instance:id,instance_name', 'cluster:id,cluster_name',);
 
         return view('devices.show', compact('device'));
     }
@@ -118,6 +190,42 @@ class DeviceController extends Controller
     public function destroy(Device $device)
     {
         try {
+            $url_endpoint = setting_web()->endpoint_nms . '/openapi/device/delete';
+            $api_token   = setting_web()->token;
+            $payload = [
+                "devEUIs" => [$device->dev_eui],
+            ];
+            $client = new Client;
+            $headers = [
+                'Content-Type'          => 'application/json',
+                'x-access-token' => $api_token,
+            ];
+
+            $res = $client->post($url_endpoint, [
+                'headers'           => $headers,
+                'json'              => $payload,
+                'force_ip_resolve'  => 'v4',
+                'http_errors'       => false,
+                'timeout'           => 120,
+                'connect_timeout'   => 10,
+                'allow_redirects'   => false,
+                'verify'            => false,
+            ]);
+
+            $response = $res->getBody()->getContents();
+            $response = json_decode($response);
+            if ($response->code != 0) {
+                $errorMessage = errorMessage($response->code);
+
+                if (!empty($errorMessage)) {
+                    Alert::toast('Failed to Delete device. ' . $errorMessage['message'], 'error');
+                } else {
+                    Alert::toast('Failed to delete device. ', 'error');
+                }
+
+                return redirect()->back();
+            }
+            $deleted = DB::table('rawdatas')->where('dev_eui', $device->dev_eui)->delete();
             $device->delete();
             Alert::toast('The device was deleted successfully.', 'success');
             return redirect()->route('devices.index');

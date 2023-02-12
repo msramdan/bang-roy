@@ -61,7 +61,7 @@
                                         <td class="fw-bold">{{ __('Auth Type') }}</td>
                                         <td>{{ $device->auth_type }}</td>
                                     </tr>
-                                    <tr>
+                                    {{-- <tr>
                                         <td class="fw-bold">{{ __('Fcnt') }}</td>
                                         <td>{{ $device->fcnt }}</td>
                                     </tr>
@@ -72,10 +72,10 @@
                                     <tr>
                                         <td class="fw-bold">{{ __('Last Seen') }}</td>
                                         <td>{{ $device->last_seen }}</td>
-                                    </tr>
+                                    </tr> --}}
                                     <tr>
                                         <td class="fw-bold">{{ __('Instance') }}</td>
-                                        <td>{{ $device->instance ? $device->instance->app_id : '' }}</td>
+                                        <td>{{ $device->instance ? $device->instance->instance_name : '' }}</td>
                                     </tr>
                                     <tr>
                                         <td class="fw-bold">{{ __('App Eui') }}</td>
@@ -86,20 +86,20 @@
                                         <td>{{ $device->app_key }}</td>
                                     </tr>
                                     <tr>
-                                        <td class="fw-bold">{{ __('App Key') }}</td>
-                                        <td>{{ $device->app_key }}</td>
+                                        <td class="fw-bold">{{ __('App SKey') }}</td>
+                                        <td>{{ $device->app_s_key }}</td>
                                     </tr>
                                     <tr>
-                                        <td class="fw-bold">{{ __('Nwk S Key') }}</td>
+                                        <td class="fw-bold">{{ __('Nwk SKey') }}</td>
                                         <td>{{ $device->nwk_s_key }}</td>
                                     </tr>
                                     <tr>
                                         <td class="fw-bold">{{ __('Support Class B') }}</td>
-                                        <td>{{ $device->support_class_b }}</td>
+                                        <td>{{ $device->support_class_b == '1' ? 'false' : 'true' }}</td>
                                     </tr>
                                     <tr>
                                         <td class="fw-bold">{{ __('Support Class C') }}</td>
-                                        <td>{{ $device->support_class_c }}</td>
+                                        <td>{{ $device->support_class_c == '1' ? 'false' : 'true' }}</td>
                                     </tr>
                                     <tr>
                                         <td class="fw-bold">{{ __('Mac Version') }}</td>
@@ -107,7 +107,7 @@
                                     </tr>
                                     <tr>
                                         <td class="fw-bold">{{ __('Cluster') }}</td>
-                                        <td>{{ $device->cluster ? $device->cluster->instance_id : '' }}</td>
+                                        <td>{{ $device->cluster ? $device->cluster->cluster_name : '' }}</td>
                                     </tr>
                                     <tr>
                                         <td class="fw-bold">{{ __('Created at') }}</td>
