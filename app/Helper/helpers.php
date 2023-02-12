@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Rawdata;
 use App\Models\Ticket;
 use App\Models\Device;
+use App\Models\LatestData;
 
 if (!function_exists('set_active')) {
     function set_active($uri)
@@ -330,56 +331,52 @@ function insertGateway($gwid, $time, $status_online = null, $pktfwdStatus = null
     }
 }
 
-function createTiket($device_id, $devEUI, $type_device, $data)
+function createTiket($device_id, $devEUI, $data)
 {
     if ($data != null) {
         // get subintance
-        $subintanceData = DB::table('devices')
-            ->join('clusters', 'devices.cluster_id', '=', 'clusters.id')
-            ->select('clusters.subinstance_id')
+        $getInstance = DB::table('devices')
             ->where('devices.id', $device_id)->first();
-        if ($subintanceData) {
-            $day = strtolower(date('l'));
-            // get operational time
-            $operationalDay = DB::table('operational_times')
-                ->select('open_hour', 'closed_hour')
-                ->where('day', $day)
-                ->where('subinstance_id', $subintanceData->subinstance_id)
-                ->first();
-            if ($operationalDay) {
-                if ($operationalDay->open_hour != null && $operationalDay->closed_hour != null) {
-                    // cek masuk ke range jam kerja tidak
-                    $jam = date('H:i:s');
-                    if (
-                        $jam >= $operationalDay->open_hour && $jam <= $operationalDay->closed_hour
-                    ) {
-                        $abnormal = [];
-                        foreach ($data as $key => $value) {
-                            // get toleransi
-                            $ToleranceAlerts = DB::table('setting_tolerance_alerts')
-                                ->select('min_tolerance', 'max_tolerance')
-                                ->where('field_data', $key)
-                                ->where('type_device', $type_device)
-                                ->where('subinstance_id', $subintanceData->subinstance_id)
-                                ->first();
 
-                            if ($value < $ToleranceAlerts->min_tolerance) {
-                                array_push($abnormal, "$key less than $ToleranceAlerts->min_tolerance reading results $value");
-                            } else if ($value > $ToleranceAlerts->max_tolerance) {
-                                array_push($abnormal, "$key more than $ToleranceAlerts->max_tolerance reading results $value");
-                            }
+        $day = strtolower(date('l'));
+        // get operational time
+        $operationalDay = DB::table('operational_times')
+            ->select('open_hour', 'close_hour')
+            ->where('day', $day)
+            ->where('instance_id', $getInstance->instance_id)
+            ->first();
+        if ($operationalDay) {
+            if ($operationalDay->open_hour != null && $operationalDay->close_hour != null) {
+                // cek masuk ke range jam kerja tidak
+                $jam = date('H:i:s');
+                if (
+                    $jam >= $operationalDay->open_hour && $jam <= $operationalDay->close_hour
+                ) {
+                    $abnormal = [];
+                    foreach ($data as $key => $value) {
+                        // get toleransi
+                        $ToleranceAlerts = DB::table('setting_tolerance_alerts')
+                            ->select('min_tolerance', 'max_tolerance')
+                            ->where('field_data', $key)
+                            ->where('instance_id', $getInstance->instance_id)
+                            ->first();
+
+                        if ($value < $ToleranceAlerts->min_tolerance) {
+                            array_push($abnormal, "$key less than $ToleranceAlerts->min_tolerance reading results $value");
+                        } else if ($value > $ToleranceAlerts->max_tolerance) {
+                            array_push($abnormal, "$key more than $ToleranceAlerts->max_tolerance reading results $value");
                         }
-                        if (!empty($abnormal)) {
-                            // create tiket
-                            Ticket::create([
-                                'subject' => "Alert from device " . $devEUI,
-                                'description'  => json_encode($abnormal),
-                                'is_device'   => 1,
-                                'status'   => "alert",
-                            ]);
-                        }
-                        // send notif tele
                     }
+                    if (!empty($abnormal)) {
+                        // create tiket
+                        Ticket::create([
+                            'subject' => "Alert from device " . $devEUI,
+                            'description'  => json_encode($abnormal),
+                            'device_id' => $device_id,
+                            'status'   => "Opened",
+                        ]);
+                    }
+                    // send notif tele
                 }
             }
         }
@@ -392,260 +389,99 @@ function handleCallback($device_id, $request)
     $data = $request->data['data'];
     $hex = base64toHex($data);
     $frameId = substr($hex, 0, 2);
-    // if ($frameId == "00" || $frameId == "10" || $frameId == "71" || $frameId == "95" || $frameId == "21") {
-    $save = Rawdata::create([
-        'dev_eui' => $request->devEUI,
-        'app_id'  => $request->appID,
-        'type'   => $request->type,
-        'time'   => $request->time,
-        'gwid'   => $request->data['gwid'],
-        'rssi'   => $request->data['rssi'],
-        'snr'    => $request->data['snr'],
-        'freq'   => $request->data['freq'],
-        'dr'     => $request->data['dr'],
-        'adr'    => $request->data['adr'],
-        'class'  => $request->data['class'],
-        'fcnt'   => $request->data['fCnt'],
-        'fport'  => $request->data['fPort'],
-        'confirmed' => $request->data['confirmed'],
-        'data'  => $request->data['data'],
-        'convert'  => base64toHex($request->data['data']),
-        'gws'   => json_encode($request->data['gws']),
-        'payload_data' => json_encode($request->all()),
-    ]);
+    if ($frameId == "01" || $frameId == "81") {
+        $save = Rawdata::create([
+            'dev_eui' => $request->devEUI,
+            'app_id'  => $request->appID,
+            'type'   => $request->type,
+            'time'   => $request->time,
+            'gwid'   => $request->data['gwid'],
+            'rssi'   => $request->data['rssi'],
+            'snr'    => $request->data['snr'],
+            'freq'   => $request->data['freq'],
+            'dr'     => $request->data['dr'],
+            'adr'    => $request->data['adr'],
+            'class'  => $request->data['class'],
+            'fcnt'   => $request->data['fCnt'],
+            'fport'  => $request->data['fPort'],
+            'confirmed' => $request->data['confirmed'],
+            'data'  => $request->data['data'],
+            'convert'  => base64toHex($request->data['data']),
+            'gws'   => json_encode($request->data['gws']),
+            'payload_data' => json_encode($request->all()),
+        ]);
 
-    $lastInsertedId = $save->id;
-    insertGateway($request->data['gwid'], $save->updated_at);
-    //     if ($frameId == "00") {
-    //         $uplinkInterval = hexdec(littleEndian(substr($hex, 2, 4)));
-    //         $batraiStatus = hexdec(littleEndian(substr($hex, 6, 2)));
+        $lastInsertedId = $save->id;
+        insertGateway($request->data['gwid'], $save->updated_at);
+        // temperatur
+        $temperature = hexdec(littleEndian(substr($hex, 2, 4)));
+        $rumus_temperature = ((175.72 * $temperature) / 65536) - 46.85;
+        // Humidity
+        $humidity = hexdec(littleEndian(substr($hex, 6, 2)));
+        $rumus_humidity = ((125 * $humidity) / 256) - 6;
+        // Period
+        $period = hexdec(littleEndian(substr($hex, 8, 4)));
+        $rumus_period = 2 * $period;
+        // Rssi
+        $rssi = hexdec(littleEndian(substr($hex, 12, 2)));
+        $rumus_rssi = -180 + $rssi;
+        // Bateray
+        $battery = hexdec(littleEndian(substr($hex, 16, 2)));
+        $rumus_battery = ($battery + 150) * 0.01;
+        // Snr
+        $snr = hexdec(littleEndian(substr($hex, 14, 2)));
+        $cek = substr(littleEndian(substr($hex, 14, 2)), 0, 1);
+        if ($cek > 7 || $cek == 'a' || $cek == 'b' || $cek == 'c' || $cek == 'd' || $cek == 'e' || $cek == 'f') {
+            $rumus_snr = -$snr / 4;
+        } else {
+            $rumus_snr = $snr / 4;
+        }
 
-    //         if ($batraiStatus > 254) {
-    //             $batt = 'Unknown';
-    //         } else if ($batraiStatus == 00 || $batraiStatus == '00') {
-    //             $batt = 'Power Supply';
-    //         } else {
-    //             $batt = $batraiStatus / 2.54;
-    //         }
-
-    //         $temperatur = hexdec(littleEndian(substr($hex, 8, 4))) * 0.01;
-    //         $totalFlow = hexdec(littleEndian(substr($hex, 12, 16))) * 0.1;
-    //         $params = [
-    //             'rawdata_id' => $lastInsertedId,
-    //             'device_id' => $device_id,
-    //             'frame_id' => $frameId,
-    //             'uplink_interval' => $uplinkInterval,
-    //             'batrai_status' => $batt,
-    //             'temperatur' => $temperatur,
-    //             'total_flow' => $totalFlow,
-    //             'created_at' => date('Y-m-d H:i:s'),
-    //             'updated_at' => date('Y-m-d H:i:s'),
-    //         ];
-    //         $dataAbnormal = [
-    //             'temperature' => $temperatur,
-    //             'water_bateray' => $batt
-    //         ];
-    //     } else if ($frameId == "10") {
-    //         $temperatur = hexdec(littleEndian(substr($hex, 2, 4))) * 0.01;
-    //         $params = [
-    //             'rawdata_id' => $lastInsertedId,
-    //             'device_id' => $device_id,
-    //             'frame_id' => $frameId,
-    //             'temperatur' => $temperatur,
-    //             'created_at' => date('Y-m-d H:i:s'),
-    //             'updated_at' => date('Y-m-d H:i:s'),
-    //         ];
-    //         $dataAbnormal = [
-    //             'temperature' => $temperatur,
-    //         ];
-    //     } else if ($frameId == "71") {
-    //         $totalFlow = hexdec(littleEndian(substr($hex, 2, 16))) * 0.01;
-    //         $params = [
-    //             'rawdata_id' => $lastInsertedId,
-    //             'device_id' => $device_id,
-    //             'frame_id' => $frameId,
-    //             'total_flow' => $totalFlow,
-    //             'created_at' => date('Y-m-d H:i:s'),
-    //             'updated_at' => date('Y-m-d H:i:s'),
-    //         ];
-    //         $dataAbnormal = [];
-    //     } else if ($frameId == "95") {
-    //         $batraiStatus = hexdec(littleEndian(substr($hex, 2, 2)));
-    //         if ($batraiStatus > 254) {
-    //             $batt = 'Unknown';
-    //         } else if ($batraiStatus == 00 || $batraiStatus == '00') {
-    //             $batt = 'Power Supply';
-    //         } else {
-    //             $batt = $batraiStatus / 2.54;
-    //             $dataAbnormal = [
-    //                 'water_bateray' => $batt,
-    //             ];
-    //         }
-    //         $params = [
-    //             'rawdata_id' => $lastInsertedId,
-    //             'device_id' => $device_id,
-    //             'frame_id' => $frameId,
-    //             'batrai_status' => $batt,
-    //             'created_at' => date('Y-m-d H:i:s'),
-    //             'updated_at' => date('Y-m-d H:i:s'),
-    //         ];
-    //         $dataAbnormal = [];
-    //     } else if ($frameId == "21") {
-    //         if ($hex == '2101') {
-    //             $status_valve = 'Open';
-    //         } else if ($hex == '2181') {
-    //             $status_valve = 'Close';
-    //         } else {
-    //             $status_valve = 'Unknown';
-    //         }
-    //         $params = [
-    //             'rawdata_id' => $lastInsertedId,
-    //             'device_id' => $device_id,
-    //             'frame_id' => $frameId,
-    //             'status_valve' => $status_valve,
-    //             'created_at' => date('Y-m-d H:i:s'),
-    //             'updated_at' => date('Y-m-d H:i:s'),
-    //         ];
-    //         $dataAbnormal = [];
-    //     }
-    //     $yesterdayStart = Carbon::now()->subDay(2)->hour(00)->minute(00)->second(00);
-    //     $yesterdayEnd   = Carbon::now()->subDay(2)->hour(23)->minute(59)->second(59);
-    //     $today = Carbon::today()->format('Y-m-d');
-    //     $yesterdayData = ParsedWaterMater::where('device_id', $device_id)
-    //         ->whereBetween("created_at", [$yesterdayStart, $yesterdayEnd])
-    //         ->orderBy('created_at', 'desc')
-    //         ->first();
-
-    //     $device = Device::find($device_id);
-    //     DB::table('parsed_water_meter')->insert($params);
-    //     DB::table('master_latest_datas')
-    //         ->where('device_id', $device_id)
-    //         ->update($params);
-
-    //     createTiket($device_id, $request->devEUI, $type_device = 'water_meter', $dataAbnormal);
-
-    //     if (isset($params['total_flow'])) {
-    //         if ($yesterdayData) {
-    //             $usage = floatval($params['total_flow']) - floatval($yesterdayData->total_flow);
-    //         } else {
-    //             $usage = floatval($params['total_flow']);
-    //         }
-
-    //         $dailyUsage = DailyUsageDevice::where('date', $today)->where('device_id', $device_id)->first();
-
-    //         if (!$dailyUsage) {
-    //             DailyUsageDevice::create(
-    //                 [
-    //                     'device_id' => $device_id,
-    //                     'cluster_id' => $device->cluster_id,
-    //                     'device_type' => 'water_meter',
-    //                     'date' => $today,
-    //                     'usage' => $usage,
-    //                 ]
-    //             );
-    //         } else {
-    //             $dailyUsage->update([
-    //                 'device_id' => $device_id,
-    //                 'cluster_id' => $device->cluster_id,
-    //                 'device_type' => 'water_meter',
-    //                 'date' => $today,
-    //                 'usage' => $usage,
-    //             ]);
-    //         }
-    //     }
-    //     return "success";
-    // } else if ($frameId == "0f") {
-    //     $save = Rawdata::create([
-    //         'devEUI' => $request->devEUI,
-    //         'appID'  => $request->appID,
-    //         'type'   => $request->type,
-    //         'time'   => $request->time,
-    //         'gwid'   => $request->data['gwid'],
-    //         'rssi'   => $request->data['rssi'],
-    //         'snr'    => $request->data['snr'],
-    //         'freq'   => $request->data['freq'],
-    //         'dr'     => $request->data['dr'],
-    //         'adr'    => $request->data['adr'],
-    //         'class'  => $request->data['class'],
-    //         'fcnt'   => $request->data['fCnt'],
-    //         'fport'  => $request->data['fPort'],
-    //         'confirmed' => $request->data['confirmed'],
-    //         'data'  => $request->data['data'],
-    //         'convert'  => base64toHex($request->data['data']),
-    //         'gws'   => json_encode($request->data['gws']),
-    //         'payload_data' => json_encode($request->all()),
-    //         'type_payload'  => 'Alert',
-    //     ]);
-    //     $lastInsertedId = $save->id;
-    //     insertGateway($request->data['gwid'], $save->updated_at);
-    //     // create tiket water meter cek operation time dan hour
-    //     // get list alert
-    //     $listFixedError = array(
-    //         '0f1402' => 'Illegal Movement Warning',
-    //         '0f1202' => 'Quick leak warning',
-    //         '0f1203' => 'Slow air leak warning',
-    //         '0f1002' => 'Temperature warning',
-    //         '0f9501' => 'Low battery alarm',
-    //         '0f9101' => 'Low voltage alarm',
-    //         '0f1000' => 'High temperature alarm',
-    //         '0f1001' => 'Low temperature alarm',
-    //     );
-
-    //     $bitError = array(
-    //         0 => 'Tube failure (The pipe burst)',
-    //         1 => 'Leakage failure',
-    //         2 => 'Sensor failure',
-    //         3 => 'Reverse installation position',
-    //         4 => 'bit4',
-    //         5 => 'bit5',
-    //         6 => 'bit6',
-    //         7 => 'bit7',
-    //         8 => 'Abnormal sensor sound track',
-    //         9 => 'The battery abnormity',
-    //         10 => 'The valve abnormity',
-    //         11 => 'Strong magnetic abnormity',
-    //         12 => 'Abnormal power switch',
-    //         13 => 'Hall sensor abnormity',
-    //         14 => 'Reserve bit14',
-    //         15 => 'Reserve bit15',
-    //     );
-
-    //     $convert = base64toHex($request->data['data']);
-    //     $dataArr = str_split($convert, 6);
-    //     $error = [];
-    //     foreach ($dataArr as $code) {
-    //         if (array_key_exists($code, $listFixedError)) {
-    //             $getError = $listFixedError[$code];
-    //             array_push($error, $getError);
-    //         } else {
-    //             $command = littleEndian(substr($hex, 2, 4));
-    //             $arrCommand = str_split($command, 1);
-    //             $index = 15;
-    //             foreach ($arrCommand as  $value) {
-    //                 $bin = base_convert($value, 16, 2);
-    //                 $fix = str_pad($bin, 4, "0", STR_PAD_LEFT);
-    //                 $dataArr2 = str_split($fix, 1);
-    //                 foreach ($dataArr2 as $dataBin) {
-    //                     if ($dataBin == "1") {
-    //                         $getError = $bitError[$index];
-    //                         array_push($error, $getError);
-    //                     }
-    //                     $index = $index - 1;
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     Ticket::create([
-    //         'subject' => "Alert from device " . $request->devEUI,
-    //         'description'  => json_encode($error),
-    //         'is_device'   => 1,
-    //         'status'   => "alert",
-    //     ]);
-    //     return "Alert Data Water Meter Success";
-    // } else {
-    //     return "Payload Data Tidak Tercover";
-    // }
-    return "success";
+        $params = [
+            'rawdata_id' => $lastInsertedId,
+            'device_id' => $device_id,
+            'frame_id' => $frameId,
+            'temperature' => $rumus_temperature,
+            'humidity' => $rumus_humidity,
+            'period' => $rumus_period,
+            'rssi' => $rumus_rssi,
+            'snr' => $rumus_snr,
+            'battery' => $rumus_battery,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ];
+        $dataAbnormal = [
+            'temperature' => $rumus_temperature,
+            'battery' => $rumus_battery,
+            'humidity' => $rumus_humidity
+        ];
+        DB::table('parseds')->insert($params);
+        $nums = LatestData::where('device_id', $device_id)
+            ->first();
+        if ($nums) {
+            DB::table('latest_datas')
+                ->where('device_id', $device_id)
+                ->update($params);
+        } else {
+            LatestData::create([
+                'device_id' => $device_id,
+                'rawdata_id' => $lastInsertedId,
+                'frame_id' => $frameId,
+                'temperature' => $rumus_temperature,
+                'humidity' => $rumus_humidity,
+                'period' => $rumus_period,
+                'rssi' => $rumus_rssi,
+                'snr' => $rumus_snr,
+                'battery' => $rumus_battery,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ]);
+        }
+        createTiket($device_id, $request->devEUI, $dataAbnormal);
+        return "success";
+    } else {
+        return "Callback Tidak Tercover";
+    }
 }
 
 function cekAbjHex($decimal)

@@ -6,6 +6,7 @@ use App\Models\Ticket;
 use App\Http\Requests\{StoreTicketRequest, UpdateTicketRequest};
 use Yajra\DataTables\Facades\DataTables;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Http\Request;
 
 class TicketController extends Controller
 {
@@ -28,11 +29,22 @@ class TicketController extends Controller
             return DataTables::of($tickets)
                 ->addIndexColumn()
                 ->addColumn('description', function ($row) {
-                    return str($row->description)->limit(100);
+                    $result = json_decode($row->description);
+                    if (json_last_error() === JSON_ERROR_NONE) {
+                        $arr =  json_decode($row->description);
+                        $output = '';
+                        foreach ($arr as $value) {
+                            $output .= "<li>" . $value . "</li>";
+                        }
+                        return $output;
+                    } else {
+                        return $row->description;
+                    }
                 })
                 ->addColumn('device', function ($row) {
                     return $row->device ? $row->device->dev_eui : '';
-                })->addColumn('action', 'tickets.include.action')
+                })->addColumn('action', 'tickets.include.action', 'description')
+                ->rawColumns(['description', 'action', 'tickets.include.action'])
                 ->toJson();
         }
 
@@ -66,10 +78,12 @@ class TicketController extends Controller
      * @param  \App\Models\Ticket  $ticket
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTicketRequest $request, Ticket $ticket)
+    public function update(Request $request, Ticket $ticket)
     {
-
-        $ticket->update($request->validated());
+        Ticket::where('id', $ticket->id)
+            ->update([
+                'status' => $request->status
+            ]);
         Alert::toast('The ticket was updated successfully.', 'success');
         return redirect()
             ->route('tickets.index');
