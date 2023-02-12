@@ -6,6 +6,7 @@ use App\Models\Parsed;
 use App\Http\Requests\{StoreParsedRequest, UpdateParsedRequest};
 use Yajra\DataTables\Facades\DataTables;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Http\Request;
 
 class ParsedController extends Controller
 {
@@ -22,17 +23,18 @@ class ParsedController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         if (request()->ajax()) {
-            $parseds = Parsed::with('device:id,dev_eui');
-
-            return DataTables::of($parseds)
+            $parsed_data = Parsed::with('device:id,dev_eui');
+            $query_parsed = intval($request->query('parsed_data'));
+            if (isset($query_parsed) && !empty($query_parsed)) {
+                $parsed_data = $parsed_data->where('rawdata_id', $query_parsed);
+            }
+            return DataTables::of($parsed_data)
                 ->addIndexColumn()
                 ->addColumn('device', function ($row) {
                     return $row->device ? $row->device->dev_eui : '';
-                })->addColumn('rawdata', function ($row) {
-                    return $row->rawdata ? $row->rawdata->dev_eui : '';
                 })->addColumn('temperature', function ($row) {
                     return $row->temperature . ' C';
                 })->addColumn('humidity', function ($row) {
@@ -52,7 +54,6 @@ class ParsedController extends Controller
                 })
                 ->toJson();
         }
-
         return view('parseds.index');
     }
 }

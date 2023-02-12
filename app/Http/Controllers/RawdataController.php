@@ -33,7 +33,7 @@ class RawdataController extends Controller
                 })
                 ->addColumn('parsed', function ($row) {
                     return  '<center>
-                    <a href="' . url('/panel/parsed-gm?parsed_data=' . $row->id) . '" style="width:120px" target="_blank" class="btn btn-sm  btn-success"> Parsed Data</a></center>';
+                    <a href="' . url('/parseds?parsed_data=' . $row->id) . '" style="width:120px" target="_blank" class="btn btn-sm  btn-success"> Parsed Data</a></center>';
                 })
                 ->addColumn('created_at', function ($row) {
                     return $row->created_at->format('d M Y H:i:s');

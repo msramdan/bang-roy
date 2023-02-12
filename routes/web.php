@@ -25,6 +25,9 @@ Route::middleware(['auth', 'web'])->group(function () {
 Route::controller(CallbackController::class)->group(function () {
     Route::post('/callback/gateway/uplink', 'index')->name('callback.index');
 });
+
+
+
 Route::resource('gateways', App\Http\Controllers\GatewayController::class)->middleware('auth')->only(['index']);
 Route::resource('rawdatas', App\Http\Controllers\RawdataController::class)->middleware('auth')->only(['index']);
 Route::resource('subnets', App\Http\Controllers\SubnetController::class)->middleware('auth');

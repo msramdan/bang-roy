@@ -20,9 +20,17 @@
             </div>
         </div>
         <div class="container-fluid">
-
             <div class="row">
                 <div class="col-sm-12">
+                    @if (Request::get('parsed_data'))
+                        <div class="d-flex justify-content-end">
+                            <a href="{{ route('parseds.index') }}" class="btn btn-primary mb-3">
+                                <i class="fas fa-list"></i>
+                                {{ __('All Data') }}
+                            </a>
+                        </div>
+                    @endif
+
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive p-1">
@@ -54,52 +62,64 @@
 
 @push('js')
     <script>
-        $('#data-table').DataTable({
+        let columns = [{
+                data: 'DT_RowIndex',
+                name: 'DT_RowIndex',
+                orderable: false,
+                searchable: false
+            }, {
+                data: 'device',
+                name: 'device.dev_eui'
+            },
+            {
+                data: 'frame_id',
+                name: 'frame_id',
+            },
+            {
+                data: 'temperature',
+                name: 'temperature',
+            },
+            {
+                data: 'humidity',
+                name: 'humidity',
+            },
+            {
+                data: 'period',
+                name: 'period',
+            },
+            {
+                data: 'rssi',
+                name: 'rssi',
+            },
+            {
+                data: 'snr',
+                name: 'snr',
+            },
+            {
+                data: 'battery',
+                name: 'battery',
+            },
+            {
+                data: 'created_at',
+                name: 'created_at'
+            }
+        ];
+
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+        })
+        let query = params.parsed_data;
+        let device_id = params.device_id;
+        var table = $('#data-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('parseds.index') }}",
-            columns: [{
-                    data: 'DT_RowIndex',
-                    name: 'DT_RowIndex',
-                    orderable: false,
-                    searchable: false
-                }, {
-                    data: 'device',
-                    name: 'device.dev_eui'
-                },
-                {
-                    data: 'frame_id',
-                    name: 'frame_id',
-                },
-                {
-                    data: 'temperature',
-                    name: 'temperature',
-                },
-                {
-                    data: 'humidity',
-                    name: 'humidity',
-                },
-                {
-                    data: 'period',
-                    name: 'period',
-                },
-                {
-                    data: 'rssi',
-                    name: 'rssi',
-                },
-                {
-                    data: 'snr',
-                    name: 'snr',
-                },
-                {
-                    data: 'battery',
-                    name: 'battery',
-                },
-                {
-                    data: 'created_at',
-                    name: 'created_at'
+            ajax: {
+                url: "{{ route('parseds.index') }}",
+                data: function(s) {
+                    s.parsed_data = query
                 }
-            ],
+            },
+            columns: columns
         });
     </script>
 @endpush
