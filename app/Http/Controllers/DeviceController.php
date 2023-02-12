@@ -11,6 +11,8 @@ use Yajra\DataTables\Facades\DataTables;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use Exception;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Request;
 
 class DeviceController extends Controller
 {
@@ -172,10 +174,72 @@ class DeviceController extends Controller
      * @param  \App\Models\Device  $device
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateDeviceRequest $request, Device $device)
+    public function update(Request $request, Device $device)
     {
+        $url_update = setting_web()->endpoint_nms . '/openapi/device/update';
+        $url_check_device = setting_web()->endpoint_nms . '/openapi/device/status?devEUI=' . $device->dev_eui;
+        $api_token   = setting_web()->token;
+        $curlOptions = [
+            CURLOPT_SSL_VERIFYPEER => 0,
+            CURLOPT_SSL_VERIFYHOST => 0
+        ];
 
-        $device->update($request->validated());
+        $device_check = Http::withOptions([
+            'curl' => $curlOptions,
+        ])->withHeaders([
+            'x-access-token' => $api_token
+        ])->get($url_check_device);
+
+        $response_check = $device_check->getBody()->getContents();
+        $response_check = json_decode($response_check);
+
+        if ($response_check->code != 0) {
+            $errorMessage = errorMessage($response_check->code);
+            if (!empty($errorMessage)) {
+                Alert::toast('Failed to update device! ' . $errorMessage['message'], 'error');
+            } else {
+                Alert::toast('Failed to update device!', 'error');
+            }
+
+            return redirect()->route('device.index');
+        }
+        $payload = [
+            "devEUI" => $request->dev_eui,
+            "devName" => $request->dev_name,
+        ];
+        $client = new Client;
+        $headers = [
+            'Content-Type'          => 'application/json',
+            'x-access-token' => $api_token,
+        ];
+
+        $res = $client->post($url_update, [
+            'headers'           => $headers,
+            'json'              => $payload,
+            'force_ip_resolve'  => 'v4',
+            'http_errors'       => false,
+            'timeout'           => 120,
+            'connect_timeout'   => 10,
+            'allow_redirects'   => false,
+            'verify'            => false,
+        ]);
+
+        $response = $res->getBody()->getContents();
+        $response = json_decode($response);
+
+        if ($response_check->code != 0) {
+            $errorMessage = errorMessage($response_check->code);
+
+            if (!empty($errorMessage)) {
+                Alert::toast('Failed to update device! ' . $errorMessage['message'], 'error');
+            } else {
+                Alert::toast('Failed to update device!', 'error');
+            }
+
+            return redirect()->route('device.index');
+        }
+        Device::where('id', $device->id)
+            ->update(['dev_name' => $request->dev_name]);
         Alert::toast('The device was updated successfully.', 'success');
         return redirect()
             ->route('devices.index');

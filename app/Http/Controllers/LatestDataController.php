@@ -25,13 +25,14 @@ class LatestDataController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $latestDatas = LatestData::with('device:id,dev_eui', 'rawdatum:id,dev_eui');
+            $latestDatas = LatestData::with('device:id,dev_eui', 'rawdata:id,dev_eui');
 
             return DataTables::of($latestDatas)
+                ->addIndexColumn()
                 ->addColumn('device', function ($row) {
                     return $row->device ? $row->device->dev_eui : '';
-                })->addColumn('rawdatum', function ($row) {
-                    return $row->rawdatum ? $row->rawdatum->dev_eui : '';
+                })->addColumn('rawdata', function ($row) {
+                    return $row->rawdata ? $row->rawdata->dev_eui : '';
                 })->addColumn('action', 'latest-datas.include.action')
                 ->toJson();
         }
@@ -57,11 +58,10 @@ class LatestDataController extends Controller
      */
     public function store(StoreLatestDataRequest $request)
     {
-        
+
         LatestData::create($request->validated());
         Alert::toast('The latestData was created successfully.', 'success');
         return redirect()->route('latest-datas.index');
-
     }
 
     /**
@@ -72,9 +72,9 @@ class LatestDataController extends Controller
      */
     public function show(LatestData $latestData)
     {
-        $latestData->load('device:id,dev_eui', 'rawdatum:id,dev_eui');
+        $latestData->load('device:id,dev_eui', 'rawdata:id,dev_eui');
 
-		return view('latest-datas.show', compact('latestData'));
+        return view('latest-datas.show', compact('latestData'));
     }
 
     /**
@@ -85,9 +85,9 @@ class LatestDataController extends Controller
      */
     public function edit(LatestData $latestData)
     {
-        $latestData->load('device:id,dev_eui', 'rawdatum:id,dev_eui');
+        $latestData->load('device:id,dev_eui', 'rawdata:id,dev_eui');
 
-		return view('latest-datas.edit', compact('latestData'));
+        return view('latest-datas.edit', compact('latestData'));
     }
 
     /**
@@ -99,7 +99,7 @@ class LatestDataController extends Controller
      */
     public function update(UpdateLatestDataRequest $request, LatestData $latestData)
     {
-        
+
         $latestData->update($request->validated());
         Alert::toast('The latestData was updated successfully.', 'success');
         return redirect()

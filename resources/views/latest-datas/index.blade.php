@@ -29,6 +29,7 @@
                                 <table class="display dataTable no-footer" id="data-table" role="grid">
                                     <thead>
                                         <tr>
+                                            <th>#</th>
                                             <th>{{ __('Device') }}</th>
                                             <th>{{ __('Temperature') }}</th>
                                             <th>{{ __('Humidity') }}</th>
@@ -55,6 +56,11 @@
             serverSide: true,
             ajax: "{{ route('latest-datas.index') }}",
             columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    orderable: false,
+                    searchable: false
+                }, {
                     data: 'device',
                     name: 'device.dev_eui'
                 },

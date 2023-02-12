@@ -102,21 +102,20 @@ class ViewServiceProvider extends ServiceProvider
                 \App\Models\Cluster::select('id', 'cluster_name', 'cluster_kode')->get()
             );
         });
-  
 
-		View::composer(['latest-datas.create', 'latest-datas.edit'], function ($view) {
+
+        View::composer(['latest-datas.create', 'latest-datas.edit'], function ($view) {
             return $view->with(
                 'devices',
                 \App\Models\Device::select('id', 'dev_eui')->get()
             );
         });
 
-View::composer(['latest-datas.create', 'latest-datas.edit'], function ($view) {
+        View::composer(['latest-datas.create', 'latest-datas.edit'], function ($view) {
             return $view->with(
                 'rawdatas',
-                \App\Models\Rawdatum::select('id', 'dev_eui')->get()
+                \App\Models\Rawdata::select('id', 'dev_eui')->get()
             );
         });
-
-	}
+    }
 }
