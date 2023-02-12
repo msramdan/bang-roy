@@ -7,8 +7,14 @@ use App\Http\Controllers\{
     ProfileController,
     RoleAndPermissionController,
     WilayahController,
-    InstanceController
+    InstanceController,
+    TelegramBotController
 };
+
+Route::controller(TelegramBotController::class)->group(function () {
+    Route::get('/updated-activity', 'updatedActivity');
+    Route::post('/storeMessage', 'storeMessage');
+});
 
 Route::get('kota/{provinsiId}', [WilayahController::class, 'kota'])->name('api.kota');
 Route::get('kecamatan/{kotaId}', [WilayahController::class, 'kecamatan'])->name('api.kecamatan');

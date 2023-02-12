@@ -30,6 +30,18 @@ class GatewayController extends Controller
                     return $row->created_at->format('d M Y H:i:s');
                 })->addColumn('updated_at', function ($row) {
                     return $row->updated_at->format('d M Y H:i:s');
+                })->addColumn('status_online', function ($row) {
+                    if ($row->status_online == 1) {
+                        return "True";
+                    } else {
+                        return "False";
+                    }
+                })->addColumn('pktfwd_status', function ($row) {
+                    if ($row->pktfwd_status == 1) {
+                        return "True";
+                    } else {
+                        return "False";
+                    }
                 })
                 ->addColumn('action', 'gateways.include.action')
                 ->toJson();

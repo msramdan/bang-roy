@@ -168,6 +168,8 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         Msramdan\Generator\Providers\GeneratorServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        Telegram\Bot\Laravel\TelegramServiceProvider::class,
+
 
         /*
          * Application Service Providers...
@@ -236,7 +238,9 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Image' => Intervention\Image\Facades\Image::class,
-        'Alert' => RealRashid\SweetAlert\Facades\Alert::class
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'Telegram'  => Telegram\Bot\Laravel\Facades\Telegram::class
+
     ],
 
 ];

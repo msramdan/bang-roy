@@ -8,6 +8,11 @@ use App\Models\Ticket;
 use App\Models\Device;
 use App\Models\LatestData;
 use App\Models\Maintenance;
+use Illuminate\Http\Request;
+use Telegram\Bot\FileUpload\InputFile;
+use Telegram\Bot\Laravel\Facades\Telegram;
+
+
 
 if (!function_exists('set_active')) {
     function set_active($uri)
@@ -335,9 +340,14 @@ function insertGateway($gwid, $time, $status_online = null, $pktfwdStatus = null
 function createTiket($device_id, $devEUI, $data)
 {
     if ($data != null) {
-        // get subintance
+        // get Intance
         $getInstance = DB::table('devices')
+            ->join('clusters', 'devices.cluster_id', '=', 'clusters.id')
+            ->join('instances', 'devices.instance_id', '=', 'instances.id')
+            ->select('devices.*', 'clusters.cluster_name', 'instances.instance_name')
             ->where('devices.id', $device_id)->first();
+        $instanceName = $getInstance->instance_name;
+        $clusterName = $getInstance->cluster_name;
 
         $day = strtolower(date('l'));
         // get operational time
@@ -370,20 +380,46 @@ function createTiket($device_id, $devEUI, $data)
                     }
                     if (!empty($abnormal)) {
                         // create tiket
-                        Ticket::create([
+                        $dataTiket = [
                             'subject' => "Alert from device " . $devEUI,
                             'description'  => json_encode($abnormal),
                             'device_id' => $device_id,
                             'status'   => "Opened",
-                        ]);
+                        ];
+                        $tiket = Ticket::create($dataTiket);
                     }
+                    $dateTiket = $tiket->created_at;
                     // send notif tele
+                    storeMessage($dataTiket, $devEUI, $instanceName, $dateTiket, $clusterName);
                 }
             }
         }
     }
 }
 
+function storeMessage($dataTiket, $devEUI, $instanceName, $dateTiket, $clusterName)
+{
+
+    $arr =  json_decode($dataTiket['description']);
+    $output = '';
+    $i = 1;
+    foreach ($arr as $key => $value) {
+        $output .= "$i . " . $value . "\n";
+        $i++;
+    }
+    $text = "<b>❌🚫 Alert from Device $devEUI ❌🚫</b>\n\n"
+        . "<b>Instance : $instanceName </b>\n"
+        . "<b>Cluster : $clusterName </b>\n"
+        . "<b>Description Alert : </b>\n"
+        . "$output\n"
+        . "<b>Date :  $dateTiket </b>\n"
+        . "<b>Status: Opened </b>\n";
+    Telegram::sendMessage([
+        'chat_id' => env('TELEGRAM_CHANNEL_ID', ''),
+        'parse_mode' => 'HTML',
+        'text' => $text
+    ]);
+}
 
 function handleCallback($device_id, $request)
 {
@@ -416,10 +452,10 @@ function handleCallback($device_id, $request)
         insertGateway($request->data['gwid'], $save->updated_at);
         // temperatur
         $temperature = hexdec(littleEndian(substr($hex, 2, 4)));
-        $rumus_temperature = ((175.72 * $temperature) / 65536) - 46.85;
+        $rumus_temperature = round(((175.72 * $temperature) / 65536) - 46.85, 2);
         // Humidity
         $humidity = hexdec(littleEndian(substr($hex, 6, 2)));
-        $rumus_humidity = ((125 * $humidity) / 256) - 6;
+        $rumus_humidity = round(((125 * $humidity) / 256) - 6, 2);
         // Period
         $period = hexdec(littleEndian(substr($hex, 8, 4)));
         $rumus_period = 2 * $period;
@@ -428,7 +464,7 @@ function handleCallback($device_id, $request)
         $rumus_rssi = -180 + $rssi;
         // Bateray
         $battery = hexdec(littleEndian(substr($hex, 16, 2)));
-        $rumus_battery = ($battery + 150) * 0.01;
+        $rumus_battery = round(($battery + 150) * 0.01, 2);
         // Snr
         $snr = hexdec(littleEndian(substr($hex, 14, 2)));
         $cek = substr(littleEndian(substr($hex, 14, 2)), 0, 1);
@@ -483,11 +519,16 @@ function handleCallback($device_id, $request)
         $time = date("G:i:s");
         $getDay = Maintenance::where('date', $now)
             ->first();
-        if ($time > $getDay->start_time and $time < $getDay->end_time) {
-            // tidak ada MT Day
+        if ($getDay) {
+            if ($time > $getDay->start_time and $time < $getDay->end_time) {
+                // tidak ada MT Day
+            } else {
+                createTiket($device_id, $request->devEUI, $dataAbnormal);
+            }
         } else {
             createTiket($device_id, $request->devEUI, $dataAbnormal);
         }
+
         return "success";
     } else {
         return "Callback Tidak Tercover";
