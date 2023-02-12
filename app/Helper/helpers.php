@@ -308,24 +308,24 @@ function littleEndian($str)
 
 function insertGateway($gwid, $time, $status_online = null, $pktfwdStatus = null)
 {
-    $gateway = DB::table('gateway')
+    $gateway = DB::table('gateways')
         ->where('gwid', '=', $gwid)
         ->count();
     if ($gateway < 1) {
-        DB::table('gateway')->insert([
+        DB::table('gateways')->insert([
             'gwid' => $gwid,
             'status_online' => $status_online,
-            'pktfwdStatus' => $pktfwdStatus,
+            'pktfwd_status' => $pktfwdStatus,
             'created_at' => $time,
             'updated_at' => $time,
         ]);
     } else {
-        DB::table('gateway')
+        DB::table('gateways')
             ->where('gwid', $gwid)
             ->update([
                 'updated_at' => $time,
                 'status_online' => $status_online,
-                'pktfwdStatus' => $pktfwdStatus
+                'pktfwd_status' => $pktfwdStatus
             ]);
     }
 }
@@ -413,9 +413,9 @@ function handleCallback($device_id, $request)
         'gws'   => json_encode($request->data['gws']),
         'payload_data' => json_encode($request->all()),
     ]);
-    return "success";
-    //     $lastInsertedId = $save->id;
-    //     insertGateway($request->data['gwid'], $save->updated_at);
+
+    $lastInsertedId = $save->id;
+    insertGateway($request->data['gwid'], $save->updated_at);
     //     if ($frameId == "00") {
     //         $uplinkInterval = hexdec(littleEndian(substr($hex, 2, 4)));
     //         $batraiStatus = hexdec(littleEndian(substr($hex, 6, 2)));
@@ -645,6 +645,7 @@ function handleCallback($device_id, $request)
     // } else {
     //     return "Payload Data Tidak Tercover";
     // }
+    return "success";
 }
 
 function cekAbjHex($decimal)

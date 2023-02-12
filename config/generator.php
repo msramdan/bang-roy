@@ -117,7 +117,7 @@ return [
             'menus' => [
                 [
                     'title' => 'Latest Data Device',
-                    'icon' => '<i data-feather="airplay"></i>',
+                    'icon' => '<i data-feather="check-square"></i>',
                     'route' => '/latest-datas',
                     'permission' => 'latest data view',
                     'permissions' => [],

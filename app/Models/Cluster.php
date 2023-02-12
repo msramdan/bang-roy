@@ -23,10 +23,10 @@ class Cluster extends Model
      */
     protected $casts = ['cluster_kode' => 'string', 'cluster_name' => 'string', 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i'];
 
-    
 
-	public function instance()
-	{
-		return $this->belongsTo(\App\Models\Instance::class);
-	}
+
+    public function instance()
+    {
+        return $this->belongsTo(\App\Models\Instance::class);
+    }
 }

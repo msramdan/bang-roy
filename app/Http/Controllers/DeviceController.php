@@ -129,10 +129,6 @@ class DeviceController extends Controller
             }
             $data = $request->except('_token');
             $save = Device::create($data);
-            $lastInsertedId = $save->id;
-            DB::table('latest_datas')->insert([
-                'device_id' => $lastInsertedId,
-            ]);
         } catch (Exception $err) {
             \Log::error($err);
             Alert::toast('Failed to save records', 'error');

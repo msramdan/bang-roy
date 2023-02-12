@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('gateways', function (Blueprint $table) {
             $table->id();
             $table->string('gwid', 100);
-			$table->boolean('status_online');
-			$table->boolean('pktfwd_status');
+            $table->boolean('status_online')->nullable();
+            $table->boolean('pktfwd_status')->nullable();
             $table->timestamps();
         });
     }
