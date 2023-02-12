@@ -21,7 +21,7 @@ class OperationalTime extends Model
      *
      * @var string[]
      */
-    // protected $casts = ['day' => 'string', 'open_hour' => 'datetime:H:i', 'open_hour' => 'datetime:H:i', 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i'];
+    // protected $casts = ['day' => 'string', 'open_hour' => 'datetime:H:i', 'open_hour' => 'datetime:H:i'];
 
     public function instance()
     {

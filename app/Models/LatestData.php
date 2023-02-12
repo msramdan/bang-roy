@@ -22,7 +22,7 @@ class LatestData extends Model
      *
      * @var string[]
      */
-    // protected $casts = ['frame_id' => 'string', 'temperature' => 'float', 'humidity' => 'float', 'period' => 'integer', 'rssi' => 'float', 'snr' => 'float', 'battery' => 'float', 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i'];
+    // protected $casts = ['frame_id' => 'string', 'temperature' => 'float', 'humidity' => 'float', 'period' => 'integer', 'rssi' => 'float', 'snr' => 'float', 'battery' => 'float'];
 
 
 

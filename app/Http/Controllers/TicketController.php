@@ -31,7 +31,7 @@ class TicketController extends Controller
                 ->addColumn('created_at', function ($row) {
                     return $row->created_at->format('d M Y H:i:s');
                 })->addColumn('updated_at', function ($row) {
-                    return $row->created_at->format('d M Y H:i:s');
+                    return $row->updated_at->format('d M Y H:i:s');
                 })
                 ->addColumn('description', function ($row) {
                     $result = json_decode($row->description);

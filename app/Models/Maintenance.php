@@ -21,9 +21,7 @@ class Maintenance extends Model
      *
      * @var string[]
      */
-    // protected $casts = ['date' => 'date:d/m/Y', 'start_time' => 'datetime:H:i', 'end_time' => 'datetime:H:i', 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i'];
-
-
+    // protected $casts = ['date' => 'date:d/m/Y', 'start_time' => 'datetime:H:i', 'end_time' => 'datetime:H:i'];
 
     public function instance()
     {

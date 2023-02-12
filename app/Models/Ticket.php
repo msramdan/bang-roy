@@ -21,7 +21,7 @@ class Ticket extends Model
      *
      * @var string[]
      */
-    // protected $casts = ['subject' => 'string', 'description' => 'string', 'status' => 'string', 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i'];
+    // protected $casts = ['subject' => 'string', 'description' => 'string', 'status' => 'string'];
 
 
 

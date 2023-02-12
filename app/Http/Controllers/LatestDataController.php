@@ -12,9 +12,6 @@ class LatestDataController extends Controller
     public function __construct()
     {
         $this->middleware('permission:latest data view')->only('index', 'show');
-        $this->middleware('permission:latest data create')->only('create', 'store');
-        $this->middleware('permission:latest data edit')->only('edit', 'update');
-        $this->middleware('permission:latest data delete')->only('destroy');
     }
 
     /**
@@ -48,7 +45,7 @@ class LatestDataController extends Controller
                 })->addColumn('created_at', function ($row) {
                     return $row->created_at->format('d M Y H:i:s');
                 })->addColumn('updated_at', function ($row) {
-                    return $row->created_at->format('d M Y H:i:s');
+                    return $row->updated_at->format('d M Y H:i:s');
                 })->addColumn('action', 'latest-datas.include.action')
                 ->toJson();
         }
@@ -66,26 +63,6 @@ class LatestDataController extends Controller
         return view('latest-datas.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreLatestDataRequest $request)
-    {
-
-        LatestData::create($request->validated());
-        Alert::toast('The latestData was created successfully.', 'success');
-        return redirect()->route('latest-datas.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\LatestData  $latestData
-     * @return \Illuminate\Http\Response
-     */
     public function show(LatestData $latestData)
     {
         $latestData->load('device:id,dev_eui', 'rawdata:id,dev_eui');
@@ -113,14 +90,7 @@ class LatestDataController extends Controller
      * @param  \App\Models\LatestData  $latestData
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateLatestDataRequest $request, LatestData $latestData)
-    {
 
-        $latestData->update($request->validated());
-        Alert::toast('The latestData was updated successfully.', 'success');
-        return redirect()
-            ->route('latest-datas.index');
-    }
 
     /**
      * Remove the specified resource from storage.

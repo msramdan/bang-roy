@@ -50,7 +50,7 @@ class InstanceController extends Controller
                 })->addColumn('created_at', function ($row) {
                     return $row->created_at->format('d M Y H:i:s');
                 })->addColumn('updated_at', function ($row) {
-                    return $row->created_at->format('d M Y H:i:s');
+                    return $row->updated_at->format('d M Y H:i:s');
                 })->addColumn('action', 'instances.include.action')
                 ->toJson();
         }

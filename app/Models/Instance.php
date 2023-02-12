@@ -20,7 +20,7 @@ class Instance extends Model
      *
      * @var string[]
      */
-    // protected $casts = ['app_id' => 'integer', 'app_name' => 'string', 'push_url' => 'string', 'instance_name' => 'string', 'address' => 'string', 'zip_kode' => 'string', 'email' => 'string', 'phone' => 'string', 'longitude' => 'string', 'latitude' => 'string', 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i'];
+    // protected $casts = ['app_id' => 'integer', 'app_name' => 'string', 'push_url' => 'string', 'instance_name' => 'string', 'address' => 'string', 'zip_kode' => 'string', 'email' => 'string', 'phone' => 'string', 'longitude' => 'string', 'latitude' => 'string'];
 
 
 

@@ -484,25 +484,10 @@ function handleCallback($device_id, $request)
         $getDay = Maintenance::where('date', $now)
             ->first();
         if ($time > $getDay->start_time and $time < $getDay->end_time) {
-            echo $getDay->start_time;
-            echo "";
-            echo $getDay->end_time;
-            echo "";
-            echo $time;
-            echo "";
-            echo "Ada MT";
+            // tidak ada MT Day
         } else {
-            echo $getDay->start_time;
-            echo "";
-            echo $getDay->end_time;
-            echo "";
-            echo $time;
-            echo "";
-            echo "tidak ada MT";
+            createTiket($device_id, $request->devEUI, $dataAbnormal);
         }
-        die();
-
-        createTiket($device_id, $request->devEUI, $dataAbnormal);
         return "success";
     } else {
         return "Callback Tidak Tercover";
