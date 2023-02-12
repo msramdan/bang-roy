@@ -33,6 +33,9 @@
                                             <th>{{ __('Device') }}</th>
                                             <th>{{ __('Temperature') }}</th>
                                             <th>{{ __('Humidity') }}</th>
+                                            <th>{{ __('Period') }}</th>
+                                            <th>{{ __('Rssi') }}</th>
+                                            <th>{{ __('Snr') }}</th>
                                             <th>{{ __('Battery') }}</th>
                                             <th>{{ __('Updated At') }}</th>
                                             <th>{{ __('Action') }}</th>
@@ -71,6 +74,18 @@
                 {
                     data: 'humidity',
                     name: 'humidity',
+                },
+                {
+                    data: 'period',
+                    name: 'period',
+                },
+                {
+                    data: 'rssi',
+                    name: 'rssi',
+                },
+                {
+                    data: 'snr',
+                    name: 'snr',
                 },
                 {
                     data: 'battery',

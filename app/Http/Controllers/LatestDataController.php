@@ -33,6 +33,18 @@ class LatestDataController extends Controller
                     return $row->device ? $row->device->dev_eui : '';
                 })->addColumn('rawdata', function ($row) {
                     return $row->rawdata ? $row->rawdata->dev_eui : '';
+                })->addColumn('temperature', function ($row) {
+                    return $row->temperature . ' C';
+                })->addColumn('humidity', function ($row) {
+                    return $row->humidity . ' %';
+                })->addColumn('battery', function ($row) {
+                    return $row->battery . ' V';
+                })->addColumn('period', function ($row) {
+                    return $row->period . ' Second';
+                })->addColumn('rssi', function ($row) {
+                    return $row->rssi . ' dBm';
+                })->addColumn('snr', function ($row) {
+                    return $row->snr . ' dB';
                 })->addColumn('action', 'latest-datas.include.action')
                 ->toJson();
         }
