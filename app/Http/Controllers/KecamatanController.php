@@ -31,6 +31,10 @@ class KecamatanController extends Controller
                 ->addIndexColumn()
                 ->addColumn('kabkot', function ($row) {
                     return $row->kabkot ? $row->kabkot->kabupaten_kota : '';
+                })->addColumn('created_at', function ($row) {
+                    return $row->created_at->format('d M Y H:i:s');
+                })->addColumn('updated_at', function ($row) {
+                    return $row->created_at->format('d M Y H:i:s');
                 })->addColumn('action', 'kecamatans.include.action')
                 ->toJson();
         }

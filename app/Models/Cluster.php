@@ -21,7 +21,7 @@ class Cluster extends Model
      *
      * @var string[]
      */
-    protected $casts = ['cluster_kode' => 'string', 'cluster_name' => 'string', 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i'];
+    // protected $casts = ['cluster_kode' => 'string', 'cluster_name' => 'string', 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i'];
 
 
 

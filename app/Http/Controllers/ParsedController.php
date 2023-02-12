@@ -45,6 +45,10 @@ class ParsedController extends Controller
                     return $row->rssi . ' dBm';
                 })->addColumn('snr', function ($row) {
                     return $row->snr . ' dB';
+                })->addColumn('created_at', function ($row) {
+                    return $row->created_at->format('d M Y H:i:s');
+                })->addColumn('updated_at', function ($row) {
+                    return $row->created_at->format('d M Y H:i:s');
                 })
                 ->toJson();
         }

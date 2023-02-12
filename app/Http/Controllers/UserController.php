@@ -37,6 +37,11 @@ class UserController extends Controller
             return Datatables::of($users)
                 ->addIndexColumn()
                 ->addColumn('action', 'users.include.action')
+                ->addColumn('created_at', function ($row) {
+                    return $row->created_at->format('d M Y H:i:s');
+                })->addColumn('updated_at', function ($row) {
+                    return $row->created_at->format('d M Y H:i:s');
+                })
                 ->addColumn('role', function ($row) {
                     return $row->getRoleNames()->toArray() !== [] ? $row->getRoleNames()[0] : '-';
                 })

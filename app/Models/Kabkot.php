@@ -21,7 +21,7 @@ class Kabkot extends Model
      *
      * @var string[]
      */
-    protected $casts = ['kabupaten_kota' => 'string', 'ibukota' => 'string', 'k_bsni' => 'string', 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i'];
+    // protected $casts = ['kabupaten_kota' => 'string', 'ibukota' => 'string', 'k_bsni' => 'string', 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i'];
 
 
 

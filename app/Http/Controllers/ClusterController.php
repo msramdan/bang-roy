@@ -31,6 +31,10 @@ class ClusterController extends Controller
                 ->addIndexColumn()
                 ->addColumn('instance', function ($row) {
                     return $row->instance ? $row->instance->instance_name : '';
+                })->addColumn('created_at', function ($row) {
+                    return $row->created_at->format('d M Y H:i:s');
+                })->addColumn('updated_at', function ($row) {
+                    return $row->created_at->format('d M Y H:i:s');
                 })->addColumn('action', 'clusters.include.action')
                 ->toJson();
         }

@@ -29,6 +29,11 @@ class SubnetController extends Controller
 
             return DataTables::of($subnets)
                 ->addIndexColumn()
+                ->addColumn('created_at', function ($row) {
+                    return $row->created_at->format('d M Y H:i:s');
+                })->addColumn('updated_at', function ($row) {
+                    return $row->created_at->format('d M Y H:i:s');
+                })
                 ->addColumn('action', 'subnets.include.action')
                 ->toJson();
         }

@@ -28,6 +28,11 @@ class TicketController extends Controller
 
             return DataTables::of($tickets)
                 ->addIndexColumn()
+                ->addColumn('created_at', function ($row) {
+                    return $row->created_at->format('d M Y H:i:s');
+                })->addColumn('updated_at', function ($row) {
+                    return $row->created_at->format('d M Y H:i:s');
+                })
                 ->addColumn('description', function ($row) {
                     $result = json_decode($row->description);
                     if (json_last_error() === JSON_ERROR_NONE) {

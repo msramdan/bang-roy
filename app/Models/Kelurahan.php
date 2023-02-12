@@ -21,12 +21,12 @@ class Kelurahan extends Model
      *
      * @var string[]
      */
-    protected $casts = ['kelurahan' => 'string', 'kd_pos' => 'string', 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i'];
+    // protected $casts = ['kelurahan' => 'string', 'kd_pos' => 'string', 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i'];
 
-    
 
-	public function kecamatan()
-	{
-		return $this->belongsTo(\App\Models\Kecamatan::class);
-	}
+
+    public function kecamatan()
+    {
+        return $this->belongsTo(\App\Models\Kecamatan::class);
+    }
 }

@@ -21,16 +21,16 @@ class Maintenance extends Model
      *
      * @var string[]
      */
-    protected $casts = ['date' => 'date:d/m/Y', 'start_time' => 'datetime:H:i', 'end_time' => 'datetime:H:i', 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i'];
+    // protected $casts = ['date' => 'date:d/m/Y', 'start_time' => 'datetime:H:i', 'end_time' => 'datetime:H:i', 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i'];
 
-    
 
-	public function instance()
-	{
-		return $this->belongsTo(\App\Models\Instance::class);
-	}	
-	public function user()
-	{
-		return $this->belongsTo(\App\Models\User::class);
-	}
+
+    public function instance()
+    {
+        return $this->belongsTo(\App\Models\Instance::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(\App\Models\User::class);
+    }
 }

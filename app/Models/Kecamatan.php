@@ -21,7 +21,7 @@ class Kecamatan extends Model
      *
      * @var string[]
      */
-    protected $casts = ['kecamatan' => 'string', 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i'];
+    // protected $casts = ['kecamatan' => 'string', 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i'];
 
 
 

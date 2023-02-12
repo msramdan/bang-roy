@@ -21,7 +21,7 @@ class Device extends Model
      *
      * @var string[]
      */
-    protected $casts = ['dev_eui' => 'string', 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i'];
+    // protected $casts = ['dev_eui' => 'string', 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i'];
 
     public function subnet()
     {

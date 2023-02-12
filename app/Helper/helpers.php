@@ -7,6 +7,7 @@ use App\Models\Rawdata;
 use App\Models\Ticket;
 use App\Models\Device;
 use App\Models\LatestData;
+use App\Models\Maintenance;
 
 if (!function_exists('set_active')) {
     function set_active($uri)
@@ -477,6 +478,30 @@ function handleCallback($device_id, $request)
                 'updated_at' => date('Y-m-d H:i:s'),
             ]);
         }
+        // cek ada mt day tidak
+        $now = date('Y-m-d');
+        $time = date("G:i:s");
+        $getDay = Maintenance::where('date', $now)
+            ->first();
+        if ($time > $getDay->start_time and $time < $getDay->end_time) {
+            echo $getDay->start_time;
+            echo "";
+            echo $getDay->end_time;
+            echo "";
+            echo $time;
+            echo "";
+            echo "Ada MT";
+        } else {
+            echo $getDay->start_time;
+            echo "";
+            echo $getDay->end_time;
+            echo "";
+            echo $time;
+            echo "";
+            echo "tidak ada MT";
+        }
+        die();
+
         createTiket($device_id, $request->devEUI, $dataAbnormal);
         return "success";
     } else {

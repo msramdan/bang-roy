@@ -47,6 +47,10 @@ class InstanceController extends Controller
                     return $row->kecamatan ? $row->kecamatan->kabkot_id : '';
                 })->addColumn('kelurahan', function ($row) {
                     return $row->kelurahan ? $row->kelurahan->kecamatan_id : '';
+                })->addColumn('created_at', function ($row) {
+                    return $row->created_at->format('d M Y H:i:s');
+                })->addColumn('updated_at', function ($row) {
+                    return $row->created_at->format('d M Y H:i:s');
                 })->addColumn('action', 'instances.include.action')
                 ->toJson();
         }

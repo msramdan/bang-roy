@@ -43,6 +43,10 @@ class DeviceController extends Controller
                     return $row->instance ? $row->instance->app_id : '';
                 })->addColumn('cluster', function ($row) {
                     return $row->cluster ? $row->cluster->cluster_name : '';
+                })->addColumn('created_at', function ($row) {
+                    return $row->created_at->format('d M Y H:i:s');
+                })->addColumn('updated_at', function ($row) {
+                    return $row->created_at->format('d M Y H:i:s');
                 })->addColumn('action', 'devices.include.action')
                 ->toJson();
         }

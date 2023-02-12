@@ -21,12 +21,12 @@ class SettingToleranceAlert extends Model
      *
      * @var string[]
      */
-    protected $casts = ['field_data' => 'string', 'min_tolerance' => 'float', 'max_tolerance' => 'float', 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i'];
+    // protected $casts = ['field_data' => 'string', 'min_tolerance' => 'float', 'max_tolerance' => 'float', 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i'];
 
-    
 
-	public function instance()
-	{
-		return $this->belongsTo(\App\Models\Instance::class);
-	}
+
+    public function instance()
+    {
+        return $this->belongsTo(\App\Models\Instance::class);
+    }
 }

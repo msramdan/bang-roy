@@ -30,6 +30,10 @@ class KabkotController extends Controller
                 ->addIndexColumn()
                 ->addColumn('province', function ($row) {
                     return $row->province ? $row->province->provinsi : '';
+                })->addColumn('created_at', function ($row) {
+                    return $row->created_at->format('d M Y H:i:s');
+                })->addColumn('updated_at', function ($row) {
+                    return $row->created_at->format('d M Y H:i:s');
                 })
                 ->addColumn('action', 'kabkots.include.action')
                 ->toJson();

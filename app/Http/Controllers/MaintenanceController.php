@@ -33,6 +33,10 @@ class MaintenanceController extends Controller
                     return $row->instance ? $row->instance->instance_name : '';
                 })->addColumn('user', function ($row) {
                     return $row->user ? $row->user->name : '';
+                })->addColumn('created_at', function ($row) {
+                    return $row->created_at->format('d M Y H:i:s');
+                })->addColumn('updated_at', function ($row) {
+                    return $row->created_at->format('d M Y H:i:s');
                 })->addColumn('action', 'maintenances.include.action')
                 ->toJson();
         }

@@ -21,8 +21,8 @@ class Gateway extends Model
      *
      * @var string[]
      */
-    protected $casts = ['gwid' => 'string', 'status_online' => 'boolean', 'pktfwd_status' => 'boolean', 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i'];
+    // protected $casts = ['gwid' => 'string', 'status_online' => 'boolean', 'pktfwd_status' => 'boolean', 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i'];
 
-    
+
 
 }
