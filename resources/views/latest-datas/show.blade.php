@@ -94,20 +94,23 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <div class="col-md-12">
-                                    <label>Filter Date :</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group flex-nowrap">
-                                            <span class="input-group-text" id="addon-wrapping"><i
-                                                    class="fa fa-calendar"></i></span>
-                                            <input type="text" class="form-control" aria-describedby="addon-wrapping"
-                                                id="daterange-btn">
-                                            <button id='' type="button" class="btn btn-primary btn-flat"
-                                                title='Decrement month'><i class="fa fa-filter" aria-hidden="true"></i>
-                                                Filter</button>
+                                <form method="get" action="{{ url('/latest-datas/' . $device_id) }}" id="form-date">
+                                    <div class="col-md-12">
+                                        <label>Filter Date :</label>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text" id="addon-wrapping"><i
+                                                        class="fa fa-calendar"></i></span>
+                                                <input type="text" class="form-control" aria-describedby="addon-wrapping"
+                                                    id="daterange-btn">
+                                                <input type="hidden" name="start_date" id="start_date">
+                                                <input type="hidden" name="end_date" id="end_date">
+                                                <span class="input-group-text btn btn-primary btn-flat"
+                                                    id="addon-wrapping"><i class="fa fa-filter"></i> Filter</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -123,6 +126,7 @@
                                     <table id="" class="table table-sm table-bordered ">
                                         <thead>
                                             <tr>
+                                                <th>#</th>
                                                 <th>Temperature</th>
                                                 <th>Date</th>
                                             </tr>
@@ -130,8 +134,10 @@
                                         <tbody>
                                             @foreach ($parsed_data as $data)
                                                 <tr>
-                                                    <td style="width: 50%">{{ $data->temperature }} C</td>
-                                                    <td>{{ date('d/m/Y H:i:s', strtotime($data->created_at)) }}</td>
+                                                    <td style="width: 5%">{{ $loop->iteration }}</td>
+                                                    <td style="width: 35%">{{ $data->temperature }} C</td>
+                                                    <td style="width: 60%">
+                                                        {{ date('d/m/Y H:i:s', strtotime($data->created_at)) }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -161,6 +167,7 @@
                                     <table id="" class="table table-sm table-bordered ">
                                         <thead>
                                             <tr>
+                                                <th>#</th>
                                                 <th>Humidity</th>
                                                 <th>Date</th>
                                             </tr>
@@ -168,8 +175,10 @@
                                         <tbody>
                                             @foreach ($parsed_data as $data)
                                                 <tr>
-                                                    <td style="width: 50%">{{ $data->humidity }} %</td>
-                                                    <td>{{ date('d/m/Y H:i:s', strtotime($data->created_at)) }}</td>
+                                                    <td style="width: 5%">{{ $loop->iteration }}</td>
+                                                    <td style="width: 35%">{{ $data->humidity }} C</td>
+                                                    <td style="width: 60%">
+                                                        {{ date('d/m/Y H:i:s', strtotime($data->created_at)) }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -199,6 +208,7 @@
                                     <table id="" class="table table-sm table-bordered ">
                                         <thead>
                                             <tr>
+                                                <th>#</th>
                                                 <th>Battery</th>
                                                 <th>Date</th>
                                             </tr>
@@ -206,8 +216,10 @@
                                         <tbody>
                                             @foreach ($parsed_data as $data)
                                                 <tr>
-                                                    <td style="width: 50%">{{ $data->battery }} V</td>
-                                                    <td>{{ date('d/m/Y H:i:s', strtotime($data->created_at)) }}</td>
+                                                    <td style="width: 5%">{{ $loop->iteration }}</td>
+                                                    <td style="width: 35%">{{ $data->battery }} C</td>
+                                                    <td style="width: 60%">
+                                                        {{ date('d/m/Y H:i:s', strtotime($data->created_at)) }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -235,6 +247,16 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.js"></script>
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#daterange-btn').change(function() {
+                $('#form-date').submit();
+            });
+        });
+    </script>
+
+
     <script>
         //var start = ''; //moment().startOf('month');
         //var end = ''; //moment().endOf('month');
@@ -242,6 +264,8 @@
 
         var start = moment().startOf('month');
         var end = moment().endOf('month');
+        // console.log(Date.parse(start))
+        // console.log(Date.parse(end))
         var label = '';
 
         $('#daterange-btn').daterangepicker({
@@ -261,20 +285,12 @@
                 }
             },
             function(start, end, label) {
-                console.log(Date.parse(start))
-                console.log(Date.parse(end))
+                $('#start_date').val(Date.parse(start));
+                $('#end_date').val(Date.parse(end));
                 if (isDate(start)) {
                     $('#daterange-btn span').html(start.format('DD MMM YYYY') + ' - ' + end.format('DD MMM YYYY'));
                 }
             });
-
-        $('#btnInc').click(function(e) {
-            IncDecMonth('Inc')
-        })
-
-        $('#btnDec').click(function(e) {
-            IncDecMonth('Dec')
-        })
 
         function isDate(val) {
             //var d = new Date(val);
@@ -283,25 +299,5 @@
             // console.log(d);
             return Date.parse(val);
         }
-
-        function IncDecMonth(Action) {
-            if (!isDate(start)) {
-                start = moment().startOf('month');
-            }
-            if (Action == 'Inc') {
-                start = moment(start).add(1, 'month').startOf('month');
-                end = moment(start).endOf('month')
-            } else {
-                start = moment(start).subtract(1, 'month').startOf('month');
-                end = moment(start).endOf('month')
-            }
-            if (isDate(start)) {
-                $('#daterange-btn span').html(start.format('DD MMM YYYY') + ' - ' + end.format('DD MMM YYYY'));
-            }
-            console.log('start=' + start)
-            console.log('end=' + end)
-        }
-
-        IncDecMonth();
     </script>
 @endpush

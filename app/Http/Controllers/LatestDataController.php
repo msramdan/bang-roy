@@ -9,6 +9,7 @@ use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Carbon\Carbon;
+use DateTime;
 
 class LatestDataController extends Controller
 {
@@ -61,22 +62,21 @@ class LatestDataController extends Controller
     {
 
         $parsed_data = Parsed::where('device_id', $latestData->device_id);
-        $date = $request->query('date');
         $start_dates = Carbon::now()->firstOfMonth();
         $end_dates = Carbon::now()->endOfMonth();
-
-        if (!empty($date)) {
-            $dates = explode(' to ', $request->date);
-            $start = str_replace(',', '', $dates[0]) . " 00:00:00";
-            $end = str_replace(',', '', $dates[1]) . " 23:59:59";
-
-            $start_dates = date('Y-m-d H:i:s', strtotime($start));
-            $end_dates = date('Y-m-d H:i:s', strtotime($end));
+        $start_date = $request->query('start_date');
+        $end_date = $request->query('end_date');
+        if (!empty($start_date)) {
+            $start_dates = date("Y-m-d H:i:s", substr($start_date, 0, 10));
+            $end_date = date("Y-m-d H:i:s", substr($end_date, 0, 10));
         }
         $parsed_data = $parsed_data->whereBetween('created_at', [$start_dates, $end_dates])
             ->orderBy('parseds.id', 'desc')->get();
 
 
-        return view('latest-datas.show', compact('parsed_data'));
+        return view('latest-datas.show', [
+            'parsed_data' => $parsed_data,
+            'device_id' => $latestData->device_id,
+        ]);
     }
 }
