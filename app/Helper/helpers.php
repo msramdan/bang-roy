@@ -8,6 +8,7 @@ use App\Models\Ticket;
 use App\Models\Device;
 use App\Models\LatestData;
 use App\Models\Maintenance;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Telegram\Bot\FileUpload\InputFile;
 use Telegram\Bot\Laravel\Facades\Telegram;
@@ -389,8 +390,12 @@ function createTiket($device_id, $devEUI, $data)
                         $tiket = Ticket::create($dataTiket);
                     }
                     $dateTiket = $tiket->created_at;
+
+                    $cekNotif = Setting::findOrFail(1)->first();
                     // send notif tele
-                    storeMessage($dataTiket, $devEUI, $instanceName, $dateTiket, $clusterName);
+                    if (!$cekNotif->is_notif_tele) {
+                        storeMessage($dataTiket, $devEUI, $instanceName, $dateTiket, $clusterName);
+                    }
                 }
             }
         }
