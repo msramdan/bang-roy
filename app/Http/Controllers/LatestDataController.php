@@ -61,20 +61,24 @@ class LatestDataController extends Controller
 
     public function show(Request $request, LatestData $latestData)
     {
-        $from = Carbon::now()->firstOfMonth();
-        $to = Carbon::now()->endOfMonth();
+        $from = date('Y-m-d') . " 00:00:00";
+        $to = date('Y-m-d') . " 23:59:59";
+        $microFrom = strtotime($from) * 1000;
+        $microTo = strtotime($to) * 1000;
         $start_date = $request->query('start_date');
         if (!empty($start_date)) {
             $from = date("Y-m-d H:i:s", substr($request->query('start_date'), 0, 10));
             $to = date("Y-m-d H:i:s", substr($request->query('end_date'), 0, 10));
+            $microFrom = $request->query('start_date');
+            $microTo = $request->query('end_date');
         }
         $sql = "SELECT * FROM parseds where device_id='$latestData->device_id' and created_at >= '$from' AND created_at <= '$to'";
         $parsed_data = DB::select($sql);
         return view('latest-datas.show', [
             'parsed_data' => $parsed_data,
             'device_id' => $latestData->device_id,
-            'from' => $request->query('start_date'),
-            'to' => $request->query('end_date'),
+            'microFrom' => $microFrom,
+            'microTo' => $microTo,
         ]);
     }
 }

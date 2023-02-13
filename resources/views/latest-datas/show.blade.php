@@ -103,12 +103,10 @@
                                                         class="fa fa-calendar"></i></span>
                                                 <input type="text" class="form-control" aria-describedby="addon-wrapping"
                                                     id="daterange-btn" value="">
-
-
                                                 <input type="hidden" name="start_date" id="start_date"
-                                                    value="{{ $from }}">
+                                                    value="{{ $microFrom }}">
                                                 <input type="hidden" name="end_date" id="end_date"
-                                                    value="{{ $to }}">
+                                                    value="{{ $microTo }}">
                                                 <span class="input-group-text btn btn-primary btn-flat"
                                                     id="addon-wrapping"><i class="fa fa-filter"></i> Filter</span>
                                             </div>
@@ -259,14 +257,8 @@
         });
     </script>
     <script>
-        var cek = $('#start_date').val();
-        if (cek.trim() == '') {
-            var start = moment().startOf('month');
-            var end = moment().endOf('month');
-        } else {
-            var start = {{ $from }}
-            var end = {{ $to }}
-        }
+        var start = {{ $microFrom }}
+        var end = {{ $microTo }}
         var label = '';
         $('#daterange-btn').daterangepicker({
                 locale: {
