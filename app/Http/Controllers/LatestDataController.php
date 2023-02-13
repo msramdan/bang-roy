@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\LatestData;
 use App\Http\Requests\{StoreLatestDataRequest, UpdateLatestDataRequest};
+use App\Models\Parsed;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Carbon\Carbon;
 
 class LatestDataController extends Controller
 {
@@ -53,60 +56,27 @@ class LatestDataController extends Controller
         return view('latest-datas.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+
+    public function show(Request $request, LatestData $latestData)
     {
-        return view('latest-datas.create');
-    }
 
-    public function show(LatestData $latestData)
-    {
-        $latestData->load('device:id,dev_eui', 'rawdata:id,dev_eui');
+        $parsed_data = Parsed::where('device_id', $latestData->device_id);
+        $date = $request->query('date');
+        $start_dates = Carbon::now()->firstOfMonth();
+        $end_dates = Carbon::now()->endOfMonth();
 
-        return view('latest-datas.show', compact('latestData'));
-    }
+        if (!empty($date)) {
+            $dates = explode(' to ', $request->date);
+            $start = str_replace(',', '', $dates[0]) . " 00:00:00";
+            $end = str_replace(',', '', $dates[1]) . " 23:59:59";
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\LatestData  $latestData
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(LatestData $latestData)
-    {
-        $latestData->load('device:id,dev_eui', 'rawdata:id,dev_eui');
-
-        return view('latest-datas.edit', compact('latestData'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\LatestData  $latestData
-     * @return \Illuminate\Http\Response
-     */
-
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\LatestData  $latestData
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(LatestData $latestData)
-    {
-        try {
-            $latestData->delete();
-            Alert::toast('The latestData was deleted successfully.', 'success');
-            return redirect()->route('latest-datas.index');
-        } catch (\Throwable $th) {
-            Alert::toast('The latestData cant be deleted because its related to another table.', 'error');
-            return redirect()->route('latest-datas.index');
+            $start_dates = date('Y-m-d H:i:s', strtotime($start));
+            $end_dates = date('Y-m-d H:i:s', strtotime($end));
         }
+        $parsed_data = $parsed_data->whereBetween('created_at', [$start_dates, $end_dates])
+            ->orderBy('parseds.id', 'desc')->get();
+
+
+        return view('latest-datas.show', compact('parsed_data'));
     }
 }
