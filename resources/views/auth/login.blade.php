@@ -57,11 +57,11 @@
                                 <div class="checkbox">
                                     <input id="checkbox1" type="checkbox" onclick="myFunction()">
                                     <label for="checkbox1">Show Password</label>
-                                </div><a class="link" href="{{ route('password.request') }}">Forgot password?</a>
-                            </div>
-                            <div class="form-group">
-                                <button class="btn btn-primary btn-block" type="submit">Sign in</button>
-                            </div>
+                                    {{-- </div><a class="link" href="{{ route('password.request') }}">Forgot password?</a> --}}
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+                                </div>
                         </form>
                     </div>
                 </div>
