@@ -102,9 +102,13 @@
                                                 <span class="input-group-text" id="addon-wrapping"><i
                                                         class="fa fa-calendar"></i></span>
                                                 <input type="text" class="form-control" aria-describedby="addon-wrapping"
-                                                    id="daterange-btn">
-                                                <input type="hidden" name="start_date" id="start_date">
-                                                <input type="hidden" name="end_date" id="end_date">
+                                                    id="daterange-btn" value="">
+
+
+                                                <input type="hidden" name="start_date" id="start_date"
+                                                    value="{{ $from }}">
+                                                <input type="hidden" name="end_date" id="end_date"
+                                                    value="{{ $to }}">
                                                 <span class="input-group-text btn btn-primary btn-flat"
                                                     id="addon-wrapping"><i class="fa fa-filter"></i> Filter</span>
                                             </div>
@@ -247,7 +251,6 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.js"></script>
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.js"></script>
-
     <script>
         $(document).ready(function() {
             $('#daterange-btn').change(function() {
@@ -255,19 +258,16 @@
             });
         });
     </script>
-
-
     <script>
-        //var start = ''; //moment().startOf('month');
-        //var end = ''; //moment().endOf('month');
-        //var label = '';
-
-        var start = moment().startOf('month');
-        var end = moment().endOf('month');
-        // console.log(Date.parse(start))
-        // console.log(Date.parse(end))
+        var cek = $('#start_date').val();
+        if (cek.trim() == '') {
+            var start = moment().startOf('month');
+            var end = moment().endOf('month');
+        } else {
+            var start = {{ $from }}
+            var end = {{ $to }}
+        }
         var label = '';
-
         $('#daterange-btn').daterangepicker({
                 locale: {
                     format: 'DD MMM YYYY'
@@ -293,10 +293,7 @@
             });
 
         function isDate(val) {
-            //var d = new Date(val);
-            //return !isNaN(d.valueOf());
             var d = Date.parse(val);
-            // console.log(d);
             return Date.parse(val);
         }
     </script>

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Carbon\Carbon;
 use DateTime;
+use Illuminate\Support\Facades\DB;
 
 class LatestDataController extends Controller
 {
@@ -60,23 +61,20 @@ class LatestDataController extends Controller
 
     public function show(Request $request, LatestData $latestData)
     {
-
-        $parsed_data = Parsed::where('device_id', $latestData->device_id);
-        $start_dates = Carbon::now()->firstOfMonth();
-        $end_dates = Carbon::now()->endOfMonth();
+        $from = Carbon::now()->firstOfMonth();
+        $to = Carbon::now()->endOfMonth();
         $start_date = $request->query('start_date');
-        $end_date = $request->query('end_date');
         if (!empty($start_date)) {
-            $start_dates = date("Y-m-d H:i:s", substr($start_date, 0, 10));
-            $end_date = date("Y-m-d H:i:s", substr($end_date, 0, 10));
+            $from = date("Y-m-d H:i:s", substr($request->query('start_date'), 0, 10));
+            $to = date("Y-m-d H:i:s", substr($request->query('end_date'), 0, 10));
         }
-        $parsed_data = $parsed_data->whereBetween('created_at', [$start_dates, $end_dates])
-            ->orderBy('parseds.id', 'desc')->get();
-
-
+        $sql = "SELECT * FROM parseds where device_id='$latestData->device_id' and created_at >= '$from' AND created_at <= '$to'";
+        $parsed_data = DB::select($sql);
         return view('latest-datas.show', [
             'parsed_data' => $parsed_data,
             'device_id' => $latestData->device_id,
+            'from' => $request->query('start_date'),
+            'to' => $request->query('end_date'),
         ]);
     }
 }
