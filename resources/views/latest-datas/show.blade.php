@@ -97,23 +97,15 @@
                                 <div class="col-md-12">
                                     <label>Filter Date :</label>
                                     <div class="input-group mb-3">
-
-                                        <button type="button" class="btn btn-light" id="daterange-btn" style='width:250px'>
-
-                                            <i class="fa fa-calendar"></i>&nbsp; <span>defaut date</span>
-
-                                            <i class="fa fa-caret-down"></i>
-                                        </button>
-                                        <button id='' type="button" class="btn btn-primary btn-flat"
-                                            title='Decrement month'><i class="fa fa-filter" aria-hidden="true"></i>
-                                            Filter</button>
-
-                                        {{-- <button id='btnDec' type="button" class="btn btn-danger btn-flat"
-                                            title='Decrement month'><i class="fa fa-calendar-minus-o"
-                                                aria-hidden="true"></i></button>
-                                        <button id='btnInc' type="button" class="btn btn-info btn-flat"
-                                            title='Increment month'><i class="fa fa-calendar-plus-o"
-                                                aria-hidden="true"></i></button> --}}
+                                        <div class="input-group flex-nowrap">
+                                            <span class="input-group-text" id="addon-wrapping"><i
+                                                    class="fa fa-calendar"></i></span>
+                                            <input type="text" class="form-control" aria-describedby="addon-wrapping"
+                                                id="daterange-btn">
+                                            <button id='' type="button" class="btn btn-primary btn-flat"
+                                                title='Decrement month'><i class="fa fa-filter" aria-hidden="true"></i>
+                                                Filter</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
