@@ -112,7 +112,7 @@ class InstanceController extends Controller
                         'instance_id' => $instances->id,
                         'day' => $day,
                         'open_hour' => $open_hour[$i],
-                        'closed_hour' => $closing_hour[$i]
+                        'close_hour' => $closing_hour[$i]
                     ]);
                 }
 
