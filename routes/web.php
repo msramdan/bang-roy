@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CallbackController;
+use App\Models\Instance;
 use App\Http\Controllers\{
     UserController,
     ProfileController,
@@ -22,8 +23,14 @@ Route::get('kelurahan/{kecamatanId}', [WilayahController::class, 'kelurahan'])->
 Route::get('cluster/{instance_id}', [InstanceController::class, 'get_cluster'])->name('api.cluster');
 
 Route::middleware(['auth', 'web'])->group(function () {
-    Route::get('/', fn () => view('dashboard'));
-    Route::get('/dashboard', fn () => view('dashboard'))->name('dashboard');
+    $instances = Instance::get();
+    Route::get('/', fn () => view('dashboard', [
+        'instances' => $instances
+    ]));
+    Route::get('/dashboard', fn () => view('dashboard', [
+        'instances' => $instances
+    ]))->name('dashboard');
+
     Route::get('/profile', ProfileController::class)->name('profile');
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleAndPermissionController::class);
@@ -31,8 +38,6 @@ Route::middleware(['auth', 'web'])->group(function () {
 Route::controller(CallbackController::class)->group(function () {
     Route::post('/callback/gateway/uplink', 'index')->name('callback.index');
 });
-
-
 
 Route::resource('gateways', App\Http\Controllers\GatewayController::class)->middleware('auth')->only(['index']);
 Route::resource('rawdatas', App\Http\Controllers\RawdataController::class)->middleware('auth')->only(['index']);
