@@ -3,9 +3,6 @@
 @section('title', __('Detail of Latest Datas'))
 @push('css')
     <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-
-    <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 
     <link rel="stylesheet" type="text/css"
@@ -97,29 +94,27 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <div class="col-md-4">
-                                    <!-- Date and time range -->
-                                    <div class="form-group">
-                                        <label>Filter Date :</label>
+                                <div class="col-md-12">
+                                    <label>Filter Date :</label>
+                                    <div class="input-group mb-3">
 
-                                        <div class="input-group-btn">
-                                            <button type="button" class="btn btn-light" id="daterange-btn"
-                                                style='width:230px'>
+                                        <button type="button" class="btn btn-light" id="daterange-btn" style='width:250px'>
 
-                                                <i class="fa fa-calendar"></i>&nbsp; <span>defaut date</span>
+                                            <i class="fa fa-calendar"></i>&nbsp; <span>defaut date</span>
 
-                                                <i class="fa fa-caret-down"></i>
-                                            </button>
-                                            <button id='btnDec' type="button" class="btn btn-danger btn-flat"
-                                                title='Decrement month'><i class="fa fa-calendar-minus-o"
-                                                    aria-hidden="true"></i></button>
-                                            <button id='btnInc' type="button" class="btn btn-info btn-flat"
-                                                title='Increment month'><i class="fa fa-calendar-plus-o"
-                                                    aria-hidden="true"></i></button>
+                                            <i class="fa fa-caret-down"></i>
+                                        </button>
+                                        <button id='' type="button" class="btn btn-primary btn-flat"
+                                            title='Decrement month'><i class="fa fa-filter" aria-hidden="true"></i>
+                                            Filter</button>
 
-                                        </div>
+                                        {{-- <button id='btnDec' type="button" class="btn btn-danger btn-flat"
+                                            title='Decrement month'><i class="fa fa-calendar-minus-o"
+                                                aria-hidden="true"></i></button>
+                                        <button id='btnInc' type="button" class="btn btn-info btn-flat"
+                                            title='Increment month'><i class="fa fa-calendar-plus-o"
+                                                aria-hidden="true"></i></button> --}}
                                     </div>
-                                    <!-- /.form group -->
                                 </div>
                             </div>
                         </div>
@@ -274,6 +269,8 @@
                 }
             },
             function(start, end, label) {
+                console.log(Date.parse(start))
+                console.log(Date.parse(end))
                 if (isDate(start)) {
                     $('#daterange-btn span').html(start.format('DD MMM YYYY') + ' - ' + end.format('DD MMM YYYY'));
                 }
@@ -291,7 +288,7 @@
             //var d = new Date(val);
             //return !isNaN(d.valueOf());
             var d = Date.parse(val);
-            console.log(d);
+            // console.log(d);
             return Date.parse(val);
         }
 
