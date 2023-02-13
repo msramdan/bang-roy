@@ -33,7 +33,7 @@ class InstanceController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $instances = Instance::with('province:id,provinsi', 'kabkot:id,kabupaten_kota', 'kecamatan:id,kabkot_id', 'kelurahan:id,kecamatan_id',);
+            $instances = Instance::with('province:id,provinsi', 'kabkot:id,kabupaten_kota', 'kecamatan:id,kabkot_id', 'kelurahan:id,kecamatan_id')->orderBy('instances.id', 'DESC');
             return DataTables::of($instances)
                 ->addIndexColumn()
                 ->addColumn('address', function ($row) {

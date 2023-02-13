@@ -24,7 +24,7 @@ class TicketController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $tickets = Ticket::with('device:id,dev_eui');
+            $tickets = Ticket::with('device:id,dev_eui')->orderBy('tickets.id', 'DESC');
 
             return DataTables::of($tickets)
                 ->addIndexColumn()

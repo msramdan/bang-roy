@@ -32,7 +32,7 @@ class DeviceController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $devices = Device::with('subnet:id,subnet', 'instance:id,instance_name,app_id', 'cluster:id,cluster_name',);
+            $devices = Device::with('subnet:id,subnet', 'instance:id,instance_name,app_id', 'cluster:id,cluster_name')->orderBy('devices.id', 'DESC');
             return DataTables::of($devices)
                 ->addIndexColumn()
                 ->addColumn('subnet', function ($row) {

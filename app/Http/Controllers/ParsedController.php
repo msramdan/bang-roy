@@ -26,7 +26,7 @@ class ParsedController extends Controller
     public function index(Request $request)
     {
         if (request()->ajax()) {
-            $parsed_data = Parsed::with('device:id,dev_eui');
+            $parsed_data = Parsed::with('device:id,dev_eui')->orderBy('parseds.id', 'DESC');
             $query_parsed = intval($request->query('parsed_data'));
             if (isset($query_parsed) && !empty($query_parsed)) {
                 $parsed_data = $parsed_data->where('rawdata_id', $query_parsed);

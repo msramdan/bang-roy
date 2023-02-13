@@ -22,7 +22,7 @@ class GatewayController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $gateways = Gateway::query();
+            $gateways = Gateway::query()->orderBy('id', 'DESC');
 
             return DataTables::of($gateways)
                 ->addIndexColumn()

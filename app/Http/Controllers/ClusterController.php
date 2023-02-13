@@ -25,7 +25,7 @@ class ClusterController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $clusters = Cluster::with('instance:id,instance_name');
+            $clusters = Cluster::with('instance:id,instance_name')->orderBy('id', 'DESC');
 
             return DataTables::of($clusters)
                 ->addIndexColumn()

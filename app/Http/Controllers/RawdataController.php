@@ -23,7 +23,7 @@ class RawdataController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $rawdatas = Rawdata::query();
+            $rawdatas = Rawdata::query()->orderBy('id', 'DESC');
 
             return DataTables::of($rawdatas)
                 ->addIndexColumn()
