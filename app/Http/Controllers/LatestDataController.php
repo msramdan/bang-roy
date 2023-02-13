@@ -72,13 +72,36 @@ class LatestDataController extends Controller
             $microFrom = $request->query('start_date');
             $microTo = $request->query('end_date');
         }
-        $sql = "SELECT * FROM parseds where device_id='$latestData->device_id' and created_at >= '$from' AND created_at <= '$to'";
+        $sql = "SELECT * FROM parseds where device_id='$latestData->device_id' and created_at >= '$from' AND created_at <= '$to' order By id asc";
         $parsed_data = DB::select($sql);
+        $temperature_datas = [];
+        $humidity_datas = [];
+        $battery_datas = [];
+        $parsed_dates = [];
+
+        foreach ($parsed_data as $data) {
+            $dates = strtotime($data->created_at);
+            $battery = $data->battery;
+            $temperature = $data->temperature;
+            $humidity = $data->humidity;
+
+            array_push($parsed_dates, $dates);
+            array_push($battery_datas, $battery);
+            array_push($temperature_datas, $temperature);
+            array_push($humidity_datas, $humidity);
+        }
+
         return view('latest-datas.show', [
             'parsed_data' => $parsed_data,
+            'parsed_dates' => $parsed_dates,
             'device_id' => $latestData->device_id,
             'microFrom' => $microFrom,
             'microTo' => $microTo,
+            'from' => $from,
+            'to' => $to,
+            'temperature_datas' => $temperature_datas,
+            'humidity_datas' => $humidity_datas,
+            'battery_datas' => $battery_datas,
         ]);
     }
 }

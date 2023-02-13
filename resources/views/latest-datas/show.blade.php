@@ -153,7 +153,7 @@
                     <div class="card">
                         <div class="card-body">
                             <figure class="highcharts-figure">
-                                <div id="chart-container0"></div>
+                                <div id="chart-container"></div>
                             </figure>
                         </div>
                     </div>
@@ -194,7 +194,7 @@
                     <div class="card">
                         <div class="card-body">
                             <figure class="highcharts-figure">
-                                <div id="chart-container0"></div>
+                                <div id="chart-container1"></div>
                             </figure>
                         </div>
                     </div>
@@ -235,7 +235,7 @@
                     <div class="card">
                         <div class="card-body">
                             <figure class="highcharts-figure">
-                                <div id="chart-container0"></div>
+                                <div id="chart-container2"></div>
                             </figure>
                         </div>
                     </div>
@@ -249,6 +249,18 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.js"></script>
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script>
+        var dates = "{{ json_encode($parsed_dates) }}";
+        dates = JSON.parse(dates).map((date) => {
+            return moment.unix(date).format('DD/MM/YYYY HH:mm')
+        });
+    </script>
     <script>
         $(document).ready(function() {
             $('#daterange-btn').change(function() {
@@ -288,5 +300,125 @@
             var d = Date.parse(val);
             return Date.parse(val);
         }
+    </script>
+
+    <script>
+        var temperature = "{{ json_encode($temperature_datas) }}";
+        Highcharts.chart('chart-container', {
+            chart: {
+                type: 'line',
+                scrollablePlotArea: {
+                    minWidth: 2000,
+                    scrollPositionX: 1
+                }
+            },
+            title: {
+                text: 'Temperature'
+            },
+            subtitle: {
+                text: "{{ date('d M Y', strtotime($from)) }} - {{ date('d M Y', strtotime($to)) }}"
+            },
+            xAxis: {
+                categories: dates
+            },
+            yAxis: {
+                title: {
+                    text: 'Temperature (C)'
+                }
+            },
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true
+                    },
+                    enableMouseTracking: true
+                }
+            },
+            series: [{
+                name: 'Temperature',
+                data: JSON.parse(temperature)
+            }]
+        });
+    </script>
+
+
+    {{-- humidity --}}
+    <script>
+        var humidity_datas = "{{ json_encode($humidity_datas) }}";
+        Highcharts.chart('chart-container1', {
+            chart: {
+                type: 'line',
+                scrollablePlotArea: {
+                    minWidth: 2000,
+                    scrollPositionX: 1
+                }
+            },
+            title: {
+                text: 'Humidity'
+            },
+            subtitle: {
+                text: "{{ date('d M Y', strtotime($from)) }} - {{ date('d M Y', strtotime($to)) }}"
+            },
+            xAxis: {
+                categories: dates
+            },
+            yAxis: {
+                title: {
+                    text: 'Humidity (%)'
+                }
+            },
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true
+                    },
+                    enableMouseTracking: true
+                }
+            },
+            series: [{
+                name: 'Humidity',
+                data: JSON.parse(humidity_datas)
+            }]
+        });
+    </script>
+
+    {{-- battery --}}
+    <script>
+        var battery_datas = "{{ json_encode($battery_datas) }}";
+        Highcharts.chart('chart-container2', {
+            chart: {
+                type: 'line',
+                scrollablePlotArea: {
+                    minWidth: 2000,
+                    scrollPositionX: 1
+                }
+            },
+            title: {
+                text: 'Battery'
+            },
+            subtitle: {
+                text: "{{ date('d M Y', strtotime($from)) }} - {{ date('d M Y', strtotime($to)) }}"
+            },
+            xAxis: {
+                categories: dates
+            },
+            yAxis: {
+                title: {
+                    text: 'Battery (V)'
+                }
+            },
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true
+                    },
+                    enableMouseTracking: true
+                }
+            },
+            series: [{
+                name: 'Battery',
+                data: JSON.parse(battery_datas)
+            }]
+        });
     </script>
 @endpush
