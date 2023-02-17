@@ -27,14 +27,11 @@ class LatestDataController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $latestDatas = LatestData::with('device:id,dev_eui', 'rawdata:id,dev_eui');
-
+            $latestDatas = LatestData::with('device:id,dev_eui')->select('latest_datas.*');
             return DataTables::of($latestDatas)
                 ->addIndexColumn()
                 ->addColumn('device', function ($row) {
                     return $row->device ? $row->device->dev_eui : '';
-                })->addColumn('rawdata', function ($row) {
-                    return $row->rawdata ? $row->rawdata->dev_eui : '';
                 })->addColumn('temperature', function ($row) {
                     return $row->temperature . ' C';
                 })->addColumn('humidity', function ($row) {

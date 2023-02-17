@@ -74,7 +74,7 @@
                                         <td>{{ $device->last_seen }}</td>
                                     </tr> --}}
                                     <tr>
-                                        <td class="fw-bold">{{ __('Instance') }}</td>
+                                        <td class="fw-bold">{{ __('Branches') }}</td>
                                         <td>{{ $device->instance ? $device->instance->instance_name : '' }}</td>
                                     </tr>
                                     <tr>

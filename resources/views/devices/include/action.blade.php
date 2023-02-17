@@ -36,7 +36,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <label for="dev_eui" class="form-label">Cluster</label>
                                 <select class="form-select @error('cluster_id') is-invalid @enderror" name="cluster_id"
                                     id="cluster-id" class="form-control" required>
@@ -49,7 +49,7 @@
                                         </option>
                                     @endforeach
                                 </select>
-                            </div>
+                            </div> --}}
 
                             <div class="mb-3">
                                 <label for="dev_eui" class="form-label">Dev Eui</label>

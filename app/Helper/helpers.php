@@ -318,16 +318,9 @@ function insertGateway($gwid, $time, $status_online = null, $pktfwdStatus = null
 {
     $gateway = DB::table('gateways')
         ->where('gwid', '=', $gwid)
-        ->count();
-    if ($gateway < 1) {
-        DB::table('gateways')->insert([
-            'gwid' => $gwid,
-            'status_online' => $status_online,
-            'pktfwd_status' => $pktfwdStatus,
-            'created_at' => $time,
-            'updated_at' => $time,
-        ]);
-    } else {
+        ->first();
+    if ($gateway) {
+        $gateway_id = $gateway->id;
         DB::table('gateways')
             ->where('gwid', $gwid)
             ->update([
@@ -335,7 +328,24 @@ function insertGateway($gwid, $time, $status_online = null, $pktfwdStatus = null
                 'status_online' => $status_online,
                 'pktfwd_status' => $pktfwdStatus
             ]);
+    } else {
+        DB::table('gateways')->insert([
+            'gwid' => $gwid,
+            'status_online' => $status_online,
+            'pktfwd_status' => $pktfwdStatus,
+            'created_at' => $time,
+            'updated_at' => $time,
+        ]);
+        $gateway_id = DB::getPdo()->lastInsertId();
     }
+    // insert log
+    DB::table('gateway_logs')->insert([
+        'gateway_id' => $gateway_id,
+        'status_online' => $status_online,
+        'pktfwd_status' => $pktfwdStatus,
+        'created_at' => $time,
+        'updated_at' => $time,
+    ]);
 }
 
 function createTiket($device_id, $devEUI, $data)
@@ -370,7 +380,7 @@ function createTiket($device_id, $devEUI, $data)
                         $ToleranceAlerts = DB::table('setting_tolerance_alerts')
                             ->select('min_tolerance', 'max_tolerance')
                             ->where('field_data', $key)
-                            ->where('instance_id', $getInstance->instance_id)
+                            ->where('cluster_id', $getInstance->cluster_id)
                             ->first();
 
                         if ($value < $ToleranceAlerts->min_tolerance) {
@@ -413,7 +423,7 @@ function storeMessage($dataTiket, $devEUI, $instanceName, $dateTiket, $clusterNa
         $i++;
     }
     $text = "<b>❌🚫 Alert from Device $devEUI ❌🚫</b>\n\n"
-        . "<b>Instance : $instanceName </b>\n"
+        . "<b>Branches : $instanceName </b>\n"
         . "<b>Cluster : $clusterName </b>\n"
         . "<b>Description Alert : </b>\n"
         . "$output\n"
@@ -454,7 +464,7 @@ function handleCallback($device_id, $request)
         ]);
 
         $lastInsertedId = $save->id;
-        insertGateway($request->data['gwid'], $save->updated_at);
+        insertGateway($request->data['gwid'], $save->updated_at, 1, 1);
         // temperatur
         $temperature = hexdec(littleEndian(substr($hex, 2, 4)));
         $rumus_temperature = round(((175.72 * $temperature) / 65536) - 46.85, 2);

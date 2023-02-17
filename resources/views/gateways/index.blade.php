@@ -26,7 +26,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive p-1">
-                                <table class="table table-striped" id="data-table" width="100%">
+                                <table class="table table-striped table-sm" id="data-table" width="100%">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -35,6 +35,7 @@
                                             <th>{{ __('Pktfwd Status') }}</th>
                                             <th>{{ __('Created At') }}</th>
                                             <th>{{ __('Updated At') }}</th>
+                                            <th>{{ __('Action') }}</th>
                                         </tr>
                                     </thead>
                                 </table>
@@ -78,6 +79,12 @@
                 {
                     data: 'updated_at',
                     name: 'updated_at'
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false
                 }
             ],
         });
