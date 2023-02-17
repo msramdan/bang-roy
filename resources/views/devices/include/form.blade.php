@@ -1,7 +1,7 @@
 <div class="row mb-2">
     <div class="col-md-6">
         <div class="form-group">
-            <label for="app-id">{{ __('Instance') }}</label>
+            <label for="app-id">{{ __('Branches') }}</label>
             <select class="form-select @error('instance_id') is-invalid @enderror" name="instance_id" id="instance-id"
                 class="form-control" required>
                 <option value="" selected disabled>-- {{ __('Select instance') }} --</option>

@@ -82,7 +82,7 @@ class ViewServiceProvider extends ServiceProvider
             );
         });
 
-        View::composer(['clusters.create', 'clusters.edit', 'devices.create', 'devices.edit', 'maintenances.create', 'maintenances.edit'], function ($view) {
+        View::composer(['clusters.create', 'clusters.edit', 'devices.create', 'devices.edit', 'maintenances.create', 'maintenances.edit', 'devices.*'], function ($view) {
             return $view->with(
                 'instances',
                 \App\Models\Instance::select('id', 'instance_name')->get()

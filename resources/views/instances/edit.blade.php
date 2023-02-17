@@ -180,13 +180,13 @@
             <div class="page-header" style="margin-top: 5px">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h3>{{ __('Instances') }}</h3>
+                        <h3>{{ __('Branches') }}</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
                                 <a href="/">{{ __('Dashboard') }}</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="{{ route('instances.index') }}">{{ __('Instances') }}</a>
+                                <a href="{{ route('instances.index') }}">{{ __('Branches') }}</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
                                 {{ __('Edit') }}
@@ -264,50 +264,6 @@
                                                     </td>
                                                 </tr>
                                             @endforeach
-                                        </tbody>
-                                    </table>
-                                    <br>
-                                    <div class="alert alert-dark" role="alert">
-                                        Data Setting Device Alert Tollerance
-                                    </div>
-                                    <table class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Field</th>
-                                                <th scope="col">Min</th>
-                                                <th scope="col"> Max</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($tolerance as $i => $tolerance)
-                                                <tr>
-                                                    <td>
-                                                        <input type="hidden" name="tolerance_id[]"
-                                                            value="{{ $tolerance->id }}">
-                                                        <input type="text" required class="form-control"
-                                                            name="field_data[]" readonly
-                                                            value="{{ $tolerance->field_data }}">
-                                                        @error('field_data.0')
-                                                            <span style="color: red;">{{ $message }}</span>
-                                                        @enderror
-                                                    </td>
-                                                    <td>
-                                                        <input type="number" required step="any" class="form-control"
-                                                            name="min_tolerance[]" value="{{ $tolerance->min_tolerance }}">
-                                                        @error('min_tolerance.0')
-                                                            <span style="color: red;">{{ $message }}</span>
-                                                        @enderror
-                                                    </td>
-                                                    <td>
-                                                        <input type="number" required step="any" class="form-control"
-                                                            name="max_tolerance[]" value="{{ $tolerance->max_tolerance }}">
-                                                        @error('max_tolerance.0')
-                                                            <span style="color: red;">{{ $message }}</span>
-                                                        @enderror
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-
                                         </tbody>
                                     </table>
                                     <div class="form-group mt-3">

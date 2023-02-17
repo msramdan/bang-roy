@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('setting_tolerance_alerts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('instance_id')->constrained('instances')->restrictOnUpdate()->cascadeOnDelete();
+            $table->foreignId('cluster_id')->constrained('clusters')->restrictOnUpdate()->cascadeOnDelete();
             $table->string('field_data', 100);
             $table->float('min_tolerance');
             $table->float('max_tolerance');

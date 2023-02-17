@@ -29,15 +29,12 @@
                                 <table class="display dataTable no-footer" id="data-table" role="grid">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
                                             <th>{{ __('Device') }}</th>
                                             <th>{{ __('Temperature') }}</th>
                                             <th>{{ __('Humidity') }}</th>
-                                            <th>{{ __('Period') }}</th>
-                                            <th>{{ __('Rssi') }}</th>
-                                            <th>{{ __('Snr') }}</th>
                                             <th>{{ __('Battery') }}</th>
                                             <th>{{ __('Updated At') }}</th>
+                                            <th>{{ __('Time') }}</th>
                                             <th>{{ __('Action') }}</th>
                                         </tr>
                                     </thead>
@@ -59,11 +56,6 @@
             serverSide: true,
             ajax: "{{ route('latest-datas.index') }}",
             columns: [{
-                    data: 'DT_RowIndex',
-                    name: 'DT_RowIndex',
-                    orderable: false,
-                    searchable: false
-                }, {
                     data: 'device',
                     name: 'device.dev_eui'
                 },
@@ -76,24 +68,16 @@
                     name: 'humidity',
                 },
                 {
-                    data: 'period',
-                    name: 'period',
-                },
-                {
-                    data: 'rssi',
-                    name: 'rssi',
-                },
-                {
-                    data: 'snr',
-                    name: 'snr',
-                },
-                {
                     data: 'battery',
                     name: 'battery',
                 },
                 {
                     data: 'updated_at',
                     name: 'updated_at'
+                },
+                {
+                    data: 'time',
+                    name: 'time'
                 },
                 {
                     data: 'action',

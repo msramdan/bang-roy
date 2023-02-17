@@ -14,7 +14,7 @@ class Setting extends Model
      *
      * @var string[]
      */
-    protected $fillable = ['aplication_name', 'endpoint_nms', 'is_notif_tele', 'token'];
+    protected $fillable = ['aplication_name', 'endpoint_nms', 'is_notif_tele', 'token', 'logo'];
 
     /**
      * The attributes that should be cast.

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('Instances'))
+@section('title', __('Branches'))
 
 @section('content')
     <div class="page-body">
@@ -8,10 +8,10 @@
             <div class="page-header" style="margin-top: 5px">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h3>{{ __('Instances') }}</h3>
+                        <h3>{{ __('Branches') }}</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html">{{ __('Dashboard') }}</a></li>
-                            <li class="breadcrumb-item active">{{ __('Instances') }}</li>
+                            <li class="breadcrumb-item active">{{ __('Branches') }}</li>
                         </ol>
                     </div>
                     <div class="col-sm-6">
@@ -27,7 +27,7 @@
                         <div class="d-flex justify-content-end">
                             <a href="{{ route('instances.create') }}" class="btn btn-primary mb-3">
                                 <i class="fas fa-plus"></i>
-                                {{ __('Create a new instance') }}
+                                {{ __('Create a new branches') }}
                             </a>
                         </div>
                     @endcan
@@ -40,7 +40,7 @@
                                             <th>#</th>
                                             <th>{{ __('App Id') }}</th>
                                             <th>{{ __('App Name') }}</th>
-                                            <th>{{ __('Instance Name') }}</th>
+                                            <th>{{ __('Branches Name') }}</th>
                                             <th>{{ __('Kabkot') }}</th>
                                             <th>{{ __('Email') }}</th>
                                             <th>{{ __('Phone') }}</th>

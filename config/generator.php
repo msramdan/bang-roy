@@ -142,14 +142,14 @@ return [
             ]
         ],
         [
-            'header' => 'Instances',
+            'header' => 'Branches',
             'permissions' => [
                 'instance view',
                 'cluster view'
             ],
             'menus' => [
                 [
-                    'title' => 'Instances',
+                    'title' => 'Branches',
                     'icon' => '<i data-feather="database"></i>',
                     'route' => null,
                     'permission' => null,
@@ -159,7 +159,7 @@ return [
                     ],
                     'submenus' => [
                         [
-                            'title' => 'Data Instances',
+                            'title' => 'Branches Data',
                             'route' => '/instances',
                             'permission' => 'instance view'
                         ],
@@ -248,7 +248,7 @@ return [
             ],
             'menus' => [
                 [
-                    'title' => 'Main Data',
+                    'title' => 'Master Data',
                     'icon' => '<i data-feather="list"></i>',
                     'route' => null,
                     'permission' => null,

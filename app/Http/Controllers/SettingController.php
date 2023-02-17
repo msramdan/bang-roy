@@ -6,6 +6,8 @@ use App\Models\Setting;
 use App\Http\Requests\{StoreSettingRequest, UpdateSettingRequest};
 use Yajra\DataTables\Facades\DataTables;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
@@ -28,10 +30,24 @@ class SettingController extends Controller
      * @param  \App\Models\Setting  $setting
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSettingRequest $request, Setting $setting)
+    public function update(Request $request, $id)
     {
+        $setting_app = Setting::findOrFail($id);
+        if ($request->file('logo') != null || $request->file('logo') != '') {
+            Storage::disk('local')->delete('public/img/setting_app/' . $setting_app->logo);
+            $logo = $request->file('logo');
+            $logo->storeAs('public/img/setting_app', $logo->hashName());
+            $setting_app->update([
+                'logo'     => $logo->hashName(),
+            ]);
+        }
 
-        $setting->update($request->validated());
+        $setting_app->update([
+            'aplication_name' => $request->aplication_name,
+            'endpoint_nms' => $request->endpoint_nms,
+            'is_notif_tele' => $request->is_notif_tele,
+            'token' => $request->token
+        ]);
         Alert::toast('The setting was updated successfully.', 'success');
         return redirect()->route('settings.index');
     }

@@ -6,6 +6,8 @@ use App\Models\Cluster;
 use App\Http\Requests\{StoreClusterRequest, UpdateClusterRequest};
 use Yajra\DataTables\Facades\DataTables;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\SettingToleranceAlert;
+
 
 class ClusterController extends Controller
 {
@@ -61,7 +63,22 @@ class ClusterController extends Controller
     public function store(StoreClusterRequest $request)
     {
 
-        Cluster::create($request->validated());
+        $cluster = Cluster::create($request->validated());
+
+        // insert tolerance
+        $field_data = $request->field_data;
+        $min_tolerance = $request->min_tolerance;
+        $max_tolerance = $request->max_tolerance;
+
+        foreach ($field_data as $a => $field) {
+            SettingToleranceAlert::create([
+                'cluster_id' => $cluster->id,
+                'field_data' => $field,
+                'min_tolerance' => $min_tolerance[$a],
+                'max_tolerance' => $max_tolerance[$a]
+            ]);
+        }
+
         Alert::toast('The cluster was created successfully.', 'success');
         return redirect()->route('clusters.index');
     }
@@ -88,8 +105,8 @@ class ClusterController extends Controller
     public function edit(Cluster $cluster)
     {
         $cluster->load('instance:id,app_id');
-
-        return view('clusters.edit', compact('cluster'));
+        $tolerance = SettingToleranceAlert::where('cluster_id', $cluster->id)->orderBy('id', 'asc')->get();
+        return view('clusters.edit', compact('cluster', 'tolerance'));
     }
 
     /**
@@ -103,6 +120,31 @@ class ClusterController extends Controller
     {
 
         $cluster->update($request->validated());
+
+        $tolerance_id = $request->tolerance_id;
+        $field_datas = $request->field_data;
+        $min_tolerances = $request->min_tolerance;
+        $max_tolerances = $request->max_tolerance;
+        foreach ($tolerance_id as $a => $tolerance_id) {
+            $device_tolerance = SettingToleranceAlert::where('cluster_id', $cluster->id)
+                ->where('id', $tolerance_id)
+                ->first();
+            if ($device_tolerance) {
+                $device_tolerance->update([
+                    'field_data' => $field_datas[$a],
+                    'min_tolerance' => $min_tolerances[$a],
+                    'max_tolerance' => $max_tolerances[$a],
+                ]);
+            } else {
+                $setting_tolerance = SettingToleranceAlert::create([
+                    'cluster_id' => $cluster->id,
+                    'field_data' => $field_datas[$a],
+                    'min_tolerance' => $min_tolerances[$a],
+                    'max_tolerance' => $max_tolerances[$a]
+                ]);
+            }
+        }
+
         Alert::toast('The cluster was updated successfully.', 'success');
         return redirect()
             ->route('clusters.index');

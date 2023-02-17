@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Instance;
 use App\Http\Requests\{StoreInstanceRequest, UpdateInstanceRequest};
 use App\Models\OperationalTime;
-use App\Models\SettingToleranceAlert;
 use Yajra\DataTables\Facades\DataTables;
 use RealRashid\SweetAlert\Facades\Alert;
 use Exception;
@@ -116,19 +115,6 @@ class InstanceController extends Controller
                     ]);
                 }
 
-                // insert tolerance
-                $field_data = $request->field_data;
-                $min_tolerance = $request->min_tolerance;
-                $max_tolerance = $request->max_tolerance;
-
-                foreach ($field_data as $a => $field) {
-                    $setting_tolerance = SettingToleranceAlert::create([
-                        'instance_id' => $instances->id,
-                        'field_data' => $field,
-                        'min_tolerance' => $min_tolerance[$a],
-                        'max_tolerance' => $max_tolerance[$a]
-                    ]);
-                }
                 if ($instances) {
                     Alert::toast('Data success saved', 'success');
                     return redirect()->route('instances.index');
@@ -166,8 +152,7 @@ class InstanceController extends Controller
     {
         $instance->load('province:id,provinsi', 'kabkot:id,provinsi_id', 'kecamatan:id,kabkot_id', 'kelurahan:id,kecamatan_id',);
         $operational_times = OperationalTime::where('instance_id', $instance->id)->orderBy('id', 'asc')->get();
-        $tolerance = SettingToleranceAlert::where('instance_id', $instance->id)->orderBy('id', 'asc')->get();
-        return view('instances.edit', compact('instance', 'operational_times', 'tolerance'));
+        return view('instances.edit', compact('instance', 'operational_times'));
     }
 
     /**
@@ -218,34 +203,6 @@ class InstanceController extends Controller
                             'day' => $days[$i],
                             'open_hour' => $opening_hours[$i],
                             'close_hour' => $closing_hours[$i]
-                        ]);
-                    }
-                }
-
-
-
-
-
-                $tolerance_id = $request->tolerance_id;
-                $field_datas = $request->field_data;
-                $min_tolerances = $request->min_tolerance;
-                $max_tolerances = $request->max_tolerance;
-                foreach ($tolerance_id as $a => $tolerance_id) {
-                    $device_tolerance = SettingToleranceAlert::where('instance_id', $instance->id)
-                        ->where('id', $tolerance_id)
-                        ->first();
-                    if ($device_tolerance) {
-                        $device_tolerance->update([
-                            'field_data' => $field_datas[$a],
-                            'min_tolerance' => $min_tolerances[$a],
-                            'max_tolerance' => $max_tolerances[$a],
-                        ]);
-                    } else {
-                        $setting_tolerance = SettingToleranceAlert::create([
-                            'subinstance_id' => $instance->id,
-                            'field_data' => $field_datas[$a],
-                            'min_tolerance' => $min_tolerances[$a],
-                            'max_tolerance' => $max_tolerances[$a]
                         ]);
                     }
                 }

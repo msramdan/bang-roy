@@ -1,5 +1,5 @@
 <div class="row mb-2">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="form-group">
             <label for="instance-id">{{ __('Instance') }}</label>
             <select class="form-select @error('instance_id') is-invalid @enderror" name="instance_id" id="instance-id"
@@ -20,7 +20,7 @@
             @enderror
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="form-group">
             <label for="cluster-kode">{{ __('Cluster Kode') }}</label>
             <input type="text" name="cluster_kode" id="cluster-kode"
@@ -34,7 +34,7 @@
             @enderror
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="form-group">
             <label for="cluster-name">{{ __('Cluster Name') }}</label>
             <input type="text" name="cluster_name" id="cluster-name"

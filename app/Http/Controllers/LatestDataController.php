@@ -51,7 +51,10 @@ class LatestDataController extends Controller
                     return $row->created_at->format('d M Y H:i:s');
                 })->addColumn('updated_at', function ($row) {
                     return $row->updated_at->format('d M Y H:i:s');
-                })->addColumn('action', 'latest-datas.include.action')
+                })->addColumn('time', function ($row) {
+                    return Carbon::parse($row->created_at)->diffForHumans();
+                })
+                ->addColumn('action', 'latest-datas.include.action')
                 ->toJson();
         }
 

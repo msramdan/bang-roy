@@ -14,7 +14,7 @@ class SettingToleranceAlert extends Model
      *
      * @var string[]
      */
-    protected $fillable = ['instance_id', 'field_data', 'min_tolerance', 'max_tolerance'];
+    protected $fillable = ['cluster_id', 'field_data', 'min_tolerance', 'max_tolerance'];
 
     /**
      * The attributes that should be cast.

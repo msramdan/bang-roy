@@ -39,7 +39,7 @@
                                         <tr>
                                             <th>#</th>
                                             <th>{{ __('App ID') }}</th>
-                                            <th>{{ __('Instance') }}</th>
+                                            <th>{{ __('Branches') }}</th>
                                             <th>{{ __('Cluster') }}</th>
                                             <th>{{ __('Dev Eui') }}</th>
                                             <th>{{ __('Dev Name') }}</th>

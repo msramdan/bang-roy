@@ -181,13 +181,13 @@
             <div class="page-header" style="margin-top: 5px">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h3>{{ __('Instances') }}</h3>
+                        <h3>{{ __('Branches') }}</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
                                 <a href="/">{{ __('Dashboard') }}</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="{{ route('instances.index') }}">{{ __('Instances') }}</a>
+                                <a href="{{ route('instances.index') }}">{{ __('Branches') }}</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
                                 {{ __('Create') }}
@@ -265,7 +265,7 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-                                    <br>
+                                    {{-- <br>
                                     <div class="alert alert-dark" role="alert">
                                         Data Setting Device Alert Tollerance
                                     </div>
@@ -348,7 +348,7 @@
                                                 </td>
                                             </tr>
                                         </tbody>
-                                    </table>
+                                    </table> --}}
 
                                     <div class="form-group mt-3">
                                         <a href="{{ url()->previous() }}"
