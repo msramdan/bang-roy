@@ -392,16 +392,19 @@ function createTiket($device_id, $devEUI, $data, $time)
                             ->where('device_id', '=', $device_id)
                             ->first();
                         if ($tickets) {
+                            $ticket_id = $tickets->id;
+                            $dataTiket = [
+                                'subject' => "Alert from device " . $devEUI,
+                                'description'  => json_encode($abnormal),
+                                'status'   => "Opened",
+                                'created_at' => $time,
+                                'updated_at' => $time,
+                            ];
+
                             // update ticket
                             DB::table('tickets')
                                 ->where('device_id', $device_id)
-                                ->update([
-                                    'subject' => "Alert from device " . $devEUI,
-                                    'description'  => json_encode($abnormal),
-                                    'status'   => "Opened",
-                                    'created_at' => $time,
-                                    'updated_at' => $time,
-                                ]);
+                                ->update($dataTiket);
                         } else {
                             // create tiket
                             $dataTiket = [
@@ -413,11 +416,13 @@ function createTiket($device_id, $devEUI, $data, $time)
                                 'updated_at' => $time,
                             ];
                             $tiket = Ticket::create($dataTiket);
+                            $ticket_id = DB::getPdo()->lastInsertId();
                         }
                         // insert log ticket
-                        DB::table('gateway_logs')->insert([
+                        DB::table('ticket_logs')->insert([
                             'subject' => "Alert from device " . $devEUI,
                             'description' => json_encode($abnormal),
+                            'ticket_id' => $ticket_id,
                             'created_at' => $time,
                             'updated_at' => $time,
                         ]);
