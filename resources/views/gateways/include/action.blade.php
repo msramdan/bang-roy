@@ -4,8 +4,8 @@
             data-bs-target="#exampleModal{{ $model->id }}">
             <i class="fa fa-eye"></i>
         </button>
-        <div class="modal fade" id="exampleModal{{ $model->id }}" data-bs-backdrop="static" data-bs-keyboard="false"
-            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal{{ $model->id }}" tabindex="-1" aria-labelledby="exampleModallview"
+            aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">

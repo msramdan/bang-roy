@@ -1,4 +1,54 @@
 <td>
+    @can('ticket view')
+        <button type="button" class="btn btn-info btn-sm identifyingClass" data-bs-toggle="modal"
+            data-bs-target="#exampleModallview{{ $model->id }}">
+            <i class="fa fa-eye"></i>
+        </button>
+        <div class="modal fade" id="exampleModallview{{ $model->id }}" tabindex="-1" aria-labelledby="exampleModallview"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Log Ticket</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                            <table class="display dataTable no-footer table-xs" id="dataTables-example" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>{{ __('Subject') }}</th>
+                                        {{-- <th>{{ __('Description') }}</th> --}}
+                                        <th>{{ __('Created At') }}</th>
+                                        <th>{{ __('Updated At') }}</th>
+                                    </tr>
+                                </thead>
+                                @php
+                                    $ticket_logs = DB::table('ticket_logs')
+                                        ->where('ticket_id', '=', $model->id)
+                                        ->orderBy('id', 'DESC')
+                                        ->limit(100)
+                                        ->get();
+                                @endphp
+                                <tbody>
+                                    @foreach ($ticket_logs as $row)
+                                        <tr>
+                                            <td>{{ $row->subject }}</td>
+                                            <td>{{ $row->created_at }}</td>
+                                            <td>{{ $row->updated_at }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    @endcan
     @can('ticket edit')
         <button type="button" class="btn btn-primary btn-sm identifyingClass" data-bs-toggle="modal"
             data-bs-target="#exampleModal{{ $model->id }}">
@@ -51,3 +101,6 @@
         </div>
     @endcan
 </td>
+<script>
+    $('#dataTables-example').DataTable();
+</script>

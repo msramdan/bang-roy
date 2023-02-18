@@ -348,7 +348,7 @@ function insertGateway($gwid, $time, $status_online = null, $pktfwdStatus = null
     ]);
 }
 
-function createTiket($device_id, $devEUI, $data)
+function createTiket($device_id, $devEUI, $data, $time)
 {
     if ($data != null) {
         // get Intance
@@ -371,9 +371,7 @@ function createTiket($device_id, $devEUI, $data)
             if ($operationalDay->open_hour != null && $operationalDay->close_hour != null) {
                 // cek masuk ke range jam kerja tidak
                 $jam = date('H:i:s');
-                if (
-                    $jam >= $operationalDay->open_hour && $jam <= $operationalDay->close_hour
-                ) {
+                if ($jam >= $operationalDay->open_hour && $jam <= $operationalDay->close_hour) {
                     $abnormal = [];
                     foreach ($data as $key => $value) {
                         // get toleransi
@@ -382,7 +380,6 @@ function createTiket($device_id, $devEUI, $data)
                             ->where('field_data', $key)
                             ->where('cluster_id', $getInstance->cluster_id)
                             ->first();
-
                         if ($value < $ToleranceAlerts->min_tolerance) {
                             array_push($abnormal, "$key less than $ToleranceAlerts->min_tolerance reading results $value");
                         } else if ($value > $ToleranceAlerts->max_tolerance) {
@@ -390,21 +387,45 @@ function createTiket($device_id, $devEUI, $data)
                         }
                     }
                     if (!empty($abnormal)) {
-                        // create tiket
-                        $dataTiket = [
+                        // cek udah ada tiket atw blm
+                        $tickets = DB::table('tickets')
+                            ->where('device_id', '=', $device_id)
+                            ->first();
+                        if ($tickets) {
+                            // update ticket
+                            DB::table('tickets')
+                                ->where('device_id', $device_id)
+                                ->update([
+                                    'subject' => "Alert from device " . $devEUI,
+                                    'description'  => json_encode($abnormal),
+                                    'status'   => "Opened",
+                                    'created_at' => $time,
+                                    'updated_at' => $time,
+                                ]);
+                        } else {
+                            // create tiket
+                            $dataTiket = [
+                                'subject' => "Alert from device " . $devEUI,
+                                'description'  => json_encode($abnormal),
+                                'device_id' => $device_id,
+                                'status'   => "Opened",
+                                'created_at' => $time,
+                                'updated_at' => $time,
+                            ];
+                            $tiket = Ticket::create($dataTiket);
+                        }
+                        // insert log ticket
+                        DB::table('gateway_logs')->insert([
                             'subject' => "Alert from device " . $devEUI,
-                            'description'  => json_encode($abnormal),
-                            'device_id' => $device_id,
-                            'status'   => "Opened",
-                        ];
-                        $tiket = Ticket::create($dataTiket);
+                            'description' => json_encode($abnormal),
+                            'created_at' => $time,
+                            'updated_at' => $time,
+                        ]);
                     }
-                    $dateTiket = $tiket->created_at;
-
                     $cekNotif = Setting::findOrFail(1)->first();
                     // send notif tele
                     if (!$cekNotif->is_notif_tele) {
-                        storeMessage($dataTiket, $devEUI, $instanceName, $dateTiket, $clusterName);
+                        storeMessage($dataTiket, $devEUI, $instanceName, $time, $clusterName);
                     }
                 }
             }
@@ -412,7 +433,7 @@ function createTiket($device_id, $devEUI, $data)
     }
 }
 
-function storeMessage($dataTiket, $devEUI, $instanceName, $dateTiket, $clusterName)
+function storeMessage($dataTiket, $devEUI, $instanceName, $time, $clusterName)
 {
 
     $arr =  json_decode($dataTiket['description']);
@@ -427,7 +448,7 @@ function storeMessage($dataTiket, $devEUI, $instanceName, $dateTiket, $clusterNa
         . "<b>Cluster : $clusterName </b>\n"
         . "<b>Description Alert : </b>\n"
         . "$output\n"
-        . "<b>Date :  $dateTiket </b>\n"
+        . "<b>Date :  $time </b>\n"
         . "<b>Status: Opened </b>\n";
     Telegram::sendMessage([
         'chat_id' => env('TELEGRAM_CHANNEL_ID', ''),
@@ -499,8 +520,8 @@ function handleCallback($device_id, $request)
             'rssi' => $rumus_rssi,
             'snr' => $rumus_snr,
             'battery' => $rumus_battery,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
+            'created_at' => $save->updated_at,
+            'updated_at' => $save->updated_at,
         ];
         $dataAbnormal = [
             'temperature' => $rumus_temperature,
@@ -525,8 +546,8 @@ function handleCallback($device_id, $request)
                 'rssi' => $rumus_rssi,
                 'snr' => $rumus_snr,
                 'battery' => $rumus_battery,
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s'),
+                'created_at' => $save->updated_at,
+                'updated_at' => $save->updated_at,
             ]);
         }
         // cek ada mt day tidak
@@ -538,10 +559,10 @@ function handleCallback($device_id, $request)
             if ($time > $getDay->start_time and $time < $getDay->end_time) {
                 // tidak ada MT Day
             } else {
-                createTiket($device_id, $request->devEUI, $dataAbnormal);
+                createTiket($device_id, $request->devEUI, $dataAbnormal, $save->updated_at);
             }
         } else {
-            createTiket($device_id, $request->devEUI, $dataAbnormal);
+            createTiket($device_id, $request->devEUI, $dataAbnormal, $save->updated_at);
         }
 
         return "success";

@@ -32,7 +32,6 @@
                                             <th>#</th>
                                             <th>{{ __('Subject') }}</th>
                                             <th>{{ __('Description') }}</th>
-                                            <th>{{ __('Device') }}</th>
                                             <th>{{ __('Status') }}</th>
                                             <th>{{ __('Created At') }}</th>
                                             <th>{{ __('Updated At') }}</th>
@@ -68,10 +67,6 @@
                 {
                     data: 'description',
                     name: 'description',
-                },
-                {
-                    data: 'device',
-                    name: 'device.dev_eui'
                 },
                 {
                     data: 'status',
