@@ -17,7 +17,7 @@
                                 <thead>
                                     <tr>
                                         <th>{{ __('Subject') }}</th>
-                                        {{-- <th>{{ __('Description') }}</th> --}}
+                                        <th>{{ __('Description') }}</th>
                                         <th>{{ __('Created At') }}</th>
                                         <th>{{ __('Updated At') }}</th>
                                     </tr>
@@ -26,13 +26,18 @@
                                     $ticket_logs = DB::table('ticket_logs')
                                         ->where('ticket_id', '=', $model->id)
                                         ->orderBy('id', 'DESC')
-                                        ->limit(100)
+                                        ->limit(10)
                                         ->get();
                                 @endphp
                                 <tbody>
                                     @foreach ($ticket_logs as $row)
                                         <tr>
                                             <td>{{ $row->subject }}</td>
+                                            <td>
+                                                @foreach (json_decode($row->description) as $value)
+                                                    <li>{{ $value }}</li>
+                                                @endforeach
+                                            </td>
                                             <td>{{ $row->created_at }}</td>
                                             <td>{{ $row->updated_at }}</td>
                                         </tr>
