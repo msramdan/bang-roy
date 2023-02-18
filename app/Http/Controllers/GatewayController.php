@@ -45,7 +45,7 @@ class GatewayController extends Controller
                             '<button class="btn btn-pill btn-danger btn-air-danger btn-xs" type="button" title="btn btn-pill btn-danger btn-air-danger btn-xs">False</button>';
                     }
                 })
-                ->addColumn('action', 'gateways.include.action', 'status_online', 'pktfwd_status')
+                ->addColumn('action', 'gateways.include.action')
                 ->rawColumns(['status_online', 'action', 'gateways.include.action', 'pktfwd_status'])
                 ->toJson();
         }

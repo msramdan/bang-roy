@@ -32,6 +32,12 @@ class TicketController extends Controller
                     return $row->created_at->format('d M Y H:i:s');
                 })->addColumn('updated_at', function ($row) {
                     return $row->updated_at->format('d M Y H:i:s');
+                })->addColumn('status', function ($row) {
+                    if ($row->status == "Opened") {
+                        return '<button class="btn btn-pill btn-danger btn-air-danger btn-xs" type="button" title="btn btn-pill btn-danger btn-air-danger btn-xs"> Opened</button>';
+                    } else {
+                        return '<button class="btn btn-pill btn-primary btn-air-primary btn-xs" type="button" title="btn btn-pill btn-primary btn-air-primary btn-xs">Closed</button>';
+                    }
                 })
                 ->addColumn('description', function ($row) {
                     $result = json_decode($row->description);
@@ -49,7 +55,7 @@ class TicketController extends Controller
                 ->addColumn('device', function ($row) {
                     return $row->device ? $row->device->dev_eui : '';
                 })->addColumn('action', 'tickets.include.action', 'description')
-                ->rawColumns(['description', 'action', 'tickets.include.action'])
+                ->rawColumns(['description', 'action', 'tickets.include.action', 'status'])
                 ->toJson();
         }
 
