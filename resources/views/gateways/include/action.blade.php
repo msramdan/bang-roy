@@ -4,8 +4,6 @@
             data-bs-target="#exampleModal{{ $model->id }}">
             <i class="fa fa-eye"></i>
         </button>
-    @endcan
-    @can('device edit')
         <div class="modal fade" id="exampleModal{{ $model->id }}" data-bs-backdrop="static" data-bs-keyboard="false"
             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -15,7 +13,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="table-responsive">
-                            <table class="display dataTable no-footer" id="" width="100%">
+                            <table class="display dataTable no-footer table-xs" id="dataTables-example" width="100%">
                                 <thead>
                                     <tr>
                                         <th>{{ __('Gwid') }}</th>
@@ -25,10 +23,11 @@
                                         <th>{{ __('Updated At') }}</th>
                                     </tr>
                                 </thead>
-
                                 @php
                                     $gateway_logs = DB::table('gateway_logs')
                                         ->where('gateway_id', '=', $model->id)
+                                        ->orderBy('id', 'DESC')
+                                        ->limit(100)
                                         ->get();
                                 @endphp
                                 <tbody>
@@ -37,16 +36,24 @@
                                             <td>{{ $model->gwid }}</td>
                                             <td>
                                                 @if ($row->status_online == 1)
-                                                    True
+                                                    <button class="btn btn-pill btn-primary btn-air-primary btn-xs"
+                                                        type="button"
+                                                        title="btn btn-pill btn-primary btn-air-primary btn-xs">True</button>
                                                 @else
-                                                    False
+                                                    <button class="btn btn-pill btn-danger btn-air-danger btn-xs"
+                                                        type="button"
+                                                        title="btn btn-pill btn-danger btn-air-danger btn-xs">False</button>
                                                 @endif
                                             </td>
                                             <td>
                                                 @if ($row->pktfwd_status == 1)
-                                                    True
+                                                    <button class="btn btn-pill btn-primary btn-air-primary btn-xs"
+                                                        type="button"
+                                                        title="btn btn-pill btn-primary btn-air-primary btn-xs">True</button>
                                                 @else
-                                                    False
+                                                    <button class="btn btn-pill btn-danger btn-air-danger btn-xs"
+                                                        type="button"
+                                                        title="btn btn-pill btn-danger btn-air-danger btn-xs">False</button>
                                                 @endif
                                             </td>
                                             <td>{{ $row->created_at }}</td>
@@ -66,3 +73,6 @@
         </div>
     @endcan
 </td>
+<script>
+    $('#dataTables-example').DataTable();
+</script>
