@@ -26,7 +26,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive p-1">
-                                <table class="display dataTable no-footer" id="data-table" role="grid">
+                                <table class="table table-striped table-sm" id="data-table" role="grid">
                                     <thead>
                                         <tr>
                                             <th>#</th>

@@ -32,18 +32,21 @@ class GatewayController extends Controller
                     return $row->updated_at->format('d M Y H:i:s');
                 })->addColumn('status_online', function ($row) {
                     if ($row->status_online == 1) {
-                        return "True";
+                        return '<button class="btn btn-pill btn-primary btn-air-primary btn-xs" type="button" title="btn btn-pill btn-primary btn-air-primary btn-xs">True</button>';
                     } else {
-                        return "False";
+                        return
+                            '<button class="btn btn-pill btn-danger btn-air-danger btn-xs" type="button" title="btn btn-pill btn-danger btn-air-danger btn-xs">False</button>';
                     }
                 })->addColumn('pktfwd_status', function ($row) {
                     if ($row->pktfwd_status == 1) {
-                        return "True";
+                        return '<button class="btn btn-pill btn-primary btn-air-primary btn-xs" type="button" title="btn btn-pill btn-primary btn-air-primary btn-xs">True</button>';
                     } else {
-                        return "False";
+                        return
+                            '<button class="btn btn-pill btn-danger btn-air-danger btn-xs" type="button" title="btn btn-pill btn-danger btn-air-danger btn-xs">False</button>';
                     }
                 })
-                ->addColumn('action', 'gateways.include.action')
+                ->addColumn('action', 'gateways.include.action', 'status_online', 'pktfwd_status')
+                ->rawColumns(['status_online', 'action', 'gateways.include.action', 'pktfwd_status'])
                 ->toJson();
         }
 

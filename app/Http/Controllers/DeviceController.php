@@ -50,7 +50,6 @@ class DeviceController extends Controller
                 })->addColumn('action', 'devices.include.action')
                 ->toJson();
         }
-
         return view('devices.index');
     }
 

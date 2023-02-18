@@ -15,7 +15,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-sm" id="" width="100%">
+                            <table class="display dataTable no-footer" id="" width="100%">
                                 <thead>
                                     <tr>
                                         <th>{{ __('Gwid') }}</th>

@@ -32,7 +32,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-hover table-striped">
+                                <table class="table table-striped table-sm">
                                     <tr>
                                         <td class="fw-bold">{{ __('Dev Eui') }}</td>
                                         <td>{{ $device->dev_eui }}</td>
