@@ -13,7 +13,8 @@
                     </div>
                     <div class="modal-body">
                         <div class="table-responsive">
-                            <table class="display dataTable no-footer table-xs" id="dataTables-example" width="100%">
+                            <table class="display dataTable no-footer table-xs dataTables-example" id=""
+                                width="100%">
                                 <thead>
                                     <tr>
                                         <th>{{ __('Subject') }}</th>
@@ -107,5 +108,5 @@
     @endcan
 </td>
 <script>
-    $('#dataTables-example').DataTable();
+    $('.dataTables-example').DataTable();
 </script>

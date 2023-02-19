@@ -22,15 +22,19 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-12">
-                    @if (Request::get('parsed_data'))
-                        <div class="d-flex justify-content-end">
+
+                    <div class="d-flex justify-content-end">
+                        @if (Request::get('parsed_data'))
                             <a href="{{ route('parseds.index') }}" class="btn btn-primary mb-3">
                                 <i class="fas fa-list"></i>
                                 {{ __('All Data') }}
-                            </a>
-                        </div>
-                    @endif
-
+                            </a>&nbsp;
+                        @endif
+                        <a href="" class="btn btn-primary mb-3">
+                            <i class="fa fa-upload" aria-hidden="true"></i>
+                            {{ __('Upload Parsed Data') }}
+                        </a>
+                    </div>
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive p-1">

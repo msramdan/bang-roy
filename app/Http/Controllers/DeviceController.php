@@ -175,6 +175,7 @@ class DeviceController extends Controller
      */
     public function update(Request $request, Device $device)
     {
+
         $url_update = setting_web()->endpoint_nms . '/openapi/device/update';
         $url_check_device = setting_web()->endpoint_nms . '/openapi/device/status?devEUI=' . $device->dev_eui;
         $api_token   = setting_web()->token;
@@ -238,7 +239,12 @@ class DeviceController extends Controller
             return redirect()->route('device.index');
         }
         Device::where('id', $device->id)
-            ->update(['dev_name' => $request->dev_name]);
+            ->update(
+                [
+                    'dev_name' => $request->dev_name,
+                    'cluster_id' => $request->cluster_id
+                ]
+            );
         Alert::toast('The device was updated successfully.', 'success');
         return redirect()
             ->route('devices.index');

@@ -31,7 +31,7 @@
                 @foreach ($clusters as $cluster)
                     <option value="{{ $cluster->id }}"
                         {{ isset($device) && $device->cluster_id == $cluster->id ? 'selected' : (old('cluster_id') == $cluster->id ? 'selected' : '') }}>
-                        {{ $cluster->cluster_kode }} - {{ $cluster->cluster_name }}
+                        {{ $cluster->cluster_name }}
                     </option>
                 @endforeach
             </select>

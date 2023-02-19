@@ -21,35 +21,26 @@
                             <h5 class="modal-title" id="exampleModalLabel">Update Device</h5>
                         </div>
                         <div class="modal-body">
-
+                            <input type="hidden" id="id" name="id" class="form-control"
+                                value="{{ $model->id }}" placeholder="">
                             <div class="mb-3">
-                                <label for="dev_eui" class="form-label">Branches</label>
-                                <select class="form-select @error('instance_id') is-invalid @enderror" name="instance_id"
-                                    id="instance-id" class="form-control" required>
-                                    <option value="" selected disabled>-- {{ __('Select instance') }} --</option>
-
-                                    @foreach ($instances as $instance)
-                                        <option value="{{ $instance->id }}"
-                                            {{ isset($model) && $model->instance_id == $instance->id ? 'selected' : (old('instance_id') == $instance->id ? 'selected' : '') }}>
-                                            {{ $instance->instance_name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            {{-- <div class="mb-3">
                                 <label for="dev_eui" class="form-label">Cluster</label>
                                 <select class="form-select @error('cluster_id') is-invalid @enderror" name="cluster_id"
                                     id="cluster-id" class="form-control" required>
                                     <option value="" selected disabled>-- {{ __('Select cluster') }} --</option>
-
+                                    @php
+                                        $clusters = DB::table('clusters')
+                                            ->where('instance_id', $model->instance_id)
+                                            ->get();
+                                    @endphp
                                     @foreach ($clusters as $cluster)
                                         <option value="{{ $cluster->id }}"
                                             {{ isset($model) && $model->cluster_id == $cluster->id ? 'selected' : (old('cluster_id') == $cluster->id ? 'selected' : '') }}>
-                                            {{ $cluster->cluster_kode }} - {{ $cluster->cluster_name }}
+                                            {{ $cluster->cluster_name }}
                                         </option>
                                     @endforeach
                                 </select>
-                            </div> --}}
+                            </div>
 
                             <div class="mb-3">
                                 <label for="dev_eui" class="form-label">Dev Eui</label>
@@ -85,5 +76,3 @@
         </form>
     @endcan
 </td>
-
-</div>
