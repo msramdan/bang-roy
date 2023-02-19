@@ -9,7 +9,8 @@ use App\Http\Controllers\{
     RoleAndPermissionController,
     WilayahController,
     InstanceController,
-    TelegramBotController
+    TelegramBotController,
+    ParsedController
 };
 
 Route::controller(TelegramBotController::class)->group(function () {
@@ -51,6 +52,10 @@ Route::resource('kecamatans', App\Http\Controllers\KecamatanController::class)->
 Route::resource('kelurahans', App\Http\Controllers\KelurahanController::class)->middleware('auth');
 Route::resource('instances', App\Http\Controllers\InstanceController::class)->middleware('auth');
 Route::resource('parseds', App\Http\Controllers\ParsedController::class)->middleware('auth');
+Route::controller(ParsedController::class)->group(function () {
+    Route::post('/parseds/import_excel', 'import_excel')->name('parseds.import');
+});
+
 Route::resource('maintenances', App\Http\Controllers\MaintenanceController::class)->middleware('auth');
 Route::resource('clusters', App\Http\Controllers\ClusterController::class)->middleware('auth');
 Route::resource('devices', App\Http\Controllers\DeviceController::class)->middleware('auth');

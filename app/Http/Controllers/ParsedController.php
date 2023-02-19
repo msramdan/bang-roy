@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Parsed;
 use App\Http\Requests\{StoreParsedRequest, UpdateParsedRequest};
+use App\Imports\ParsedImport;
 use Yajra\DataTables\Facades\DataTables;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ParsedController extends Controller
 {
@@ -55,5 +57,13 @@ class ParsedController extends Controller
                 ->toJson();
         }
         return view('parseds.index');
+    }
+
+    public function import_excel(Request $request)
+    {
+        $import = new ParsedImport;
+        Excel::import($import, $request->file('file'));
+        Alert::toast('Import parsed data successfully.', 'success');
+        return redirect()->back();
     }
 }

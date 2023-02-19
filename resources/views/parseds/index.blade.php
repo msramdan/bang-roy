@@ -22,7 +22,6 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-12">
-
                     <div class="d-flex justify-content-end">
                         @if (Request::get('parsed_data'))
                             <a href="{{ route('parseds.index') }}" class="btn btn-primary mb-3">
@@ -30,7 +29,7 @@
                                 {{ __('All Data') }}
                             </a>&nbsp;
                         @endif
-                        <a href="" class="btn btn-primary mb-3">
+                        <a href="Format_upload_parsed.xlsx" class="btn btn-primary mb-3">
                             <i class="fas fa-download"></i>
                             {{ __('Download Format') }}
                         </a>&nbsp;
@@ -43,9 +42,9 @@
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                             aria-hidden="true">
                             <div class="modal-dialog">
-                                <form action="" method="POST">
-                                    @csrf
-                                    @method('PUT')
+                                <form action="{{ url('parseds/import_excel') }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    {{ csrf_field() }}
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">Upload Parsed Data</h5>
@@ -53,7 +52,7 @@
                                         <div class="modal-body">
                                             <div class="mb-3">
                                                 <label for="dev_eui" class="form-label">File Excel</label>
-                                                <input type="file" id="dev_eui" name="dev_eui" class="form-control"
+                                                <input type="file" id="file" name="file" class="form-control"
                                                     value="" placeholder="">
                                             </div>
                                         </div>
@@ -71,6 +70,21 @@
                     </div>
                     <div class="card">
                         <div class="card-body">
+                            @if (Session::get('errorMessage'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    Total Failed Import {{ Session::get('totalError') }} Data
+                                    @php
+                                        $data = Session::get('errorMessage');
+                                    @endphp
+                                    @foreach ($data as $value)
+                                        <li style="font-size: 9px">{{ $value }}</li>
+                                    @endforeach
+                                    <button type="button" id="remove-session" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close">
+                                    </button>
+                                </div>
+                            @endif
+
                             <div class="table-responsive p-1">
                                 <table class="table table-striped table-xs" id="data-table" role="grid">
                                     <thead>
@@ -158,6 +172,12 @@
                 }
             },
             columns: columns
+        });
+    </script>
+
+    <script>
+        $("#remove-session").click(function() {
+            {{ Session::forget('errorMessage', 'totalError') }}
         });
     </script>
 @endpush
