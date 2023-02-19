@@ -27,11 +27,22 @@ class LatestDataController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $latestDatas = LatestData::with('device:id,dev_eui')->select('latest_datas.*');
+            $latestDatas = DB::table('latest_datas')
+                ->join('devices', 'latest_datas.device_id', '=', 'devices.id')
+                ->join('clusters', 'devices.cluster_id', '=', 'clusters.id')
+                ->join('instances', 'devices.instance_id', '=', 'instances.id')
+                ->select('latest_datas.*', 'devices.dev_eui', 'clusters.cluster_name', 'instances.instance_name')
+                ->get();
             return DataTables::of($latestDatas)
                 ->addIndexColumn()
+                ->addColumn('cluster_name', function ($row) {
+                    return $row->cluster_name;
+                })
+                ->addColumn('instance_name', function ($row) {
+                    return $row->instance_name;
+                })
                 ->addColumn('device', function ($row) {
-                    return $row->device ? $row->device->dev_eui : '';
+                    return $row->dev_eui;
                 })->addColumn('temperature', function ($row) {
                     return $row->temperature . ' C';
                 })->addColumn('humidity', function ($row) {
@@ -44,11 +55,11 @@ class LatestDataController extends Controller
                     return $row->rssi . ' dBm';
                 })->addColumn('snr', function ($row) {
                     return $row->snr . ' dB';
-                })->addColumn('created_at', function ($row) {
-                    return $row->created_at->format('d M Y H:i:s');
-                })->addColumn('updated_at', function ($row) {
-                    return $row->updated_at->format('d M Y H:i:s');
-                })->addColumn('time', function ($row) {
+                })
+                ->addColumn('updated_at', function ($row) {
+                    return Carbon::parse($row->updated_at)->format('d M Y H:i:s');
+                })
+                ->addColumn('time', function ($row) {
                     return Carbon::parse($row->created_at)->diffForHumans();
                 })
                 ->addColumn('action', 'latest-datas.include.action')

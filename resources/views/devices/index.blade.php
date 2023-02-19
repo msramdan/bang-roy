@@ -38,7 +38,7 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>{{ __('App ID') }}</th>
+                                            {{-- <th>{{ __('App ID') }}</th> --}}
                                             <th>{{ __('Branches') }}</th>
                                             <th>{{ __('Cluster') }}</th>
                                             <th>{{ __('Dev Eui') }}</th>
@@ -74,10 +74,11 @@
                     name: 'DT_RowIndex',
                     orderable: false,
                     searchable: false
-                }, {
-                    data: 'app_id',
-                    name: 'app_id',
                 },
+                // {
+                //     data: 'app_id',
+                //     name: 'app_id',
+                // },
                 {
                     data: 'instance',
                     name: 'instance.instance_name'

@@ -29,7 +29,9 @@
                                 <table class="table table-striped table-xs" id="data-table" role="grid">
                                     <thead>
                                         <tr>
-                                            <th>{{ __('Device') }}</th>
+                                            <th>{{ __('Branches') }}</th>
+                                            <th>{{ __('Cluster') }}</th>
+                                            <th>{{ __('Dev Eui') }}</th>
                                             <th>{{ __('Temperature') }}</th>
                                             <th>{{ __('Humidity') }}</th>
                                             <th>{{ __('Battery') }}</th>
@@ -56,8 +58,16 @@
             serverSide: true,
             ajax: "{{ route('latest-datas.index') }}",
             columns: [{
+                    data: 'instance_name',
+                    name: 'instance_name'
+                },
+                {
+                    data: 'cluster_name',
+                    name: 'cluster_name'
+                },
+                {
                     data: 'device',
-                    name: 'device.dev_eui'
+                    name: 'device'
                 },
                 {
                     data: 'temperature',
