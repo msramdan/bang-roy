@@ -375,18 +375,18 @@ function createTiket($device_id, $devEUI, $data, $time)
                             ->latest()->first();
                         if ($tickets) {
                             // cek statusnya opened / closed, jika closed buat tiket baru
-                            if ($tickets->status=='Closed') {
+                            if ($tickets->status=="Closed") {
                                 // create tiket
-                            $dataTiket = [
-                                'subject' => "Alert from device " . $devEUI,
-                                'description'  => json_encode($abnormal),
-                                'device_id' => $device_id,
-                                'status'   => "Opened",
-                                'created_at' => $time,
-                                'updated_at' => $time,
-                            ];
-                            $tiket = Ticket::create($dataTiket);
-                            $ticket_id = DB::getPdo()->lastInsertId();
+                                $dataTiket = [
+                                    'subject' => "Alert from device " . $devEUI,
+                                    'description'  => json_encode($abnormal),
+                                    'device_id' => $device_id,
+                                    'status'   => "Opened",
+                                    'created_at' => $time,
+                                    'updated_at' => $time,
+                                ];
+                                $tiket = Ticket::create($dataTiket);
+                                $ticket_id = DB::getPdo()->lastInsertId();
                             }else{
                                 $ticket_id = $tickets->id;
                                 $dataTiket = [
@@ -398,7 +398,7 @@ function createTiket($device_id, $devEUI, $data, $time)
                                 ];
                                 // update ticket
                                 DB::table('tickets')
-                                    ->where('device_id', $device_id)
+                                    ->where('id', $tickets->id)
                                     ->update($dataTiket);
                                 }
                         } else {
