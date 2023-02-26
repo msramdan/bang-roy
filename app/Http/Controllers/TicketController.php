@@ -52,6 +52,14 @@ class TicketController extends Controller
                         return $row->description;
                     }
                 })
+                ->addColumn('user', function ($row) {
+                    if ($row->update_by) {
+                        return $row->update_by;
+                    }
+
+                    return '-';
+                })
+
                 ->addColumn('device', function ($row) {
                     return $row->device ? $row->device->dev_eui : '';
                 })->addColumn('action', 'tickets.include.action', 'description')
@@ -62,19 +70,6 @@ class TicketController extends Controller
         return view('tickets.index');
     }
 
-    public function show(Ticket $ticket)
-    {
-        $ticket->load('device:id,dev_eui');
-
-        return view('tickets.show', compact('ticket'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Ticket  $ticket
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Ticket $ticket)
     {
         $ticket->load('device:id,dev_eui');
@@ -93,7 +88,8 @@ class TicketController extends Controller
     {
         Ticket::where('id', $ticket->id)
             ->update([
-                'status' => $request->status
+                'status' => $request->status,
+                'update_by' => auth()->user()->id
             ]);
         Alert::toast('The ticket was updated successfully.', 'success');
         return redirect()

@@ -374,19 +374,33 @@ function createTiket($device_id, $devEUI, $data, $time)
                             ->where('device_id', '=', $device_id)
                             ->first();
                         if ($tickets) {
-                            $ticket_id = $tickets->id;
+                            // cek statusnya opened / closed, jika closed buat tiket baru
+                            if ($tickets->status=='Closed') {
+                                // create tiket
                             $dataTiket = [
                                 'subject' => "Alert from device " . $devEUI,
                                 'description'  => json_encode($abnormal),
+                                'device_id' => $device_id,
                                 'status'   => "Opened",
                                 'created_at' => $time,
                                 'updated_at' => $time,
                             ];
-
-                            // update ticket
-                            DB::table('tickets')
-                                ->where('device_id', $device_id)
-                                ->update($dataTiket);
+                            $tiket = Ticket::create($dataTiket);
+                            $ticket_id = DB::getPdo()->lastInsertId();
+                            }else{
+                                $ticket_id = $tickets->id;
+                                $dataTiket = [
+                                    'subject' => "Alert from device " . $devEUI,
+                                    'description'  => json_encode($abnormal),
+                                    'status'   => "Opened",
+                                    'created_at' => $time,
+                                    'updated_at' => $time,
+                                ];
+                                // update ticket
+                                DB::table('tickets')
+                                    ->where('device_id', $device_id)
+                                    ->update($dataTiket);
+                                }
                         } else {
                             // create tiket
                             $dataTiket = [

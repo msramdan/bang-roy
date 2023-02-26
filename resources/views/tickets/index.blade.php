@@ -26,13 +26,14 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive p-1">
-                                <table class="table table-striped table-sm" id="data-table" role="grid">
+                                <table class="table table-striped table-xs" id="data-table" role="grid">
                                     <thead>
                                         <tr>
                                             <th>#</th>
                                             <th>{{ __('Subject') }}</th>
-                                            <th>{{ __('Description') }}</th>
+                                            {{-- <th>{{ __('Description') }}</th> --}}
                                             <th>{{ __('Status') }}</th>
+                                            <th>{{ __('Update By') }}</th>
                                             <th>{{ __('Created At') }}</th>
                                             <th>{{ __('Updated At') }}</th>
                                             <th>{{ __('Action') }}</th>
@@ -64,13 +65,17 @@
                     data: 'subject',
                     name: 'subject',
                 },
-                {
-                    data: 'description',
-                    name: 'description',
-                },
+                // {
+                //     data: 'description',
+                //     name: 'description',
+                // },
                 {
                     data: 'status',
                     name: 'status',
+                },
+                {
+                    data: 'user',
+                    name: 'user',
                 },
                 {
                     data: 'created_at',

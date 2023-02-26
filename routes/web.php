@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CallbackController;
-use App\Models\Instance;
 use App\Http\Controllers\{
     UserController,
     ProfileController,
@@ -10,7 +9,8 @@ use App\Http\Controllers\{
     WilayahController,
     InstanceController,
     TelegramBotController,
-    ParsedController
+    ParsedController,
+    DashboardController
 };
 
 Route::controller(TelegramBotController::class)->group(function () {
@@ -24,13 +24,14 @@ Route::get('kelurahan/{kecamatanId}', [WilayahController::class, 'kelurahan'])->
 Route::get('cluster/{instance_id}', [InstanceController::class, 'get_cluster'])->name('api.cluster');
 
 Route::middleware(['auth', 'web'])->group(function () {
-    $instances = Instance::get();
-    Route::get('/', fn () => view('dashboard', [
-        'instances' => $instances
-    ]));
-    Route::get('/dashboard', fn () => view('dashboard', [
-        'instances' => $instances
-    ]))->name('dashboard');
+    // $instances = Instance::get();
+    // $instances = Instance::get();
+    // Route::get('/', fn () => view('dashboard', [
+    //     'instances' => $instances
+    // ]));
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 
     Route::get('/profile', ProfileController::class)->name('profile');
     Route::resource('users', UserController::class);

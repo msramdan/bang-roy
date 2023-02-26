@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('subject', 255);
 			$table->text('description');
 			$table->foreignId('device_id')->constrained('devices')->restrictOnUpdate()->cascadeOnDelete();
+            $table->foreignId('update_by')->nullable()->constrained('users')->restrictOnUpdate()->nullOnDelete();
 			$table->string('status', 50);
             $table->timestamps();
         });
