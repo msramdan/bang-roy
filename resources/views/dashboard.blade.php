@@ -328,109 +328,26 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xl-7 col-50 box-col-7 des-xl-50">
-                    <div class="card radius-10 border-start border-0 border-3">
-                        <div class="card-body" style="height: 450px">
+                <div class="col-xl-8 col-50 box-col-8 des-xl-50">
+                    <div class="card radius-10 border-start border-0 border-3" style="height: 450px">
+                        <div class="card-body">
                             <h5>Tickets List</h5>
+                            <hr>
                             <div class="table-responsive">
-                                <table class="table table-sm table-bordered" id="dataTables-example">
+                                <table class="table table-xs table-bordered" id="dataTables-example">
                                     <thead>
                                         <tr>
                                             <th scope="col">Subject</th>
-                                            <th scope="col">Info</th>
+                                            <th scope="col">Created at</th>
                                             <th scope="col">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>Alert from device 8cf9574000002d3d</td>
-                                            <td> <button class="btn btn-pill btn-success btn-air-success btn-xs"
-                                                    type="button"
-                                                    title="btn btn-pill btn-success btn-air-success btn-xs"><i
-                                                        class="fa fa-info-circle" aria-hidden="true"></i> Detail</button>
-                                            </td>
+                                            <td>2022-21-09</td>
                                             <td><button class="btn btn-pill btn-danger btn-air-danger btn-xs" type="button"
                                                     title="btn btn-pill btn-danger btn-air-danger btn-xs"> Opened</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Alert from device 8cf9574000002d3d</td>
-                                            <td> <button class="btn btn-pill btn-success btn-air-success btn-xs"
-                                                    type="button"
-                                                    title="btn btn-pill btn-success btn-air-success btn-xs"><i
-                                                        class="fa fa-info-circle" aria-hidden="true"></i> Detail</button>
-                                            </td>
-                                            <td><button class="btn btn-pill btn-danger btn-air-danger btn-xs" type="button"
-                                                    title="btn btn-pill btn-danger btn-air-danger btn-xs"> Opened</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Alert from device 8cf9574000002d3d</td>
-                                            <td> <button class="btn btn-pill btn-success btn-air-success btn-xs"
-                                                    type="button"
-                                                    title="btn btn-pill btn-success btn-air-success btn-xs"><i
-                                                        class="fa fa-info-circle" aria-hidden="true"></i> Detail</button>
-                                            </td>
-                                            <td><button class="btn btn-pill btn-danger btn-air-danger btn-xs" type="button"
-                                                    title="btn btn-pill btn-danger btn-air-danger btn-xs"> Opened</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Alert from device 8cf9574000002d3d</td>
-                                            <td> <button class="btn btn-pill btn-success btn-air-success btn-xs"
-                                                    type="button"
-                                                    title="btn btn-pill btn-success btn-air-success btn-xs"><i
-                                                        class="fa fa-info-circle" aria-hidden="true"></i> Detail</button>
-                                            </td>
-                                            <td><button class="btn btn-pill btn-danger btn-air-danger btn-xs" type="button"
-                                                    title="btn btn-pill btn-danger btn-air-danger btn-xs"> Opened</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Alert from device 8cf9574000002d3d</td>
-                                            <td> <button class="btn btn-pill btn-success btn-air-success btn-xs"
-                                                    type="button"
-                                                    title="btn btn-pill btn-success btn-air-success btn-xs"><i
-                                                        class="fa fa-info-circle" aria-hidden="true"></i> Detail</button>
-                                            </td>
-                                            <td><button class="btn btn-pill btn-danger btn-air-danger btn-xs" type="button"
-                                                    title="btn btn-pill btn-danger btn-air-danger btn-xs"> Opened</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Alert from device 8cf9574000002d3d</td>
-                                            <td> <button class="btn btn-pill btn-success btn-air-success btn-xs"
-                                                    type="button"
-                                                    title="btn btn-pill btn-success btn-air-success btn-xs"><i
-                                                        class="fa fa-info-circle" aria-hidden="true"></i> Detail</button>
-                                            </td>
-                                            <td><button class="btn btn-pill btn-danger btn-air-danger btn-xs" type="button"
-                                                    title="btn btn-pill btn-danger btn-air-danger btn-xs">
-                                                    Opened</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Alert from device 8cf9574000002d3d</td>
-                                            <td> <button class="btn btn-pill btn-success btn-air-success btn-xs"
-                                                    type="button"
-                                                    title="btn btn-pill btn-success btn-air-success btn-xs"><i
-                                                        class="fa fa-info-circle" aria-hidden="true"></i> Detail</button>
-                                            </td>
-                                            <td><button class="btn btn-pill btn-danger btn-air-danger btn-xs"
-                                                    type="button" title="btn btn-pill btn-danger btn-air-danger btn-xs">
-                                                    Opened</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Alert from device 8cf9574000002d3d</td>
-                                            <td> <button class="btn btn-pill btn-success btn-air-success btn-xs"
-                                                    type="button"
-                                                    title="btn btn-pill btn-success btn-air-success btn-xs"><i
-                                                        class="fa fa-info-circle" aria-hidden="true"></i> Detail</button>
-                                            </td>
-                                            <td><button class="btn btn-pill btn-danger btn-air-danger btn-xs"
-                                                    type="button" title="btn btn-pill btn-danger btn-air-danger btn-xs">
-                                                    Opened</button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -439,9 +356,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-5 col-50 box-col-5 des-xl-50">
-                    <div class="card radius-10 border-start border-0 border-3">
-                        <div class="card-body" style="height: 450px">
+                <div class="col-xl-4 col-50 box-col-4 des-xl-50">
+                    <div class="card radius-10 border-start border-0 border-3" style="height: 450px">
+                        <div class="card-body">
                             <script src="https://code.highcharts.com/highcharts.js"></script>
                             <script src="https://code.highcharts.com/modules/exporting.js"></script>
                             <script src="https://code.highcharts.com/modules/export-data.js"></script>
@@ -453,18 +370,124 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-sm-12" style="padding-right: 20px; padding-left:20px">
-                <div class="card radius-10 border-start border-0 border-3">
-                    <div class="card-body">
-                        <div class="map-embed" id="map"></div>
+
+            <div class="row">
+                <div class="col-sm-8" style="padding-right: 10px; padding-left:10px">
+                    <div class="card radius-10 border-start border-0 border-3" style="height: 450px">
+                        <div class="card-body">
+                            <div class="map-embed" id="map" style="height: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4" style="padding-right: 10px">
+                    <div class="card radius-10 border-start border-0 border-3" style="height: 450px">
+                        <div class="card-body">
+                            <h5>List Brances</h5>
+                            <hr>
+                            {{-- <div class="table-responsive"> --}}
+                            <table class="table table-xs table-bordered" id="dataTables-example" style="100%">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">App Id</th>
+                                        <th scope="col">Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>100</td>
+                                        <td> Ranch Market Jaksel
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        {{-- </div> --}}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-xl-4 col-50 box-col-4 des-xl-50">
+                    <div class="card radius-10 border-start border-0 border-3" style="height: 450px">
+                        <div class="card-body">
+                            <h5>Device By Brances</h5>
+                            <hr>
+                            {{-- <div class="table-responsive"> --}}
+                            <table class="table table-xs table-bordered" id="dataTables-example" style="width: 100%">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Branches</th>
+                                        <th scope="col">Qty</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Ranch Market Jaksel</td>
+                                        <td> 10
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        {{-- </div> --}}
+                    </div>
+                </div>
+                <div class="col-xl-4 col-50 box-col-4 des-xl-50">
+                    <div class="card radius-10 border-start border-0 border-3" style="height: 450px">
+                        <div class="card-body">
+                            <h5>Device By Cluster</h5>
+                            <hr>
+                            {{-- <div class="table-responsive"> --}}
+                            <table class="table table-xs table-bordered" id="dataTables-example" style="width: 100%">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Cluster</th>
+                                        <th scope="col">Qty</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Showcase A</td>
+                                        <td> 10
+                                        </td>
+                                </tbody>
+                            </table>
+                        </div>
+                        {{-- </div> --}}
+                    </div>
+                </div>
+                <div class="col-xl-4 col-50 box-col-4 des-xl-50">
+                    <div class="card radius-10 border-start border-0 border-3" style="height: 450px">
+                        <div class="card-body">
+                            <h5>Device By Location</h5>
+                            <hr>
+                            {{-- <div class="table-responsive"> --}}
+                            <table class="table table-xs table-bordered" id="dataTables-example" style="100%">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Location</th>
+                                        <th scope="col">Qty</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Sukabumi</td>
+                                        <td> 10
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        {{-- </div> --}}
                     </div>
                 </div>
             </div>
+
         </div>
-    </div>
     </div>
 @endsection
 @push('js')
