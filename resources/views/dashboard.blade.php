@@ -122,7 +122,7 @@
                             <script src="https://code.highcharts.com/modules/export-data.js"></script>
                             <script src="https://code.highcharts.com/modules/accessibility.js"></script>
                             <figure class="highcharts-figure">
-                                <div id="container"></div>
+                                <div id="container" style="width:320px"></div>
                             </figure>
                         </div>
                     </div>
@@ -134,7 +134,7 @@
                 <div class="col-sm-8" style="padding-right: 10px; padding-left:10px">
                     <div class="card radius-10 border-start border-0 border-3" style="height: 450px">
                         <div class="card-body">
-                            <div class="map-embed" id="map" style="height: 100%"></div>
+                            <div class="map-embed" id="map" style="height: 100%;"></div>
                         </div>
                     </div>
                 </div>
@@ -353,10 +353,10 @@
                 colorByPoint: true,
                 data: [{
                     name: 'Opened',
-                    y: 100
+                    y: {{ $ticketOpen }}
                 }, {
                     name: 'Closed',
-                    y: 12
+                    y: {{ $ticketClose }}
                 }]
             }]
         });
