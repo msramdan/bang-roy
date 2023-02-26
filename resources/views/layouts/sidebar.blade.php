@@ -7,7 +7,8 @@
                     <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2"
                             aria-hidden="true"></i></div>
                 </li>
-                <li><a class="nav-link menu-title link-nav" href="{{ route('dashboard') }}"><i data-feather="home"></i>
+                <li><a class="nav-link menu-title link-nav {{ is_active_menu('dashboard') }}"
+                        href="{{ route('dashboard') }}"><i data-feather="home"></i>
                         <span>Dashboard</span></a>
                 </li>
                 @foreach (config('generator.sidebars') as $sidebar)
@@ -20,18 +21,19 @@
                                 @canany($permissions)
                                     @if (empty($menu['submenus']))
                                         @can($menu['permission'])
-                                            <li><a class="nav-link menu-title link-nav"
+                                            <li><a class="nav-link menu-title link-nav {{ is_active_menu($menu['route']) }}"
                                                     href="{{ route(str($menu['route'])->remove('/')->plural() . '.index') }}">{!! $menu['icon'] !!}<span>{{ __($menu['title']) }}</span></a>
                                             </li>
                                         @endcan
                                     @else
-                                        <li class="dropdown"><a class="nav-link menu-title"
+                                        <li class="dropdown"><a
+                                                class="nav-link menu-title {{ is_active_menu($menu['permissions']) }}"
                                                 href="javascript:void(0)">{!! $menu['icon'] !!}<span>{{ __($menu['title']) }}</span></a>
                                             <ul class="nav-submenu menu-content">
                                                 @canany($menu['permissions'])
                                                     @foreach ($menu['submenus'] as $submenu)
                                                         @can($submenu['permission'])
-                                                            <li><a
+                                                            <li><a class="{{ is_active_menu($submenu['route']) }}"
                                                                     href="{{ route(str($submenu['route'])->remove('/')->plural() . '.index') }}">{{ __($submenu['title']) }}</a>
                                                             </li>
                                                         @endcan

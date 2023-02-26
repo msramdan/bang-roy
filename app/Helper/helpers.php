@@ -14,24 +14,6 @@ use Telegram\Bot\FileUpload\InputFile;
 use Telegram\Bot\Laravel\Facades\Telegram;
 
 
-
-if (!function_exists('set_active')) {
-    function set_active($uri)
-    {
-        if (is_array($uri)) {
-            foreach ($uri as $u) {
-                if (Route::is($u)) {
-                    return 'active';
-                }
-            }
-        } else {
-            if (Route::is($uri)) {
-                return 'active';
-            }
-        }
-    }
-}
-
 function setting_web()
 {
     $setting = DB::table('settings')->first();

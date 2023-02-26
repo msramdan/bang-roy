@@ -187,13 +187,12 @@
         }
 
         .border-success {
-            border-left: 5px solid #15ca20 !important;
+            border-left: 5px solid #24695c !important;
         }
 
         .border-warning {
             border-left: 5px solid #ffc107 !important;
         }
-
 
         .card {
             position: relative;
@@ -262,14 +261,6 @@
 @section('content')
     <div class="page-body">
         <div class="container-fluid">
-            <div class="page-header" style="margin-top: 5px">
-                <div class="row">
-                    <div class="col-sm-12">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid">
             <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
                 <div class="col">
                     <div class="card radius-10 border-start border-0 border-3 border-info">
@@ -337,15 +328,143 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="map-embed" id="map"></div>
+                <div class="col-xl-7 col-50 box-col-7 des-xl-50">
+                    <div class="card radius-10 border-start border-0 border-3">
+                        <div class="card-body" style="height: 450px">
+                            <h5>Tickets List</h5>
+                            <div class="table-responsive">
+                                <table class="table table-sm table-bordered" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Subject</th>
+                                            <th scope="col">Info</th>
+                                            <th scope="col">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Alert from device 8cf9574000002d3d</td>
+                                            <td> <button class="btn btn-pill btn-success btn-air-success btn-xs"
+                                                    type="button"
+                                                    title="btn btn-pill btn-success btn-air-success btn-xs"><i
+                                                        class="fa fa-info-circle" aria-hidden="true"></i> Detail</button>
+                                            </td>
+                                            <td><button class="btn btn-pill btn-danger btn-air-danger btn-xs" type="button"
+                                                    title="btn btn-pill btn-danger btn-air-danger btn-xs"> Opened</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Alert from device 8cf9574000002d3d</td>
+                                            <td> <button class="btn btn-pill btn-success btn-air-success btn-xs"
+                                                    type="button"
+                                                    title="btn btn-pill btn-success btn-air-success btn-xs"><i
+                                                        class="fa fa-info-circle" aria-hidden="true"></i> Detail</button>
+                                            </td>
+                                            <td><button class="btn btn-pill btn-danger btn-air-danger btn-xs" type="button"
+                                                    title="btn btn-pill btn-danger btn-air-danger btn-xs"> Opened</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Alert from device 8cf9574000002d3d</td>
+                                            <td> <button class="btn btn-pill btn-success btn-air-success btn-xs"
+                                                    type="button"
+                                                    title="btn btn-pill btn-success btn-air-success btn-xs"><i
+                                                        class="fa fa-info-circle" aria-hidden="true"></i> Detail</button>
+                                            </td>
+                                            <td><button class="btn btn-pill btn-danger btn-air-danger btn-xs" type="button"
+                                                    title="btn btn-pill btn-danger btn-air-danger btn-xs"> Opened</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Alert from device 8cf9574000002d3d</td>
+                                            <td> <button class="btn btn-pill btn-success btn-air-success btn-xs"
+                                                    type="button"
+                                                    title="btn btn-pill btn-success btn-air-success btn-xs"><i
+                                                        class="fa fa-info-circle" aria-hidden="true"></i> Detail</button>
+                                            </td>
+                                            <td><button class="btn btn-pill btn-danger btn-air-danger btn-xs" type="button"
+                                                    title="btn btn-pill btn-danger btn-air-danger btn-xs"> Opened</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Alert from device 8cf9574000002d3d</td>
+                                            <td> <button class="btn btn-pill btn-success btn-air-success btn-xs"
+                                                    type="button"
+                                                    title="btn btn-pill btn-success btn-air-success btn-xs"><i
+                                                        class="fa fa-info-circle" aria-hidden="true"></i> Detail</button>
+                                            </td>
+                                            <td><button class="btn btn-pill btn-danger btn-air-danger btn-xs" type="button"
+                                                    title="btn btn-pill btn-danger btn-air-danger btn-xs"> Opened</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Alert from device 8cf9574000002d3d</td>
+                                            <td> <button class="btn btn-pill btn-success btn-air-success btn-xs"
+                                                    type="button"
+                                                    title="btn btn-pill btn-success btn-air-success btn-xs"><i
+                                                        class="fa fa-info-circle" aria-hidden="true"></i> Detail</button>
+                                            </td>
+                                            <td><button class="btn btn-pill btn-danger btn-air-danger btn-xs" type="button"
+                                                    title="btn btn-pill btn-danger btn-air-danger btn-xs">
+                                                    Opened</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Alert from device 8cf9574000002d3d</td>
+                                            <td> <button class="btn btn-pill btn-success btn-air-success btn-xs"
+                                                    type="button"
+                                                    title="btn btn-pill btn-success btn-air-success btn-xs"><i
+                                                        class="fa fa-info-circle" aria-hidden="true"></i> Detail</button>
+                                            </td>
+                                            <td><button class="btn btn-pill btn-danger btn-air-danger btn-xs"
+                                                    type="button" title="btn btn-pill btn-danger btn-air-danger btn-xs">
+                                                    Opened</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Alert from device 8cf9574000002d3d</td>
+                                            <td> <button class="btn btn-pill btn-success btn-air-success btn-xs"
+                                                    type="button"
+                                                    title="btn btn-pill btn-success btn-air-success btn-xs"><i
+                                                        class="fa fa-info-circle" aria-hidden="true"></i> Detail</button>
+                                            </td>
+                                            <td><button class="btn btn-pill btn-danger btn-air-danger btn-xs"
+                                                    type="button" title="btn btn-pill btn-danger btn-air-danger btn-xs">
+                                                    Opened</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-5 col-50 box-col-5 des-xl-50">
+                    <div class="card radius-10 border-start border-0 border-3">
+                        <div class="card-body" style="height: 450px">
+                            <script src="https://code.highcharts.com/highcharts.js"></script>
+                            <script src="https://code.highcharts.com/modules/exporting.js"></script>
+                            <script src="https://code.highcharts.com/modules/export-data.js"></script>
+                            <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+                            <figure class="highcharts-figure">
+                                <div id="container"></div>
+                            </figure>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-sm-12" style="padding-right: 20px; padding-left:20px">
+                <div class="card radius-10 border-start border-0 border-3">
+                    <div class="card-body">
+                        <div class="map-embed" id="map"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 @endsection
 @push('js')
@@ -413,5 +532,53 @@
                 });
             }
         });
+    </script>
+    <script>
+        // Data retrieved from https://netmarketshare.com/
+        // Build the chart
+        Highcharts.chart('container', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Tickets Status',
+                align: 'left'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            accessibility: {
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                name: 'Brands',
+                colorByPoint: true,
+                data: [{
+                    name: 'Opened',
+                    y: 100
+                }, {
+                    name: 'Closed',
+                    y: 12
+                }]
+            }]
+        });
+    </script>
+    <script>
+        $('.dataTables-example').DataTable();
     </script>
 @endpush
