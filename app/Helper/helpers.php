@@ -372,7 +372,7 @@ function createTiket($device_id, $devEUI, $data, $time)
                         // cek udah ada tiket atw blm
                         $tickets = DB::table('tickets')
                             ->where('device_id', '=', $device_id)
-                            ->first();
+                            ->latest()->first();
                         if ($tickets) {
                             // cek statusnya opened / closed, jika closed buat tiket baru
                             if ($tickets->status=='Closed') {

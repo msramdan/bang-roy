@@ -7,6 +7,7 @@ use App\Http\Requests\{StoreTicketRequest, UpdateTicketRequest};
 use Yajra\DataTables\Facades\DataTables;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class TicketController extends Controller
 {
@@ -54,7 +55,8 @@ class TicketController extends Controller
                 })
                 ->addColumn('user', function ($row) {
                     if ($row->update_by) {
-                        return $row->update_by;
+                        $user = User::find($row->update_by);
+                        return $user->name;
                     }
 
                     return '-';
