@@ -6,10 +6,11 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 @endpush
 @section('content')
+    <br>
     <div class="page-body">
         <div class="container-fluid">
             <div class="row">
-                <div class="col">
+                <div class="col-xl-3 col-sm-6 box-col-3">
                     <div class="card radius-10 border-start border-0 border-3 border-info">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
@@ -25,7 +26,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col-xl-3 col-sm-6 box-col-3">
                     <div class="card radius-10 border-start border-0 border-3 border-danger">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
@@ -41,7 +42,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col-xl-3 col-sm-6 box-col-3">
                     <div class="card radius-10 border-start border-0 border-3 border-success">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
@@ -57,7 +58,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col-xl-3 col-sm-6 box-col-3">
                     <div class="card radius-10 border-start border-0 border-3 border-warning">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
@@ -76,7 +77,7 @@
             </div>
 
             <div class="row">
-                <div class="col-xl-3 col-sm-6 box-col-3 chart_data_right">
+                <div class="col-xl-3 col-sm-6 box-col-3 ">
                     <div class="card income-card card-secondary" style="height: 320px">
                         <div class="card-body align-items-center">
                             <div class="round-progress knob-block text-center">
@@ -90,7 +91,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-sm-6 box-col-3 chart_data_right second">
+                <div class="col-xl-3 col-sm-6 box-col-3 ">
                     <div class="card income-card card-primary" style="height: 320px">
                         <div class="card-body">
                             <div class="round-progress knob-block text-center">
@@ -105,7 +106,7 @@
                     </div>
                 </div>
 
-                <div class="col-xl-3 col-sm-6 box-col-3 chart_data_right">
+                <div class="col-xl-3 col-sm-6 box-col-3">
                     <div class="card income-card card-secondary" style="height: 320px">
                         <div class="card-body align-items-center">
                             <div class="round-progress knob-block text-center">
@@ -119,7 +120,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-sm-6 box-col-3 chart_data_right second">
+                <div class="col-xl-3 col-sm-6 box-col-3 ">
                     <div class="card income-card card-primary" style="height: 320px">
                         <div class="card-body">
                             <div class="round-progress knob-block text-center">
