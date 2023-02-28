@@ -3,7 +3,6 @@
 @section('title', __('Dashboard'))
 @push('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/dashboard.css') }}">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 @endpush
 @section('content')
     <br>
@@ -315,7 +314,7 @@
     </div>
 @endsection
 @push('js')
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="{{ asset('assets/js/apexcharts.js') }}"></script>
 
     <script>
         var options = {
