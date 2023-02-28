@@ -20,6 +20,18 @@ function setting_web()
     return $setting;
 }
 
+function getInstance($id)
+{
+    $instances = DB::table('instances')->where('id', $id)->first();
+    return $instances;
+}
+
+function getCluster($id)
+{
+    $clusters = DB::table('clusters')->where('id', $id)->first();
+    return $clusters;
+}
+
 function set_show($uri)
 {
     if (is_array($uri)) {

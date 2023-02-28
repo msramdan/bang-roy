@@ -29,9 +29,9 @@
                                 <table class="table table-striped table-xs" id="data-table" role="grid">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th>{{ __('Branches') }}</th>
+                                            <th>{{ __('Cluster') }}</th>
                                             <th>{{ __('Subject') }}</th>
-                                            {{-- <th>{{ __('Description') }}</th> --}}
                                             <th>{{ __('Status') }}</th>
                                             <th>{{ __('Update By') }}</th>
                                             <th>{{ __('Created At') }}</th>
@@ -57,18 +57,17 @@
             serverSide: true,
             ajax: "{{ route('tickets.index') }}",
             columns: [{
-                    data: 'DT_RowIndex',
-                    name: 'DT_RowIndex',
-                    orderable: false,
-                    searchable: false
-                }, {
+                    data: 'branches',
+                    name: 'branches',
+                },
+                {
+                    data: 'cluster',
+                    name: 'cluster',
+                },
+                {
                     data: 'subject',
                     name: 'subject',
                 },
-                // {
-                //     data: 'description',
-                //     name: 'description',
-                // },
                 {
                     data: 'status',
                     name: 'status',

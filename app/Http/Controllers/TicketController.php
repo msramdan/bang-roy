@@ -25,7 +25,7 @@ class TicketController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $tickets = Ticket::with('device:id,dev_eui')->orderBy('tickets.id', 'DESC');
+            $tickets = Ticket::with('device:id,dev_eui,instance_id,cluster_id')->orderBy('tickets.id', 'DESC');
 
             return DataTables::of($tickets)
                 ->addIndexColumn()
@@ -60,6 +60,12 @@ class TicketController extends Controller
                     }
 
                     return '-';
+                })
+                ->addColumn('branches', function ($row) {
+                    return $row->device ? getInstance($row->device->instance_id)->instance_name  : '';
+                })
+                ->addColumn('cluster', function ($row) {
+                    return $row->device ? getCluster($row->device->cluster_id)->cluster_name  : '';
                 })
 
                 ->addColumn('device', function ($row) {
