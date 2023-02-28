@@ -76,7 +76,7 @@
             </div>
 
             <div class="row">
-                <div class="col-xl-3 col-sm-6 box-col-3 ">
+                <div class="col-xl-3 col-50 box-col-3 des-xl-50">
                     <div class="card income-card card-secondary" style="height: 320px">
                         <div class="card-body align-items-center">
                             <div class="round-progress knob-block text-center">
@@ -90,7 +90,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-sm-6 box-col-3 ">
+                <div class="col-xl-3 col-50 box-col-3 des-xl-50">
                     <div class="card income-card card-primary" style="height: 320px">
                         <div class="card-body">
                             <div class="round-progress knob-block text-center">
@@ -105,7 +105,7 @@
                     </div>
                 </div>
 
-                <div class="col-xl-3 col-sm-6 box-col-3">
+                <div class="col-xl-3 col-50 box-col-3 des-xl-50">
                     <div class="card income-card card-secondary" style="height: 320px">
                         <div class="card-body align-items-center">
                             <div class="round-progress knob-block text-center">
@@ -119,7 +119,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-sm-6 box-col-3 ">
+                <div class="col-xl-3 col-50 box-col-3 des-xl-50">
                     <div class="card income-card card-primary" style="height: 320px">
                         <div class="card-body">
                             <div class="round-progress knob-block text-center">
