@@ -38,7 +38,7 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>{{ __('Instance') }}</th>
+                                            <th>{{ __('Branches') }}</th>
                                             <th>{{ __('Cluster Kode') }}</th>
                                             <th>{{ __('Cluster Name') }}</th>
                                             <th>{{ __('Created At') }}</th>

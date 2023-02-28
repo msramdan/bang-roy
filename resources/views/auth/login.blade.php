@@ -43,14 +43,14 @@
                                 <label>Email Address</label>
                                 <div class="input-group"><span class="input-group-text"><i class="icon-email"></i></span>
                                     <input class="form-control" type="email" name="email" required="" placeholder=""
-                                        value="saepulramdan244@gmail.com" required>
+                                        value="" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
                                 <div class="input-group"><span class="input-group-text"><i class="icon-lock"></i></span>
                                     <input class="form-control" type="password" name="password" id="password"
-                                        value="password" required="" placeholder="" required>
+                                        value="" required="" placeholder="" required>
                                 </div>
                             </div>
                             <div class="form-group">

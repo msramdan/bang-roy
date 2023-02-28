@@ -24,15 +24,10 @@ Route::get('kelurahan/{kecamatanId}', [WilayahController::class, 'kelurahan'])->
 Route::get('cluster/{instance_id}', [InstanceController::class, 'get_cluster'])->name('api.cluster');
 
 Route::middleware(['auth', 'web'])->group(function () {
-    // $instances = Instance::get();
-    // $instances = Instance::get();
-    // Route::get('/', fn () => view('dashboard', [
-    //     'instances' => $instances
-    // ]));
-
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-
+    Route::get('/dashboard', function () {
+        return redirect()->route('dashboard');
+    });
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', ProfileController::class)->name('profile');
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleAndPermissionController::class);
