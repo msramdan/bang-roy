@@ -76,38 +76,57 @@
             </div>
 
             <div class="row">
-                <div class="col-xl-6 col-50 box-col-6 des-xl-50">
-                    <div class="card radius-10 border-start border-0 border-3" style="height: 150px">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <div>
-                                    <p class="mb-0 text-secondary">Device Status</p>
-                                    {{-- Healthy Devices --}}
-                                    <h3 class="my-1 text-success"> <b>{{ App\Models\Instance::count() }} Healthy
-                                            Devices</b> </h3>
-
+                <div class="col-xl-3 col-sm-6 box-col-3 chart_data_right">
+                    <div class="card income-card card-secondary" style="height: 320px">
+                        <div class="card-body align-items-center">
+                            <div class="round-progress knob-block text-center">
+                                <p>Temperature Status</p>
+                                <div id="chart">
                                 </div>
-                                <div class="widgets-icons-2 rounded-circle  text-white ms-auto"
-                                    style="background-color: #24695c"><i class="fa fa-check" aria-hidden="true"></i>
-                                </div>
+                                <h5 class="my-1 text-success"> <b><i class="fa fa-check" aria-hidden="true"></i> Healthy</b>
+                                    </h3>
+                                    <p class="my-1 text-success">20/20</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-6 col-50 box-col-6 des-xl-50">
-                    <div class="card radius-10 border-start border-0 border-3" style="height: 150px">
+                <div class="col-xl-3 col-sm-6 box-col-3 chart_data_right second">
+                    <div class="card income-card card-primary" style="height: 320px">
                         <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <div>
-                                    <p class="mb-0 text-secondary">Device Status</p>
-                                    <h3 class="my-1 text-danger"> <b>{{ App\Models\Instance::count() }} Warning Devices</b>
-                                    </h3>
+                            <div class="round-progress knob-block text-center">
+                                <p>Branches Status</p>
+                                <div id="chart2">
+                                </div>
+                                <h5 class="my-1 text-danger"> <b> <i class="fa fa-exclamation-triangle"
+                                            aria-hidden="true"></i> Warning</b> </h3>
+                                    <p class="my-1 text-danger">15/20</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="col-xl-3 col-sm-6 box-col-3 chart_data_right">
+                    <div class="card income-card card-secondary" style="height: 320px">
+                        <div class="card-body align-items-center">
+                            <div class="round-progress knob-block text-center">
+                                <p>Clusters Status</p>
+                                <div id="chart3">
                                 </div>
-                                <div class="widgets-icons-2 rounded-circle text-white ms-auto"
-                                    style="background-color:#d22d3d "><i class="fa fa-exclamation-triangle"
-                                        aria-hidden="true"></i>
-                                </div>
+                                <h5 class="my-1 text-success"> <b><i class="fa fa-check" aria-hidden="true"></i> Healthy</b>
+                                    </h3>
+                                    <p class="my-1 text-success">20/20</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 box-col-3 chart_data_right second">
+                    <div class="card income-card card-primary" style="height: 320px">
+                        <div class="card-body">
+                            <div class="round-progress knob-block text-center">
+                                <p>Overall Status</p>
+
+                                <i class="fa-solid fa-exclamation-triangle fa-10x my-1 text-danger"></i>
+                                <h5 class="my-1 text-danger"> <b> Warning Alert</b> </h3>
 
                             </div>
                         </div>
@@ -295,6 +314,219 @@
     </div>
 @endsection
 @push('js')
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <script>
+        var options = {
+            series: [100],
+            chart: {
+                height: 200,
+                type: 'radialBar',
+                foreColor: '#fff',
+            },
+            plotOptions: {
+                radialBar: {
+                    startAngle: -135,
+                    endAngle: 225,
+                    hollow: {
+                        margin: 0,
+                        size: '70%',
+                        background: '#fff',
+                        image: undefined,
+                        imageOffsetX: 0,
+                        imageOffsetY: 0,
+                        position: 'front',
+                        dropShadow: {
+                            enabled: true,
+                            top: 3,
+                            left: 0,
+                            blur: 4,
+                            opacity: 0.24
+                        }
+                    },
+                    track: {
+                        background: '#fff',
+                        strokeWidth: '67%',
+                        margin: 0, // margin is in pixels
+                        dropShadow: {
+                            enabled: true,
+                            top: -3,
+                            left: 0,
+                            blur: 4,
+                            opacity: 0.35
+                        }
+                    },
+
+                    dataLabels: {
+                        show: true,
+                        name: {
+                            offsetY: -10,
+                            show: true,
+                            color: '#888',
+                            fontSize: '17px'
+                        },
+                        value: {
+                            formatter: function(val) {
+                                return parseInt(val);
+                            },
+                            color: '#111',
+                            fontSize: '36px',
+                            show: true,
+                        }
+                    }
+                }
+            },
+            stroke: {
+                lineCap: 'round'
+            },
+            labels: ['Percent'],
+            colors: ['#24695C']
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+    </script>
+
+    <script>
+        var options = {
+            series: [75],
+            chart: {
+                height: 200,
+                type: 'radialBar',
+            },
+            plotOptions: {
+                radialBar: {
+                    startAngle: -135,
+                    endAngle: 225,
+                    hollow: {
+                        margin: 0,
+                        size: '70%',
+                        background: '#fff',
+                        image: undefined,
+                        imageOffsetX: 0,
+                        imageOffsetY: 0,
+                        position: 'front',
+                        dropShadow: {
+                            enabled: true,
+                            top: 3,
+                            left: 0,
+                            blur: 4,
+                            opacity: 0.24
+                        }
+                    },
+                    track: {
+                        background: '#fff',
+                        strokeWidth: '67%',
+                        margin: 0, // margin is in pixels
+                        dropShadow: {
+                            enabled: true,
+                            top: -3,
+                            left: 0,
+                            blur: 4,
+                            opacity: 0.35
+                        }
+                    },
+
+                    dataLabels: {
+                        show: true,
+                        name: {
+                            offsetY: -10,
+                            show: true,
+                            color: '#888',
+                            fontSize: '17px'
+                        },
+                        value: {
+                            formatter: function(val) {
+                                return parseInt(val);
+                            },
+                            color: '#111',
+                            fontSize: '36px',
+                            show: true,
+                        }
+                    }
+                }
+            },
+            stroke: {
+                lineCap: 'round'
+            },
+            labels: ['Percent'],
+            colors: ['#EB4656']
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart2"), options);
+        chart.render();
+    </script>
+
+    <script>
+        var options = {
+            series: [100],
+            chart: {
+                height: 200,
+                type: 'radialBar',
+            },
+            plotOptions: {
+                radialBar: {
+                    startAngle: -135,
+                    endAngle: 225,
+                    hollow: {
+                        margin: 0,
+                        size: '70%',
+                        background: '#fff',
+                        image: undefined,
+                        imageOffsetX: 0,
+                        imageOffsetY: 0,
+                        position: 'front',
+                        dropShadow: {
+                            enabled: true,
+                            top: 3,
+                            left: 0,
+                            blur: 4,
+                            opacity: 0.24
+                        }
+                    },
+                    track: {
+                        background: '#fff',
+                        strokeWidth: '67%',
+                        margin: 0, // margin is in pixels
+                        dropShadow: {
+                            enabled: true,
+                            top: -3,
+                            left: 0,
+                            blur: 4,
+                            opacity: 0.35
+                        }
+                    },
+
+                    dataLabels: {
+                        show: true,
+                        name: {
+                            offsetY: -10,
+                            show: true,
+                            color: '#888',
+                            fontSize: '17px'
+                        },
+                        value: {
+                            formatter: function(val) {
+                                return parseInt(val);
+                            },
+                            color: '#111',
+                            fontSize: '36px',
+                            show: true,
+                        }
+                    }
+                }
+            },
+            stroke: {
+                lineCap: 'round'
+            },
+            labels: ['Percent'],
+            colors: ['#24695C']
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart3"), options);
+        chart.render();
+    </script>
+
     <script>
         $(document).ready(function() {
             var i = 1;
