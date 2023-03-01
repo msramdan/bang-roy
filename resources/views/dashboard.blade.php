@@ -95,7 +95,7 @@
                                         <?= $countDeviceError > 0 ? 'Warning' : 'Healthy' ?> </b>
                                     </h3>
                                     <p class="my-1  <?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?>">
-                                        <a
+                                        <a class="<?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?>"
                                             href="{{ route('tickets.index') }}">{{ $countDevice - $countDeviceError }}/{{ $countDevice }}</a>
 
                                     </p>
@@ -116,7 +116,7 @@
                                         <?= $selectBranchesError > 0 ? 'Warning' : 'Healthy' ?></b>
                                     </h3>
                                     <p class="my-1 <?= $selectBranchesError > 0 ? 'text-danger' : 'text-success' ?>">
-                                        <a
+                                        <a class="<?= $selectBranchesError > 0 ? 'text-danger' : 'text-success' ?>"
                                             href="{{ route('tickets.index') }}">{{ $countBranches - $selectBranchesError }}/{{ $countBranches }}</a>
 
                                     </p>
@@ -137,7 +137,7 @@
                                         <?= $selectClusterError > 0 ? 'Warning' : 'Healthy' ?></b>
                                     </h3>
                                     <p class="my-1 <?= $selectClusterError > 0 ? 'text-danger' : 'text-success' ?>">
-                                        <a
+                                        <a class="<?= $selectClusterError > 0 ? 'text-danger' : 'text-success' ?>"
                                             href="{{ route('tickets.index') }}">{{ $countCluster - $selectClusterError }}/{{ $countCluster }}</a>
 
                                     </p>
@@ -152,11 +152,11 @@
                                 <p>Overall Status</p>
                                 <i
                                     class="fa-solid <?= $countDeviceError > 0 ? 'fa-exclamation-triangle' : 'fa fa-check' ?> fa-10x my-1 <?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?>"></i>
-                                <h5 class="my-1 <?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?>"> <b>
-                                        <a
-                                            href="{{ route('tickets.index') }}"><?= $countDeviceError > 0 ? 'Warning Alert' : 'Perfectly Healthy' ?></a>
+                                <h5 class="my-1 <?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?>">
+                                    <b><a class="<?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?>"
+                                            href="{{ route('tickets.index') }}"><?= $countDeviceError > 0 ? 'Warning Alert' : 'Perfectly Healthy' ?></a></b>
 
-                                    </b></b> </h3>
+                                </h5>
 
                             </div>
                         </div>
