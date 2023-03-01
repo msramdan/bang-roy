@@ -43,6 +43,14 @@ class ReportGatewayController extends Controller
                 ->rawColumns(['status_online', 'action', 'gateways.include.action', 'pktfwd_status'])
                 ->toJson();
         }
-        return view('report-gateways.index');
+        $from = date('Y-m-d') . " 00:00:00";
+        $to = date('Y-m-d') . " 23:59:59";
+        $microFrom = strtotime($from) * 1000;
+        $microTo = strtotime($to) * 1000;
+
+        return view('report-gateways.index',[
+            'microFrom' => $microFrom,
+            'microTo' => $microTo,
+        ]);
     }
 }
