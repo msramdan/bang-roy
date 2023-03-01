@@ -56,3 +56,6 @@ Route::resource('maintenances', App\Http\Controllers\MaintenanceController::clas
 Route::resource('clusters', App\Http\Controllers\ClusterController::class)->middleware('auth');
 Route::resource('devices', App\Http\Controllers\DeviceController::class)->middleware('auth');
 Route::resource('latest-datas', App\Http\Controllers\LatestDataController::class)->middleware('auth');
+
+Route::resource('report-gateways', App\Http\Controllers\ReportGatewayController::class)->middleware('auth');
+Route::resource('report-devices', App\Http\Controllers\ReportDeviceController::class)->middleware('auth');

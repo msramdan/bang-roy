@@ -109,229 +109,262 @@ return [
      * This code below always changes when you use a generator and maybe you must lint or format the code.
      */
     'sidebars' => [
-        [
-            'header' => 'Latest Datas',
-            'permissions' => [
-                'latest data view'
-            ],
-            'menus' => [
-                [
-                    'title' => 'Latest Data Device',
-                    'icon' => '<i data-feather="check-square"></i>',
-                    'route' => '/latest-datas',
-                    'permission' => 'latest data view',
-                    'permissions' => [],
-                    'submenus' => []
-                ]
-            ]
+    [
+        'header' => 'Latest Datas',
+        'permissions' => [
+            'latest data view'
         ],
-        [
-            'header' => 'Devices',
-            'permissions' => [
-                'device view'
-            ],
-            'menus' => [
-                [
-                    'title' => 'Management Devices',
-                    'icon' => '<i data-feather="airplay"></i>',
-                    'route' => '/devices',
-                    'permission' => 'device view',
-                    'permissions' => [],
-                    'submenus' => []
-                ]
+        'menus' => [
+            [
+                'title' => 'Latest Data Device',
+                'icon' => '<i data-feather="check-square"></i>',
+                'route' => '/latest-datas',
+                'permission' => 'latest data view',
+                'permissions' => [],
+                'submenus' => []
             ]
+        ]
+    ],
+    [
+        'header' => 'Devices',
+        'permissions' => [
+            'device view'
         ],
-        [
-            'header' => 'Branches',
-            'permissions' => [
-                'instance view',
-                'cluster view'
-            ],
-            'menus' => [
-                [
-                    'title' => 'Branches',
-                    'icon' => '<i data-feather="database"></i>',
-                    'route' => null,
-                    'permission' => null,
-                    'permissions' => [
-                        'instance view',
-                        'cluster view'
+        'menus' => [
+            [
+                'title' => 'Management Devices',
+                'icon' => '<i data-feather="airplay"></i>',
+                'route' => '/devices',
+                'permission' => 'device view',
+                'permissions' => [],
+                'submenus' => []
+            ]
+        ]
+    ],
+    [
+        'header' => 'Branches',
+        'permissions' => [
+            'instance view',
+            'cluster view'
+        ],
+        'menus' => [
+            [
+                'title' => 'Branches',
+                'icon' => '<i data-feather="database"></i>',
+                'route' => null,
+                'permission' => null,
+                'permissions' => [
+                    'instance view',
+                    'cluster view'
+                ],
+                'submenus' => [
+                    [
+                        'title' => 'Branches Data',
+                        'route' => '/instances',
+                        'permission' => 'instance view'
                     ],
-                    'submenus' => [
-                        [
-                            'title' => 'Branches Data',
-                            'route' => '/instances',
-                            'permission' => 'instance view'
-                        ],
-                        [
-                            'title' => 'Clusters',
-                            'route' => '/clusters',
-                            'permission' => 'cluster view'
-                        ]
+                    [
+                        'title' => 'Clusters',
+                        'route' => '/clusters',
+                        'permission' => 'cluster view'
                     ]
                 ]
             ]
+        ]
+    ],
+    [
+        'header' => 'Gatewaies',
+        'permissions' => [
+            'gateway view'
         ],
-        [
-            'header' => 'Gatewaies',
-            'permissions' => [
-                'gateway view'
-            ],
-            'menus' => [
-                [
-                    'title' => 'Gateway',
-                    'icon' => '<i data-feather="hard-drive"></i>',
-                    'route' => '/gateways',
-                    'permission' => 'gateway view',
-                    'permissions' => [],
-                    'submenus' => []
-                ]
+        'menus' => [
+            [
+                'title' => 'Gateway',
+                'icon' => '<i data-feather="hard-drive"></i>',
+                'route' => '/gateways',
+                'permission' => 'gateway view',
+                'permissions' => [],
+                'submenus' => []
             ]
+        ]
+    ],
+    [
+        'header' => 'Tickets',
+        'permissions' => [
+            'ticket view'
         ],
-        [
-            'header' => 'Tickets',
-            'permissions' => [
-                'ticket view'
-            ],
-            'menus' => [
-                [
-                    'title' => 'Tickets',
-                    'icon' => '<i data-feather="file-text"></i>',
-                    'route' => '/tickets',
-                    'permission' => 'ticket view',
-                    'permissions' => [],
-                    'submenus' => []
-                ]
+        'menus' => [
+            [
+                'title' => 'Tickets',
+                'icon' => '<i data-feather="file-text"></i>',
+                'route' => '/tickets',
+                'permission' => 'ticket view',
+                'permissions' => [],
+                'submenus' => []
             ]
+        ]
+    ],
+    [
+        'header' => 'System',
+        'permissions' => [
+            'rawdata view',
+            'parsed view'
         ],
-        [
-            'header' => 'System',
-            'permissions' => [
-                'rawdata view',
-                'parsed view'
-            ],
-            'menus' => [
-                [
-                    'title' => 'System Log',
-                    'icon' => '<i data-feather="list"></i>',
-                    'route' => null,
-                    'permission' => null,
-                    'permissions' => [
-                        'rawdata view',
-                        'parsed view'
+        'menus' => [
+            [
+                'title' => 'System Log',
+                'icon' => '<i data-feather="list"></i>',
+                'route' => null,
+                'permission' => null,
+                'permissions' => [
+                    'rawdata view',
+                    'parsed view'
+                ],
+                'submenus' => [
+                    [
+                        'title' => 'Rawdata',
+                        'route' => '/rawdatas',
+                        'permission' => 'rawdata view'
                     ],
-                    'submenus' => [
-                        [
-                            'title' => 'Rawdata',
-                            'route' => '/rawdatas',
-                            'permission' => 'rawdata view'
-                        ],
-                        [
-                            'title' => 'Parseds',
-                            'route' => '/parseds',
-                            'permission' => 'parsed view'
-                        ]
+                    [
+                        'title' => 'Parseds',
+                        'route' => '/parseds',
+                        'permission' => 'parsed view'
                     ]
                 ]
             ]
+        ]
+    ],
+    [
+        'header' => 'Main',
+        'permissions' => [
+            'subnet view',
+            'province view',
+            'kabkot view',
+            'kecamatan view',
+            'kelurahan view',
+            'maintenance view',
+            'maintenance view'
         ],
-        [
-            'header' => 'Main',
-            'permissions' => [
-                'subnet view',
-                'province view',
-                'kabkot view',
-                'kecamatan view',
-                'kelurahan view',
-                'maintenance view',
-                'maintenance view'
-            ],
-            'menus' => [
-                [
-                    'title' => 'Master Data',
-                    'icon' => '<i data-feather="list"></i>',
-                    'route' => null,
-                    'permission' => null,
-                    'permissions' => [
-                        'maintenance view',
-                        'subnet view',
-                        'province view',
-                        'kabkot view',
-                        'kecamatan view',
-                        'kelurahan view'
+        'menus' => [
+            [
+                'title' => 'Master Data',
+                'icon' => '<i data-feather="list"></i>',
+                'route' => null,
+                'permission' => null,
+                'permissions' => [
+                    'maintenance view',
+                    'subnet view',
+                    'province view',
+                    'kabkot view',
+                    'kecamatan view',
+                    'kelurahan view'
+                ],
+                'submenus' => [
+                    [
+                        'title' => 'Maintenances',
+                        'route' => '/maintenances',
+                        'permission' => 'maintenance view'
                     ],
-                    'submenus' => [
-                        [
-                            'title' => 'Maintenances',
-                            'route' => '/maintenances',
-                            'permission' => 'maintenance view'
-                        ],
-                        [
-                            'title' => 'Subnets',
-                            'route' => '/subnets',
-                            'permission' => 'subnet view'
-                        ],
-                        [
-                            'title' => 'Provinsi',
-                            'route' => '/provinces',
-                            'permission' => 'province view'
-                        ],
-                        [
-                            'title' => 'Kabupaten/Kota',
-                            'route' => '/kabkots',
-                            'permission' => 'kabkot view'
-                        ],
-                        [
-                            'title' => 'Kecamatan',
-                            'route' => '/kecamatans',
-                            'permission' => 'kecamatan view'
-                        ],
-                        [
-                            'title' => 'Kelurahan',
-                            'route' => '/kelurahans',
-                            'permission' => 'kelurahan view'
-                        ]
+                    [
+                        'title' => 'Subnets',
+                        'route' => '/subnets',
+                        'permission' => 'subnet view'
+                    ],
+                    [
+                        'title' => 'Provinsi',
+                        'route' => '/provinces',
+                        'permission' => 'province view'
+                    ],
+                    [
+                        'title' => 'Kabupaten/Kota',
+                        'route' => '/kabkots',
+                        'permission' => 'kabkot view'
+                    ],
+                    [
+                        'title' => 'Kecamatan',
+                        'route' => '/kecamatans',
+                        'permission' => 'kecamatan view'
+                    ],
+                    [
+                        'title' => 'Kelurahan',
+                        'route' => '/kelurahans',
+                        'permission' => 'kelurahan view'
                     ]
                 ]
             ]
+        ]
+    ],
+    [
+        'header' => 'Report',
+        'permissions' => [
+            'report gateway',
+            'report device',
+            'report gateway view',
+            'report device view'
         ],
-        [
-            'header' => 'Utilities',
-            'permissions' => [
-                'setting view',
-                'role & permission view',
-                'user view'
-            ],
-            'menus' => [
-                [
-                    'title' => 'Utilities',
-                    'icon' => '<i data-feather="settings"></i>',
-                    'route' => null,
-                    'permission' => null,
-                    'permissions' => [
-                        'setting view',
-                        'role & permission view',
-                        'user view'
+        'menus' => [
+            [
+                'title' => 'Report',
+                'icon' => '<i data-feather="book"></i>',
+                'route' => null,
+                'permission' => null,
+                'permissions' => [
+                    'report gateway view',
+                    'report device view'
+                ],
+                'submenus' => [
+                    [
+                        'title' => 'Report Gateway Log',
+                        'route' => '/report-gateways',
+                        'permission' => 'report gateway view'
                     ],
-                    'submenus' => [
-                        [
-                            'title' => 'Settings App',
-                            'route' => '/settings',
-                            'permission' => 'setting view'
-                        ],
-                        [
-                            'title' => 'Users',
-                            'route' => '/users',
-                            'permission' => 'user view'
-                        ],
-                        [
-                            'title' => 'Roles & permissions',
-                            'route' => '/roles',
-                            'permission' => 'role & permission view'
-                        ]
+                    [
+                        'title' => 'Report Devices Log',
+                        'route' => '/report-devices',
+                        'permission' => 'report device view'
+                    ]
+                ]
+            ]
+        ]
+    ],
+    [
+        'header' => 'Utilities',
+        'permissions' => [
+            'setting view',
+            'role & permission view',
+            'user view'
+        ],
+        'menus' => [
+            [
+                'title' => 'Utilities',
+                'icon' => '<i data-feather="settings"></i>',
+                'route' => null,
+                'permission' => null,
+                'permissions' => [
+                    'setting view',
+                    'role & permission view',
+                    'user view'
+                ],
+                'submenus' => [
+                    [
+                        'title' => 'Settings App',
+                        'route' => '/settings',
+                        'permission' => 'setting view'
+                    ],
+                    [
+                        'title' => 'Users',
+                        'route' => '/users',
+                        'permission' => 'user view'
+                    ],
+                    [
+                        'title' => 'Roles & permissions',
+                        'route' => '/roles',
+                        'permission' => 'role & permission view'
                     ]
                 ]
             ]
         ]
     ]
+]
 ];

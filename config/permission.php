@@ -196,5 +196,6 @@ return [
         ['group' => 'clusters', 'access' => ['cluster view', 'cluster create', 'cluster edit', 'cluster delete']],
         ['group' => 'devices', 'access' => ['device view', 'device create', 'device edit', 'device delete']],
         ['group' => 'latest datas', 'access' => ['latest data view']],
-    ],
-];
+        ['group' => 'report gateways', 'access' => ['report gateway view']],
+        ['group' => 'report devices', 'access' => ['report device view']],
+		],];

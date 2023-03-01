@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('Gateways'))
+@section('title', __('Report Gateways'))
 
 @section('content')
     <div class="page-body">
@@ -8,10 +8,10 @@
             <div class="page-header" style="margin-top: 5px">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h3>{{ __('Gateways') }}</h3>
+                        <h3>{{ __('Report Gateways') }}</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html">{{ __('Dashboard') }}</a></li>
-                            <li class="breadcrumb-item active">{{ __('Gateways') }}</li>
+                            <li class="breadcrumb-item active">{{ __('Report Gateways Log') }}</li>
                         </ol>
                     </div>
                     <div class="col-sm-6">
@@ -19,6 +19,7 @@
                 </div>
             </div>
         </div>
+
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-12">
