@@ -14,7 +14,7 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div>
-                                    <p class="mb-0 text-secondary">Total Intances</p>
+                                    <p class="mb-0 text-secondary">Total Branches</p>
                                     <h4 class="my-1 text-info">{{ App\Models\Instance::count() }} Data</h4>
 
                                 </div>
@@ -47,7 +47,7 @@
                             <div class="d-flex align-items-center">
                                 <div>
                                     <p class="mb-0 text-secondary">Total Devices</p>
-                                    <h4 class="my-1 text-success">{{ App\Models\Device::count() }} Data</h4>
+                                    <h4 class="my-1 text-success">{{ $countDevice }} Data</h4>
 
                                 </div>
                                 <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i
@@ -83,9 +83,10 @@
                                 <p>Temperature Status</p>
                                 <div id="chart">
                                 </div>
-                                <h5 class="my-1 text-success"> <b><i class="fa fa-check" aria-hidden="true"></i> Healthy</b>
+                                <h5 class="my-1 <?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?> text-success">
+                                    <b><i class="fa fa-check" aria-hidden="true"></i> Healthy</b>
                                     </h3>
-                                    <p class="my-1 text-success">20/20</p>
+                                    <p class="my-1 text-success">{{ $countDeviceError }}/{{ $countDevice }}</p>
                             </div>
                         </div>
                     </div>
@@ -99,7 +100,7 @@
                                 </div>
                                 <h5 class="my-1 text-danger"> <b> <i class="fa fa-exclamation-triangle"
                                             aria-hidden="true"></i> Warning</b> </h3>
-                                    <p class="my-1 text-danger">15/20</p>
+                                    <p class="my-1 text-danger">15/{{ App\Models\Instance::count() }}</p>
                             </div>
                         </div>
                     </div>
@@ -114,7 +115,7 @@
                                 </div>
                                 <h5 class="my-1 text-success"> <b><i class="fa fa-check" aria-hidden="true"></i> Healthy</b>
                                     </h3>
-                                    <p class="my-1 text-success">20/20</p>
+                                    <p class="my-1 text-success">20/{{ App\Models\Cluster::count() }}</p>
                             </div>
                         </div>
                     </div>
@@ -144,7 +145,7 @@
                                 <table class="table table-xs table-bordered" id="">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Subject</th>
+                                            <th scope="col"Subject</th>
                                             <th scope="col">Created at</th>
                                             <th scope="col">Status</th>
                                         </tr>
@@ -152,7 +153,10 @@
                                     <tbody>
                                         @foreach ($ticket as $row)
                                             <tr>
-                                                <td>{{ $row->subject }}</td>
+                                                <td><a href="{{ url('/tickets?parsed_data=' . $row->id) }}">
+                                                        <b>{{ $row->subject }}</b>
+                                                    </a>
+                                                </td>
                                                 <td>{{ $row->created_at }}</td>
                                                 @if ($row->status == 'Opened')
                                                     <td><button class="btn btn-pill btn-danger btn-air-danger btn-xs"

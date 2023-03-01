@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Instance;
 use App\Models\Ticket;
+use App\Models\Device;
 use Illuminate\Support\Facades\DB;
+
 
 class DashboardController extends Controller
 {
@@ -27,6 +29,9 @@ class DashboardController extends Controller
         INNER JOIN `kabkots` ON `instances`.`kabkot_id` = `kabkots`.`id`
         GROUP BY `instances`.`kabkot_id`";
         $TotalByLocation = DB::select($TotalByLocation);
+        // ===
+        $countDevice = Device::count();
+        $countDeviceError = Device::where('status','=','error')->count();
 
         return view('dashboard',[
         'instances' => $instances,
@@ -36,6 +41,8 @@ class DashboardController extends Controller
         'TotalByBrances' => $TotalByBrances,
         'TotalByCluster' => $TotalByCluster,
         'TotalByLocation' => $TotalByLocation,
+        'countDevice' => $countDevice,
+        'countDeviceError' => $countDeviceError,
     ]);
     }
 }

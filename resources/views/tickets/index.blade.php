@@ -20,9 +20,16 @@
             </div>
         </div>
         <div class="container-fluid">
-
             <div class="row">
                 <div class="col-sm-12">
+                    <div class="d-flex justify-content-end">
+                        @if (Request::get('parsed_data'))
+                            <a href="{{ route('tickets.index') }}" class="btn btn-primary mb-3">
+                                <i class="fas fa-list"></i>
+                                {{ __('All Data') }}
+                            </a>&nbsp;
+                        @endif
+                    </div>
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive p-1">
@@ -52,45 +59,57 @@
 
 @push('js')
     <script>
-        $('#data-table').DataTable({
+        let columns = [{
+                data: 'branches',
+                name: 'branches',
+            },
+            {
+                data: 'cluster',
+                name: 'cluster',
+            },
+            {
+                data: 'subject',
+                name: 'subject',
+            },
+            {
+                data: 'status',
+                name: 'status',
+            },
+            {
+                data: 'user',
+                name: 'user',
+            },
+            {
+                data: 'created_at',
+                name: 'created_at'
+            },
+            {
+                data: 'updated_at',
+                name: 'updated_at'
+            },
+            {
+                data: 'action',
+                name: 'action',
+                orderable: false,
+                searchable: false
+            }
+        ];
+
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+        });
+        // Get the value of "some_key" in eg "https://example.com/?some_key=some_value"
+        let query = params.parsed_data; // "some_value"
+        var table = $('#data-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('tickets.index') }}",
-            columns: [{
-                    data: 'branches',
-                    name: 'branches',
-                },
-                {
-                    data: 'cluster',
-                    name: 'cluster',
-                },
-                {
-                    data: 'subject',
-                    name: 'subject',
-                },
-                {
-                    data: 'status',
-                    name: 'status',
-                },
-                {
-                    data: 'user',
-                    name: 'user',
-                },
-                {
-                    data: 'created_at',
-                    name: 'created_at'
-                },
-                {
-                    data: 'updated_at',
-                    name: 'updated_at'
-                },
-                {
-                    data: 'action',
-                    name: 'action',
-                    orderable: false,
-                    searchable: false
+            ajax: {
+                url: "{{ route('tickets.index') }}",
+                data: function(s) {
+                    s.parsed_data = query
                 }
-            ],
+            },
+            columns: columns
         });
     </script>
 @endpush

@@ -434,6 +434,11 @@ function createTiket($device_id, $devEUI, $data, $time)
                             'created_at' => $time,
                             'updated_at' => $time,
                         ]);
+
+                        // update device status
+                        DB::table('devices')
+                            ->where('id', $device_id)
+                            ->update(['status' => 'error']);
                     }
                     $cekNotif = Setting::findOrFail(1)->first();
                     // send notif tele

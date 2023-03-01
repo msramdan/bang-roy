@@ -8,6 +8,7 @@ use Yajra\DataTables\Facades\DataTables;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class TicketController extends Controller
 {
@@ -22,12 +23,18 @@ class TicketController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         if (request()->ajax()) {
-            $tickets = Ticket::with('device:id,dev_eui,instance_id,cluster_id')->orderBy('tickets.id', 'DESC');
+            $parsed_data = Ticket::with('device:id,dev_eui,instance_id,cluster_id');
 
-            return DataTables::of($tickets)
+            $query_parsed = intval($request->query('parsed_data'));
+
+            if (isset($query_parsed) && !empty($query_parsed)) {
+                $parsed_data = $parsed_data->where('tickets.id', $query_parsed);
+            }
+            $parsed_data = $parsed_data->orderBy('tickets.id', 'DESC')->get();
+            return DataTables::of($parsed_data)
                 ->addIndexColumn()
                 ->addColumn('created_at', function ($row) {
                     return $row->created_at->format('d M Y H:i:s');
@@ -94,11 +101,20 @@ class TicketController extends Controller
      */
     public function update(Request $request, Ticket $ticket)
     {
-        Ticket::where('id', $ticket->id)
+       $tiket = Ticket::where('id', $ticket->id)
             ->update([
                 'status' => $request->status,
                 'update_by' => auth()->user()->id
             ]);
+            if ($request->status == 'Closed') {
+                $statusDevice = null;
+            }else{
+                $statusDevice = 'error';
+            }
+        DB::table('devices')
+            ->where('id', $ticket->device_id)
+                ->update(['status' => $statusDevice]);
+
         Alert::toast('The ticket was updated successfully.', 'success');
         return redirect()
             ->route('tickets.index');

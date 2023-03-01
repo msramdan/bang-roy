@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string('support_class_b', 200)->nullable();
             $table->string('support_class_c', 200)->nullable();
             $table->string('mac_version', 200)->nullable();
+            $table->string('status', 10)->nullable();
             $table->foreignId('cluster_id')->nullable()->constrained('clusters')->restrictOnUpdate()->restrictOnDelete();
             $table->timestamps();
         });
