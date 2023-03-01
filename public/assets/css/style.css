@@ -162,7 +162,7 @@ p {
 }
 
 span {
-    font-weight: 500;
+    /* font-weight: 500; */
 }
 
 .dropdown-item:active,
@@ -34734,7 +34734,7 @@ body.dark-sidebar .main-navbar ul.nav-pills .nav-item .nav-link {
 .select2-container .select2-selection--single {
     border-radius: 0.25rem !important;
     border-color: #e6edef !important;
-    height: 40px !important;
+    height: 35px !important;
     padding: 5px;
 }
 
