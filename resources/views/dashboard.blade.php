@@ -15,7 +15,8 @@
                             <div class="d-flex align-items-center">
                                 <div>
                                     <p class="mb-0 text-secondary">Total Branches</p>
-                                    <h4 class="my-1 text-info">{{ App\Models\Instance::count() }} Data</h4>
+                                    <h4 class="my-1 text-info"><a href="{{ route('instances.index') }}">{{ $countBranches }}
+                                            Data</a></h4>
 
                                 </div>
                                 <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i
@@ -31,7 +32,10 @@
                             <div class="d-flex align-items-center">
                                 <div>
                                     <p class="mb-0 text-secondary">Total Clusters</p>
-                                    <h4 class="my-1 text-danger">{{ App\Models\Cluster::count() }} Data</h4>
+                                    <h4 class="my-1 text-danger"> <a
+                                            href="{{ route('clusters.index') }}">{{ $countCluster }}
+                                            Data</a>
+                                    </h4>
 
                                 </div>
                                 <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i
@@ -47,7 +51,8 @@
                             <div class="d-flex align-items-center">
                                 <div>
                                     <p class="mb-0 text-secondary">Total Devices</p>
-                                    <h4 class="my-1 text-success">{{ $countDevice }} Data</h4>
+                                    <h4 class="my-1 text-success"><a href="{{ route('devices.index') }}">{{ $countDevice }}
+                                            Data</a></h4>
 
                                 </div>
                                 <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i
@@ -63,7 +68,8 @@
                             <div class="d-flex align-items-center">
                                 <div>
                                     <p class="mb-0 text-secondary">Total Users</p>
-                                    <h4 class="my-1 text-warning">{{ App\Models\User::count() }} Data</h4>
+                                    <h4 class="my-1 text-warning"><a
+                                            href="{{ route('users.index') }}">{{ App\Models\User::count() }} Data</a></h4>
 
                                 </div>
                                 <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i
@@ -83,10 +89,16 @@
                                 <p>Temperature Status</p>
                                 <div id="chart">
                                 </div>
-                                <h5 class="my-1 <?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?> text-success">
-                                    <b><i class="fa fa-check" aria-hidden="true"></i> Healthy</b>
+                                <h5 class="my-1 <?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?>">
+                                    <b><i class="fa <?= $countDeviceError > 0 ? 'fa-exclamation-triangle' : 'fa fa-check' ?> "
+                                            aria-hidden="true"></i>
+                                        <?= $countDeviceError > 0 ? 'Warning' : 'Healthy' ?> </b>
                                     </h3>
-                                    <p class="my-1 text-success">{{ $countDeviceError }}/{{ $countDevice }}</p>
+                                    <p class="my-1  <?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?>">
+                                        <a
+                                            href="{{ route('tickets.index') }}">{{ $countDevice - $countDeviceError }}/{{ $countDevice }}</a>
+
+                                    </p>
                             </div>
                         </div>
                     </div>
@@ -98,9 +110,16 @@
                                 <p>Branches Status</p>
                                 <div id="chart2">
                                 </div>
-                                <h5 class="my-1 text-danger"> <b> <i class="fa fa-exclamation-triangle"
-                                            aria-hidden="true"></i> Warning</b> </h3>
-                                    <p class="my-1 text-danger">15/{{ App\Models\Instance::count() }}</p>
+                                <h5 class="my-1 <?= $selectBranchesError > 0 ? 'text-danger' : 'text-success' ?>"> <b> <i
+                                            class="fa <?= $selectBranchesError > 0 ? 'fa-exclamation-triangle' : 'fa fa-check' ?>"
+                                            aria-hidden="true"></i>
+                                        <?= $selectBranchesError > 0 ? 'Warning' : 'Healthy' ?></b>
+                                    </h3>
+                                    <p class="my-1 <?= $selectBranchesError > 0 ? 'text-danger' : 'text-success' ?>">
+                                        <a
+                                            href="{{ route('tickets.index') }}">{{ $countBranches - $selectBranchesError }}/{{ $countBranches }}</a>
+
+                                    </p>
                             </div>
                         </div>
                     </div>
@@ -113,9 +132,15 @@
                                 <p>Clusters Status</p>
                                 <div id="chart3">
                                 </div>
-                                <h5 class="my-1 text-success"> <b><i class="fa fa-check" aria-hidden="true"></i> Healthy</b>
+                                <h5 class="my-1 <?= $selectClusterError > 0 ? 'text-danger' : 'text-success' ?>"> <b><i
+                                            class="fa fa-check" aria-hidden="true"></i>
+                                        <?= $selectClusterError > 0 ? 'Warning' : 'Healthy' ?></b>
                                     </h3>
-                                    <p class="my-1 text-success">20/{{ App\Models\Cluster::count() }}</p>
+                                    <p class="my-1 <?= $selectClusterError > 0 ? 'text-danger' : 'text-success' ?>">
+                                        <a
+                                            href="{{ route('tickets.index') }}">{{ $countCluster - $selectClusterError }}/{{ $countCluster }}</a>
+
+                                    </p>
                             </div>
                         </div>
                     </div>
@@ -125,9 +150,13 @@
                         <div class="card-body">
                             <div class="round-progress knob-block text-center">
                                 <p>Overall Status</p>
+                                <i
+                                    class="fa-solid <?= $countDeviceError > 0 ? 'fa-exclamation-triangle' : 'fa fa-check' ?> fa-10x my-1 <?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?>"></i>
+                                <h5 class="my-1 <?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?>"> <b>
+                                        <a
+                                            href="{{ route('tickets.index') }}"><?= $countDeviceError > 0 ? 'Warning Alert' : 'Perfectly Healthy' ?></a>
 
-                                <i class="fa-solid fa-exclamation-triangle fa-10x my-1 text-danger"></i>
-                                <h5 class="my-1 text-danger"> <b> Warning Alert</b> </h3>
+                                    </b></b> </h3>
 
                             </div>
                         </div>
@@ -145,7 +174,7 @@
                                 <table class="table table-xs table-bordered" id="">
                                     <thead>
                                         <tr>
-                                            <th scope="col"Subject</th>
+                                            <th scope="col">Subject</th>
                                             <th scope="col">Created at</th>
                                             <th scope="col">Status</th>
                                         </tr>
@@ -322,7 +351,7 @@
 
     <script>
         var options = {
-            series: [100],
+            series: [({{ $countDevice }} - {{ $countDeviceError }}) * 100 / {{ $countDevice }}],
             chart: {
                 height: 200,
                 type: 'radialBar',
@@ -384,7 +413,7 @@
                 lineCap: 'round'
             },
             labels: ['Percent'],
-            colors: ['#24695C']
+            colors: [<?= $countDeviceError > 0 ? '"#EB4656"' : '"#24695C"' ?>]
         };
 
         var chart = new ApexCharts(document.querySelector("#chart"), options);
@@ -393,7 +422,7 @@
 
     <script>
         var options = {
-            series: [75],
+            series: [({{ $countBranches }} - {{ $selectBranchesError }}) * 100 / {{ $countBranches }}],
             chart: {
                 height: 200,
                 type: 'radialBar',
@@ -454,7 +483,7 @@
                 lineCap: 'round'
             },
             labels: ['Percent'],
-            colors: ['#EB4656']
+            colors: [<?= $selectBranchesError > 0 ? '"#EB4656"' : '"#24695C"' ?>]
         };
 
         var chart = new ApexCharts(document.querySelector("#chart2"), options);
@@ -463,7 +492,7 @@
 
     <script>
         var options = {
-            series: [100],
+            series: [({{ $countCluster }} - {{ $selectClusterError }}) * 100 / {{ $countCluster }}],
             chart: {
                 height: 200,
                 type: 'radialBar',
@@ -524,7 +553,7 @@
                 lineCap: 'round'
             },
             labels: ['Percent'],
-            colors: ['#24695C']
+            colors: [<?= $selectClusterError > 0 ? '"#EB4656"' : '"#24695C"' ?>]
         };
 
         var chart = new ApexCharts(document.querySelector("#chart3"), options);

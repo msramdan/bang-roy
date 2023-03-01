@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Instance;
 use App\Models\Ticket;
 use App\Models\Device;
+use App\Models\Cluster;
 use Illuminate\Support\Facades\DB;
 
 
@@ -32,6 +33,14 @@ class DashboardController extends Controller
         // ===
         $countDevice = Device::count();
         $countDeviceError = Device::where('status','=','error')->count();
+        // ===
+        $countBranches = Instance::count();
+        $countBranchesError = "SELECT * FROM devices WHERE status='error' GROUP BY instance_id";
+        $selectBranchesError = DB::select($countBranchesError);
+        // ===
+        $countCluster = Cluster::count();
+        $countClusterError = "SELECT * FROM devices WHERE status='error' GROUP BY cluster_id";
+        $selectClusterError = DB::select($countClusterError);
 
         return view('dashboard',[
         'instances' => $instances,
@@ -43,6 +52,10 @@ class DashboardController extends Controller
         'TotalByLocation' => $TotalByLocation,
         'countDevice' => $countDevice,
         'countDeviceError' => $countDeviceError,
+        'countBranches' => $countBranches,
+        'selectBranchesError' => count($selectBranchesError),
+        'countCluster' => $countCluster,
+        'selectClusterError' => count($selectClusterError),
     ]);
     }
 }
