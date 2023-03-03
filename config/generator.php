@@ -305,7 +305,7 @@ return [
         ],
         'menus' => [
             [
-                'title' => 'Report',
+                'title' => 'Report Log',
                 'icon' => '<i data-feather="book"></i>',
                 'route' => null,
                 'permission' => null,

@@ -8,6 +8,8 @@ use App\Models\Rawdata;
 use App\Models\Device;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Exports\ReportDeviceLogExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ReportDeviceController extends Controller
 {
@@ -52,14 +54,20 @@ class ReportDeviceController extends Controller
             $rawdatas = $rawdatas->orderBy('rawdatas.id', 'desc')->get();
             return DataTables::of($rawdatas)
                 ->addIndexColumn()
-                ->addColumn('payload', function ($row) {
-                    $payload = json_decode($row->payload_data, true);
-                    return json_encode($payload, JSON_PRETTY_PRINT);
-                })
+                // ->addColumn('payload', function ($row) {
+                //     $payload = json_decode($row->payload_data, true);
+                //     return json_encode($payload, JSON_PRETTY_PRINT);
+                // })
                 ->addColumn('created_at', function ($row) {
                     return $row->created_at->format('d M Y H:i:s');
                 })->addColumn('updated_at', function ($row) {
                     return $row->updated_at->format('d M Y H:i:s');
+                })
+                ->addColumn('adr', function ($row) {
+                    if ($row->adr == 1 || $row->adr == '1') {
+                        return 'True';
+                    }
+                    return '-';
                 })
                 ->addColumn('action', 'rawdatas.include.action')
                 ->rawColumns(['parsed', 'action'])
@@ -74,6 +82,14 @@ class ReportDeviceController extends Controller
             'microFrom' => $microFrom,
             'microTo' => $microTo,
         ]);
+    }
+
+    public function export($dev_eui, $start_date, $end_date)
+    {
+        $date= date('d-m-Y');
+        $nameFile = 'RM-Device Log-' .$date;
+         return Excel::download(new ReportDeviceLogExport($dev_eui, $start_date, $end_date), $nameFile.'.xlsx');
+
     }
 
 }

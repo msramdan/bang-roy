@@ -38,39 +38,34 @@
                         <div class="card-body">
                             <div class="col-md-12">
                                 <div class="row">
-                                    <form method="get" action="" id="form-date">
-                                        <div class="row g-3">
-                                            <div class="col-md-3">
-                                                <div class="input-group flex-nowrap">
-                                                    <span class="input-group-text" id="addon-wrapping"><i
-                                                            class="fa fa-calendar"></i></span>
-                                                    <input type="text" class="form-control"
-                                                        aria-describedby="addon-wrapping" id="daterange-btn" value="">
-                                                    <input type="hidden" name="start_date" id="start_date"
-                                                        value="{{ $microFrom }}">
-                                                    <input type="hidden" name="end_date" id="end_date"
-                                                        value="{{ $microTo }}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <select name="dev_eui" id="dev_eui" class="form-control">
-                                                    <option value="" selected disabled>-- Filter By Dev Eui --
-                                                    </option>
-                                                    <option value="All">All Dev Eui
-                                                    </option>
-                                                    @foreach ($device as $row)
-                                                        <option value="{{ $row->dev_eui }}">{{ $row->dev_eui }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-md-1">
-                                                <a href="{{ route('kelurahans.create') }}" class="btn btn-primary mb-3">
-                                                    <i class='fas fa-file-excel'></i>
-                                                    {{ __('Export') }}
-                                                </a>
+                                    <div class="row g-3">
+                                        <div class="col-md-3">
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text" id="addon-wrapping"><i
+                                                        class="fa fa-calendar"></i></span>
+                                                <input type="text" class="form-control" aria-describedby="addon-wrapping"
+                                                    id="daterange-btn" value="">
+                                                <input type="hidden" name="start_date" id="start_date"
+                                                    value="{{ $microFrom }}">
+                                                <input type="hidden" name="end_date" id="end_date"
+                                                    value="{{ $microTo }}">
                                             </div>
                                         </div>
-                                    </form>
+                                        <div class="col-md-3">
+                                            <select name="dev_eui" id="dev_eui" class="form-control">
+                                                <option value="All">All Dev Eui
+                                                </option>
+                                                @foreach ($device as $row)
+                                                    <option value="{{ $row->dev_eui }}">{{ $row->dev_eui }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <button id="btnExport" class="btn btn-primary mb-3"><i
+                                                    class='fas fa-file-excel'></i>
+                                                {{ __('Export') }}</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <br>
@@ -82,10 +77,18 @@
                                             <th>#</th>
                                             <th>{{ __('Dev Eui') }}</th>
                                             <th>{{ __('App Id') }}</th>
+                                            <th>{{ __('Gateway') }}</th>
+                                            <th>{{ __('Class') }}</th>
                                             <th>{{ __('Type') }}</th>
                                             <th>{{ __('Freq') }}</th>
                                             <th>{{ __('Fport') }}</th>
+                                            <th>{{ __('Fcnt') }}</th>
+                                            <th>{{ __('Rssi') }}</th>
+                                            <th>{{ __('Snr') }}</th>
+                                            <th>{{ __('Dr') }}</th>
+                                            <th>{{ __('Adr') }}</th>
                                             <th>{{ __('Date') }}</th>
+
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -100,6 +103,7 @@
 @endsection
 
 @push('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.5.1/sweetalert2.all.min.js"></script>
     <script>
         $('#dev_eui').select2();
         let columns = [{
@@ -118,6 +122,14 @@
                 name: 'app_id'
             },
             {
+                data: 'gwid',
+                name: 'gwid'
+            },
+            {
+                data: 'class',
+                name: 'class'
+            },
+            {
                 data: 'type',
                 name: 'type'
             },
@@ -128,6 +140,26 @@
             {
                 data: 'fport',
                 name: 'fport'
+            },
+            {
+                data: 'fcnt',
+                name: 'fcnt'
+            },
+            {
+                data: 'rssi',
+                name: 'rssi'
+            },
+            {
+                data: 'snr',
+                name: 'snr'
+            },
+            {
+                data: 'dr',
+                name: 'dr'
+            },
+            {
+                data: 'adr',
+                name: 'adr'
             },
             {
                 data: 'created_at',
@@ -225,6 +257,91 @@
         function isDate(val) {
             var d = Date.parse(val);
             return Date.parse(val);
+        }
+    </script>
+
+    <script type="text/javascript" charset="utf-8">
+        const showLoading = function() {
+            swal({
+                title: 'Now loading',
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+                timer: 2000,
+                onOpen: () => {
+                    swal.showLoading();
+                }
+            }).then(
+                () => {},
+                (dismiss) => {
+                    if (dismiss === 'timer') {
+                        console.log('closed by timer!!!!');
+                        swal({
+                            title: 'Finished!',
+                            type: 'success',
+                            timer: 2000,
+                            showConfirmButton: false
+                        })
+                    }
+                }
+            )
+        };
+
+        $(document).on('click', '#btnExport', function(event) {
+            event.preventDefault();
+            exportData();
+
+        });
+        var exportData = function() {
+            var dev_eui = $('#dev_eui').val();
+            var start_date = $('#start_date').val();
+            var end_date = $('#end_date').val();
+            var url = '/export-data/' + dev_eui + '/' + start_date + '/' + end_date;
+            var d = new Date(); // 1-Feb-2011
+            var today_date =
+                ("0" + d.getDate()).slice(-2) + "-" +
+                ("0" + (d.getMonth() + 1)).slice(-2) + "-" +
+                d.getFullYear();
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+                data: {},
+                xhrFields: {
+                    responseType: 'blob'
+                },
+                beforeSend: function() {
+                    Swal.fire({
+                        title: 'Please Wait !',
+                        html: 'Sedang melakukan proses export data', // add html attribute if you want or remove
+                        allowOutsideClick: false,
+                        onBeforeOpen: () => {
+                            Swal.showLoading()
+                        },
+                    });
+
+                },
+                success: function(data) {
+                    var link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(data);
+                    var nameFile = 'RM-DeviceLog-' + today_date + '.xlsx'
+                    console.log(nameFile)
+                    link.download = nameFile;
+                    link.click();
+                    swal.close()
+                },
+                error: function(data) {
+                    console.log(data)
+                    Swal.fire({
+                        icon: 'error',
+                        title: "Data export failed",
+                        text: "Please check",
+                        allowOutsideClick: false,
+                    })
+                }
+            });
         }
     </script>
 @endpush
