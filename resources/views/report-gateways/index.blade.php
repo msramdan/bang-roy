@@ -58,9 +58,8 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="col-md-1">
-                                            <button id="btnExport" class="btn btn-primary mb-3"><i
-                                                    class='fas fa-file-excel'></i>
+                                        <div class="col-md-2">
+                                            <button id="btnExport" class="btn btn-primary"><i class='fas fa-file-excel'></i>
                                                 {{ __('Export') }}</button>
                                         </div>
 

@@ -66,9 +66,9 @@
     <div class="col-md-2">
         <div class="avatar avatar-xl mb-3">
             @if ($setting->logo == null)
-                <img style="width:200px" src="{{ asset('assets/not-available.png') }}" alt="Logo Apps">
+                <img style="width:180px" src="{{ asset('assets/not-available.png') }}" alt="Logo Apps">
             @else
-                <img style="width:200px" src="{{ Storage::url('public/img/setting_app/') . $setting->logo }}"
+                <img style="width:180px" src="{{ Storage::url('public/img/setting_app/') . $setting->logo }}"
                     alt="Logo Apps">
             @endif
         </div>
