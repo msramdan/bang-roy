@@ -32,6 +32,7 @@
                                             <th>{{ __('Gwid') }}</th>
                                             <th>{{ __('Status Online') }}</th>
                                             <th>{{ __('Pktfwd Status') }}</th>
+                                            <th>{{ __('Connection Type') }}</th>
                                             <th>{{ __('Created At') }}</th>
                                             <th>{{ __('Updated At') }}</th>
                                             <th>{{ __('Action') }}</th>
@@ -70,6 +71,11 @@
                 {
                     data: 'pktfwd_status',
                     name: 'pktfwd_status',
+                },
+
+                {
+                    data: 'type',
+                    name: 'type'
                 },
                 {
                     data: 'created_at',

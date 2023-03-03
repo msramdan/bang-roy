@@ -20,8 +20,8 @@
                                         <th>{{ __('Gwid') }}</th>
                                         <th>{{ __('Status Online') }}</th>
                                         <th>{{ __('Pktfwd Status') }}</th>
+                                        <th>{{ __('Connection Type') }}</th>
                                         <th>{{ __('Created At') }}</th>
-                                        <th>{{ __('Updated At') }}</th>
                                     </tr>
                                 </thead>
                                 @php
@@ -57,8 +57,8 @@
                                                         title="btn btn-pill btn-danger btn-air-danger btn-xs">False</button>
                                                 @endif
                                             </td>
+                                            <td>MQTT</td>
                                             <td>{{ $row->created_at }}</td>
-                                            <td>{{ $row->updated_at }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

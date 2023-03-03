@@ -32,6 +32,12 @@ function getCluster($id)
     return $clusters;
 }
 
+function getGwid($id)
+{
+    $clusters = DB::table('gateways')->where('id', $id)->first();
+    return $clusters;
+}
+
 function set_show($uri)
 {
     if (is_array($uri)) {

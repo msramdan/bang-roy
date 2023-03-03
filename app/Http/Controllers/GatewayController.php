@@ -30,7 +30,11 @@ class GatewayController extends Controller
                     return $row->created_at->format('d M Y H:i:s');
                 })->addColumn('updated_at', function ($row) {
                     return $row->updated_at->format('d M Y H:i:s');
-                })->addColumn('status_online', function ($row) {
+                })
+                ->addColumn('type', function ($row) {
+                    return 'MQTT';
+                })
+                ->addColumn('status_online', function ($row) {
                     if ($row->status_online == 1) {
                         return '<button class="btn btn-pill btn-primary btn-air-primary btn-xs" type="button" title="btn btn-pill btn-primary btn-air-primary btn-xs">True</button>';
                     } else {
