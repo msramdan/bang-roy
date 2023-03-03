@@ -218,10 +218,10 @@
 
         });
         var exportData = function() {
-            var dev_eui = $('#gwid').val();
+            var gwid = $('#gwid').val();
             var start_date = $('#start_date').val();
             var end_date = $('#end_date').val();
-            var url = '/export-data-gateway/' + dev_eui + '/' + start_date + '/' + end_date;
+            var url = '/export-data-gateway/' + gwid + '/' + start_date + '/' + end_date;
             var d = new Date(); // 1-Feb-2011
             var today_date =
                 ("0" + d.getDate()).slice(-2) + "-" +

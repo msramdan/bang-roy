@@ -5,24 +5,24 @@ namespace App\Exports;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
-use App\Models\Rawdata;
+use App\Models\GatewayLog;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
 
 class ReportGatewayLogExport implements FromView,ShouldAutoSize, WithEvents
 {
-    function __construct($dev_eui, $start_date, $end_date) {
-        $this->dev_eui = intval($dev_eui);
+    function __construct($gwid, $start_date, $end_date) {
+        $this->gwid = intval($gwid);
         $this->start_date = intval($start_date);
         $this->end_date = intval($end_date);
     }
     public function view(): View
     {
-        $rawdatas = Rawdata::query();
-        if (isset($this->dev_eui) && !empty($this->dev_eui)) {
-            if($this->dev_eui !='All'){
-                $rawdatas = $rawdatas->where('dev_eui', $this->dev_eui);
+        $rawdatas = GatewayLog::query();
+        if (isset($this->gwid) && !empty($this->gwid)) {
+            if($this->gwid !='All'){
+                $rawdatas = $rawdatas->where('gateway_id', $this->gwid);
             }
         }
 
@@ -35,8 +35,8 @@ class ReportGatewayLogExport implements FromView,ShouldAutoSize, WithEvents
                 $to = date("Y-m-d H:i:s", substr($this->end_date, 0, 10));
                 $rawdatas = $rawdatas->where('created_at', '<=', $to);
         }
-        $rawdatas = $rawdatas->orderBy('rawdatas.id', 'desc')->get();
-        return view('report-devices.export', [
+        $rawdatas = $rawdatas->orderBy('id', 'desc')->get();
+        return view('report-gateways.export', [
             'data' => $rawdatas
         ]);
     }
@@ -45,7 +45,7 @@ class ReportGatewayLogExport implements FromView,ShouldAutoSize, WithEvents
     {
         return [
             AfterSheet::class    => function(AfterSheet $event) {
-                $cellRange = 'A1:F1'; // All headers
+                $cellRange = 'A1:E1'; // All headers
                 $event->sheet->getStyle( $cellRange)->applyFromArray([
                     'borders' => [
                         'allBorders' => [
