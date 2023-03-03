@@ -87,8 +87,11 @@
                         <div class="card-body align-items-center">
                             <div class="round-progress knob-block text-center">
                                 <p>Temperature Status</p>
-                                <div id="chart">
-                                </div>
+                                <center>
+                                    <div id="chart">
+                                    </div>
+                                </center>
+
                                 <h5 class="my-1 <?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?>">
                                     <b><i class="fa <?= $countDeviceError > 0 ? 'fa-exclamation-triangle' : 'fa fa-check' ?> "
                                             aria-hidden="true"></i>
