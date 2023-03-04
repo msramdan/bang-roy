@@ -36,6 +36,8 @@ Route::middleware(['auth', 'web'])->group(function () {
 });
 Route::controller(CallbackController::class)->group(function () {
     Route::post('/callback/gateway/uplink', 'index')->name('callback.index');
+    Route::post('/callback/gateway/gwstat', 'index')->name('gwstat.index');
+    Route::post('/callback/gateway/gwconnection', 'index')->name('gwconnection.index');
 });
 
 Route::resource('gateways', App\Http\Controllers\GatewayController::class)->middleware('auth')->only(['index']);
