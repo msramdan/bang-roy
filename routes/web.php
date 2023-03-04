@@ -64,5 +64,5 @@ Route::resource('latest-datas', App\Http\Controllers\LatestDataController::class
 Route::resource('report-gateways', App\Http\Controllers\ReportGatewayController::class)->middleware('auth');
 Route::resource('report-devices', App\Http\Controllers\ReportDeviceController::class)->middleware('auth');
 Route::get('export-data/{dev_eui}/{start_date}/{end_date}', [ReportDeviceController::class, 'export'])->name('exportReportDevice')->middleware('auth');
-Route::get('export-data-gateway/{dev_eui}/{start_date}/{end_date}', [ReportGatewayController::class, 'export'])->name('exportReportDevice')->middleware('auth');
+Route::get('export-data-gateway/{dev_eui}/{start_date}/{end_date}', [ReportGatewayController::class, 'export'])->name('exportReportGateway')->middleware('auth');
 
