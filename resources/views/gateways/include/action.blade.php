@@ -39,22 +39,22 @@
                                                 @if ($row->status_online == 1)
                                                     <button class="btn btn-pill btn-primary btn-air-primary btn-xs"
                                                         type="button"
-                                                        title="btn btn-pill btn-primary btn-air-primary btn-xs">True</button>
+                                                        title="btn btn-pill btn-primary btn-air-primary btn-xs">Online</button>
                                                 @else
                                                     <button class="btn btn-pill btn-danger btn-air-danger btn-xs"
                                                         type="button"
-                                                        title="btn btn-pill btn-danger btn-air-danger btn-xs">False</button>
+                                                        title="btn btn-pill btn-danger btn-air-danger btn-xs">Offline</button>
                                                 @endif
                                             </td>
                                             <td>
                                                 @if ($row->pktfwd_status == 1)
                                                     <button class="btn btn-pill btn-primary btn-air-primary btn-xs"
                                                         type="button"
-                                                        title="btn btn-pill btn-primary btn-air-primary btn-xs">True</button>
+                                                        title="btn btn-pill btn-primary btn-air-primary btn-xs">Online</button>
                                                 @else
                                                     <button class="btn btn-pill btn-danger btn-air-danger btn-xs"
                                                         type="button"
-                                                        title="btn btn-pill btn-danger btn-air-danger btn-xs">False</button>
+                                                        title="btn btn-pill btn-danger btn-air-danger btn-xs">Offline</button>
                                                 @endif
                                             </td>
                                             <td>MQTT</td>

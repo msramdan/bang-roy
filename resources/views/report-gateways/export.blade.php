@@ -13,15 +13,15 @@
             <tr>
                 <td>{{ getGwid($dt->gateway_id)->gwid }}</td>
                 @if ($dt->status_online == 1 || $dt->status_online == '1')
-                    <td>True</td>
+                    <td>Online</td>
                 @else
-                    <td>-</td>
+                    <td>Offline</td>
                 @endif
 
                 @if ($dt->pktfwd_status == 1 || $dt->pktfwd_status == '1')
-                    <td>True</td>
+                    <td>Online</td>
                 @else
-                    <td>-</td>
+                    <td>Offline</td>
                 @endif
                 <td>MQTT</td>
                 <td>{{ $dt->created_at->format('d M Y H:i:s') }}</td>

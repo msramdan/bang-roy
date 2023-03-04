@@ -62,17 +62,17 @@ class ReportGatewayController extends Controller
                 })
                 ->addColumn('status_online', function ($row) {
                     if ($row->status_online == 1) {
-                        return '<button class="btn btn-pill btn-primary btn-air-primary btn-xs" type="button" title="btn btn-pill btn-primary btn-air-primary btn-xs">True</button>';
+                        return '<button class="btn btn-pill btn-primary btn-air-primary btn-xs" type="button" title="btn btn-pill btn-primary btn-air-primary btn-xs">Online</button>';
                     } else {
                         return
-                            '<button class="btn btn-pill btn-danger btn-air-danger btn-xs" type="button" title="btn btn-pill btn-danger btn-air-danger btn-xs">False</button>';
+                            '<button class="btn btn-pill btn-danger btn-air-danger btn-xs" type="button" title="btn btn-pill btn-danger btn-air-danger btn-xs">Offline</button>';
                     }
                 })->addColumn('pktfwd_status', function ($row) {
                     if ($row->pktfwd_status == 1) {
-                        return '<button class="btn btn-pill btn-primary btn-air-primary btn-xs" type="button" title="btn btn-pill btn-primary btn-air-primary btn-xs">True</button>';
+                        return '<button class="btn btn-pill btn-primary btn-air-primary btn-xs" type="button" title="btn btn-pill btn-primary btn-air-primary btn-xs">Online</button>';
                     } else {
                         return
-                            '<button class="btn btn-pill btn-danger btn-air-danger btn-xs" type="button" title="btn btn-pill btn-danger btn-air-danger btn-xs">False</button>';
+                            '<button class="btn btn-pill btn-danger btn-air-danger btn-xs" type="button" title="btn btn-pill btn-danger btn-air-danger btn-xs">Offline</button>';
                     }
                 })
                 ->rawColumns(['status_online', 'gateways.include.action', 'pktfwd_status'])
