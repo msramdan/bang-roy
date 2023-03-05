@@ -112,8 +112,10 @@
                         <div class="card-body">
                             <div class="round-progress knob-block text-center">
                                 <p>Branches Status</p>
-                                <div id="chart2">
-                                </div>
+                                <input type="text" value="{{ $chartPersentageBranches }}" id="infinite2"
+                                    data-fgColor="<?= $selectBranchesError > 0 ? '#EB4656' : '#24695C' ?>"
+                                    data-angleOffset=0 data-angleArc=360 data-rotation=anticlockwise>
+
                                 <h5 class="my-1 <?= $selectBranchesError > 0 ? 'text-danger' : 'text-success' ?>"> <b> <i
                                             class="fa <?= $selectBranchesError > 0 ? 'fa-exclamation-triangle' : 'fa fa-check' ?>"
                                             aria-hidden="true"></i>
@@ -134,8 +136,11 @@
                         <div class="card-body align-items-center">
                             <div class="round-progress knob-block text-center">
                                 <p>Clusters Status</p>
-                                <div id="chart3">
-                                </div>
+                                <input type="text" value="{{ $chartPersentageCluster }}" id="infinite3"
+                                    data-fgColor="<?= $selectClusterError > 0 ? '#EB4656' : '#24695C' ?>" data-angleOffset=0
+                                    data-angleArc=360 data-rotation=anticlockwise>
+
+
                                 <h5 class="my-1 <?= $selectClusterError > 0 ? 'text-danger' : 'text-success' ?>"> <b><i
                                             class="fa fa-check" aria-hidden="true"></i>
                                         <?= $selectClusterError > 0 ? 'Warning' : 'Healthy' ?></b>
@@ -355,7 +360,7 @@
     </div>
 @endsection
 @push('js')
-    <script src="{{ asset('assets/js/apexcharts.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/apexcharts.js') }}"></script> --}}
     <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.knob/1.2.2/jquery.knob.js"></script>
     <script>
         $(function() {
@@ -374,145 +379,39 @@
             });
         });
     </script>
-
     <script>
-        var options = {
-            series: [({{ $countBranches }} - {{ $selectBranchesError }}) * 100 / {{ $countBranches }}],
-            chart: {
-                height: 200,
-                type: 'radialBar',
-            },
-            plotOptions: {
-                radialBar: {
-                    startAngle: -135,
-                    endAngle: 225,
-                    hollow: {
-                        margin: 0,
-                        size: '70%',
-                        background: '#fff',
-                        image: undefined,
-                        imageOffsetX: 0,
-                        imageOffsetY: 0,
-                        position: 'front',
-                        dropShadow: {
-                            enabled: true,
-                            top: 3,
-                            left: 0,
-                            blur: 4,
-                            opacity: 0.24
-                        }
-                    },
-                    track: {
-                        background: '#fff',
-                        strokeWidth: '67%',
-                        margin: 0, // margin is in pixels
-                        dropShadow: {
-                            enabled: true,
-                            top: -3,
-                            left: 0,
-                            blur: 4,
-                            opacity: 0.35
-                        }
-                    },
-
-                    dataLabels: {
-                        show: true,
-                        name: {
-                            offsetY: -10,
-                            show: true,
-                            color: '#888',
-                            fontSize: '17px'
-                        },
-                        value: {
-                            formatter: function(val) {
-                                return parseInt(val);
-                            },
-                            color: '#111',
-                            fontSize: '36px',
-                            show: true,
-                        }
-                    }
+        $(function() {
+            $("#infinite2").knob({
+                'readOnly': true,
+                'thickness': 0.2,
+                'tickColorizeValues': true,
+                'width': 150,
+                'height': 150,
+                'change': function(v) {
+                    console.log(v);
+                },
+                draw: function() {
+                    $(this.i).val(this.cv + '%');
                 }
-            },
-            stroke: {
-                lineCap: 'round'
-            },
-            labels: ['Percent'],
-            colors: [<?= $selectBranchesError > 0 ? '"#EB4656"' : '"#24695C"' ?>]
-        };
-
-        var chart = new ApexCharts(document.querySelector("#chart2"), options);
-        chart.render();
+            });
+        });
     </script>
-
     <script>
-        var options = {
-            series: [({{ $countCluster }} - {{ $selectClusterError }}) * 100 / {{ $countCluster }}],
-            chart: {
-                height: 200,
-                type: 'radialBar',
-            },
-            plotOptions: {
-                radialBar: {
-                    startAngle: -135,
-                    endAngle: 225,
-                    hollow: {
-                        margin: 0,
-                        size: '70%',
-                        background: '#fff',
-                        image: undefined,
-                        imageOffsetX: 0,
-                        imageOffsetY: 0,
-                        position: 'front',
-                        dropShadow: {
-                            enabled: true,
-                            top: 3,
-                            left: 0,
-                            blur: 4,
-                            opacity: 0.24
-                        }
-                    },
-                    track: {
-                        background: '#fff',
-                        strokeWidth: '67%',
-                        margin: 0, // margin is in pixels
-                        dropShadow: {
-                            enabled: true,
-                            top: -3,
-                            left: 0,
-                            blur: 4,
-                            opacity: 0.35
-                        }
-                    },
-
-                    dataLabels: {
-                        show: true,
-                        name: {
-                            offsetY: -10,
-                            show: true,
-                            color: '#888',
-                            fontSize: '17px'
-                        },
-                        value: {
-                            formatter: function(val) {
-                                return parseInt(val);
-                            },
-                            color: '#111',
-                            fontSize: '36px',
-                            show: true,
-                        }
-                    }
+        $(function() {
+            $("#infinite3").knob({
+                'readOnly': true,
+                'thickness': 0.2,
+                'tickColorizeValues': true,
+                'width': 150,
+                'height': 150,
+                'change': function(v) {
+                    console.log(v);
+                },
+                draw: function() {
+                    $(this.i).val(this.cv + '%');
                 }
-            },
-            stroke: {
-                lineCap: 'round'
-            },
-            labels: ['Percent'],
-            colors: [<?= $selectClusterError > 0 ? '"#EB4656"' : '"#24695C"' ?>]
-        };
-
-        var chart = new ApexCharts(document.querySelector("#chart3"), options);
-        chart.render();
+            });
+        });
     </script>
 
     <script>

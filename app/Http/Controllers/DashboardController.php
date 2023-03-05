@@ -53,13 +53,12 @@ class DashboardController extends Controller
         'countDevice' => $countDevice,
         'countDeviceError' => $countDeviceError,
         'chartPersentage' => (($countDevice - $countDeviceError) * 100) / $countDevice,
-
-
         'countBranches' => $countBranches,
         'selectBranchesError' => count($selectBranchesError),
+        'chartPersentageBranches' => (($countBranches - count($selectBranchesError)) * 100) / $countBranches,
         'countCluster' => $countCluster,
         'selectClusterError' => count($selectClusterError),
-
+        'chartPersentageCluster' => (($countCluster - count($selectClusterError)) * 100) / $countCluster,
     ]);
     }
 }
