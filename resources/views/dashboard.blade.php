@@ -229,7 +229,7 @@
                 <div class="col-sm-8" style="padding-right: 10px; padding-left:10px">
                     <div class="card radius-10 border-start border-0 border-3" style="height: 450px">
                         <div class="card-body">
-                            <div class="map-embed" id="map" style="height: 100%;"></div>
+                            <div class="map-embed" id="map" style="height: 100%; z-index: 0;"></div>
                         </div>
                     </div>
                 </div>
