@@ -52,13 +52,13 @@ class DashboardController extends Controller
         'TotalByLocation' => $TotalByLocation,
         'countDevice' => $countDevice,
         'countDeviceError' => $countDeviceError,
-        'chartPersentage' => (($countDevice - $countDeviceError) * 100) / $countDevice,
+        'chartPersentage' => round((($countDevice - $countDeviceError) * 100) / $countDevice,2) ,
         'countBranches' => $countBranches,
         'selectBranchesError' => count($selectBranchesError),
-        'chartPersentageBranches' => (($countBranches - count($selectBranchesError)) * 100) / $countBranches,
+        'chartPersentageBranches' => round((($countBranches - count($selectBranchesError)) * 100) / $countBranches,2),
         'countCluster' => $countCluster,
         'selectClusterError' => count($selectClusterError),
-        'chartPersentageCluster' => (($countCluster - count($selectClusterError)) * 100) / $countCluster,
+        'chartPersentageCluster' =>round((($countCluster - count($selectClusterError)) * 100) / $countCluster,2) ,
     ]);
     }
 }
