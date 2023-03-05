@@ -189,17 +189,21 @@
                                                         <b>{{ $row->subject }}</b>
                                                     </a>
                                                 </td>
-                                                <td>{{ $row->created_at }}</td>
+                                                <td> <a href="{{ url('/tickets?parsed_data=' . $row->id) }}">
+                                                        <b>{{ $row->created_at }}</b>
+                                                    </a></td>
                                                 @if ($row->status == 'Opened')
-                                                    <td><button class="btn btn-pill btn-danger btn-air-danger btn-xs"
+                                                    <td><a href="{{ url('/tickets?parsed_data=' . $row->id) }}"
+                                                            class="btn btn-pill btn-danger btn-air-danger btn-xs"
                                                             type="button"
                                                             title="btn btn-pill btn-danger btn-air-danger btn-xs">
-                                                            Opened</button>
+                                                            Opened</a>
                                                     @else
-                                                    <td><button class="btn btn-pill btn-success btn-air-success btn-xs"
+                                                    <td><a href="{{ url('/tickets?parsed_data=' . $row->id) }}"
+                                                            class="btn btn-pill btn-success btn-air-success btn-xs"
                                                             type="button"
                                                             title="btn btn-pill btn-success btn-air-success btn-xs">
-                                                            Closed</button>
+                                                            Closed</a>
                                                 @endif
                                                 </td>
                                             </tr>
