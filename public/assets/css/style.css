@@ -7474,7 +7474,7 @@ table tbody .border-bottom-warning td {
 }
 
 .page-wrapper.compact-wrapper .page-body-wrapper header.main-nav .main-navbar .nav-menu .dropdown ul.nav-submenu li a.activee {
-    /* color: #24695c; */
+    color: #24695c;
 }
 
 .page-wrapper.compact-wrapper .page-body-wrapper header.main-nav .main-navbar .nav-menu .dropdown ul.nav-submenu li a.active:after {
@@ -7700,7 +7700,7 @@ table tbody .border-bottom-warning td {
 
 .page-wrapper.compact-wrapper .page-body-wrapper header.main-nav .main-navbar .nav-menu>li .nav-link.activee,
 .page-wrapper.compact-wrapper .page-body-wrapper header.main-nav .main-navbar .nav-menu>li .nav-link:hover {
-    /* background-color: #24695c; */
+    background-color: #24695c;
     color: #d0efe9;
     -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;
