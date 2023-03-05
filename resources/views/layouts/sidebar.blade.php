@@ -7,7 +7,7 @@
                     <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2"
                             aria-hidden="true"></i></div>
                 </li>
-                <li><a class="nav-link menu-title link-nav {{ is_active_menu(['dashboard', '']) }}"
+                <li><a class="nav-link menu-title link-nav {{ request()->is('/') || request()->is('dashboard') ? ' activee' : '' }}"
                         href="{{ route('dashboard') }}"><i data-feather="home"></i>
                         <span>Dashboard</span></a>
                 </li>
