@@ -94,7 +94,7 @@
                                     data-angleArc=360 data-rotation=anticlockwise>
 
                                 <h5 class="my-1 <?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?>">
-                                    <b><i class="fa <?= $countDeviceError > 0 ? 'fa-exclamation-triangle' : 'fa fa-check' ?> "
+                                    <b><i class="fa <?= $countDeviceError > 0 ? 'fa-exclamation-triangle' : 'fa-check' ?> "
                                             aria-hidden="true"></i>
                                         <?= $countDeviceError > 0 ? 'Warning' : 'Healthy' ?> </b>
                                     </h3>
@@ -117,7 +117,7 @@
                                     data-angleOffset=0 data-angleArc=360 data-rotation=anticlockwise>
 
                                 <h5 class="my-1 <?= $selectBranchesError > 0 ? 'text-danger' : 'text-success' ?>"> <b> <i
-                                            class="fa <?= $selectBranchesError > 0 ? 'fa-exclamation-triangle' : 'fa fa-check' ?>"
+                                            class="fa <?= $selectBranchesError > 0 ? 'fa-exclamation-triangle' : 'fa-check' ?>"
                                             aria-hidden="true"></i>
                                         <?= $selectBranchesError > 0 ? 'Warning' : 'Healthy' ?></b>
                                     </h3>
@@ -142,7 +142,8 @@
 
 
                                 <h5 class="my-1 <?= $selectClusterError > 0 ? 'text-danger' : 'text-success' ?>"> <b><i
-                                            class="fa fa-check" aria-hidden="true"></i>
+                                            class="fa <?= $selectClusterError > 0 ? 'fa-exclamation-triangle' : 'fa-check' ?>"
+                                            aria-hidden="true"></i>
                                         <?= $selectClusterError > 0 ? 'Warning' : 'Healthy' ?></b>
                                     </h3>
                                     <p class="my-1 <?= $selectClusterError > 0 ? 'text-danger' : 'text-success' ?>">
