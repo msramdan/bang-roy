@@ -86,11 +86,12 @@
                     <div class="card income-card card-secondary" style="height: 320px">
                         <div class="card-body align-items-center">
                             <div class="round-progress knob-block text-center">
+
+                                {{-- ramdan --}}
                                 <p>Temperature Status</p>
-                                <center>
-                                    <div id="chart">
-                                    </div>
-                                </center>
+                                <input type="text" value="{{ $chartPersentage }}" id="infinite"
+                                    data-fgColor="<?= $countDeviceError > 0 ? '#EB4656' : '#24695C' ?>" data-angleOffset=0
+                                    data-angleArc=360 data-rotation=anticlockwise>
 
                                 <h5 class="my-1 <?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?>">
                                     <b><i class="fa <?= $countDeviceError > 0 ? 'fa-exclamation-triangle' : 'fa fa-check' ?> "
@@ -355,76 +356,23 @@
 @endsection
 @push('js')
     <script src="{{ asset('assets/js/apexcharts.js') }}"></script>
-
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.knob/1.2.2/jquery.knob.js"></script>
     <script>
-        var options = {
-            series: [({{ $countDevice }} - {{ $countDeviceError }}) * 100 / {{ $countDevice }}],
-            chart: {
-                height: 200,
-                type: 'radialBar',
-                foreColor: '#fff',
-            },
-            plotOptions: {
-                radialBar: {
-                    startAngle: -135,
-                    endAngle: 225,
-                    hollow: {
-                        margin: 0,
-                        size: '70%',
-                        background: '#fff',
-                        image: undefined,
-                        imageOffsetX: 0,
-                        imageOffsetY: 0,
-                        position: 'front',
-                        dropShadow: {
-                            enabled: true,
-                            top: 3,
-                            left: 0,
-                            blur: 4,
-                            opacity: 0.24
-                        }
-                    },
-                    track: {
-                        background: '#fff',
-                        strokeWidth: '67%',
-                        margin: 0, // margin is in pixels
-                        dropShadow: {
-                            enabled: true,
-                            top: -3,
-                            left: 0,
-                            blur: 4,
-                            opacity: 0.35
-                        }
-                    },
-
-                    dataLabels: {
-                        show: true,
-                        name: {
-                            offsetY: -10,
-                            show: true,
-                            color: '#888',
-                            fontSize: '17px'
-                        },
-                        value: {
-                            formatter: function(val) {
-                                return parseInt(val);
-                            },
-                            color: '#111',
-                            fontSize: '36px',
-                            show: true,
-                        }
-                    }
+        $(function() {
+            $("#infinite").knob({
+                'readOnly': true,
+                'thickness': 0.2,
+                'tickColorizeValues': true,
+                'width': 150,
+                'height': 150,
+                'change': function(v) {
+                    console.log(v);
+                },
+                draw: function() {
+                    $(this.i).val(this.cv + '%');
                 }
-            },
-            stroke: {
-                lineCap: 'round'
-            },
-            labels: ['Percent'],
-            colors: [<?= $countDeviceError > 0 ? '"#EB4656"' : '"#24695C"' ?>]
-        };
-
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
-        chart.render();
+            });
+        });
     </script>
 
     <script>

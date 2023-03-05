@@ -52,10 +52,14 @@ class DashboardController extends Controller
         'TotalByLocation' => $TotalByLocation,
         'countDevice' => $countDevice,
         'countDeviceError' => $countDeviceError,
+        'chartPersentage' => (($countDevice - $countDeviceError) * 100) / $countDevice,
+
+
         'countBranches' => $countBranches,
         'selectBranchesError' => count($selectBranchesError),
         'countCluster' => $countCluster,
         'selectClusterError' => count($selectClusterError),
+
     ]);
     }
 }
