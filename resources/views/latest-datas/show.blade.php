@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('Detail of Latest Datas'))
+@section('title', __('Detail of Latest Data'))
 @push('css')
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css">
@@ -67,13 +67,13 @@
             <div class="page-header" style="margin-top: 5px">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h3>{{ __('Latest Datas') }}</h3>
+                        <h3>{{ __('Latest Data') }}</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
                                 <a href="/">{{ __('Dashboard') }}</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="{{ route('latest-datas.index') }}">{{ __('Latest Datas') }}</a>
+                                <a href="{{ route('latest-datas.index') }}">{{ __('Latest Data') }}</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
                                 {{ __('Detail') }}
@@ -134,7 +134,7 @@
                                             @foreach ($parsed_data as $data)
                                                 <tr>
                                                     <td style="width: 5%">{{ $loop->iteration }}</td>
-                                                    <td style="width: 35%">{{ $data->temperature }} C</td>
+                                                    <td style="width: 35%">{{ round($data->temperature, 2) }} C</td>
                                                     <td style="width: 60%">
                                                         {{ date('d/m/Y H:i:s', strtotime($data->created_at)) }}</td>
                                                 </tr>
@@ -175,7 +175,7 @@
                                             @foreach ($parsed_data as $data)
                                                 <tr>
                                                     <td style="width: 5%">{{ $loop->iteration }}</td>
-                                                    <td style="width: 35%">{{ $data->humidity }} C</td>
+                                                    <td style="width: 35%">{{ round($data->humidity, 2) }} %</td>
                                                     <td style="width: 60%">
                                                         {{ date('d/m/Y H:i:s', strtotime($data->created_at)) }}</td>
                                                 </tr>
@@ -216,7 +216,7 @@
                                             @foreach ($parsed_data as $data)
                                                 <tr>
                                                     <td style="width: 5%">{{ $loop->iteration }}</td>
-                                                    <td style="width: 35%">{{ $data->battery }} C</td>
+                                                    <td style="width: 35%">{{ round($data->battery, 2) }} V</td>
                                                     <td style="width: 60%">
                                                         {{ date('d/m/Y H:i:s', strtotime($data->created_at)) }}</td>
                                                 </tr>

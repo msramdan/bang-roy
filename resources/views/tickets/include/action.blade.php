@@ -89,10 +89,10 @@
                                     <option value="" selected disabled>-- {{ __('Select Status') }} --</option>
                                     <option value="Opened"
                                         {{ isset($model) && $model->status == 'Opened' ? 'selected' : (old('dev_type') == 'Opened' ? 'selected' : '') }}>
-                                        {{ __('Opened') }}</option>
+                                        {{ __('Open') }}</option>
                                     <option value="Closed"
                                         {{ isset($model) && $model->status == 'Closed' ? 'selected' : (old('dev_type') == 'Closed' ? 'selected' : '') }}>
-                                        {{ __('Closed') }}</option>
+                                        {{ __('Close') }}</option>
                                 </select>
                             </div>
                         </div>

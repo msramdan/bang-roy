@@ -42,9 +42,9 @@ class TicketController extends Controller
                     return $row->updated_at->format('d M Y H:i:s');
                 })->addColumn('status', function ($row) {
                     if ($row->status == "Opened") {
-                        return '<button class="btn btn-pill btn-danger btn-air-danger btn-xs" type="button" title="btn btn-pill btn-danger btn-air-danger btn-xs"> Opened</button>';
+                        return '<button class="btn btn-pill btn-danger btn-air-danger btn-xs" type="button" title="btn btn-pill btn-danger btn-air-danger btn-xs"> Open</button>';
                     } else {
-                        return '<button class="btn btn-pill btn-primary btn-air-primary btn-xs" type="button" title="btn btn-pill btn-primary btn-air-primary btn-xs">Closed</button>';
+                        return '<button class="btn btn-pill btn-primary btn-air-primary btn-xs" type="button" title="btn btn-pill btn-primary btn-air-primary btn-xs">Close</button>';
                     }
                 })
                 ->addColumn('description', function ($row) {
@@ -101,19 +101,19 @@ class TicketController extends Controller
      */
     public function update(Request $request, Ticket $ticket)
     {
-       $tiket = Ticket::where('id', $ticket->id)
+        $tiket = Ticket::where('id', $ticket->id)
             ->update([
                 'status' => $request->status,
                 'update_by' => auth()->user()->id
             ]);
-            if ($request->status == 'Closed') {
-                $statusDevice = null;
-            }else{
-                $statusDevice = 'error';
-            }
+        if ($request->status == 'Closed') {
+            $statusDevice = null;
+        } else {
+            $statusDevice = 'error';
+        }
         DB::table('devices')
             ->where('id', $ticket->device_id)
-                ->update(['status' => $statusDevice]);
+            ->update(['status' => $statusDevice]);
 
         Alert::toast('The ticket was updated successfully.', 'success');
         return redirect()

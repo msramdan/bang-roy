@@ -67,7 +67,7 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div>
-                                    <p class="mb-0 text-secondary">Total Users</p>
+                                    <p class="mb-0 text-secondary">Total User</p>
                                     <h4 class="my-1 text-warning"><a
                                             href="{{ route('users.index') }}">{{ App\Models\User::count() }} Data</a></h4>
 
@@ -83,7 +83,7 @@
 
             <div class="row">
                 <div class="col-xl-3 col-50 box-col-3 des-xl-50">
-                    <div class="card income-card card-secondary" style="height: 320px">
+                    <div class="card income-card card-secondary" style="height: 250px">
                         <div class="card-body align-items-center">
                             <div class="round-progress knob-block text-center">
 
@@ -93,22 +93,22 @@
                                     data-fgColor="<?= $countDeviceError > 0 ? '#EB4656' : '#24695C' ?>" data-angleOffset=0
                                     data-angleArc=360 data-rotation=anticlockwise>
 
-                                <h5 class="my-1 <?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?>">
+                                <h6 class="my-1 <?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?>">
                                     <b><i class="fa <?= $countDeviceError > 0 ? 'fa-exclamation-triangle' : 'fa-check' ?> "
                                             aria-hidden="true"></i>
                                         <?= $countDeviceError > 0 ? 'Warning' : 'Healthy' ?> </b>
-                                    </h3>
-                                    <p class="my-1  <?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?>">
-                                        <a class="<?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?>"
-                                            href="{{ route('tickets.index') }}">{{ $countDevice - $countDeviceError }}/{{ $countDevice }}</a>
+                                </h6>
+                                <p class="my-1  <?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?>">
+                                    <a class="<?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?>"
+                                        href="{{ route('tickets.index') }}">{{ $countDevice - $countDeviceError }}/{{ $countDevice }}</a>
 
-                                    </p>
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-50 box-col-3 des-xl-50">
-                    <div class="card income-card card-primary" style="height: 320px">
+                    <div class="card income-card card-primary" style="height: 250px">
                         <div class="card-body">
                             <div class="round-progress knob-block text-center">
                                 <p>Branches Status</p>
@@ -116,23 +116,23 @@
                                     data-fgColor="<?= $selectBranchesError > 0 ? '#EB4656' : '#24695C' ?>"
                                     data-angleOffset=0 data-angleArc=360 data-rotation=anticlockwise>
 
-                                <h5 class="my-1 <?= $selectBranchesError > 0 ? 'text-danger' : 'text-success' ?>"> <b> <i
+                                <h6 class="my-1 <?= $selectBranchesError > 0 ? 'text-danger' : 'text-success' ?>"> <b> <i
                                             class="fa <?= $selectBranchesError > 0 ? 'fa-exclamation-triangle' : 'fa-check' ?>"
                                             aria-hidden="true"></i>
                                         <?= $selectBranchesError > 0 ? 'Warning' : 'Healthy' ?></b>
-                                    </h3>
-                                    <p class="my-1 <?= $selectBranchesError > 0 ? 'text-danger' : 'text-success' ?>">
-                                        <a class="<?= $selectBranchesError > 0 ? 'text-danger' : 'text-success' ?>"
-                                            href="{{ route('tickets.index') }}">{{ $countBranches - $selectBranchesError }}/{{ $countBranches }}</a>
+                                </h6>
+                                <p class="my-1 <?= $selectBranchesError > 0 ? 'text-danger' : 'text-success' ?>">
+                                    <a class="<?= $selectBranchesError > 0 ? 'text-danger' : 'text-success' ?>"
+                                        href="{{ route('tickets.index') }}">{{ $countBranches - $selectBranchesError }}/{{ $countBranches }}</a>
 
-                                    </p>
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-xl-3 col-50 box-col-3 des-xl-50">
-                    <div class="card income-card card-secondary" style="height: 320px">
+                    <div class="card income-card card-secondary" style="height: 250px">
                         <div class="card-body align-items-center">
                             <div class="round-progress knob-block text-center">
                                 <p>Clusters Status</p>
@@ -141,32 +141,32 @@
                                     data-angleArc=360 data-rotation=anticlockwise>
 
 
-                                <h5 class="my-1 <?= $selectClusterError > 0 ? 'text-danger' : 'text-success' ?>"> <b><i
+                                <h6 class="my-1 <?= $selectClusterError > 0 ? 'text-danger' : 'text-success' ?>"> <b><i
                                             class="fa <?= $selectClusterError > 0 ? 'fa-exclamation-triangle' : 'fa-check' ?>"
                                             aria-hidden="true"></i>
                                         <?= $selectClusterError > 0 ? 'Warning' : 'Healthy' ?></b>
-                                    </h3>
-                                    <p class="my-1 <?= $selectClusterError > 0 ? 'text-danger' : 'text-success' ?>">
-                                        <a class="<?= $selectClusterError > 0 ? 'text-danger' : 'text-success' ?>"
-                                            href="{{ route('tickets.index') }}">{{ $countCluster - $selectClusterError }}/{{ $countCluster }}</a>
+                                </h6>
+                                <p class="my-1 <?= $selectClusterError > 0 ? 'text-danger' : 'text-success' ?>">
+                                    <a class="<?= $selectClusterError > 0 ? 'text-danger' : 'text-success' ?>"
+                                        href="{{ route('tickets.index') }}">{{ $countCluster - $selectClusterError }}/{{ $countCluster }}</a>
 
-                                    </p>
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-50 box-col-3 des-xl-50">
-                    <div class="card income-card card-primary" style="height: 320px">
+                    <div class="card income-card card-primary" style="height: 250px">
                         <div class="card-body">
                             <div class="round-progress knob-block text-center">
                                 <p>Overall Status</p>
                                 <i
-                                    class="fa-solid <?= $countDeviceError > 0 ? 'fa-exclamation-triangle' : 'fa fa-check' ?> fa-10x my-1 <?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?>"></i>
-                                <h5 class="my-1 <?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?>">
+                                    class="fa-solid <?= $countDeviceError > 0 ? 'fa-exclamation-triangle' : 'fa fa-check' ?> fa-7x my-1 <?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?>"></i>
+                                <h6 class="my-1 <?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?>">
                                     <b><a class="<?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?>"
                                             href="{{ route('tickets.index') }}"><?= $countDeviceError > 0 ? 'Warning Alert' : 'Perfectly Healthy' ?></a></b>
 
-                                </h5>
+                                </h6>
 
                             </div>
                         </div>
@@ -369,8 +369,8 @@
                 'readOnly': true,
                 'thickness': 0.2,
                 'tickColorizeValues': true,
-                'width': 150,
-                'height': 150,
+                'width': 100,
+                'height': 100,
                 'change': function(v) {
                     console.log(v);
                 },
@@ -386,8 +386,8 @@
                 'readOnly': true,
                 'thickness': 0.2,
                 'tickColorizeValues': true,
-                'width': 150,
-                'height': 150,
+                'width': 100,
+                'height': 100,
                 'change': function(v) {
                     console.log(v);
                 },
@@ -403,8 +403,8 @@
                 'readOnly': true,
                 'thickness': 0.2,
                 'tickColorizeValues': true,
-                'width': 150,
-                'height': 150,
+                'width': 100,
+                'height': 100,
                 'change': function(v) {
                     console.log(v);
                 },

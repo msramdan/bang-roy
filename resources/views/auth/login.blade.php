@@ -16,7 +16,11 @@
                         <form class="theme-form login-form" method="POST" action="{{ route('login') }}">
                             @csrf
                             <center>
-                                <img src="{{ asset('assets/logo.png') }}" alt="" style="width: 60%">
+                                @if (setting_web()->logo != null)
+                                    <img src="{{ Storage::url('public/img/setting_app/') . setting_web()->logo }}"
+                                        alt="" style="width: 60%">
+                                @endif
+
                                 <h6>Welcome back! Log in to your account.</h6>
                                 @if ($errors->any())
                                     <div class="alert alert-danger alert-dismissible show fade">
@@ -52,6 +56,17 @@
                                     <input class="form-control" type="password" name="password" id="password"
                                         value="" required="" placeholder="" required>
                                 </div>
+                            </div>
+                            <div class="form-group">
+                                {{-- <div class="col-md-6"> --}}
+                                {!! NoCaptcha::display() !!}
+                                {!! NoCaptcha::renderJs() !!}
+                                @error('g-recaptcha-response')
+                                    <span class="text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                {{-- </div> --}}
                             </div>
                             <div class="form-group">
                                 <div class="checkbox">

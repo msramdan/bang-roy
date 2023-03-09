@@ -92,9 +92,9 @@ class LatestDataController extends Controller
 
         foreach ($parsed_data as $data) {
             $dates = strtotime($data->created_at);
-            $battery = $data->battery;
-            $temperature = $data->temperature;
-            $humidity = $data->humidity;
+            $battery =  round($data->battery, 2);
+            $temperature = round($data->temperature, 2);
+            $humidity = round($data->humidity, 2);
 
             array_push($parsed_dates, $dates);
             array_push($battery_datas, $battery);
