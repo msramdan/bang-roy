@@ -40,8 +40,8 @@
                                             <th>#</th>
                                             <th>{{ __('Kabkot') }}</th>
                                             <th>{{ __('Kecamatan') }}</th>
-                                            <th>{{ __('Created At') }}</th>
-                                            <th>{{ __('Updated At') }}</th>
+                                            {{-- <th>{{ __('Created At') }}</th>
+                                            <th>{{ __('Updated At') }}</th> --}}
                                             <th>{{ __('Action') }}</th>
                                         </tr>
                                     </thead>
@@ -74,14 +74,14 @@
                     data: 'kecamatan',
                     name: 'kecamatan',
                 },
-                {
-                    data: 'created_at',
-                    name: 'created_at'
-                },
-                {
-                    data: 'updated_at',
-                    name: 'updated_at'
-                },
+                // {
+                //     data: 'created_at',
+                //     name: 'created_at'
+                // },
+                // {
+                //     data: 'updated_at',
+                //     name: 'updated_at'
+                // },
                 {
                     data: 'action',
                     name: 'action',

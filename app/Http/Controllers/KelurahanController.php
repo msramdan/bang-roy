@@ -31,11 +31,13 @@ class KelurahanController extends Controller
                 ->addIndexColumn()
                 ->addColumn('kecamatan', function ($row) {
                     return $row->kecamatan ? $row->kecamatan->kecamatan : '';
-                })->addColumn('created_at', function ($row) {
-                    return $row->created_at->format('d M Y H:i:s');
-                })->addColumn('updated_at', function ($row) {
-                    return $row->updated_at->format('d M Y H:i:s');
-                })->addColumn('action', 'kelurahans.include.action')
+                })
+                // ->addColumn('created_at', function ($row) {
+                //     return $row->created_at->format('d M Y H:i:s');
+                // })->addColumn('updated_at', function ($row) {
+                //     return $row->updated_at->format('d M Y H:i:s');
+                // })
+                ->addColumn('action', 'kelurahans.include.action')
                 ->toJson();
         }
 

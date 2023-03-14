@@ -29,11 +29,11 @@ class ProvinceController extends Controller
 
             return DataTables::of($provinces)
                 ->addIndexColumn()
-                ->addColumn('created_at', function ($row) {
-                    return $row->created_at->format('d M Y H:i:s');
-                })->addColumn('updated_at', function ($row) {
-                    return $row->updated_at->format('d M Y H:i:s');
-                })
+                // ->addColumn('created_at', function ($row) {
+                //     return $row->created_at->format('d M Y H:i:s');
+                // })->addColumn('updated_at', function ($row) {
+                //     return $row->updated_at->format('d M Y H:i:s');
+                // })
                 ->addColumn('action', 'provinces.include.action')
                 ->toJson();
         }

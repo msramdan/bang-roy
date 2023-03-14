@@ -41,8 +41,8 @@
                                             <th>{{ __('Kecamatan') }}</th>
                                             <th>{{ __('Kelurahan') }}</th>
                                             <th>{{ __('Kode POS') }}</th>
-                                            <th>{{ __('Created At') }}</th>
-                                            <th>{{ __('Updated At') }}</th>
+                                            {{-- <th>{{ __('Created At') }}</th>
+                                            <th>{{ __('Updated At') }}</th> --}}
                                             <th>{{ __('Action') }}</th>
                                         </tr>
                                     </thead>
@@ -79,14 +79,14 @@
                     data: 'kd_pos',
                     name: 'kd_pos',
                 },
-                {
-                    data: 'created_at',
-                    name: 'created_at'
-                },
-                {
-                    data: 'updated_at',
-                    name: 'updated_at'
-                },
+                // {
+                //     data: 'created_at',
+                //     name: 'created_at'
+                // },
+                // {
+                //     data: 'updated_at',
+                //     name: 'updated_at'
+                // },
                 {
                     data: 'action',
                     name: 'action',
