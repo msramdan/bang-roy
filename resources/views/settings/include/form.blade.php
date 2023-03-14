@@ -85,4 +85,28 @@
             @enderror
         </div>
     </div>
+
+    {{-- favicon --}}
+    <div class="col-md-2">
+        <div class="avatar avatar-xl mb-3">
+            @if ($setting->favicon == null)
+                <img style="width:70px" src="{{ asset('assets/not-available.png') }}" alt="Favicon">
+            @else
+                <img style="width:70px" src="{{ Storage::url('public/img/setting_app/') . $setting->favicon }}"
+                    alt="Favicon">
+            @endif
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="file">{{ __('Favicon') }}</label>
+            <input type="file" name="favicon" class="form-control @error('favicon') is-invalid @enderror"
+                id="favicon">
+            @error('favicon')
+                <span class="text-danger">
+                    {{ $message }}
+                </span>
+            @enderror
+        </div>
+    </div>
 </div>

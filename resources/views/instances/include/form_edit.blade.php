@@ -27,6 +27,34 @@
             @enderror
         </div>
     </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="email">{{ __('Email') }}</label>
+            <input type="text" name="email" id="email"
+                class="form-control @error('email') is-invalid @enderror"
+                value="{{ isset($instance) ? $instance->email : old('email') }}" placeholder="{{ __('Email') }}"
+                required />
+            @error('email')
+                <span class="text-danger">
+                    {{ $message }}
+                </span>
+            @enderror
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="phone">{{ __('Phone') }}</label>
+            <input type="text" name="phone" id="phone"
+                class="form-control @error('phone') is-invalid @enderror"
+                value="{{ isset($instance) ? $instance->phone : old('phone') }}" placeholder="{{ __('Phone') }}"
+                required />
+            @error('phone')
+                <span class="text-danger">
+                    {{ $message }}
+                </span>
+            @enderror
+        </div>
+    </div>
 
     <div class="col-md-6">
         <div class="form-group">
@@ -138,41 +166,14 @@
             @enderror
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="email">{{ __('Email') }}</label>
-            <input type="text" name="email" id="email"
-                class="form-control @error('email') is-invalid @enderror"
-                value="{{ isset($instance) ? $instance->email : old('email') }}" placeholder="{{ __('Email') }}"
-                required />
-            @error('email')
-                <span class="text-danger">
-                    {{ $message }}
-                </span>
-            @enderror
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="phone">{{ __('Phone') }}</label>
-            <input type="text" name="phone" id="phone"
-                class="form-control @error('phone') is-invalid @enderror"
-                value="{{ isset($instance) ? $instance->phone : old('phone') }}" placeholder="{{ __('Phone') }}"
-                required />
-            @error('phone')
-                <span class="text-danger">
-                    {{ $message }}
-                </span>
-            @enderror
-        </div>
-    </div>
+
     <div class="col-md-6">
         <div class="form-group">
             <label for="longitude">{{ __('Longitude') }}</label>
             <input type="text" name="longitude" id="longitude"
                 class="form-control @error('longitude') is-invalid @enderror"
                 value="{{ isset($instance) ? $instance->longitude : old('longitude') }}"
-                placeholder="{{ __('Longitude') }}" required />
+                placeholder="{{ __('Longitude') }}" required readonly />
             @error('longitude')
                 <span class="text-danger">
                     {{ $message }}
@@ -186,7 +187,7 @@
             <input type="text" name="latitude" id="latitude"
                 class="form-control @error('latitude') is-invalid @enderror"
                 value="{{ isset($instance) ? $instance->latitude : old('latitude') }}"
-                placeholder="{{ __('Latitude') }}" required />
+                placeholder="{{ __('Latitude') }}" required readonly />
             @error('latitude')
                 <span class="text-danger">
                     {{ $message }}

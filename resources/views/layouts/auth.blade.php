@@ -11,7 +11,10 @@
         content="admin template, viho admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="pixelstrap">
     <link rel="icon" href="../assets/images/favicon.png" type="image/x-icon">
-    <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon"
+        @if (setting_web()->favicon != null) href="{{ Storage::url('public/img/setting_app/') . setting_web()->favicon }}" @endif
+        type="image/x-icon">
+
     <title>Halaman Login</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link

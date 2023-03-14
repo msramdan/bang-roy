@@ -42,6 +42,15 @@ class SettingController extends Controller
             ]);
         }
 
+        if ($request->file('favicon') != null || $request->file('favicon') != '') {
+            Storage::disk('local')->delete('public/img/setting_app/' . $setting_app->favicon);
+            $favicon = $request->file('favicon');
+            $favicon->storeAs('public/img/setting_app', $favicon->hashName());
+            $setting_app->update([
+                'favicon'     => $favicon->hashName(),
+            ]);
+        }
+
         $setting_app->update([
             'aplication_name' => $request->aplication_name,
             'endpoint_nms' => $request->endpoint_nms,

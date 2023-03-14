@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('endpoint_nms', 255);
             $table->string('token', 255);
             $table->string('logo', 255)->nullable();
+            $table->string('favicon', 255)->nullable();
             $table->boolean('is_notif_tele');
             $table->timestamps();
         });

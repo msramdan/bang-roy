@@ -20,7 +20,16 @@ function setting_web()
     return $setting;
 }
 
-function getInstance($id)
+function setting_tolerance_alerts($id, $field_data)
+{
+    $setting_tolerance_alerts = DB::table('setting_tolerance_alerts')
+        ->where('cluster_id', '=', $id)
+        ->where('field_data', '=', $field_data)
+        ->first();
+    return $setting_tolerance_alerts;
+}
+
+function getInstance($id, $params)
 {
     $instances = DB::table('instances')->where('id', $id)->first();
     return $instances;
@@ -393,7 +402,7 @@ function createTiket($device_id, $devEUI, $data, $time)
                             ->latest()->first();
                         if ($tickets) {
                             // cek statusnya opened / closed, jika closed buat tiket baru
-                            if ($tickets->status=="Closed") {
+                            if ($tickets->status == "Closed") {
                                 // create tiket
                                 $dataTiket = [
                                     'subject' => "Alert from device " . $devEUI,
@@ -405,7 +414,7 @@ function createTiket($device_id, $devEUI, $data, $time)
                                 ];
                                 $tiket = Ticket::create($dataTiket);
                                 $ticket_id = DB::getPdo()->lastInsertId();
-                            }else{
+                            } else {
                                 $ticket_id = $tickets->id;
                                 $dataTiket = [
                                     'subject' => "Alert from device " . $devEUI,
@@ -418,7 +427,7 @@ function createTiket($device_id, $devEUI, $data, $time)
                                 DB::table('tickets')
                                     ->where('id', $tickets->id)
                                     ->update($dataTiket);
-                                }
+                            }
                         } else {
                             // create tiket
                             $dataTiket = [

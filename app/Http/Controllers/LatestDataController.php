@@ -31,7 +31,7 @@ class LatestDataController extends Controller
                 ->join('devices', 'latest_datas.device_id', '=', 'devices.id')
                 ->join('clusters', 'devices.cluster_id', '=', 'clusters.id')
                 ->join('instances', 'devices.instance_id', '=', 'instances.id')
-                ->select('latest_datas.*', 'devices.dev_eui', 'clusters.cluster_name', 'instances.instance_name')
+                ->select('latest_datas.*', 'devices.dev_eui', 'clusters.cluster_name', 'clusters.id as cluster_id', 'instances.instance_name')
                 ->get();
             return DataTables::of($latestDatas)
                 ->addIndexColumn()
@@ -44,11 +44,23 @@ class LatestDataController extends Controller
                 ->addColumn('device', function ($row) {
                     return $row->dev_eui;
                 })->addColumn('temperature', function ($row) {
-                    return $row->temperature . ' C';
+                    if ($row->temperature < setting_tolerance_alerts($row->cluster_id, 'temperature')->min_tolerance || $row->temperature > setting_tolerance_alerts($row->cluster_id, 'temperature')->max_tolerance) {
+                        return  '<span style="color:red">' . $row->temperature . ' C</span>';
+                    } else {
+                        return  '<span>' . $row->temperature . ' C</span>';
+                    }
                 })->addColumn('humidity', function ($row) {
-                    return $row->humidity . ' %';
+                    if ($row->humidity < setting_tolerance_alerts($row->cluster_id, 'humidity')->min_tolerance || $row->humidity > setting_tolerance_alerts($row->cluster_id, 'humidity')->max_tolerance) {
+                        return  '<span style="color:red">' . $row->humidity . ' %</span>';
+                    } else {
+                        return  '<span>' . $row->humidity . ' %</span>';
+                    }
                 })->addColumn('battery', function ($row) {
-                    return $row->battery . ' V';
+                    if ($row->battery < setting_tolerance_alerts($row->cluster_id, 'battery')->min_tolerance || $row->battery > setting_tolerance_alerts($row->cluster_id, 'battery')->max_tolerance) {
+                        return  '<span style="color:red">' . $row->battery . ' V</span>';
+                    } else {
+                        return  '<span>' . $row->battery . ' V</span>';
+                    }
                 })->addColumn('period', function ($row) {
                     return $row->period . ' Second';
                 })->addColumn('rssi', function ($row) {
@@ -63,6 +75,7 @@ class LatestDataController extends Controller
                     return Carbon::parse($row->created_at)->diffForHumans();
                 })
                 ->addColumn('action', 'latest-datas.include.action')
+                ->rawColumns(['humidity', 'action', 'temperature', 'battery'])
                 ->toJson();
         }
 
