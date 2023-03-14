@@ -68,7 +68,7 @@ class ViewServiceProvider extends ServiceProvider
             );
         });
 
-        View::composer(['instances.create', 'instances.edit'], function ($view) {
+        View::composer(['instances.edit'], function ($view) {
             return $view->with(
                 'kelurahans',
                 \App\Models\Kelurahan::select('id', 'kelurahan')->get()

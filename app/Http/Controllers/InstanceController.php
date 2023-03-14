@@ -165,7 +165,6 @@ class InstanceController extends Controller
     public function update(UpdateInstanceRequest $request, Instance $instance)
     {
         try {
-            // dd($request->push_url);
             $response = Http::withHeaders(['x-access-token' => setting_web()->token])
                 ->withOptions(['verify' => false])
                 ->post(setting_web()->endpoint_nms . '/openapi/app/update', [
