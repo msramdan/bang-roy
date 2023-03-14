@@ -6,6 +6,8 @@ use App\Http\Requests\{StoreUserRequest, UpdateUserRequest};
 use App\Models\User;
 use Yajra\DataTables\Facades\DataTables;
 use Image;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class UserController extends Controller
 {
@@ -98,10 +100,9 @@ class UserController extends Controller
         $user = User::create($attr);
 
         $user->assignRole($request->role);
-
+        Alert::toast('The user was created successfully.', 'success');
         return redirect()
-            ->route('users.index')
-            ->with('success', __('The user was created successfully.'));
+            ->route('users.index');
     }
 
     /**
@@ -179,10 +180,9 @@ class UserController extends Controller
         $user->update($attr);
 
         $user->syncRoles($request->role);
-
+        Alert::toast('The user was updated successfully.', 'success');
         return redirect()
-            ->route('users.index')
-            ->with('success', __('The user was updated successfully.'));
+            ->route('users.index');
     }
 
     /**

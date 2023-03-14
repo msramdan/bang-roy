@@ -62,7 +62,7 @@
     <script>
         $('#data-table').DataTable({
             processing: true,
-            serverSide: true,
+            // serverSide: true,
             ajax: "{{ route('instances.index') }}",
             columns: [{
                     data: 'DT_RowIndex',
@@ -83,7 +83,7 @@
                 },
                 {
                     data: 'kabkot',
-                    name: 'kabkot.provinsi_id'
+                    // name: 'kabkot.provinsi_id'
                 },
                 {
                     data: 'email',

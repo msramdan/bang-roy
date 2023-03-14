@@ -67,7 +67,7 @@
     <script>
         $('#data-table').DataTable({
             processing: true,
-            serverSide: true,
+            // serverSide: true,
             ajax: "{{ route('devices.index') }}",
             columns: [{
                     data: 'DT_RowIndex',
@@ -96,7 +96,7 @@
                 },
                 {
                     data: 'subnet',
-                    name: 'subnet.subnet'
+                    // name: 'subnet.subnet'
                 },
                 {
                     data: 'auth_type',

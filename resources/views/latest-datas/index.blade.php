@@ -55,7 +55,7 @@
     <script>
         $('#data-table').DataTable({
             processing: true,
-            serverSide: true,
+            // serverSide: true,
             ajax: "{{ route('latest-datas.index') }}",
             columns: [{
                     data: 'instance_name',

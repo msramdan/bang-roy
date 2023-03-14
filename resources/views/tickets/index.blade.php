@@ -102,7 +102,7 @@
         let query = params.parsed_data; // "some_value"
         var table = $('#data-table').DataTable({
             processing: true,
-            serverSide: true,
+            // serverSide: true,
             ajax: {
                 url: "{{ route('tickets.index') }}",
                 data: function(s) {

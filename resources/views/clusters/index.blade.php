@@ -61,7 +61,7 @@
     <script>
         $('#data-table').DataTable({
             processing: true,
-            serverSide: true,
+            // serverSide: true,
             ajax: "{{ route('clusters.index') }}",
             columns: [{
                     data: 'DT_RowIndex',
