@@ -36,6 +36,7 @@
                                 <table class="table table-striped table-xs" id="data-table" role="grid">
                                     <thead>
                                         <tr>
+                                            <th>#</th>
                                             <th>{{ __('Branches') }}</th>
                                             <th>{{ __('Cluster') }}</th>
                                             <th>{{ __('Subject') }}</th>
@@ -60,6 +61,11 @@
 @push('js')
     <script>
         let columns = [{
+                data: 'DT_RowIndex',
+                name: 'DT_RowIndex',
+                orderable: false,
+                searchable: false
+            }, {
                 data: 'branches',
                 name: 'branches',
             },
@@ -102,7 +108,7 @@
         let query = params.parsed_data; // "some_value"
         var table = $('#data-table').DataTable({
             processing: true,
-            // serverSide: true,
+            serverSide: true,
             ajax: {
                 url: "{{ route('tickets.index') }}",
                 data: function(s) {

@@ -61,11 +61,11 @@
                                 {{-- <div class="col-md-6"> --}}
                                 {!! NoCaptcha::display() !!}
                                 {!! NoCaptcha::renderJs() !!}
-                                @error('g-recaptcha-response')
+                                {{-- @error('g-recaptcha-response')
                                     <span class="text-danger" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                                @enderror --}}
                                 {{-- </div> --}}
                             </div>
                             <div class="form-group">

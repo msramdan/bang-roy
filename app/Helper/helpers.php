@@ -29,7 +29,7 @@ function setting_tolerance_alerts($id, $field_data)
     return $setting_tolerance_alerts;
 }
 
-function getInstance($id, $params)
+function getInstance($id)
 {
     $instances = DB::table('instances')->where('id', $id)->first();
     return $instances;
