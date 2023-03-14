@@ -54,24 +54,17 @@ class ViewServiceProvider extends ServiceProvider
             );
         });
 
-        View::composer(['instances.edit', 'kecamatans.create', 'kecamatans.edit'], function ($view) {
+        View::composer(['kecamatans.create', 'kecamatans.edit'], function ($view) {
             return $view->with(
                 'kabkots',
                 \App\Models\Kabkot::select('id', 'kabupaten_kota')->get()
             );
         });
 
-        View::composer(['instances.edit', 'kelurahans.create', 'kelurahans.edit'], function ($view) {
+        View::composer(['kelurahans.create', 'kelurahans.edit'], function ($view) {
             return $view->with(
                 'kecamatans',
                 \App\Models\Kecamatan::select('id', 'kecamatan')->get()
-            );
-        });
-
-        View::composer(['instances.edit'], function ($view) {
-            return $view->with(
-                'kelurahans',
-                \App\Models\Kelurahan::select('id', 'kelurahan')->get()
             );
         });
 

@@ -151,8 +151,11 @@ class InstanceController extends Controller
     public function edit(Instance $instance)
     {
         $instance->load('province:id,provinsi', 'kabkot:id,provinsi_id', 'kecamatan:id,kabkot_id', 'kelurahan:id,kecamatan_id',);
+        $kabkot = DB::table('kabkots')->where('provinsi_id', $instance->provinsi_id)->get();
+        $kecamatan = DB::table('kecamatans')->where('kabkot_id', $instance->kabkot_id)->get();
+        $kelurahan = DB::table('kelurahans')->where('kecamatan_id', $instance->kecamatan_id)->get();
         $operational_times = OperationalTime::where('instance_id', $instance->id)->orderBy('id', 'asc')->get();
-        return view('instances.edit', compact('instance', 'operational_times'));
+        return view('instances.edit', compact('instance', 'operational_times', 'kabkot', 'kecamatan', 'kelurahan'));
     }
 
     /**
