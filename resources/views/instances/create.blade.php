@@ -451,7 +451,7 @@
         $('#kecamatan-id').change(function() {
             $('#kelurahan-id').html(options_temp);
             if ($(this).val() != "") {
-                // getKelurahan($(this).val());
+                getKelurahan($(this).val());
             }
             //onValidation('kecamatan')
         })
