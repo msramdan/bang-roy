@@ -1,31 +1,31 @@
 @extends('layouts.app')
 
-@section('title', __('Create Kelurahans'))
+@section('title', __('Create Kelurahan'))
 
 @section('content')
-        <div class="page-body">
-                <div class="container-fluid">
-                    <div class="page-header" style="margin-top: 5px">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <h3>{{ __('Kelurahans') }}</h3>
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item">
-                                        <a href="/">{{ __('Dashboard') }}</a>
-                                    </li>
-                                    <li class="breadcrumb-item">
-                                        <a href="{{ route('kelurahans.index') }}">{{ __('Kelurahans') }}</a>
-                                    </li>
-                                    <li class="breadcrumb-item active" aria-current="page">
-                                        {{ __('Create') }}
-                                    </li>
-                                </ol>
-                            </div>
-                            <div class="col-sm-6">
-                            </div>
-                        </div>
+    <div class="page-body">
+        <div class="container-fluid">
+            <div class="page-header" style="margin-top: 5px">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h3>{{ __('Kelurahan') }}</h3>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="/">{{ __('Dashboard') }}</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="{{ route('kelurahans.index') }}">{{ __('Kelurahan') }}</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">
+                                {{ __('Create') }}
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="col-sm-6">
                     </div>
                 </div>
+            </div>
+        </div>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
