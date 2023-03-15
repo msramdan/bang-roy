@@ -203,12 +203,12 @@
                                                     <td><a href="{{ url('/tickets?parsed_data=' . $row->id) }}"
                                                             class="btn btn-pill btn-danger btn-air-danger btn-xs"
                                                             type="button" title="">
-                                                            Opened</a>
+                                                            Open</a>
                                                     @else
                                                     <td><a href="{{ url('/tickets?parsed_data=' . $row->id) }}"
                                                             class="btn btn-pill btn-success btn-air-success btn-xs"
                                                             type="button" title="">
-                                                            Closed</a>
+                                                            Close</a>
                                                 @endif
                                                 </td>
                                             </tr>
