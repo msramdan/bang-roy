@@ -41,7 +41,7 @@
                                             <th>{{ __('App Id') }}</th>
                                             <th>{{ __('App Name') }}</th>
                                             <th>{{ __('Branches Name') }}</th>
-                                            <th>{{ __('Kabkot') }}</th>
+                                            <th>{{ __('Kabupaten/kota') }}</th>
                                             <th>{{ __('Email') }}</th>
                                             <th>{{ __('Phone') }}</th>
                                             <th>{{ __('Action') }}</th>
