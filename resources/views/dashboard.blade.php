@@ -20,8 +20,10 @@
                             <div class="d-flex align-items-center">
                                 <div>
                                     <p class="mb-0 text-secondary">Total Branches</p>
-                                    <h4 class="my-1 text-info"><a href="{{ route('instances.index') }}">{{ $countBranches }}
-                                            Data</a></h4>
+                                    <h4 class="my-1 text-info"><a href="{{ route('instances.index') }}"><span
+                                                style="color:red">{{ $selectBranchesError }}</span>
+                                            / {{ $countBranches }}
+                                        </a></h4>
 
                                 </div>
                                 <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i
@@ -37,9 +39,10 @@
                             <div class="d-flex align-items-center">
                                 <div>
                                     <p class="mb-0 text-secondary">Total Clusters</p>
-                                    <h4 class="my-1 text-danger"> <a
-                                            href="{{ route('clusters.index') }}">{{ $countCluster }}
-                                            Data</a>
+                                    <h4 class="my-1 text-danger"> <a href="{{ route('clusters.index') }}"><span
+                                                style="color:red">{{ $selectClusterError }}</span>
+                                            / {{ $countCluster }}
+                                        </a>
                                     </h4>
 
                                 </div>
@@ -56,8 +59,10 @@
                             <div class="d-flex align-items-center">
                                 <div>
                                     <p class="mb-0 text-secondary">Total Devices</p>
-                                    <h4 class="my-1 text-success"><a href="{{ route('devices.index') }}">{{ $countDevice }}
-                                            Data</a></h4>
+                                    <h4 class="my-1 text-success"><a href="{{ route('devices.index') }}"><span
+                                                style="color:red">{{ $countDeviceError }}</span> /
+                                            {{ $countDevice }}
+                                        </a></h4>
 
                                 </div>
                                 <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i
@@ -87,31 +92,7 @@
             </div>
 
             <div class="row">
-                <div class="col-xl-3 col-50 box-col-3 des-xl-50">
-                    <div class="card income-card card-secondary" style="height: 250px">
-                        <div class="card-body align-items-center">
-                            <div class="round-progress knob-block text-center">
 
-                                {{-- ramdan --}}
-                                <p>Temperature Status</p>
-                                <input type="text" value="{{ $chartPersentage }}" id="infinite"
-                                    data-fgColor="<?= $countDeviceError > 0 ? '#EB4656' : '#24695C' ?>" data-angleOffset=0
-                                    data-angleArc=360 data-rotation=anticlockwise>
-
-                                <h6 class="my-1 <?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?>">
-                                    <b><i class="fa <?= $countDeviceError > 0 ? 'fa-exclamation-triangle' : 'fa-check' ?> "
-                                            aria-hidden="true"></i>
-                                        <?= $countDeviceError > 0 ? 'Warning' : 'Healthy' ?> </b>
-                                </h6>
-                                <p class="my-1  <?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?>">
-                                    <a class="<?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?>"
-                                        href="{{ route('tickets.index') }}">{{ $countDevice - $countDeviceError }}/{{ $countDevice }}</a>
-
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="col-xl-3 col-50 box-col-3 des-xl-50">
                     <div class="card income-card card-primary" style="height: 250px">
                         <div class="card-body">
@@ -154,6 +135,31 @@
                                 <p class="my-1 <?= $selectClusterError > 0 ? 'text-danger' : 'text-success' ?>">
                                     <a class="<?= $selectClusterError > 0 ? 'text-danger' : 'text-success' ?>"
                                         href="{{ route('tickets.index') }}">{{ $countCluster - $selectClusterError }}/{{ $countCluster }}</a>
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-50 box-col-3 des-xl-50">
+                    <div class="card income-card card-secondary" style="height: 250px">
+                        <div class="card-body align-items-center">
+                            <div class="round-progress knob-block text-center">
+
+                                {{-- ramdan --}}
+                                <p>Temperature Status</p>
+                                <input type="text" value="{{ $chartPersentage }}" id="infinite"
+                                    data-fgColor="<?= $countDeviceError > 0 ? '#EB4656' : '#24695C' ?>" data-angleOffset=0
+                                    data-angleArc=360 data-rotation=anticlockwise>
+
+                                <h6 class="my-1 <?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?>">
+                                    <b><i class="fa <?= $countDeviceError > 0 ? 'fa-exclamation-triangle' : 'fa-check' ?> "
+                                            aria-hidden="true"></i>
+                                        <?= $countDeviceError > 0 ? 'Warning' : 'Healthy' ?> </b>
+                                </h6>
+                                <p class="my-1  <?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?>">
+                                    <a class="<?= $countDeviceError > 0 ? 'text-danger' : 'text-success' ?>"
+                                        href="{{ route('tickets.index') }}">{{ $countDevice - $countDeviceError }}/{{ $countDevice }}</a>
 
                                 </p>
                             </div>

@@ -95,7 +95,7 @@
             <label for="kabkot-id">{{ __('Kabkot') }}</label>
             <select class="form-select @error('kabkot_id') is-invalid @enderror" name="kabkot_id" id="kabkot-id"
                 class="form-control" required>
-                <option value="" selected disabled>-- {{ __('Select kabkot') }} --</option>
+                <option value="" selected disabled>-- {{ __('Select kabupaten/kota') }} --</option>
             </select>
             @error('kabkot_id')
                 <span class="text-danger">
