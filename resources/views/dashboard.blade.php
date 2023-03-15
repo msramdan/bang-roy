@@ -5,6 +5,11 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/dashboard.css') }}">
 @endpush
 @section('content')
+    <style>
+        .highcharts-credits {
+            color: white;
+        }
+    </style>
     <br>
     <div class="page-body">
         <div class="container-fluid">
@@ -499,6 +504,9 @@
                 point: {
                     valueSuffix: '%'
                 }
+            },
+            credits: {
+                enabled: false
             },
             plotOptions: {
                 pie: {
