@@ -514,11 +514,11 @@
                 name: 'Brands',
                 colorByPoint: true,
                 data: [{
-                    name: 'Opened',
+                    name: 'Open',
                     y: {{ $ticketOpen }},
                     color: '#d22d3d'
                 }, {
-                    name: 'Closed',
+                    name: 'Close',
                     y: {{ $ticketClose }},
                     color: '#24695c'
                 }]
