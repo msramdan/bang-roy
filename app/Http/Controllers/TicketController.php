@@ -42,9 +42,9 @@ class TicketController extends Controller
                     return $row->updated_at->format('d M Y H:i:s');
                 })->addColumn('status', function ($row) {
                     if ($row->status == "Opened") {
-                        return '<button class="btn btn-pill btn-danger btn-air-danger btn-xs" type="button" title="btn btn-pill btn-danger btn-air-danger btn-xs"> Open</button>';
+                        return '<button class="btn btn-pill btn-danger btn-air-danger btn-xs" type="button" title=""> Open</button>';
                     } else {
-                        return '<button class="btn btn-pill btn-primary btn-air-primary btn-xs" type="button" title="btn btn-pill btn-primary btn-air-primary btn-xs">Close</button>';
+                        return '<button class="btn btn-pill btn-primary btn-air-primary btn-xs" type="button" title="">Close</button>';
                     }
                 })
                 ->addColumn('description', function ($row) {

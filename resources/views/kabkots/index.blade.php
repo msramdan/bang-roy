@@ -27,7 +27,7 @@
                         <div class="d-flex justify-content-end">
                             <a href="{{ route('kabkots.create') }}" class="btn btn-primary mb-3">
                                 <i class="fas fa-plus"></i>
-                                {{ __('Create a new kabkot') }}
+                                {{ __('Create a new Kabupaten/Kota') }}
                             </a>
                         </div>
                     @endcan

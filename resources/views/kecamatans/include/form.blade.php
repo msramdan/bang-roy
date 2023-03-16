@@ -1,10 +1,10 @@
 <div class="row mb-2">
     <div class="col-md-6">
         <div class="form-group">
-            <label for="kabkot-id">{{ __('Kabkot') }}</label>
+            <label for="kabkot-id">{{ __('Kabupaten/kota') }}</label>
             <select class="form-select @error('kabkot_id') is-invalid @enderror" name="kabkot_id" id="kabkot-id"
                 class="form-control" required>
-                <option value="" selected disabled>-- {{ __('Select kabkot') }} --</option>
+                <option value="" selected disabled>-- {{ __('Select Kabupaten/kota') }} --</option>
 
                 @foreach ($kabkots as $kabkot)
                     <option value="{{ $kabkot->id }}"
