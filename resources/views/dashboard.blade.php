@@ -20,10 +20,11 @@
                             <div class="d-flex align-items-center">
                                 <div>
                                     <p class="mb-0 text-secondary">Total Branches</p>
-                                    <h4 class="my-1 text-info"><a href="{{ route('instances.index') }}"><span
-                                                style="color:red">{{ $selectBranchesError }}</span>
-                                            / {{ $countBranches }}
-                                        </a></h4>
+                                    <h4 class="my-1 text-info"><a href="#" class="" style="color:red"
+                                            data-bs-toggle="modal" data-bs-target="#modalBrancError">
+                                            {{ $selectBranchesError }} </a>
+                                        <a href="#"> / {{ $countBranches }}</a>
+                                    </h4>
 
                                 </div>
                                 <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i
@@ -39,9 +40,11 @@
                             <div class="d-flex align-items-center">
                                 <div>
                                     <p class="mb-0 text-secondary">Total Clusters</p>
-                                    <h4 class="my-1 text-danger"> <a href="{{ route('clusters.index') }}"><span
-                                                style="color:red">{{ $selectClusterError }}</span>
-                                            / {{ $countCluster }}
+                                    <h4 class="my-1 text-danger"> <a href="{{ route('clusters.index') }}">
+                                            <a href="#" class="" style="color:red" data-bs-toggle="modal"
+                                                data-bs-target="#modalClusterError">
+                                                {{ $selectClusterError }} </a>
+                                            <a href="#"> / {{ $countCluster }}</a>
                                         </a>
                                     </h4>
 
@@ -59,10 +62,13 @@
                             <div class="d-flex align-items-center">
                                 <div>
                                     <p class="mb-0 text-secondary">Total Devices</p>
-                                    <h4 class="my-1 text-success"><a href="{{ route('devices.index') }}"><span
-                                                style="color:red">{{ $countDeviceError }}</span> /
-                                            {{ $countDevice }}
-                                        </a></h4>
+                                    <h4 class="my-1 text-success">
+                                        <a href="#" class="" style="color:red" data-bs-toggle="modal"
+                                            data-bs-target="#modalDeviceError">
+                                            {{ $countDeviceError }} </a> <a href="#"> /
+                                            {{ $countDevice }}</a>
+                                        </a>
+                                    </h4>
 
                                 </div>
                                 <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i
@@ -78,8 +84,16 @@
                             <div class="d-flex align-items-center">
                                 <div>
                                     <p class="mb-0 text-secondary">Total User</p>
-                                    <h4 class="my-1 text-warning"><a
-                                            href="{{ route('users.index') }}">{{ App\Models\User::count() }} Data</a></h4>
+                                    <h4 class="my-1 text-warning">
+                                        <a href="#" class="" data-bs-toggle="modal"
+                                            data-bs-target="#modalUserOnline">{{ $usersOnline }}
+                                        </a>
+
+                                        <a href="#">/
+                                            {{ App\Models\User::count() }}</a>
+
+
+                                    </h4>
 
                                 </div>
                                 <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i
@@ -368,6 +382,7 @@
             </div>
         </div>
     </div>
+    @include('modal_dashboard')
 @endsection
 @push('js')
     {{-- <script src="{{ asset('assets/js/apexcharts.js') }}"></script> --}}

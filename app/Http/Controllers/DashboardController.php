@@ -15,9 +15,9 @@ class DashboardController extends Controller
     public function index()
     {
         $instances = Instance::get();
-        $ticket =Ticket::orderBy('id', 'desc')->limit(9)->get();
-        $ticketOpen = Ticket::where('status','Opened')->count();
-        $ticketClose = Ticket::where('status','Closed')->count();
+        $ticket = Ticket::orderBy('id', 'desc')->limit(9)->get();
+        $ticketOpen = Ticket::where('status', 'Opened')->count();
+        $ticketClose = Ticket::where('status', 'Closed')->count();
         // ===
         $TotalByBrances =  "SELECT `instance_name`, count(*) AS total FROM `devices` INNER JOIN `instances` ON `devices`.`instance_id` = `instances`.`id` GROUP BY `devices`.`instance_id`";
         $TotalByBrances = DB::select($TotalByBrances);
@@ -32,7 +32,9 @@ class DashboardController extends Controller
         $TotalByLocation = DB::select($TotalByLocation);
         // ===
         $countDevice = Device::count();
-        $countDeviceError = Device::where('status','=','error')->count();
+        $countDeviceError = Device::where('status', '=', 'error')->count();
+        $deviceError = Device::where('status', '=', 'error')->get();
+        // dd($deviceError);
         // ===
         $countBranches = Instance::count();
         $countBranchesError = "SELECT * FROM devices WHERE status='error' GROUP BY instance_id";
@@ -41,24 +43,35 @@ class DashboardController extends Controller
         $countCluster = Cluster::count();
         $countClusterError = "SELECT * FROM devices WHERE status='error' GROUP BY cluster_id";
         $selectClusterError = DB::select($countClusterError);
+        // === user online
+        $usersOnline = DB::table('users')
+            ->where('is_online', '=', 'Y')
+            ->count();
 
-        return view('dashboard',[
-        'instances' => $instances,
-        'ticket' => $ticket,
-        'ticketOpen' => $ticketOpen,
-        'ticketClose' => $ticketClose,
-        'TotalByBrances' => $TotalByBrances,
-        'TotalByCluster' => $TotalByCluster,
-        'TotalByLocation' => $TotalByLocation,
-        'countDevice' => $countDevice,
-        'countDeviceError' => $countDeviceError,
-        'chartPersentage' => round((($countDevice - $countDeviceError) * 100) / $countDevice,2) ,
-        'countBranches' => $countBranches,
-        'selectBranchesError' => count($selectBranchesError),
-        'chartPersentageBranches' => round((($countBranches - count($selectBranchesError)) * 100) / $countBranches,2),
-        'countCluster' => $countCluster,
-        'selectClusterError' => count($selectClusterError),
-        'chartPersentageCluster' =>round((($countCluster - count($selectClusterError)) * 100) / $countCluster,2) ,
-    ]);
+        return view('dashboard', [
+            'instances' => $instances,
+            'usersOnline' => $usersOnline,
+            'ticket' => $ticket,
+            'ticketOpen' => $ticketOpen,
+            'ticketClose' => $ticketClose,
+            'TotalByBrances' => $TotalByBrances,
+            'TotalByCluster' => $TotalByCluster,
+            'TotalByLocation' => $TotalByLocation,
+            'countDevice' => $countDevice,
+            'countDeviceError' => $countDeviceError,
+            'listDeviceError' => $deviceError,
+            'chartPersentage' => round((($countDevice - $countDeviceError) * 100) / $countDevice, 2),
+            // ==
+            'countBranches' => $countBranches,
+            'selectBranchesError' => count($selectBranchesError),
+            'listBranchesError' => $selectBranchesError,
+            // ==
+            'chartPersentageBranches' => round((($countBranches - count($selectBranchesError)) * 100) / $countBranches, 2),
+            'countCluster' => $countCluster,
+            'selectClusterError' => count($selectClusterError),
+            'listClusterError' => $selectClusterError,
+            // ===
+            'chartPersentageCluster' => round((($countCluster - count($selectClusterError)) * 100) / $countCluster, 2),
+        ]);
     }
 }
