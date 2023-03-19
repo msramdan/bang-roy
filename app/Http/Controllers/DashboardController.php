@@ -14,7 +14,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $instances = Instance::get();
+        $instances = Instance::with('province:id,provinsi', 'kabkot:id,kabupaten_kota', 'kecamatan:id,kabkot_id', 'kelurahan:id,kecamatan_id')->get();
         $ticket = Ticket::orderBy('id', 'desc')->limit(9)->get();
         $ticketOpen = Ticket::where('status', 'Opened')->count();
         $ticketClose = Ticket::where('status', 'Closed')->count();

@@ -161,7 +161,7 @@
                             <div class="round-progress knob-block text-center">
 
                                 {{-- ramdan --}}
-                                <p>Temperature Status</p>
+                                <p>Devices Status</p>
                                 <input type="text" value="{{ $chartPersentage }}" id="infinite"
                                     data-fgColor="<?= $countDeviceError > 0 ? '#EB4656' : '#24695C' ?>" data-angleOffset=0
                                     data-angleArc=360 data-rotation=anticlockwise>
@@ -283,8 +283,24 @@
                                     <tbody>
                                         @foreach ($instances as $row)
                                             <tr>
-                                                <td>{{ $row->app_id }}</td>
-                                                <td> {{ $row->instance_name }}
+                                                <td> <a href="#" class="detailBranch" data-bs-toggle="modal"
+                                                        data-id="{{ $row->id }}" data-app_id="{{ $row->app_id }}"
+                                                        data-instance_name="{{ $row->instance_name }}"
+                                                        data-email="{{ $row->email }}"
+                                                        data-phone="{{ $row->phone }}"
+                                                        data-kabkot="{{ $row->kabkot->kabupaten_kota }}"
+                                                        data-bs-target="#modalInstance">
+                                                        <b>{{ $row->app_id }}</b>
+                                                    </a></td>
+                                                <td><a href="#" class="detailBranch" data-bs-toggle="modal"
+                                                        data-id="{{ $row->id }}" data-app_id="{{ $row->app_id }}"
+                                                        data-instance_name="{{ $row->instance_name }}"
+                                                        data-email="{{ $row->email }}"
+                                                        data-phone="{{ $row->phone }}"
+                                                        data-kabkot="{{ $row->kabkot->kabupaten_kota }}"
+                                                        data-bs-target="#modalInstance">
+                                                        <b>{{ $row->instance_name }}</b>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -553,5 +569,19 @@
                 }]
             }]
         });
+    </script>
+    <script>
+        $(document).on('click', '.detailBranch', function() {
+            var app_id = $(this).data('app_id');
+            var instance_name = $(this).data('instance_name');
+            var email = $(this).data('email');
+            var phone = $(this).data('phone');
+            var kabkot = $(this).data('kabkot');
+            $('#modalInstance #app_id').text(app_id);
+            $('#modalInstance #instance_name').text(instance_name);
+            $('#modalInstance #email').text(email);
+            $('#modalInstance #phone').text(phone);
+            $('#modalInstance #kabkot').text(kabkot);
+        })
     </script>
 @endpush

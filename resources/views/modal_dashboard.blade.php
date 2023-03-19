@@ -53,6 +53,7 @@
                         width="100%">
                         <thead>
                             <tr>
+                                <th>{{ __('App Id') }}</th>
                                 <th>{{ __('Branches Name') }}</th>
                                 <th>{{ __('Kabupaten/kota') }}</th>
                                 <th>{{ __('Email') }}</th>
@@ -67,6 +68,7 @@
                                         ->first();
                                 @endphp
                                 <tr>
+                                    <td>{{ $instances->app_id }}</td>
                                     <td>{{ $instances->instance_name }}</td>
                                     <td>{{ $instances->kabkot->kabupaten_kota }}</td>
                                     <td>{{ $instances->email }}</td>
@@ -157,6 +159,56 @@
                                     <td>{{ $row->auth_type }}</td>
                                 </tr>
                             @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+{{-- Modal Instance --}}
+<div class="modal fade" id="modalInstance" tabindex="-1" aria-labelledby="exampleModallview" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detail Branch</h5>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table" id="" width="100%">
+                        <tbody>
+                            <tr>
+                                <td>App Id</td>
+                                <td>:</td>
+                                <td><span id="app_id"></span></td>
+                            </tr>
+                            <tr>
+                                <td>Branches Name</td>
+                                <td>:</td>
+                                <td><span id="instance_name"></span></td>
+                            </tr>
+                            <tr>
+                                <td>Kabupaten/kota</td>
+                                <td>:</td>
+                                <td><span id="kabkot"></span></td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>:</td>
+                                <td><span id="email"></span></td>
+                            </tr>
+                            <tr>
+                                <td>Phone</td>
+                                <td>:</td>
+                                <td><span id="phone"></span></td>
+                            </tr>
+
                         </tbody>
                     </table>
                 </div>

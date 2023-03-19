@@ -155,9 +155,11 @@
             ajax: {
                 url: "{{ route('tickets.index') }}",
                 data: function(s) {
+                    s.parsed_data = query
                     s.status = $('select[name=status] option').filter(':selected').val()
                     s.start_date = $("#start_date").val();
                     s.end_date = $("#end_date").val();
+
                 }
             },
             columns: columns

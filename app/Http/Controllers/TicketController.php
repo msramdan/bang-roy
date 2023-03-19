@@ -30,6 +30,11 @@ class TicketController extends Controller
             $status = $request->query('status');
             $start_date = intval($request->query('start_date'));
             $end_date = intval($request->query('end_date'));
+            $query_parsed = intval($request->query('parsed_data'));
+
+            if (isset($query_parsed) && !empty($query_parsed)) {
+                $tickets = $tickets->where('tickets.id', $query_parsed);
+            }
 
             if (isset($status) && !empty($status)) {
                 if ($status != 'All') {
