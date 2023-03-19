@@ -26,15 +26,32 @@ class TicketController extends Controller
     public function index(Request $request)
     {
         if (request()->ajax()) {
-            $parsed_data = Ticket::with('device:id,dev_eui,instance_id,cluster_id');
+            $tickets = Ticket::query();
+            $status = $request->query('status');
+            $start_date = intval($request->query('start_date'));
+            $end_date = intval($request->query('end_date'));
 
-            $query_parsed = intval($request->query('parsed_data'));
-
-            if (isset($query_parsed) && !empty($query_parsed)) {
-                $parsed_data = $parsed_data->where('tickets.id', $query_parsed);
+            if (isset($status) && !empty($status)) {
+                if ($status != 'All') {
+                    $tickets = $tickets->where('status', $status);
+                }
             }
-            $parsed_data = $parsed_data->orderBy('tickets.id', 'DESC')->get();
-            return DataTables::of($parsed_data)
+            if (isset($start_date) && !empty($start_date)) {
+                $from = date("Y-m-d H:i:s", substr($request->query('start_date'), 0, 10));
+                $tickets = $tickets->where('created_at', '>=', $from);
+            } else {
+                $from = date('Y-m-d') . " 00:00:00";
+                $tickets = $tickets->where('created_at', '>=', $from);
+            }
+            if (isset($end_date) && !empty($end_date)) {
+                $to = date("Y-m-d H:i:s", substr($request->query('end_date'), 0, 10));
+                $tickets = $tickets->where('created_at', '<=', $to);
+            } else {
+                $to = date('Y-m-d') . " 23:59:59";
+                $tickets = $tickets->where('created_at', '<=', $to);
+            }
+            $tickets = $tickets->orderBy('tickets.id', 'desc')->get();
+            return DataTables::of($tickets)
                 ->addIndexColumn()
                 ->addColumn('created_at', function ($row) {
                     return $row->created_at->format('d M Y H:i:s');
@@ -65,7 +82,6 @@ class TicketController extends Controller
                         $user = User::find($row->update_by);
                         return $user->name;
                     }
-
                     return '-';
                 })
                 ->addColumn('branches', function ($row) {
@@ -81,8 +97,14 @@ class TicketController extends Controller
                 ->rawColumns(['description', 'action', 'tickets.include.action', 'status'])
                 ->toJson();
         }
-
-        return view('tickets.index');
+        $from = date('Y-m-d') . " 00:00:00";
+        $to = date('Y-m-d') . " 23:59:59";
+        $microFrom = strtotime($from) * 1000;
+        $microTo = strtotime($to) * 1000;
+        return view('tickets.index', [
+            'microFrom' => $microFrom,
+            'microTo' => $microTo,
+        ]);
     }
 
     public function edit(Ticket $ticket)

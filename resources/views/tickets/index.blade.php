@@ -1,6 +1,15 @@
 @extends('layouts.app')
 
 @section('title', __('Tickets'))
+@push('css')
+    <link href="{{ asset('assets/css/select2.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/daterangepicker.min.css') }}" rel="stylesheet" />
+@endpush
+@push('js')
+    <script type="text/javascript" src="{{ asset('assets/js/moment.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/daterangepicker.min.js') }}"></script>
+    <script src="{{ asset('assets/js/select2.js') }}"></script>
+@endpush
 
 @section('content')
     <div class="page-body">
@@ -32,6 +41,39 @@
                     </div>
                     <div class="card">
                         <div class="card-body">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="row g-3">
+                                        <div class="col-md-3">
+                                            <div class="input-group flex-nowrap">
+                                                <span class="input-group-text" id="addon-wrapping"><i
+                                                        class="fa fa-calendar"></i></span>
+                                                <input type="text" class="form-control" aria-describedby="addon-wrapping"
+                                                    id="daterange-btn" value="">
+                                                <input type="hidden" name="start_date" id="start_date"
+                                                    value="{{ $microFrom }}">
+                                                <input type="hidden" name="end_date" id="end_date"
+                                                    value="{{ $microTo }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <select name="status" id="status" class="form-control">
+                                                <option value="All">All Status
+                                                </option>
+                                                <option value="Opened">Open</option>
+                                                <option value="Closed">Close</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button id="btnExport" class="btn btn-primary"><i class='fas fa-file-excel'></i>
+                                                {{ __('Export') }}</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+
                             <div class="table-responsive p-1">
                                 <table class="table table-striped table-xs" id="data-table" role="grid">
                                     <thead>
@@ -60,6 +102,7 @@
 
 @push('js')
     <script>
+        $('#status').select2();
         let columns = [{
                 data: 'DT_RowIndex',
                 name: 'DT_RowIndex',
@@ -112,10 +155,54 @@
             ajax: {
                 url: "{{ route('tickets.index') }}",
                 data: function(s) {
-                    s.parsed_data = query
+                    s.status = $('select[name=status] option').filter(':selected').val()
+                    s.start_date = $("#start_date").val();
+                    s.end_date = $("#end_date").val();
                 }
             },
             columns: columns
         });
+
+        $('#status').change(function() {
+            table.draw();
+        })
+        $('#daterange-btn').change(function() {
+            table.draw();
+        })
+    </script>
+
+
+    <script>
+        var start = {{ $microFrom }}
+        var end = {{ $microTo }}
+        var label = '';
+        $('#daterange-btn').daterangepicker({
+                locale: {
+                    format: 'DD MMM YYYY'
+                },
+                startDate: moment(start),
+                endDate: moment(end),
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf(
+                        'month')],
+                }
+            },
+            function(start, end, label) {
+                $('#start_date').val(Date.parse(start));
+                $('#end_date').val(Date.parse(end));
+                if (isDate(start)) {
+                    $('#daterange-btn span').html(start.format('DD MMM YYYY') + ' - ' + end.format('DD MMM YYYY'));
+                }
+            });
+
+        function isDate(val) {
+            var d = Date.parse(val);
+            return Date.parse(val);
+        }
     </script>
 @endpush
