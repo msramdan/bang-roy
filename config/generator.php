@@ -179,7 +179,7 @@ return [
             ],
             'menus' => [
                 [
-                    'title' => 'Gateway',
+                    'title' => 'Gateways',
                     'icon' => '<i data-feather="hard-drive"></i>',
                     'route' => '/gateways',
                     'permission' => 'gateway view',

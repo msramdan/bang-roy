@@ -1,11 +1,11 @@
 <div class="row mb-2">
     <div class="col-md-6">
         <div class="form-group">
-            <label for="instance-name">{{ __('Branche Name') }}</label>
+            <label for="instance-name">{{ __('Branch Name') }}</label>
             <input type="text" name="instance_name" id="instance-name"
                 class="form-control @error('instance_name') is-invalid @enderror"
                 value="{{ isset($instance) ? $instance->instance_name : old('instance_name') }}"
-                placeholder="{{ __('Branche Name') }}" required />
+                placeholder="{{ __('Branch Name') }}" required />
             @error('instance_name')
                 <span class="text-danger">
                     {{ $message }}

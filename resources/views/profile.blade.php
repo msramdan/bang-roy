@@ -10,7 +10,7 @@
                     <div class="col-sm-6">
                         <h3>{{ __('Profile') }}</h3>
                         <p class="text-subtitle text-muted">
-                            {{ __('Change your profile information, password and enable/disable two factor authentication.') }}
+                            {{ __('Change your profile information and password') }}
                         </p>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/">{{ __('Dashboard') }}</a></li>
@@ -129,6 +129,7 @@
                                     <input type="password" name="current_password"
                                         class="form-control @error('current_password', 'updatePassword') is-invalid @enderror"
                                         id="password" placeholder="Current Password" required>
+
                                     @error('current_password', 'updatePassword')
                                         <span class="text-danger">
                                             {{ $message }}
@@ -138,9 +139,19 @@
 
                                 <div class="form-group">
                                     <label for="password">{{ __('New Password') }}</label>
-                                    <input type="password" name="password"
-                                        class="form-control @error('password', 'updatePassword') is-invalid @enderror"
-                                        id="password" placeholder="New Password" required>
+                                    <div class="input-group">
+                                        <input type="password" name="password"
+                                            class="form-control @error('password', 'updatePassword') is-invalid @enderror"
+                                            id="password" placeholder="New Password" required>
+                                        &nbsp;
+                                        <button class="btn btn-outline-primary" type="button"
+                                            onclick="toggleShowPassword()" id=""><i class="fa fa-eye"></i></button>
+                                    </div>
+
+
+                                    <span style="color:red; font-size:10px">Password should contain at least 8 characters, 1
+                                        uppercase, 1
+                                        lowercase, 1 number, and 1 symbol</span>
                                     @error('password', 'updatePassword')
                                         <span class="text-danger">
                                             {{ $message }}
@@ -160,57 +171,22 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="row">
-                <div class="col-md-12">
-                    <hr class="mb-5">
-                </div>
-
-                <div class="col-md-3">
-                    <h4>{{ __('Two Factor Authentication') }}</h4>
-                </div>
-                <div class="col-md-9">
-                    <div class="card">
-                        <div class="card-body">
-                            <form method="post" action="/user/two-factor-authentication">
-                                @csrf
-                                @if (auth()->user()->two_factor_secret)
-                                    @method('delete')
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <p>{{ __('Scan the following QR Code into your authentication application.') }}
-                                            </p>
-                                            {!! auth()->user()->twoFactorQrcodeSvg() !!}
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p>{{ __('Save these Recovery Codes in a secure location.') }}</p>
-                                            <ul>
-                                                @foreach (json_decode(decrypt(auth()->user()->two_factor_recovery_codes)) as $code)
-                                                    <li>{{ $code }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <button class="btn btn-danger mt-3"
-                                        type="submit">{{ __('Disable Two Factor Authentication') }}</button>
-                                @else
-                                    <button class="btn btn-primary"
-                                        type="submit">{{ __('Enable Two Factor Authentication') }}</button>
-                                @endif
-                            </form>
-                            @if (auth()->user()->two_factor_secret)
-                                <form method="POST" action="/user/two-factor-recovery-codes">
-                                    @csrf
-                                    <button class="btn btn-primary mt-3 float-right" type="submit">
-                                        {{ __('Regenerate Recovery Codes') }}
-                                    </button>
-                                </form>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
         </section>
     </div>
 @endsection
+
+
+@push('js')
+    <script>
+        function toggleShowPassword() {
+            const type = $('input#password').attr('type');
+            if (type === "password") {
+                $('input#password').attr('type', 'text');
+                $('input#password_confirmation').attr('type', 'text');
+            } else {
+                $('input#password').attr('type', 'password');
+                $('input#password_confirmation').attr('type', 'password');
+            }
+        }
+    </script>
+@endpush

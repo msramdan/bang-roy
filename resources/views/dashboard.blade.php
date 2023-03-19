@@ -256,7 +256,7 @@
                 <div class="col-sm-4" style="padding-right: 10px">
                     <div class="card radius-10 border-start border-0 border-3" style="height: 450px">
                         <div class="card-body">
-                            <h5>List Brances</h5>
+                            <h5>List Branches</h5>
                             <hr>
                             <div class="table-wrapper-scroll-y my-custom-scrollbar">
                                 <table class="table table-xs table-bordered" id="dataTables-example" style="100%">
@@ -286,7 +286,7 @@
                 <div class="col-xl-4 col-50 box-col-4 des-xl-50">
                     <div class="card radius-10 border-start border-0 border-3" style="height: 450px">
                         <div class="card-body">
-                            <h5>Device By Brances</h5>
+                            <h5>Device By Branches</h5>
                             <hr>
                             <div class="table-wrapper-scroll-y my-custom-scrollbar">
                                 <table class="table table-xs table-bordered" id="" style="width: 100%">

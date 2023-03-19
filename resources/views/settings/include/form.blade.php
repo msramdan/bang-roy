@@ -1,7 +1,7 @@
 <div class="row mb-2">
     <div class="col-md-6">
         <div class="form-group">
-            <label for="aplication-name">{{ __('Aplication Name') }}</label>
+            <label for="aplication-name">{{ __(' Application Name') }}</label>
             <input type="text" name="aplication_name" id="aplication-name"
                 class="form-control @error('aplication_name') is-invalid @enderror"
                 value="{{ isset($setting) ? $setting->aplication_name : old('aplication_name') }}"
@@ -78,6 +78,7 @@
             <label for="file">{{ __('Logo Apps') }}</label>
             <input type="file" name="logo" class="form-control @error('logo') is-invalid @enderror"
                 id="logo">
+            <span style="color:red; font-size:10px">Size suggestion : 660x220 pixels </span>
             @error('logo')
                 <span class="text-danger">
                     {{ $message }}
@@ -102,6 +103,7 @@
             <label for="file">{{ __('Favicon') }}</label>
             <input type="file" name="favicon" class="form-control @error('favicon') is-invalid @enderror"
                 id="favicon">
+            <span style="color:red; font-size:10px">Size suggestion : 128x128 pixels </span>
             @error('favicon')
                 <span class="text-danger">
                     {{ $message }}

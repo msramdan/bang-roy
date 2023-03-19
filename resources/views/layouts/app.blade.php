@@ -54,8 +54,7 @@
                         <img class="img-90 rounded-circle"
                             src="{{ asset('uploads/images/avatars/' . auth()->user()->avatar) }}" alt="">
                     @endif
-                    <div class="badge-bottom"><span class="badge badge-primary">New</span></div><a
-                        href="{{ route('profile') }}">
+                    <div class="badge-bottom"></div><a href="{{ route('profile') }}">
                         <h6 class="mt-3 f-14 f-w-600">{{ Auth::user()->name }}</h6>
                     </a>
                     <p class="mb-0 font-roboto">{{ Auth::user()->roles->first()->name }}</p>

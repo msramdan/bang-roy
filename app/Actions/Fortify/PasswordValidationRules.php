@@ -14,15 +14,16 @@ trait PasswordValidationRules
      */
     protected function passwordRules()
     {
-        return ['required', '
-        string', 
-        'confirmed', 
-        Password::min(8)
-        ->letters()
-        ->mixedCase()
-        ->numbers()
-        ->symbols()
-        ->uncompromised()
-    ];
+        return [
+            'required', '
+        string',
+            'confirmed',
+            Password::min(8)
+                ->letters()
+                ->mixedCase()
+                ->numbers()
+                ->symbols()
+            // ->uncompromised()
+        ];
     }
 }
