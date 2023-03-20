@@ -91,10 +91,7 @@
 
                                         <a href="#">/
                                             {{ App\Models\User::count() }}</a>
-
-
                                     </h4>
-
                                 </div>
                                 <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i
                                         class="fa fa-users"></i>
@@ -277,7 +274,7 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">App Id</th>
-                                            <th scope="col">Name</th>
+                                            <th scope="col">Branch Name</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -329,9 +326,24 @@
                                     <tbody>
                                         @foreach ($TotalByBrances as $row)
                                             <tr>
-                                                <td>{{ $row->instance_name }}</td>
-                                                <td> <span class="badge badge-primary pull-right">{{ $row->total }}
-                                                        Device</span></td>
+                                                <td>
+                                                    <a href="#" class="byBranch" data-bs-toggle="modal"
+                                                        data-id="{{ $row->instance_id }}"
+                                                        data-bs-target="#modalByBranch">
+                                                        <b>{{ $row->instance_name }}</b>
+                                                    </a>
+                                                </td>
+                                                <td>
+
+                                                    <a href="#" class="byBranch" data-bs-toggle="modal"
+                                                        data-id="{{ $row->instance_id }}"
+                                                        data-bs-target="#modalByBranch">
+                                                        <b><span class="badge badge-primary pull-right">{{ $row->total }}
+                                                                Device</span></b>
+                                                    </a>
+
+
+                                                </td>
                                             </tr>
                                         @endforeach
 
@@ -357,9 +369,19 @@
                                     <tbody>
                                         @foreach ($TotalByCluster as $row)
                                             <tr>
-                                                <td>{{ $row->cluster_name }}</td>
-                                                <td> <span class="badge badge-primary pull-right">{{ $row->total }}
-                                                        Device</span></td>
+                                                <td>
+                                                    <a href="#" class="byCluster" data-bs-toggle="modal"
+                                                        data-id="{{ $row->cluster_id }}"
+                                                        data-bs-target="#modalByCluster">
+                                                        <b>{{ $row->cluster_name }}</b>
+                                                    </a>
+                                                </td>
+                                                <td><a href="#" class="byCluster" data-bs-toggle="modal"
+                                                        data-id="{{ $row->cluster_id }}"
+                                                        data-bs-target="#modalByCluster">
+                                                        <b><span class="badge badge-primary pull-right">{{ $row->total }}
+                                                                Device</span></b>
+                                                    </a> </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -384,9 +406,18 @@
                                     <tbody>
                                         @foreach ($TotalByLocation as $row)
                                             <tr>
-                                                <td>{{ $row->kabupaten_kota }}</td>
-                                                <td> <span class="badge badge-primary pull-right">{{ $row->total }}
-                                                        Device</span></td>
+                                                <td><a href="#" class="byLocation" data-bs-toggle="modal"
+                                                        data-id="{{ $row->kabkot_id }}"
+                                                        data-bs-target="#modalByLocation">
+                                                        <b>{{ $row->kabupaten_kota }}</b>
+                                                    </a></td>
+                                                <td><a href="#" class="byLocation" data-bs-toggle="modal"
+                                                        data-id="{{ $row->kabkot_id }}"
+                                                        data-bs-target="#modalByLocation">
+                                                        <b><span class="badge badge-primary pull-right">{{ $row->total }}
+                                                                Device</span></b>
+                                                    </a>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -582,6 +613,58 @@
             $('#modalInstance #email').text(email);
             $('#modalInstance #phone').text(phone);
             $('#modalInstance #kabkot').text(kabkot);
+        })
+    </script>
+
+    <script>
+        $(document).on('click', '.byBranch', function() {
+            var id = $(this).data('id');
+            $.ajax({
+                url: '/byBranch/' + id,
+                type: 'GET',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+                data: {},
+                success: function(html) {
+                    $("#result").html(html);
+                    // $("#result_tunggu").html('');
+                }
+            });
+        })
+    </script>
+    <script>
+        $(document).on('click', '.byCluster', function() {
+            var id = $(this).data('id');
+            $.ajax({
+                url: '/byCluster/' + id,
+                type: 'GET',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+                data: {},
+                success: function(html) {
+                    $("#result2").html(html);
+                    // $("#result_tunggu").html('');
+                }
+            });
+        })
+    </script>
+    <script>
+        $(document).on('click', '.byLocation', function() {
+            var id = $(this).data('id');
+            $.ajax({
+                url: '/byLocation/' + id,
+                type: 'GET',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+                data: {},
+                success: function(html) {
+                    $("#result3").html(html);
+                    // $("#result_tunggu").html('');
+                }
+            });
         })
     </script>
 @endpush

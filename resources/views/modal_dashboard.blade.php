@@ -189,7 +189,7 @@
                                 <td><span id="app_id"></span></td>
                             </tr>
                             <tr>
-                                <td>Branches Name</td>
+                                <td>Branch Name</td>
                                 <td>:</td>
                                 <td><span id="instance_name"></span></td>
                             </tr>
@@ -211,6 +211,87 @@
 
                         </tbody>
                     </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+{{-- Modal By Branch --}}
+<div class="modal fade" id="modalByBranch" tabindex="-1" aria-labelledby="exampleModallview" aria-hidden="true">
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Device By Branches</h5>
+            </div>
+            <div class="modal-body">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="display dataTable no-footer table-xs dataTables-example" id="result"
+                            width="100%">
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+{{-- Modal By Cluster --}}
+<div class="modal fade" id="modalByCluster" tabindex="-1" aria-labelledby="exampleModallview" aria-hidden="true">
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Device By Cluster
+                </h5>
+            </div>
+            <div class="modal-body">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="display dataTable no-footer table-xs dataTables-example" id="result2"
+                            width="100%">
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer"> <button type="button" class="btn btn-secondary"
+                    data-bs-dismiss="modal">Close</button></div>
+
+        </div>
+    </div>
+
+</div>
+</div>
+
+
+
+{{-- Modal By Location --}}
+<div class="modal fade" id="modalByLocation" tabindex="-1" aria-labelledby="exampleModallview" aria-hidden="true">
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Device By Location</h5>
+            </div>
+            <div class="modal-body">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="display dataTable no-footer table-xs dataTables-example" id="result3"
+                            width="100%">
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">

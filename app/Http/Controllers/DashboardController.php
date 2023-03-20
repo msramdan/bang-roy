@@ -19,13 +19,13 @@ class DashboardController extends Controller
         $ticketOpen = Ticket::where('status', 'Opened')->count();
         $ticketClose = Ticket::where('status', 'Closed')->count();
         // ===
-        $TotalByBrances =  "SELECT `instance_name`, count(*) AS total FROM `devices` INNER JOIN `instances` ON `devices`.`instance_id` = `instances`.`id` GROUP BY `devices`.`instance_id`";
+        $TotalByBrances =  "SELECT `instance_id`,`instance_name`, count(*) AS total FROM `devices` INNER JOIN `instances` ON `devices`.`instance_id` = `instances`.`id` GROUP BY `devices`.`instance_id`";
         $TotalByBrances = DB::select($TotalByBrances);
         // ===
-        $TotalByCluster =  "SELECT `cluster_name`, count(*) AS total FROM `devices` INNER JOIN `clusters` ON `devices`.`cluster_id` = `clusters`.`id` GROUP BY `devices`.`cluster_id`";
+        $TotalByCluster =  "SELECT `cluster_id`,`cluster_name`, count(*) AS total FROM `devices` INNER JOIN `clusters` ON `devices`.`cluster_id` = `clusters`.`id` GROUP BY `devices`.`cluster_id`";
         $TotalByCluster = DB::select($TotalByCluster);
         // ===
-        $TotalByLocation =  "SELECT `kabupaten_kota`, count(*) AS total FROM `devices`
+        $TotalByLocation =  "SELECT `kabkot_id`,`kabupaten_kota`, count(*) AS total FROM `devices`
         INNER JOIN `instances` ON `devices`.`instance_id` = `instances`.`id`
         INNER JOIN `kabkots` ON `instances`.`kabkot_id` = `kabkots`.`id`
         GROUP BY `instances`.`kabkot_id`";
@@ -34,7 +34,6 @@ class DashboardController extends Controller
         $countDevice = Device::count();
         $countDeviceError = Device::where('status', '=', 'error')->count();
         $deviceError = Device::where('status', '=', 'error')->get();
-        // dd($deviceError);
         // ===
         $countBranches = Instance::count();
         $countBranchesError = "SELECT * FROM devices WHERE status='error' GROUP BY instance_id";
@@ -61,17 +60,98 @@ class DashboardController extends Controller
             'countDeviceError' => $countDeviceError,
             'listDeviceError' => $deviceError,
             'chartPersentage' => round((($countDevice - $countDeviceError) * 100) / $countDevice, 2),
-            // ==
             'countBranches' => $countBranches,
             'selectBranchesError' => count($selectBranchesError),
             'listBranchesError' => $selectBranchesError,
-            // ==
             'chartPersentageBranches' => round((($countBranches - count($selectBranchesError)) * 100) / $countBranches, 2),
             'countCluster' => $countCluster,
             'selectClusterError' => count($selectClusterError),
             'listClusterError' => $selectClusterError,
-            // ===
             'chartPersentageCluster' => round((($countCluster - count($selectClusterError)) * 100) / $countCluster, 2),
         ]);
+    }
+
+
+    public function byBranch($id)
+    {
+        $data = Device::where('instance_id', '=', $id)->get();
+        $output = '';
+        $output .= '<thead>
+            <tr>
+                <th>Dev Eui</th>
+                <th>Dev Name</th>
+                <th>Dev Type</th>
+                <th>Auth Type</th>
+            </tr>
+        </thead>
+        <tbody>';
+        foreach ($data as $row) {
+            // $output .= '<option value="' . $row->id . '"> ' . $row->nama . '</option>';
+            $output .= '<tr>
+            <td>' . $row->dev_eui . '</td>
+            <td>' . $row->dev_name . '</td>
+            <td>' . $row->dev_type . '</td>
+            <td>' . $row->auth_type . '</td>
+        </tr>';
+        }
+        $output .= '</tbody>';
+        echo $output;
+    }
+
+    public function byCluster($id)
+    {
+        $data = Device::where('cluster_id', '=', $id)->get();
+        $output = '';
+        $output .= '<thead>
+            <tr>
+                <th>Dev Eui</th>
+                <th>Dev Name</th>
+                <th>Dev Type</th>
+                <th>Auth Type</th>
+            </tr>
+        </thead>
+        <tbody>';
+        foreach ($data as $row) {
+            // $output .= '<option value="' . $row->id . '"> ' . $row->nama . '</option>';
+            $output .= '<tr>
+            <td>' . $row->dev_eui . '</td>
+            <td>' . $row->dev_name . '</td>
+            <td>' . $row->dev_type . '</td>
+            <td>' . $row->auth_type . '</td>
+        </tr>';
+        }
+        $output .= '</tbody>';
+        echo $output;
+    }
+
+    public function byLocation($id)
+    {
+        $data =
+            DB::table('devices')
+            ->join('instances', 'devices.instance_id', '=', 'instances.id')
+            ->select('devices.*')
+            ->where('kabkot_id', '=', $id)
+            ->get();
+        $output = '';
+        $output .= '<thead>
+            <tr>
+                <th>Dev Eui</th>
+                <th>Dev Name</th>
+                <th>Dev Type</th>
+                <th>Auth Type</th>
+            </tr>
+        </thead>
+        <tbody>';
+        foreach ($data as $row) {
+            // $output .= '<option value="' . $row->id . '"> ' . $row->nama . '</option>';
+            $output .= '<tr>
+            <td>' . $row->dev_eui . '</td>
+            <td>' . $row->dev_name . '</td>
+            <td>' . $row->dev_type . '</td>
+            <td>' . $row->auth_type . '</td>
+        </tr>';
+        }
+        $output .= '</tbody>';
+        echo $output;
     }
 }
