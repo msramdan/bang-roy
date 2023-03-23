@@ -235,7 +235,7 @@
                                                 <input type="hidden" name="operational_id[]"
                                                     value="{{ $operational->id }}">
                                                 <tr>
-                                                    <td><input type="text"
+                                                    <td><input type="text" style="width: 100%"
                                                             class="form-control @error('day.{{ $i }}') is-invalid @enderror"
                                                             name="day[]"
                                                             value="{{ old("day.{$i}") ? old("day.{$i}") : $operational->day }}"

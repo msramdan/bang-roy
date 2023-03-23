@@ -85,6 +85,8 @@ class LatestDataController extends Controller
 
     public function show(Request $request, LatestData $latestData)
     {
+
+
         $from = date('Y-m-d') . " 00:00:00";
         $to = date('Y-m-d') . " 23:59:59";
         $microFrom = strtotime($from) * 1000;
@@ -98,6 +100,11 @@ class LatestDataController extends Controller
         }
         $sql = "SELECT * FROM parseds where device_id='$latestData->device_id' and created_at >= '$from' AND created_at <= '$to' order By id asc";
         $parsed_data = DB::select($sql);
+
+        $sql2 = "SELECT * FROM parseds where device_id='$latestData->device_id' and created_at >= '$from' AND created_at <= '$to' order By id desc";
+        $parsed_data2 = DB::select($sql2);
+
+
         $temperature_datas = [];
         $humidity_datas = [];
         $battery_datas = [];
@@ -115,10 +122,14 @@ class LatestDataController extends Controller
             array_push($humidity_datas, $humidity);
         }
 
+        $device_data = DB::table('devices')->where('id', $latestData->device_id)->first();
+
         return view('latest-datas.show', [
-            'parsed_data' => $parsed_data,
+            'parsed_data' => $parsed_data2,
             'parsed_dates' => $parsed_dates,
             'device_id' => $latestData->device_id,
+            'dev_eui' => $device_data->dev_eui,
+            'dev_name' => $device_data->dev_name,
             'microFrom' => $microFrom,
             'microTo' => $microTo,
             'from' => $from,

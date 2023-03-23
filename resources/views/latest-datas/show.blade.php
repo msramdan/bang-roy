@@ -66,8 +66,8 @@
         <div class="container-fluid">
             <div class="page-header" style="margin-top: 5px">
                 <div class="row">
-                    <div class="col-sm-6">
-                        <h3>{{ __('Latest Data') }}</h3>
+                    <div class="col-sm-12">
+                        <h3>{{ __('Latest Data') }} : {{ $dev_name }} ({{ $dev_eui }})</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
                                 <a href="/">{{ __('Dashboard') }}</a>
@@ -104,8 +104,7 @@
                                                     value="{{ $microFrom }}">
                                                 <input type="hidden" name="end_date" id="end_date"
                                                     value="{{ $microTo }}">
-                                                <span class="input-group-text btn btn-primary btn-flat"
-                                                    id="addon-wrapping"><i class="fa fa-filter"></i> Filter</span>
+
                                             </div>
                                         </div>
                                     </div>

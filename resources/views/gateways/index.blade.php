@@ -10,7 +10,7 @@
                     <div class="col-sm-6">
                         <h3>{{ __('Gateways') }}</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">{{ __('Dashboard') }}</a></li>
+                            <li class="breadcrumb-item"><a href="/">{{ __('Dashboard') }}</a></li>
                             <li class="breadcrumb-item active">{{ __('Gateways') }}</li>
                         </ol>
                     </div>

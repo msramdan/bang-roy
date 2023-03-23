@@ -1,10 +1,10 @@
 <div class="row mb-2">
     <div class="col-md-12">
         <div class="form-group">
-            <label for="instance-id">{{ __('Instance') }}</label>
+            <label for="instance-id">{{ __('Branch') }}</label>
             <select class="form-select @error('instance_id') is-invalid @enderror" name="instance_id" id="instance-id"
                 class="form-control" required>
-                <option value="" selected disabled>-- {{ __('Select instance') }} --</option>
+                <option value="" selected disabled>-- {{ __('Select branch') }} --</option>
 
                 @foreach ($instances as $instance)
                     <option value="{{ $instance->id }}"

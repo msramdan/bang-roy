@@ -229,15 +229,15 @@
                                     <table class="table table-bordered">
                                         <thead>
                                             <tr>
-                                                <th scope="col">Day</th>
-                                                <th scope="col">Opening</th>
-                                                <th scope="col">Closing</th>
+                                                <th>Day</th>
+                                                <th>Opening</th>
+                                                <th>Closing</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($days as $i => $day)
                                                 <tr>
-                                                    <td><input type="text"
+                                                    <td><input type="text" style="width: 100%"
                                                             class="form-control @error('day.{{ $i }}') is-invalid @enderror"
                                                             name="day[]" value="{{ $day }}" placeholder=""
                                                             readonly autocomplete="off">

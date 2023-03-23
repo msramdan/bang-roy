@@ -57,7 +57,7 @@
     @endcan
     @can('ticket edit')
         <button type="button" class="btn btn-primary btn-sm identifyingClass" data-bs-toggle="modal"
-            data-bs-target="#exampleModal{{ $model->id }}">
+            @if ($model->status == 'Closed') Disabled @endif data-bs-target="#exampleModal{{ $model->id }}">
             <i class="fa fa-pencil-alt"></i>
         </button>
         <!-- Modal -->

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 
 class InstanceController extends Controller
@@ -85,6 +86,35 @@ class InstanceController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'push_url' => 'required|url|min:1|max:200',
+                'instance_name' => 'required|string|min:1|max:200',
+                'address' => 'required|string',
+                'provinsi_id' => 'required|exists:App\Models\Province,id',
+                'kabkot_id' => 'required|exists:App\Models\Kabkot,id',
+                'kecamatan_id' => 'required|exists:App\Models\Kecamatan,id',
+                'kelurahan_id' => 'required|exists:App\Models\Kelurahan,id',
+                'zip_kode' => 'required|string|min:1|max:20',
+                'email' => 'required|string|min:1|max:100',
+                'phone' => 'required|string|min:1|max:13',
+                'longitude' => 'required|string|min:1|max:200',
+                'latitude' => 'required|string|min:1|max:200',
+                'field_data.*' => 'required',
+                'min_tolerance.*' => 'required',
+                'max_tolerance.*' => 'required',
+                'day.*' => 'required',
+                'opening_hour.*' => 'nullable',
+                'closing_hour.*' => 'nullable',
+            ],
+        );
+        if ($validator->fails()) {
+            return redirect()->back()->withInput($request->all())->withErrors($validator);
+        }
+
+
         try {
             $response = Http::withHeaders(['x-access-token' => setting_web()->token])
                 ->withOptions(['verify' => false])

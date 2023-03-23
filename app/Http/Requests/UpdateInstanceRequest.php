@@ -26,7 +26,7 @@ class UpdateInstanceRequest extends FormRequest
         return [
             // 'app_id' => 'required|numeric',
             // 'app_name' => 'required|string|min:1|max:200',
-            'push_url' => 'required|string|min:1|max:200',
+            'push_url' => 'required|url|min:1|max:200',
             'instance_name' => 'required|string|min:1|max:200',
             'address' => 'required|string',
             'provinsi_id' => 'required|exists:App\Models\Province,id',

@@ -19,7 +19,7 @@
                     <div class="col-sm-6">
                         <h3>{{ __('Tickets') }}</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">{{ __('Dashboard') }}</a></li>
+                            <li class="breadcrumb-item"><a href="/">{{ __('Dashboard') }}</a></li>
                             <li class="breadcrumb-item active">{{ __('Tickets') }}</li>
                         </ol>
                     </div>
@@ -63,10 +63,6 @@
                                                 <option value="Opened">Open</option>
                                                 <option value="Closed">Close</option>
                                             </select>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <button id="btnExport" class="btn btn-primary"><i class='fas fa-file-excel'></i>
-                                                {{ __('Export') }}</button>
                                         </div>
 
                                     </div>

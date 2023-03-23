@@ -8,11 +8,10 @@
             <div class="page-header" style="margin-top: 5px">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h3>Sample Page</h3>
+                        <h3>Users</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                            <li class="breadcrumb-item">Pages</li>
-                            <li class="breadcrumb-item active">Sample Page</li>
+                            <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Users</li>
                         </ol>
                     </div>
                     <div class="col-sm-6">
