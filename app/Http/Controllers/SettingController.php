@@ -8,6 +8,8 @@ use Yajra\DataTables\Facades\DataTables;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class SettingController extends Controller
 {
@@ -32,6 +34,21 @@ class SettingController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'favicon' => 'image|mimes:jpeg,png,jpg,gif,svg,ico|max:2048|dimensions:width=512,height=512',
+                'logo' => 'image|mimes:jpeg,png,jpg,gif,svg,ico|max:2048|dimensions:width=660,height=220',
+            ],
+        );
+        if ($validator->fails()) {
+            return redirect()->back()->withInput($request->all())->withErrors($validator);
+        }
+
+
+
         $setting_app = Setting::findOrFail($id);
         if ($request->file('logo') != null || $request->file('logo') != '') {
             Storage::disk('local')->delete('public/img/setting_app/' . $setting_app->logo);

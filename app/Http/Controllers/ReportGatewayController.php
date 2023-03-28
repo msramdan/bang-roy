@@ -22,26 +22,26 @@ class ReportGatewayController extends Controller
     {
         if (request()->ajax()) {
             $gateways = GatewayLog::query();
-            $gwid = intval($request->query('gwid'));
+            $gwid = $request->query('gwid');
             $start_date = intval($request->query('start_date'));
             $end_date = intval($request->query('end_date'));
 
             if (isset($gwid) && !empty($gwid)) {
-                if($gwid !='All'){
-                    $gateways = $gateways->where('gateway_id',$gwid);
+                if ($gwid != 'All') {
+                    $gateways = $gateways->where('gateway_id', $gwid);
                 }
             }
             if (isset($start_date) && !empty($start_date)) {
                 $from = date("Y-m-d H:i:s", substr($request->query('start_date'), 0, 10));
                 $gateways = $gateways->where('created_at', '>=', $from);
-            }else{
+            } else {
                 $from = date('Y-m-d') . " 00:00:00";
                 $gateways = $gateways->where('created_at', '>=', $from);
             }
             if (isset($end_date) && !empty($end_date)) {
                 $to = date("Y-m-d H:i:s", substr($request->query('end_date'), 0, 10));
                 $gateways = $gateways->where('created_at', '<=', $to);
-            }else{
+            } else {
                 $to = date('Y-m-d') . " 23:59:59";
                 $gateways = $gateways->where('created_at', '<=', $to);
             }
@@ -83,7 +83,7 @@ class ReportGatewayController extends Controller
         $microFrom = strtotime($from) * 1000;
         $microTo = strtotime($to) * 1000;
 
-        return view('report-gateways.index',[
+        return view('report-gateways.index', [
             'gateway' => Gateway::all(),
             'microFrom' => $microFrom,
             'microTo' => $microTo,
@@ -92,9 +92,8 @@ class ReportGatewayController extends Controller
 
     public function export($gwid, $start_date, $end_date)
     {
-        $date= date('d-m-Y');
-        $nameFile = 'RM-Device Log-' .$date;
-         return Excel::download(new ReportGatewayLogExport($gwid, $start_date, $end_date), $nameFile.'.xlsx');
-
+        $date = date('d-m-Y');
+        $nameFile = 'RM-Device Log-' . $date;
+        return Excel::download(new ReportGatewayLogExport($gwid, $start_date, $end_date), $nameFile . '.xlsx');
     }
 }

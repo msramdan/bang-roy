@@ -27,26 +27,26 @@ class ReportDeviceController extends Controller
     {
         if (request()->ajax()) {
             $rawdatas = Rawdata::query();
-            $dev_eui = intval($request->query('dev_eui'));
+            $dev_eui = $request->query('dev_eui');
             $start_date = intval($request->query('start_date'));
             $end_date = intval($request->query('end_date'));
 
             if (isset($dev_eui) && !empty($dev_eui)) {
-                if($dev_eui !='All'){
-                    $rawdatas = $rawdatas->where('dev_eui',$dev_eui);
+                if ($dev_eui != 'All') {
+                    $rawdatas = $rawdatas->where('dev_eui', $dev_eui);
                 }
             }
             if (isset($start_date) && !empty($start_date)) {
                 $from = date("Y-m-d H:i:s", substr($request->query('start_date'), 0, 10));
                 $rawdatas = $rawdatas->where('created_at', '>=', $from);
-            }else{
+            } else {
                 $from = date('Y-m-d') . " 00:00:00";
                 $rawdatas = $rawdatas->where('created_at', '>=', $from);
             }
             if (isset($end_date) && !empty($end_date)) {
                 $to = date("Y-m-d H:i:s", substr($request->query('end_date'), 0, 10));
                 $rawdatas = $rawdatas->where('created_at', '<=', $to);
-            }else{
+            } else {
                 $to = date('Y-m-d') . " 23:59:59";
                 $rawdatas = $rawdatas->where('created_at', '<=', $to);
             }
@@ -77,7 +77,7 @@ class ReportDeviceController extends Controller
         $to = date('Y-m-d') . " 23:59:59";
         $microFrom = strtotime($from) * 1000;
         $microTo = strtotime($to) * 1000;
-        return view('report-devices.index',[
+        return view('report-devices.index', [
             'device' => Device::all(),
             'microFrom' => $microFrom,
             'microTo' => $microTo,
@@ -86,10 +86,8 @@ class ReportDeviceController extends Controller
 
     public function export($dev_eui, $start_date, $end_date)
     {
-        $date= date('d-m-Y');
-        $nameFile = 'RM-Device Log-' .$date;
-         return Excel::download(new ReportDeviceLogExport($dev_eui, $start_date, $end_date), $nameFile.'.xlsx');
-
+        $date = date('d-m-Y');
+        $nameFile = 'RM-Device Log-' . $date;
+        return Excel::download(new ReportDeviceLogExport($dev_eui, $start_date, $end_date), $nameFile . '.xlsx');
     }
-
 }

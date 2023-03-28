@@ -7,8 +7,8 @@
                     <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2"
                             aria-hidden="true"></i></div>
                 </li>
-                <li><a class="nav-link menu-title link-nav {{ request()->is('/') || request()->is('dashboard') ? ' activee' : '' }}"
-                        href="{{ route('dashboard') }}"><i data-feather="home"></i>
+                <li><a class="nav-link menu-title link-nav {{ request()->is('/') || request()->is('dashboard') ? ' activee' : '' }}" href="{{ route('dashboard') }}"><i
+                            data-feather="home"></i>
                         <span>Dashboard</span></a>
                 </li>
                 @foreach (config('generator.sidebars') as $sidebar)
@@ -26,9 +26,28 @@
                                             </li>
                                         @endcan
                                     @else
+                                        {{-- <li class="dropdown"><a
+                                                class="nav-link menu-title {{ is_active_menu($menu['permissions']) }}"
+                                                href="javascript:void(0)">{!! $menu['icon'] !!} {{ __($menu['title']) }}</a>
+                                            <ul class="nav-submenu menu-content">
+                                                @canany($menu['permissions'])
+                                                    @foreach ($menu['submenus'] as $submenu)
+                                                        @can($submenu['permission'])
+                                                            <li><a class="{{ is_active_menu($submenu['route']) }}"
+                                                                    href="{{ route(str($submenu['route'])->remove('/')->plural() . '.index') }}">{{ __($submenu['title']) }}</a>
+                                                            </li>
+                                                        @endcan
+                                                    @endforeach
+                                                @endcanany
+                                            </ul>
+                                        </li> --}}
+
+
                                         <li class="dropdown"><a
                                                 class="nav-link menu-title {{ is_active_menu($menu['permissions']) }}"
-                                                href="javascript:void(0)">{!! $menu['icon'] !!}<span>{{ __($menu['title']) }}</span></a>
+                                                href="javascript:void(0)">{!! $menu['icon'] !!} {{ __($menu['title']) }}<div
+                                                    class="according-menu"><i class="fa fa-angle-right"></i>
+                                                </div></a>
                                             <ul class="nav-submenu menu-content">
                                                 @canany($menu['permissions'])
                                                     @foreach ($menu['submenus'] as $submenu)

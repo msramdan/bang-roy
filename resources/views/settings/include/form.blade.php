@@ -66,9 +66,9 @@
     <div class="col-md-2">
         <div class="avatar avatar-xl mb-3">
             @if ($setting->logo == null)
-                <img style="width:180px" src="{{ asset('assets/not-available.png') }}" alt="Logo Apps">
+                <img style="width:100" src="{{ asset('assets/not-available.png') }}" alt="Logo Apps">
             @else
-                <img style="width:180px" src="{{ Storage::url('public/img/setting_app/') . $setting->logo }}"
+                <img style="width:100%" src="{{ Storage::url('public/img/setting_app/') . $setting->logo }}"
                     alt="Logo Apps">
             @endif
         </div>
@@ -78,7 +78,7 @@
             <label for="file">{{ __('Logo Apps') }}</label>
             <input type="file" name="logo" class="form-control @error('logo') is-invalid @enderror"
                 id="logo">
-            <span style="color:red; font-size:10px">Size suggestion : 660x220 pixels </span>
+            <span style="color:red; font-size:10px">Dimensions suggestion : 660x220 pixels | Max size : 2048 Kb </span>
             @error('logo')
                 <span class="text-danger">
                     {{ $message }}
@@ -88,22 +88,22 @@
     </div>
 
     {{-- favicon --}}
-    <div class="col-md-2">
+    <div class="col-md-1">
         <div class="avatar avatar-xl mb-3">
             @if ($setting->favicon == null)
-                <img style="width:70px" src="{{ asset('assets/not-available.png') }}" alt="Favicon">
+                <img style="width:100%" src="{{ asset('assets/not-available.png') }}" alt="Favicon">
             @else
-                <img style="width:70px" src="{{ Storage::url('public/img/setting_app/') . $setting->favicon }}"
+                <img style="width:100%" src="{{ Storage::url('public/img/setting_app/') . $setting->favicon }}"
                     alt="Favicon">
             @endif
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-5">
         <div class="form-group">
             <label for="file">{{ __('Favicon') }}</label>
             <input type="file" name="favicon" class="form-control @error('favicon') is-invalid @enderror"
                 id="favicon">
-            <span style="color:red; font-size:10px">Size suggestion : 128x128 pixels </span>
+            <span style="color:red; font-size:10px">Dimensions suggestion : 512x512 pixels | Max size : 2048 Kb </span>
             @error('favicon')
                 <span class="text-danger">
                     {{ $message }}

@@ -199,3 +199,5 @@ $(".main-navbar ul>li a").filter(function () {
         }
     }
 });
+
+$('.activee').next().css('display', 'block');
