@@ -201,7 +201,7 @@ class DeviceController extends Controller
                 Alert::toast('Failed to update device!', 'error');
             }
 
-            return redirect()->route('device.index');
+            return redirect()->route('devices.index');
         }
         $payload = [
             "devEUI" => $request->dev_eui,
@@ -236,7 +236,7 @@ class DeviceController extends Controller
                 Alert::toast('Failed to update device!', 'error');
             }
 
-            return redirect()->route('device.index');
+            return redirect()->route('devices.index');
         }
         Device::where('id', $device->id)
             ->update(
