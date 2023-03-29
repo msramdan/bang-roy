@@ -53,7 +53,7 @@
                                             <div class="mb-3">
                                                 <label for="dev_eui" class="form-label">File Excel</label>
                                                 <input type="file" id="file" name="file" class="form-control"
-                                                    value="" placeholder="">
+                                                    value="" placeholder="" required>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
