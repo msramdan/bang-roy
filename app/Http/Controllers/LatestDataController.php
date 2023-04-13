@@ -127,7 +127,7 @@ class LatestDataController extends Controller
         return view('latest-datas.show', [
             'parsed_data' => $parsed_data2,
             'parsed_dates' => $parsed_dates,
-            'device_id' => $latestData->device_id,
+            'device_id' => $latestData->id,
             'dev_eui' => $device_data->dev_eui,
             'dev_name' => $device_data->dev_name,
             'microFrom' => $microFrom,
