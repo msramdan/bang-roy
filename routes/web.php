@@ -7,19 +7,21 @@ use App\Http\Controllers\{
     ProfileController,
     RoleAndPermissionController,
     DashboardController,
+    WebController,
 };
 
+
+Route::controller(WebController::class)->group(function () {
+    Route::get('/', 'index')->name('website');
+});
+
 Route::middleware(['auth', 'web'])->group(function () {
-    Route::get('/dashboard', function () {
-        return redirect()->route('dashboard');
-    });
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', ProfileController::class)->name('profile');
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleAndPermissionController::class);
 });
 Route::resource('settings', App\Http\Controllers\SettingController::class)->middleware('auth')->only(['index', 'edit', 'update']);
-
 Route::resource('contacts', App\Http\Controllers\ContactController::class)->middleware('auth');
 Route::resource('vms', App\Http\Controllers\VmController::class)->middleware('auth');
 Route::resource('companies', App\Http\Controllers\CompanyController::class)->middleware('auth');

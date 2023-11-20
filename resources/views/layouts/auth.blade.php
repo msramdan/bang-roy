@@ -8,10 +8,6 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="pixelstrap">
-    <link rel="icon"
-        @if (setting_web()->favicon != null) href="{{ Storage::url('public/img/setting_app/') . setting_web()->favicon }}" @endif
-        type="image/x-icon">
-
     <title>Halaman Login</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link

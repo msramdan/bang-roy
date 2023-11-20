@@ -4,12 +4,11 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 
 
-class DashboardController extends Controller
+class WebController extends Controller
 {
     public function index()
     {
-
-        return view('dashboard');
+        return view('web.home');
     }
 
 }
