@@ -31,10 +31,5 @@
     <link id="color" rel="stylesheet" href="{{ asset('assets/css/color-1.css') }}" media="screen">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/datatables-custom.css') }}">
-    <!-- JQVMap -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-        crossorigin="" />
-    <link href="{{ asset('assets/jqvmap/dist/jqvmap.min.css') }}" rel="stylesheet" />
     @stack('css')
 </head>

@@ -109,83 +109,97 @@ return [
      * This code below always changes when you use a generator and maybe you must lint or format the code.
      */
     'sidebars' => [
-        [
-            'header' => 'Contacts',
-            'permissions' => [
-                'contact view'
-            ],
-            'menus' => [
-                [
-                    'title' => 'Contacts',
-                    'icon' => '<i data-feather="settings"></i>',
-                    'route' => '/contacts',
-                    'permission' => 'contact view',
-                    'permissions' => [],
-                    'submenus' => []
-                ]
-            ]
+    [
+        'header' => 'Contacts',
+        'permissions' => [
+            'contact view'
         ],
-        [
-            'header' => 'About',
-            'permissions' => [
-                'vm view'
-            ],
-            'menus' => [
-                [
-                    'title' => 'About Us',
-                    'icon' => '<i data-feather="info"></i>',
-                    'route' => null,
-                    'permission' => null,
-                    'permissions' => [
-                        'vm view'
+        'menus' => [
+            [
+                'title' => 'Contacts',
+                'icon' => '<i data-feather="settings"></i>',
+                'route' => '/contacts',
+                'permission' => 'contact view',
+                'permissions' => [],
+                'submenus' => []
+            ]
+        ]
+    ],
+    [
+        'header' => 'About',
+        'permissions' => [
+            'vm view',
+            'company view',
+            'certificate view'
+        ],
+        'menus' => [
+            [
+                'title' => 'About Us',
+                'icon' => '<i data-feather="info"></i>',
+                'route' => null,
+                'permission' => null,
+                'permissions' => [
+                    'vm view',
+                    'company view',
+                    'certificate view'
+                ],
+                'submenus' => [
+                    [
+                        'title' => 'Company',
+                        'route' => '/companies',
+                        'permission' => 'company view'
                     ],
-                    'submenus' => [
-                        [
-                            'title' => 'Visi & Misi',
-                            'route' => '/vms',
-                            'permission' => 'vm view'
-                        ]
+                    [
+                        'title' => 'Visi & Misi',
+                        'route' => '/vms',
+                        'permission' => 'vm view'
+                    ],
+                    [
+                        'title' => 'Certificates',
+                        'route' => '/certificates',
+                        'permission' => 'certificate view'
                     ]
                 ]
             ]
+        ]
+    ],
+    [
+        'header' => 'Utilities',
+        'permissions' => [
+            'setting view',
+            'role & permission view',
+            'user view'
         ],
-        [
-            'header' => 'Utilities',
-            'permissions' => [
-                'setting view',
-                'role & permission view',
-                'user view'
-            ],
-            'menus' => [
-                [
-                    'title' => 'Utilities',
-                    'icon' => '<i data-feather="settings"></i>',
-                    'route' => null,
-                    'permission' => null,
-                    'permissions' => [
-                        'setting view',
-                        'role & permission view',
-                        'user view'
+        'menus' => [
+            [
+                'title' => 'Utilities',
+                'icon' => '<i data-feather="settings"></i>',
+                'route' => null,
+                'permission' => null,
+                'permissions' => [
+                    'setting view',
+                    'role & permission view',
+                    'user view'
+                ],
+                'submenus' => [
+                    [
+                        'title' => 'Settings App',
+                        'route' => '/settings',
+                        'permission' => 'setting view'
                     ],
-                    'submenus' => [
-                        [
-                            'title' => 'Settings App',
-                            'route' => '/settings',
-                            'permission' => 'setting view'
-                        ],
-                        [
-                            'title' => 'Users',
-                            'route' => '/users',
-                            'permission' => 'user view'
-                        ],
-                        [
-                            'title' => 'Roles & permissions',
-                            'route' => '/roles',
-                            'permission' => 'role & permission view'
-                        ]
+                    [
+                        'title' => 'Users',
+                        'route' => '/users',
+                        'permission' => 'user view'
+                    ],
+                    [
+                        'title' => 'Roles & permissions',
+                        'route' => '/roles',
+                        'permission' => 'role & permission view'
                     ]
                 ]
             ]
         ]
     ]
+]
 ];

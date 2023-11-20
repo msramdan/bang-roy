@@ -22,3 +22,5 @@ Route::resource('settings', App\Http\Controllers\SettingController::class)->midd
 
 Route::resource('contacts', App\Http\Controllers\ContactController::class)->middleware('auth');
 Route::resource('vms', App\Http\Controllers\VmController::class)->middleware('auth');
+Route::resource('companies', App\Http\Controllers\CompanyController::class)->middleware('auth');
+Route::resource('certificates', App\Http\Controllers\CertificateController::class)->middleware('auth');

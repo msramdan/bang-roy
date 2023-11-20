@@ -32,7 +32,7 @@ class VmController extends Controller
     {
 
         $vm->update($request->validated());
-        Alert::toast('The vm was updated successfully.', 'success');
+        Alert::toast('The visi misi was updated successfully.', 'success');
         return redirect()
             ->route('vms.index');
     }
