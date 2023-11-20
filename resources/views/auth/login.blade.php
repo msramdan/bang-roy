@@ -58,17 +58,6 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                {{-- <div class="col-md-6"> --}}
-                                {!! NoCaptcha::display() !!}
-                                {!! NoCaptcha::renderJs() !!}
-                                {{-- @error('g-recaptcha-response')
-                                    <span class="text-danger" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror --}}
-                                {{-- </div> --}}
-                            </div>
-                            <div class="form-group">
                                 <div class="checkbox">
                                     <input id="checkbox1" type="checkbox" onclick="myFunction()">
                                     <label for="checkbox1">Show Password</label>

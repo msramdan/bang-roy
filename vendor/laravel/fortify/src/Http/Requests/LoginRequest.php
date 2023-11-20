@@ -27,7 +27,6 @@ class LoginRequest extends FormRequest
         return [
             Fortify::username() => 'required|string',
             'password' => 'required|string',
-            'g-recaptcha-response' => 'required|captcha'
         ];
     }
 }

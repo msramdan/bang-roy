@@ -17,9 +17,5 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(RoleAndPermissionSeeder::class);
         $this->call(SettingSeeder::class);
-        $this->call(ProvinceSeeder::class);
-        $this->call(KabkotSeeder::class);
-        $this->call(KecamatanSeeder::class);
-        $this->call(KelurahanSeeder::class);
     }
 }
