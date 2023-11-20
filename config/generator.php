@@ -194,6 +194,38 @@ return [
         ]
     ],
     [
+        'header' => 'Banners',
+        'permissions' => [
+            'banner view'
+        ],
+        'menus' => [
+            [
+                'title' => 'Banner Management',
+                'icon' => '<i data-feather="image"></i>',
+                'route' => '/banners',
+                'permission' => 'banner view',
+                'permissions' => [],
+                'submenus' => []
+            ]
+        ]
+    ],
+    [
+        'header' => 'Testimonies',
+        'permissions' => [
+            'testimony view'
+        ],
+        'menus' => [
+            [
+                'title' => 'Testimonies',
+                'icon' => '<i data-feather="hash"></i>',
+                'route' => '/testimonies',
+                'permission' => 'testimony view',
+                'permissions' => [],
+                'submenus' => []
+            ]
+        ]
+            ],
+    [
         'header' => 'Utilities',
         'permissions' => [
             'role & permission view',

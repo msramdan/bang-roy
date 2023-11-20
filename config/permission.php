@@ -187,5 +187,5 @@ return [
         ['group' => 'certificates', 'access' => ['certificate view', 'certificate create', 'certificate edit', 'certificate delete']],
         ['group' => 'socials', 'access' => ['social view', 'social edit']],
         ['group' => 'clients', 'access' => ['client view', 'client create', 'client edit', 'client delete']], ['group' => 'teams', 'access' => ['team view', 'team create', 'team edit', 'team delete']],
-    ],
-];
+  ['group' => 'banners', 'access' => ['banner view', 'banner create', 'banner edit', 'banner delete']],['group' => 'testimonies', 'access' => ['testimony view', 'testimony create', 'testimony edit', 'testimony delete']], 
+		],];

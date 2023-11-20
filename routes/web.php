@@ -29,3 +29,6 @@ Route::resource('certificates', App\Http\Controllers\CertificateController::clas
 Route::resource('socials', App\Http\Controllers\SocialController::class)->middleware('auth');
 Route::resource('clients', App\Http\Controllers\ClientController::class)->middleware('auth');
 Route::resource('teams', App\Http\Controllers\TeamController::class)->middleware('auth');
+
+Route::resource('banners', App\Http\Controllers\BannerController::class)->middleware('auth');
+Route::resource('testimonies', App\Http\Controllers\TestimonyController::class)->middleware('auth');
