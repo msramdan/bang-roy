@@ -24,3 +24,6 @@ Route::resource('contacts', App\Http\Controllers\ContactController::class)->midd
 Route::resource('vms', App\Http\Controllers\VmController::class)->middleware('auth');
 Route::resource('companies', App\Http\Controllers\CompanyController::class)->middleware('auth');
 Route::resource('certificates', App\Http\Controllers\CertificateController::class)->middleware('auth');
+Route::resource('socials', App\Http\Controllers\SocialController::class)->middleware('auth');
+Route::resource('clients', App\Http\Controllers\ClientController::class)->middleware('auth');
+Route::resource('teams', App\Http\Controllers\TeamController::class)->middleware('auth');

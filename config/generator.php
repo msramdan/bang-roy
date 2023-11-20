@@ -110,27 +110,13 @@ return [
      */
     'sidebars' => [
     [
-        'header' => 'Contacts',
-        'permissions' => [
-            'contact view'
-        ],
-        'menus' => [
-            [
-                'title' => 'Contacts',
-                'icon' => '<i data-feather="settings"></i>',
-                'route' => '/contacts',
-                'permission' => 'contact view',
-                'permissions' => [],
-                'submenus' => []
-            ]
-        ]
-    ],
-    [
         'header' => 'About',
         'permissions' => [
             'vm view',
             'company view',
-            'certificate view'
+            'certificate view',
+            'social view',
+            'team view'
         ],
         'menus' => [
             [
@@ -141,7 +127,9 @@ return [
                 'permissions' => [
                     'vm view',
                     'company view',
-                    'certificate view'
+                    'certificate view',
+                    'social view',
+                    'team view'
                 ],
                 'submenus' => [
                     [
@@ -158,15 +146,56 @@ return [
                         'title' => 'Certificates',
                         'route' => '/certificates',
                         'permission' => 'certificate view'
+                    ],
+                    [
+                        'title' => 'Social Media',
+                        'route' => '/socials',
+                        'permission' => 'social view'
+                    ],
+                    [
+                        'title' => 'Teams',
+                        'route' => '/teams',
+                        'permission' => 'team view'
                     ]
                 ]
             ]
         ]
     ],
     [
+        'header' => 'Our Clients',
+        'permissions' => [
+            'client view'
+        ],
+        'menus' => [
+            [
+                'title' => 'Clients',
+                'icon' => '<i data-feather="users"></i>',
+                'route' => '/clients',
+                'permission' => 'client view',
+                'permissions' => [],
+                'submenus' => []
+            ]
+        ]
+    ],
+    [
+        'header' => 'Contacts',
+        'permissions' => [
+            'contact view'
+        ],
+        'menus' => [
+            [
+                'title' => 'Contacts',
+                'icon' => '<i data-feather="mail"></i>',
+                'route' => '/contacts',
+                'permission' => 'contact view',
+                'permissions' => [],
+                'submenus' => []
+            ]
+        ]
+    ],
+    [
         'header' => 'Utilities',
         'permissions' => [
-            'setting view',
             'role & permission view',
             'user view'
         ],
@@ -177,16 +206,10 @@ return [
                 'route' => null,
                 'permission' => null,
                 'permissions' => [
-                    'setting view',
                     'role & permission view',
                     'user view'
                 ],
                 'submenus' => [
-                    [
-                        'title' => 'Settings App',
-                        'route' => '/settings',
-                        'permission' => 'setting view'
-                    ],
                     [
                         'title' => 'Users',
                         'route' => '/users',

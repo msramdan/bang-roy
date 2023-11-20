@@ -49,8 +49,8 @@ class CompanyController extends Controller
         }
 
         $company->update($attr);
+        Alert::toast('The company was updated successfully.', 'success');
         return redirect()
-            ->route('companies.index')
-            ->with('success', __('The company was updated successfully.'));
+            ->route('companies.index');
     }
 }

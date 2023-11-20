@@ -181,9 +181,11 @@ return [
                 'role & permission delete',
             ]
         ],
-        ['group' => 'settings', 'access' => ['setting view', 'setting edit']],
         ['group' => 'contacts', 'access' => ['contact view', 'contact delete']],
         ['group' => 'vms', 'access' => ['vm view', 'vm edit']],
         ['group' => 'companies', 'access' => ['company view', 'company edit']],
-  ['group' => 'certificates', 'access' => ['certificate view', 'certificate create', 'certificate edit', 'certificate delete']], 
-		],];
+        ['group' => 'certificates', 'access' => ['certificate view', 'certificate create', 'certificate edit', 'certificate delete']],
+        ['group' => 'socials', 'access' => ['social view', 'social edit']],
+        ['group' => 'clients', 'access' => ['client view', 'client create', 'client edit', 'client delete']], ['group' => 'teams', 'access' => ['team view', 'team create', 'team edit', 'team delete']],
+    ],
+];

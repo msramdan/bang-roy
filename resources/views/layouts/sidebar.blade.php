@@ -26,23 +26,6 @@
                                             </li>
                                         @endcan
                                     @else
-                                        {{-- <li class="dropdown"><a
-                                                class="nav-link menu-title {{ is_active_menu($menu['permissions']) }}"
-                                                href="javascript:void(0)">{!! $menu['icon'] !!} {{ __($menu['title']) }}</a>
-                                            <ul class="nav-submenu menu-content">
-                                                @canany($menu['permissions'])
-                                                    @foreach ($menu['submenus'] as $submenu)
-                                                        @can($submenu['permission'])
-                                                            <li><a class="{{ is_active_menu($submenu['route']) }}"
-                                                                    href="{{ route(str($submenu['route'])->remove('/')->plural() . '.index') }}">{{ __($submenu['title']) }}</a>
-                                                            </li>
-                                                        @endcan
-                                                    @endforeach
-                                                @endcanany
-                                            </ul>
-                                        </li> --}}
-
-
                                         <li class="dropdown"><a
                                                 class="nav-link menu-title {{ is_active_menu($menu['permissions']) }}"
                                                 href="javascript:void(0)">{!! $menu['icon'] !!} {{ __($menu['title']) }}<div

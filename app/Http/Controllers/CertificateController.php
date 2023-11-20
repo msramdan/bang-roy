@@ -32,7 +32,7 @@ class CertificateController extends Controller
                 ->addColumn('keterangan', function($row){
                     return str($row->keterangan)->limit(100);
                 })
-				
+
                 ->addColumn('image', function ($row) {
                     if ($row->image == null) {
                     return 'https://via.placeholder.com/350?text=No+Image+Avaiable';
@@ -66,7 +66,7 @@ class CertificateController extends Controller
     public function store(StoreCertificateRequest $request)
     {
         $attr = $request->validated();
-        
+
         if ($request->file('image') && $request->file('image')->isValid()) {
 
             $path = storage_path('app/public/uploads/images/');
@@ -85,10 +85,9 @@ class CertificateController extends Controller
         }
 
         Certificate::create($attr);
-
+        Alert::toast('The certificate was created successfully.', 'success');
         return redirect()
-            ->route('certificates.index')
-            ->with('success', __('The certificate was created successfully.'));
+            ->route('certificates.index');
     }
 
     /**
@@ -123,7 +122,7 @@ class CertificateController extends Controller
     public function update(UpdateCertificateRequest $request, Certificate $certificate)
     {
         $attr = $request->validated();
-        
+
         if ($request->file('image') && $request->file('image')->isValid()) {
 
             $path = storage_path('app/public/uploads/images/');
@@ -147,10 +146,9 @@ class CertificateController extends Controller
         }
 
         $certificate->update($attr);
-
+        Alert::toast('The certificate was updated successfully.', 'success');
         return redirect()
-            ->route('certificates.index')
-            ->with('success', __('The certificate was updated successfully.'));
+            ->route('certificates.index');
     }
 
     /**
@@ -169,14 +167,13 @@ class CertificateController extends Controller
             }
 
             $certificate->delete();
-
+            Alert::toast('The certificate was deleted successfully.', 'success');
             return redirect()
-                ->route('certificates.index')
-                ->with('success', __('The certificate was deleted successfully.'));
+                ->route('certificates.index');
         } catch (\Throwable $th) {
+            Alert::toast('The certificate cant be deleted because its related to another table.', 'error');
             return redirect()
-                ->route('certificates.index')
-                ->with('error', __("The certificate can't be deleted because it's related to another table."));
+                ->route('certificates.index');
         }
     }
 }
