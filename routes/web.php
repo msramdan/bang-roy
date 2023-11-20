@@ -19,3 +19,5 @@ Route::middleware(['auth', 'web'])->group(function () {
     Route::resource('roles', RoleAndPermissionController::class);
 });
 Route::resource('settings', App\Http\Controllers\SettingController::class)->middleware('auth')->only(['index', 'edit', 'update']);
+
+Route::resource('contacts', App\Http\Controllers\ContactController::class)->middleware('auth');
