@@ -183,5 +183,6 @@ return [
         ],
         ['group' => 'settings', 'access' => ['setting view', 'setting edit']],
         ['group' => 'contacts', 'access' => ['contact view', 'contact delete']],
+        ['group' => 'vms', 'access' => ['vm view', 'vm edit']],
     ],
 ];

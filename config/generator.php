@@ -128,7 +128,7 @@ return [
         [
             'header' => 'About',
             'permissions' => [
-                'user view'
+                'vm view'
             ],
             'menus' => [
                 [
@@ -137,19 +137,18 @@ return [
                     'route' => null,
                     'permission' => null,
                     'permissions' => [
-                        'user view'
+                        'vm view'
                     ],
                     'submenus' => [
                         [
-                            'title' => 'Roles & permissions',
-                            'route' => '/roles',
-                            'permission' => 'role & permission view'
+                            'title' => 'Visi & Misi',
+                            'route' => '/vms',
+                            'permission' => 'vm view'
                         ]
                     ]
                 ]
             ]
         ],
-
         [
             'header' => 'Utilities',
             'permissions' => [
@@ -187,6 +186,6 @@ return [
                     ]
                 ]
             ]
-        ],
+        ]
     ]
 ];
