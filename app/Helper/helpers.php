@@ -5,8 +5,12 @@ use Illuminate\Support\Facades\DB;
 
 function setting_web()
 {
-    $setting = DB::table('companies')->first();
-    return $setting;
+    return DB::table('companies')->first();
+}
+
+function social()
+{
+    return DB::table('socials')->first();
 }
 
 function set_show($uri)
