@@ -28,16 +28,17 @@
 
     <div class="container our_service">
         <div class="row">
+            {{-- loop --}}
             <div class="col-lg-4 col-sm-6">
                 <div class="service_our_2">
                     <div>
-                        <img src="assets/images/solar/services/1.jpg" class="img-fluid " alt="serviceimage">
+                        <img src="https://themes.pixelstrap.com/reno/theme/assets/images/solar/services/1.jpg" class="img-fluid " alt="serviceimage">
                         <div class="service_content">
                             <div class="service_title">
                                 <h5>Building Information</h5>
                                 <div class="icon_bg">
                                     <div class="center-content">
-                                        <img src="assets/images/solar/service_icon/6.png" class="img-fluid service_icon" alt="serviceimage">
+                                        <img src="https://themes.pixelstrap.com/reno/theme/assets/images/solar/service_icon/6.png" class="img-fluid service_icon" alt="serviceimage">
                                     </div>
                                 </div>
                             </div>
@@ -45,150 +46,6 @@
                                 the printing and typesetting industry.</p>
                             <a href="#">Read More</a>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="service_our_2">
-                    <img src="assets/images/solar/services/2.jpg" class="img-fluid " alt="serviceimage">
-                    <div class="service_content">
-                        <div class="service_title">
-                            <h5>Contraction Services</h5>
-                            <div class="icon_bg">
-                                <div class="center-content">
-                                    <img src="assets/images/solar/service_icon/5.png" class="img-fluid service_icon" alt="serviceimage">
-                                </div>
-                            </div>
-                        </div>
-                        <p>Lorem Ipsum is simply dummy text of
-                            the printing and typesetting industry.</p>
-                        <a href="#">Read More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="service_our_2">
-                    <img src="assets/images/solar/services/3.jpg" class="img-fluid " alt="serviceimage">
-                    <div class="service_content">
-                        <div class="service_title">
-                            <h5>Pre-Contraction</h5>
-                            <div class="icon_bg">
-                                <div class="center-content">
-                                    <img src="assets/images/solar/service_icon/4.png" class="img-fluid service_icon" alt="serviceimage">
-                                </div>
-                            </div>
-                        </div>
-                        <p>Lorem Ipsum is simply dummy text of
-                            the printing and typesetting industry.</p>
-                        <a href="#">Read More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="service_our_2">
-                    <img src="assets/images/solar/services/4.jpg" class="img-fluid " alt="serviceimage">
-                    <div class="service_content">
-                        <div class="service_title">
-                            <h5>Pre-Contraction</h5>
-                            <div class="icon_bg">
-                                <div class="center-content">
-                                    <img src="assets/images/solar/service_icon/4.png" class="img-fluid service_icon" alt="serviceimage">
-                                </div>
-                            </div>
-                        </div>
-                        <p>Lorem Ipsum is simply dummy text of
-                            the printing and typesetting industry.</p>
-                        <a href="#">Read More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="service_our_2">
-                    <img src="assets/images/solar/services/5.jpg" class="img-fluid " alt="serviceimage">
-                    <div class="service_content">
-                        <div class="service_title">
-                            <h5>Pre-Contraction</h5>
-                            <div class="icon_bg">
-                                <div class="center-content">
-                                    <img src="assets/images/solar/service_icon/4.png" class="img-fluid service_icon" alt="serviceimage">
-                                </div>
-                            </div>
-                        </div>
-                        <p>Lorem Ipsum is simply dummy text of
-                            the printing and typesetting industry.</p>
-                        <a href="#">Read More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="service_our_2">
-                    <img src="assets/images/solar/services/1.jpg" class="img-fluid " alt="serviceimage">
-                    <div class="service_content">
-                        <div class="service_title">
-                            <h5>Pre-Contraction</h5>
-                            <div class="icon_bg">
-                                <div class="center-content">
-                                    <img src="assets/images/solar/service_icon/4.png" class="img-fluid service_icon" alt="serviceimage">
-                                </div>
-                            </div>
-                        </div>
-                        <p>Lorem Ipsum is simply dummy text of
-                            the printing and typesetting industry.</p>
-                        <a href="#">Read More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="service_our_2">
-                    <img src="assets/images/solar/services/2.jpg" class="img-fluid " alt="serviceimage">
-                    <div class="service_content">
-                        <div class="service_title">
-                            <h5>Pre-Contraction</h5>
-                            <div class="icon_bg">
-                                <div class="center-content">
-                                    <img src="assets/images/solar/service_icon/4.png" class="img-fluid service_icon" alt="serviceimage">
-                                </div>
-                            </div>
-                        </div>
-                        <p>Lorem Ipsum is simply dummy text of
-                            the printing and typesetting industry.</p>
-                        <a href="#">Read More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="service_our_2">
-                    <img src="assets/images/solar/services/3.jpg" class="img-fluid " alt="serviceimage">
-                    <div class="service_content">
-                        <div class="service_title">
-                            <h5>Pre-Contraction</h5>
-                            <div class="icon_bg">
-                                <div class="center-content">
-                                    <img src="assets/images/solar/service_icon/4.png" class="img-fluid service_icon" alt="serviceimage">
-                                </div>
-                            </div>
-                        </div>
-                        <p>Lorem Ipsum is simply dummy text of
-                            the printing and typesetting industry.</p>
-                        <a href="#">Read More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="service_our_2">
-                    <img src="assets/images/solar/services/4.jpg" class="img-fluid " alt="serviceimage">
-                    <div class="service_content">
-                        <div class="service_title">
-                            <h5>Pre-Contraction</h5>
-                            <div class="icon_bg">
-                                <div class="center-content">
-                                    <img src="assets/images/solar/service_icon/4.png" class="img-fluid service_icon" alt="serviceimage">
-                                </div>
-                            </div>
-                        </div>
-                        <p>Lorem Ipsum is simply dummy text of
-                            the printing and typesetting industry.</p>
-                        <a href="#">Read More</a>
                     </div>
                 </div>
             </div>

@@ -9,13 +9,13 @@
                         <ul id="breadcrumb" class="breadcrumb">
                             <li><a title="Home" href="contraction.html"><i class="fa fa-home" aria-hidden="true"></i></a>
                             </li>
-                            <li><strong><i class="fa fa-angle-double-right" aria-hidden="true"></i> About Us</strong></li>
+                            <li><strong><i class="fa fa-angle-double-right" aria-hidden="true"></i>Company</strong></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="page-title">
-                        <h2>About Us</h2>
+                        <h2>Company</h2>
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="col-sm-8 mx-auto">
                     <div>
-                        <img src="assets/images/about-us.jpg" class="img-fluid" alt="">
+                        <img src="https://themes.pixelstrap.com/reno/theme/assets/images/about-us.jpg" class="img-fluid" alt="">
                     </div>
                 </div>
                 <div class="col-12">
