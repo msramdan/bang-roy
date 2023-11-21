@@ -52,18 +52,8 @@
                             <div class="input-group">
                                 <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
                                     placeholder="Search Products...">
-                                <div class="input-group-append selective">
-                                    <select name="collection" id="collection-option" data-option="collection-option"
-                                        class="single-option-selector">
-                                        <option value="all">All Category</option>
-                                        @foreach ($categoryproducts as $row)
-                                            <option value="cleaner">{{ $row->category_name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
                                 <div class="input-group-append">
-                                    <a class="btn btn_inverse" href="#"> Search <i class="fa fa-search"
-                                            aria-hidden="true"></i></a>
+                                    <a class="btn btn_inverse" href="#">  Search <i class="fa fa-search" aria-hidden="true"></i></a>
                                 </div>
                             </div>
                         </form>
