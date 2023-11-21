@@ -9,13 +9,13 @@
                         <ul id="breadcrumb" class="breadcrumb">
                             <li><a title="Home" href="contraction.html"><i class="fa fa-home" aria-hidden="true"></i></a>
                             </li>
-                            <li><strong><i class="fa fa-angle-double-right" aria-hidden="true"></i> Blog</strong></li>
+                            <li><strong><i class="fa fa-angle-double-right" aria-hidden="true"></i> Portfolios</strong></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="page-title">
-                        <h2>BLOG </h2>
+                        <h2>Portfolios </h2>
                     </div>
                 </div>
             </div>
@@ -28,37 +28,35 @@
         </ul>
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="news_sec">
-                        <figure class="snip_con">
-                            <img src="https://themes.pixelstrap.com/reno/theme/assets/images/blog/blog_single/1.jpg" alt="" class="img-fluid ">
-                        </figure>
-                        <div class="text_p">
-                            <div class="date_sec">
-                                <div>
-                                    <h4>25</h4>
-                                    <h6>JULY</h6>
+                @foreach ($portfolios as $row)
+                    <div class="col-lg-4 col-md-6">
+                        <div class="news_sec">
+                            <figure class="snip_con">
+                                <img src="{{ asset('storage/uploads/photos/' . $row->photo) }}" alt=""
+                                    class="img-fluid ">
+                            </figure>
+                            <div class="text_p">
+                                <div class="date_sec">
+                                    <div>
+                                        @php
+                                            $tanggal_string = $row->tanggal;
+                                            $data_tanggal = ambilDataTanggal($tanggal_string);
+                                        @endphp
+                                        <h4>{{ $data_tanggal['tanggal'] }}</h4>
+                                        <h6>{{$data_tanggal['bulan']}} {{$data_tanggal['tahun']}}</h6>
+                                    </div>
                                 </div>
+                                <h4>{{ $row->title_portfolio }}</h4>
+                                <p>{{ $row->keterangan }}</p>
+                                {{-- <h6 class="readmore"><a href="blog-details.html">Read More</a></h6> --}}
                             </div>
-                            <h4>Sandford improvements</h4>
-                            <p>Lorem Ipsum is simply dummy text of the prin
-                                and type setting industry. Lorem Ipsum has</p>
-                            <h6 class="readmore"><a href="blog-details.html">Read More</a></h6>
                         </div>
                     </div>
-                </div>
+                @endforeach
+
             </div>
         </div>
         <!-- pagination Start -->
-        <div class="pagination_sec">
-            <div class="content_detail__pagination cdp text-center">
-                <a href="#" class="cdp_i"><i class="fa fa-angle-double-left" aria-hidden="true"></i>prev</a>
-                <a href="#" class="cdp_i">1</a>
-                <a href="#" class="cdp_i">2</a>
-                <a href="#" class="cdp_i">3</a>
-                <a href="#" class="cdp_i">next<i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
-            </div>
-        </div>
         <!-- pagination End -->
     </section>
 @endsection

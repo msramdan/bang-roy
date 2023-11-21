@@ -7,6 +7,7 @@ use App\Models\Testimony;
 use App\Models\Banner;
 use App\Models\Business;
 use App\Models\Certificate;
+use App\Models\Portfolio;
 use App\Models\Team;
 use Illuminate\Support\Facades\DB;
 
@@ -66,7 +67,10 @@ class WebController extends Controller
 
     public function portfolio()
     {
-        return view('web.portfolio');
+        $portfolios = Portfolio::all();
+        return view('web.portfolio', [
+            'portfolios' => $portfolios,
+        ]);
     }
 
 

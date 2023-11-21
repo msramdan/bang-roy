@@ -27,3 +27,20 @@ function set_show($uri)
         }
     }
 }
+
+function ambilDataTanggal($tanggal_string) {
+    // Konversi string ke timestamp
+    $timestamp = strtotime($tanggal_string);
+
+    // Ambil data tanggal
+    $tanggal = date("d", $timestamp);
+    $bulan = date("M", $timestamp); // M mengembalikan singkatan bulan
+    $tahun = date("Y", $timestamp);
+
+    // Mengembalikan hasil dalam bentuk array
+    return array(
+        'tanggal' => $tanggal,
+        'bulan' => $bulan,
+        'tahun' => $tahun
+    );
+}
