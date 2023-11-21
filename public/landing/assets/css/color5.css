@@ -10127,8 +10127,9 @@ body.rtl .solar.price-section .price-cart {
   .ecommerce-layout .main-body .col-6 {
     max-width: 100%;
     -webkit-box-flex: 0;
-        -ms-flex: 0 0 100%;
-            flex: 0 0 100%; }
+        /* -ms-flex: 0 0 100%;
+            flex: 0 0 100%; */
+        }
   .ecommerce-layout .banner-section .col-lg-6 .img-part {
     background-position: right !important; }
   .ecommerce-layout .toggle-nav {

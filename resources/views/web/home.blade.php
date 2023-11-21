@@ -111,7 +111,7 @@
                             @endforeach
                         </div>
                     </div>
-                    <section class="product_sec pb-0">
+                    <section class="product_sec pt-0">
                         <div class="collection-product-wrapper">
                             <div class="row product-wrapper-grid f_product">
                                 <div class="col-12">
@@ -122,189 +122,35 @@
                                 <div class="collection-product-wrapper">
                                     <div class="product-wrapper-grid">
                                         <div class="row">
-                                            <div class="col-md-4 col-6 col-grid-box">
+                                            <div class="col-sm-3 col-6">
                                                 <div class="product-box">
                                                     <div class="img-wrapper">
                                                         <div class="front">
-                                                            <a href="#"><img src="assets/images/pro/1.jpg" class="img-fluid" alt=""></a>
-                                                            <div>
-                                                                <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" class="add_hover add_search" title="Quick View"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                                                <a href="#" title="Wish list" class="add_hover add_wish"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                                                <a href="#" title="Add to cart" class="add_hover"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
-                                                            </div>
+                                                            <a href="#">
+                                                                <img src="https://themes.pixelstrap.com/reno/theme/assets/images/pro/1.jpg"
+                                                                    class="img-fluid" alt=""></a>
                                                         </div>
                                                     </div>
                                                     <div class="product-detail">
                                                         <div>
-                                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div><a href="#"><h6>Slim Fit Cotton Shirt</h6></a>
-                                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-                                                            <h4>$500.00</h4>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 col-6 col-grid-box">
-                                                <div class="product-box">
-                                                    <div class="img-wrapper">
-                                                        <div class="front">
-                                                            <a href="#"><img src="assets/images/pro/3.jpg" class="img-fluid" alt=""></a>
-                                                            <div>
-                                                                <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" class="add_hover add_search" title="Quick View"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                                                <a href="#" title="Wish list" class="add_hover add_wish"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                                                <a href="#" title="Add to cart" class="add_hover"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                                                            <div class="rating">
+                                                                <i class="fa fa-star" style="color: orange"></i>
+                                                                <i class="fa fa-star" style="color: orange"></i>
+                                                                <i class="fa fa-star" style="color: orange"></i>
+                                                                <i class="fa fa-star" style="color: orange"></i>
+                                                                <i class="fa fa-star" style="color: orange"></i>
                                                             </div>
+                                                            <a href="#">
+                                                                <span>Slim Fit Cotton Shirt</span>
+                                                            </a>
+                                                            <h6>Rp.5000</h6>
                                                         </div>
-                                                    </div>
-                                                    <div class="product-detail">
-                                                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div><a href="#"><h6>Slim Fit Cotton Shirt</h6></a>
-                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-                                                        <h4>$500.00</h4>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 col-6 col-grid-box">
-                                                <div class="product-box">
-                                                    <div class="img-wrapper">
-                                                        <div class="front">
-                                                            <a href="#"><img src="assets/images/pro/9.jpg" class="img-fluid" alt=""></a>
-                                                            <div>
-                                                                <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" class="add_hover add_search" title="Quick View"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                                                <a href="#" title="Wish list" class="add_hover add_wish"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                                                <a href="#" title="Add to cart" class="add_hover"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-detail">
-                                                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div><a href="#"><h6>Slim Fit Cotton Shirt</h6></a>
-                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-                                                        <h4>$500.00</h4>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 col-6 col-grid-box">
-                                                <div class="product-box">
-                                                    <div class="img-wrapper">
-                                                        <div class="front">
-                                                            <a href="#"><img src="assets/images/pro/11.jpg" class="img-fluid" alt=""></a>
-                                                            <div>
-                                                                <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" class="add_hover add_search" title="Quick View"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                                                <a href="#" title="Wish list" class="add_hover add_wish"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                                                <a href="#" title="Add to cart" class="add_hover"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-detail">
-                                                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div><a href="#"><h6>Slim Fit Cotton Shirt</h6></a>
-                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-                                                        <h4>$500.00</h4>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 col-6 col-grid-box">
-                                                <div class="product-box">
-                                                    <div class="img-wrapper">
-                                                        <div class="front">
-                                                            <a href="#"><img src="assets/images/pro/1.jpg" class="img-fluid" alt=""></a>
-                                                            <div>
-                                                                <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" class="add_hover add_search" title="Quick View"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                                                <a href="#" title="Wish list" class="add_hover add_wish"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                                                <a href="#" title="Add to cart" class="add_hover"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-detail">
-                                                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div><a href="#"><h6>Slim Fit Cotton Shirt</h6></a>
-                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-                                                        <h4>$500.00</h4>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 col-6 col-grid-box">
-                                                <div class="product-box">
-                                                    <div class="img-wrapper">
-                                                        <div class="front">
-                                                            <a href="#"><img src="assets/images/pro/27.jpg" class="img-fluid" alt=""></a>
-                                                            <div>
-                                                                <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" class="add_hover add_search" title="Quick View"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                                                <a href="#" title="Wish list" class="add_hover add_wish"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                                                <a href="#" title="Add to cart" class="add_hover"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-detail">
-                                                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div><a href="#"><h6>Slim Fit Cotton Shirt</h6></a>
-                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-                                                        <h4>$500.00</h4>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 col-6 col-grid-box">
-                                                <div class="product-box">
-                                                    <div class="img-wrapper">
-                                                        <div class="front">
-                                                            <a href="#"><img src="assets/images/pro/1.jpg" class="img-fluid" alt=""></a>
-                                                            <div>
-                                                                <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" class="add_hover add_search" title="Quick View"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                                                <a href="#" title="Wish list" class="add_hover add_wish"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                                                <a href="#" title="Add to cart" class="add_hover"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-detail">
-                                                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div><a href="#"><h6>Slim Fit Cotton Shirt</h6></a>
-                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-                                                        <h4>$500.00</h4>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 col-6 col-grid-box">
-                                                <div class="product-box">
-                                                    <div class="img-wrapper">
-                                                        <div class="front">
-                                                            <a href="#"><img src="assets/images/pro/20.jpg" class="img-fluid" alt=""></a>
-                                                            <div>
-                                                                <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" class="add_hover add_search" title="Quick View"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                                                <a href="#" title="Wish list" class="add_hover add_wish"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                                                <a href="#" title="Add to cart" class="add_hover"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-detail">
-                                                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div><a href="#"><h6>Slim Fit Cotton Shirt</h6></a>
-                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-                                                        <h4>$500.00</h4>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 col-6 col-grid-box">
-                                                <div class="product-box">
-                                                    <div class="img-wrapper">
-                                                        <div class="front">
-                                                            <a href="#"><img src="assets/images/pro/1.jpg" class="img-fluid" alt=""></a>
-                                                            <div>
-                                                                <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" class="add_hover add_search" title="Quick View"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                                                <a href="#" title="Wish list" class="add_hover add_wish"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                                                <a href="#" title="Add to cart" class="add_hover"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
-                                                            </div>
-                                                        </div>
-                                                        <div>
-                                                            <a></a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-detail">
-                                                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div><a href="#"><h6>Slim Fit Cotton Shirt</h6></a>
-                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-                                                        <h4>$500.00</h4>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- pagination Start -->
                                 </div>
-
-
-
                             </div>
                         </div>
                     </section>
