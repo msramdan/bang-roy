@@ -1,6 +1,6 @@
 <td>
     @can('team view')
-    <a href="{{ route('teams.show', $model->id) }}" class="btn btn-info btn-md">
+    <a href="{{ route('teams.show', $model->id) }}" class="btn btn-info btn-sm">
         <i class="fa fa-eye"></i>
     </a>
     @endcan

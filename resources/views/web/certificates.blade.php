@@ -9,7 +9,8 @@
                         <ul id="breadcrumb" class="breadcrumb">
                             <li><a title="Home" href="contraction.html"><i class="fa fa-home" aria-hidden="true"></i></a>
                             </li>
-                            <li><strong><i class="fa fa-angle-double-right" aria-hidden="true"></i>Certificates</strong></li>
+                            <li><strong><i class="fa fa-angle-double-right" aria-hidden="true"></i>Certificates</strong>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -36,45 +37,23 @@
 
             <div class="row zoom-gallery">
                 {{-- loop --}}
-                <div class="isotopeSelector filter fashion col-lg-4 col-sm-6">
-                    <div class="overlay">
-                        <div class="border-portfolio">
-                            <a class="zoom_gallery" href="https://themes.pixelstrap.com/reno/theme/assets/images/portfolio/grid/1.jpg"
-                                data-source="http://500px.com/photo/32554131">
-                                <div class="overlay-background">
-                                    <i class="ti-plus" aria-hidden="true"></i>
-                                </div>
-                                <img src="https://themes.pixelstrap.com/reno/theme/assets/images/portfolio/grid/1.jpg" class="img-fluid " alt="">
-                            </a>
+                @foreach ($certificates as $row)
+                    <div class="isotopeSelector filter fashion col-lg-4 col-sm-6">
+                        <div class="overlay">
+                            <div class="border-portfolio">
+                                <a class="zoom_gallery" href="{{ asset('storage/uploads/images/' . $row->image) }}"
+                                    data-source="http://500px.com/photo/32554131">
+                                    <div class="overlay-background">
+                                        <i class="ti-plus" aria-hidden="true"></i>
+                                    </div>
+                                    <img src="{{ asset('storage/uploads/images/' . $row->image) }}" class="img-fluid "
+                                        alt="">
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="isotopeSelector filter fashion col-lg-4 col-sm-6">
-                    <div class="overlay">
-                        <div class="border-portfolio">
-                            <a class="zoom_gallery" href="https://themes.pixelstrap.com/reno/theme/assets/images/portfolio/grid/1.jpg"
-                                data-source="http://500px.com/photo/32554131">
-                                <div class="overlay-background">
-                                    <i class="ti-plus" aria-hidden="true"></i>
-                                </div>
-                                <img src="https://themes.pixelstrap.com/reno/theme/assets/images/portfolio/grid/1.jpg" class="img-fluid " alt="">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="isotopeSelector filter fashion col-lg-4 col-sm-6">
-                    <div class="overlay">
-                        <div class="border-portfolio">
-                            <a class="zoom_gallery" href="https://themes.pixelstrap.com/reno/theme/assets/images/portfolio/grid/1.jpg"
-                                data-source="http://500px.com/photo/32554131">
-                                <div class="overlay-background">
-                                    <i class="ti-plus" aria-hidden="true"></i>
-                                </div>
-                                <img src="https://themes.pixelstrap.com/reno/theme/assets/images/portfolio/grid/1.jpg" class="img-fluid " alt="">
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
             </div>
         </div>
         <!-- pagination Start -->

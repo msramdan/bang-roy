@@ -27,24 +27,19 @@
     </ul>
     <div class="container">
         <div class="row">
-            {{-- start --}}
+            @foreach ($teams as $row )
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="team_sec">
-                    <img src="https://themes.pixelstrap.com/reno/theme/assets/images/team/2.jpg" class="img-fluid " alt="serviceimage">
+                    <img src="{{ asset('storage/uploads/photos/' . $row->photo)}}" class="img-fluid " alt="serviceimage">
                     <div class="team_details">
                         <div>
-                            <h3>Akshara Space</h3>
-                            <h5>Founder, CEO</h5>
-                            <ul class="social">
-                                <li><a href="#" data-bs-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#" data-bs-toggle="tooltip" data-placement="top" title="Google-plus"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#" data-bs-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#" data-bs-toggle="tooltip" data-placement="top" title="Instagram"><i class="fa fa-instagram"></i></a></li>
-                            </ul>
+                            <h3>{{$row->nama}}</h3>
+                            <h5>{{$row->jabatan}}</h5>
                         </div>
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
     </div>
     <!-- pagination -->

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use App\Models\Testimony;
 use App\Models\Banner;
+use App\Models\Business;
+use App\Models\Certificate;
+use App\Models\Team;
 use Illuminate\Support\Facades\DB;
 
 
@@ -29,7 +32,10 @@ class WebController extends Controller
 
     public function team()
     {
-        return view('web.team');
+        $teams = Team::all();
+        return view('web.team', [
+            'teams' => $teams,
+        ]);
     }
 
     public function company()
@@ -39,12 +45,18 @@ class WebController extends Controller
 
     public function certificates()
     {
-        return view('web.certificates');
+        $certificates = Certificate::all();
+        return view('web.certificates', [
+            'certificates' => $certificates,
+        ]);
     }
 
     public function service()
     {
-        return view('web.service');
+        $businesses = Business::all();
+        return view('web.service', [
+            'businesses' => $businesses,
+        ]);
     }
 
     public function catalog()
