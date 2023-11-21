@@ -144,7 +144,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label for="deskripsi">{{ __('Deskripsi') }}</label>
-            <textarea name="deskripsi" id="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" placeholder="{{ __('deskripsi') }}" required>{{ isset($company) ? $company->deskripsi : old('deskripsi') }}</textarea>
+            <textarea rows="10" name="deskripsi" id="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" placeholder="{{ __('deskripsi') }}" required>{{ isset($company) ? $company->deskripsi : old('deskripsi') }}</textarea>
             @error('deskripsi')
                 <span class="text-danger">
                     {{ $message }}

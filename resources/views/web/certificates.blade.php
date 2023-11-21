@@ -1,8 +1,12 @@
 @extends('web.main')
 
 @section('content')
-    <div class="bread_crumb" style="
-    background-image: url({{asset('landing/assets/images/brad_back.jpg')}});
+    @php
+        $company = setting_web();
+    @endphp
+    <div class="bread_crumb"
+        style="
+    background-image: url({{ asset('landing/assets/images/brad_back.jpg') }});
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
@@ -14,7 +18,7 @@
                 <div class="col-md-6 sec_low">
                     <div class="functionalities">
                         <ul id="breadcrumb" class="breadcrumb">
-                            <li><a title="Home" href="contraction.html"><i class="fa fa-home" aria-hidden="true"></i></a>
+                            <li><a title="Home" href="/"><i class="fa fa-home" aria-hidden="true"></i></a>
                             </li>
                             <li><strong><i class="fa fa-angle-double-right" aria-hidden="true"></i>Certificates</strong>
                             </li>
@@ -38,7 +42,7 @@
             <div class="col-12">
                 <div class="con_title">
                     <h2>our legality</h2>
-                    <h6><span>FROM THE BLOG</span></h6>
+                    <h6><span>{{ $company->nama_perusahaan }}</span></h6>
                 </div>
             </div>
 

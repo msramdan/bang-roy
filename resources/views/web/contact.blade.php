@@ -19,7 +19,7 @@
                 <div class="col-md-6 sec_low">
                     <div class="functionalities">
                         <ul id="breadcrumb" class="breadcrumb">
-                            <li><a title="Home" href="contraction.html"><i class="fa fa-home" aria-hidden="true"></i></a>
+                            <li><a title="Home" href="/"><i class="fa fa-home" aria-hidden="true"></i></a>
                             </li>
                             <li><strong><i class="fa fa-angle-double-right" aria-hidden="true"></i> CONTACT US</strong></li>
                         </ul>

@@ -9,6 +9,7 @@ use App\Models\Business;
 use App\Models\Certificate;
 use App\Models\Portfolio;
 use App\Models\Team;
+use App\Models\Vm;
 use Illuminate\Support\Facades\DB;
 
 
@@ -41,7 +42,10 @@ class WebController extends Controller
 
     public function company()
     {
-        return view('web.company');
+        $vm = Vm::findOrFail(1)->first();
+        return view('web.company',[
+            'vm' => $vm,
+        ]);
     }
 
     public function certificates()
