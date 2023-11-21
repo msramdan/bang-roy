@@ -107,10 +107,9 @@
                                         <li>
                                             <a href="{{ route('web-service') }}">Business Units</a>
                                         </li>
-                                        <li>
+                                        {{-- <li>
                                             <a href="{{ route('web-catalog') }}">Catalog</a>
-                                        </li>
-
+                                        </li> --}}
                                         <li>
                                             <a href="{{ route('web-portfolio') }}">Portfolio</a>
                                         </li>
@@ -255,35 +254,6 @@
                                         <h6 class="product-title">product details</h6>
                                         <p>Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium
                                             doloremque laudantium</p>
-                                    </div>
-                                    <div class="product-description border-product">
-                                        <div class="size-box">
-                                            <ul>
-                                                <li class="active"><a href="#">s</a></li>
-                                                <li><a href="#">m</a></li>
-                                                <li><a href="#">l</a></li>
-                                                <li><a href="#">xl</a></li>
-                                            </ul>
-                                        </div>
-                                        <h6 class="product-title">quantity</h6>
-                                        <div class="qty-box">
-                                            <div class="input-group">
-                                                <span class="input-group-prepend">
-                                                    <button type="button" class="btn quantity-left-minus"
-                                                        data-type="minus" data-field="">
-                                                        <i class="fa fa-angle-left" aria-hidden="true"></i>
-                                                    </button>
-                                                </span>
-                                                <input type="text" name="quantity"
-                                                    class="form-control input-number" value="1">
-                                                <span class="input-group-prepend">
-                                                    <button type="button" class="btn quantity-right-plus"
-                                                        data-type="plus" data-field="">
-                                                        <i class="fa fa-angle-right" aria-hidden="true"></i>
-                                                    </button>
-                                                </span>
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="product-buttons">
                                         <a href="#" class="btn btn-solid">add to cart</a>

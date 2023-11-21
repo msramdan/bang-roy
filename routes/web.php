@@ -52,3 +52,5 @@ Route::resource('testimonies', App\Http\Controllers\TestimonyController::class)-
 
 Route::resource('businesses', App\Http\Controllers\BusinessController::class)->middleware('auth');
 Route::resource('portfolios', App\Http\Controllers\PortfolioController::class)->middleware('auth');
+
+Route::resource('categoryproducts', App\Http\Controllers\CategoryproductController::class)->middleware('auth');

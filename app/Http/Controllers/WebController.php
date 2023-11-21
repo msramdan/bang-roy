@@ -14,6 +14,7 @@ use App\Models\Vm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\Categoryproduct;
 
 
 class WebController extends Controller
@@ -23,10 +24,12 @@ class WebController extends Controller
         $clients = Client::all();
         $testimonies = Testimony::all();
         $banners = Banner::all();
+        $categoryproducts = Categoryproduct::all();
         return view('web.home', [
             'clients' => $clients,
             'testimonies' => $testimonies,
             'banners' => $banners,
+            'categoryproducts' => $categoryproducts,
         ]);
     }
 

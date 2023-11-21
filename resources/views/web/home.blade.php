@@ -18,14 +18,10 @@
                                 <div class="input-group-append selective">
                                     <select name="collection" id="collection-option" data-option="collection-option"
                                         class="single-option-selector">
-                                        <option value="all">All Collection</option>
-                                        <option value="cleaner">Cleaner</option>
-                                        <option value="electronics">Electronics</option>
-                                        <option value="fashion">Fashion</option>
-                                        <option value="grocery">Grocery</option>
-                                        <option value="plumbing">Plumbing</option>
-                                        <option value="sports">Sports</option>
-                                        <option value="tools">tools</option>
+                                        <option value="all">All Category</option>
+                                        @foreach ($categoryproducts as $row)
+                                            <option value="cleaner">{{ $row->category_name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="input-group-append">
@@ -49,20 +45,11 @@
                         <div class="stiky angle-b-right"></div>
                         <div class="collection-filter-block cat-block">
                             <ul>
-                                <li><a href="javascript:void(0)"><i class="ti-brush-alt"></i>Clothes & PPE</a>
-                                </li>
-                                <li><a href="javascript:void(0)"><i class="ti-briefcase"></i>Power tools</a></li>
-                                <li><a href="javascript:void(0)"><i class="ti-ruler-alt-2"></i>Mesurment</a></li>
-                                <li><a href="javascript:void(0)"><i class="ti-bag"></i>Machine tools</a></li>
-                                <li><a href="javascript:void(0)"><i class="ti-package"></i>Storage &
-                                        Organization</a></li>
-                                <li><a href="javascript:void(0)"><i class="ti-ruler-pencil"></i>Hand tools</a>
-                                </li>
-                                <li><a href="javascript:void(0)"><i class="ti-paint-roller"></i> Coloring </a>
-                                </li>
-                                <li><a href="javascript:void(0)"><i class="ti-control-pause"></i>Plumbing</a></li>
-                                <li><a href="javascript:void(0)"><i class="ti-shield"></i> Welding & Soldering
-                                    </a></li>
+                                @foreach ($categoryproducts as $row)
+                                    <li><a href="#"><i class="fa fa-circle-o"
+                                                aria-hidden="true"></i>{{ $row->category_name }}</a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -129,1332 +116,198 @@
                             <div class="row product-wrapper-grid f_product">
                                 <div class="col-12">
                                     <div class="title">
-                                        <h2>Featured Products</h2>
+                                        <h2>Catalog Products</h2>
                                     </div>
                                 </div>
-                                <div class="col position-relative">
-                                    <div class="theme-tab">
-                                        <ul class="tabs tab-title">
-                                            <li class="current"><a href="tab-1">New Products</a></li>
-                                            <li class=""><a href="tab-2">Featured Products</a></li>
-                                            <li class=""><a href="tab-3">Best Sellers</a></li>
-                                        </ul>
-                                        <div class="tab-content-cls">
-                                            <div id="tab-1" class="tab-content active default">
-                                                <div class="product-5 product-m no-arrow">
-                                                    <div class="product-box">
-                                                        <div class="img-wrapper">
-                                                            <div class="front">
-                                                                <a href="#"><img
-                                                                        src="{{ asset('landing') }}/assets/images/ecommerce/Product/1.jpg"
-                                                                        class="img-fluid" alt=""></a>
-                                                                <div>
-                                                                    <a href="#" data-bs-toggle="modal"
-                                                                        data-bs-target="#quick-view"
-                                                                        class="add_hover add_search" title="Quick View">
-                                                                        <i class="ti-search" aria-hidden="true"></i>
-                                                                    </a>
-                                                                    <a href="#" title="Wish list"
-                                                                        class="add_hover add_wish"><i class="ti-heart"
-                                                                            aria-hidden="true"></i></a>
-                                                                    <a href="#" title="Add to cart"
-                                                                        class="add_hover"><i class="ti-shopping-cart"
-                                                                            aria-hidden="true"></i></a>
-                                                                </div>
+                                <div class="collection-product-wrapper">
+                                    <div class="product-wrapper-grid">
+                                        <div class="row">
+                                            <div class="col-md-4 col-6 col-grid-box">
+                                                <div class="product-box">
+                                                    <div class="img-wrapper">
+                                                        <div class="front">
+                                                            <a href="#"><img src="assets/images/pro/1.jpg" class="img-fluid" alt=""></a>
+                                                            <div>
+                                                                <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" class="add_hover add_search" title="Quick View"><i class="fa fa-search" aria-hidden="true"></i></a>
+                                                                <a href="#" title="Wish list" class="add_hover add_wish"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                                                                <a href="#" title="Add to cart" class="add_hover"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
                                                             </div>
-                                                        </div>
-                                                        <div class="product-detail">
-                                                            <div class="rating">
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                            </div>
-                                                            <a href="product-page.html">
-                                                                <h6>Slim Fit Cotton</h6>
-                                                            </a>
-                                                            <p>
-                                                                Lorem Ipsum is simply dummy text of the printing and
-                                                                typesetting industry. Lorem Ipsum has been the
-                                                                industry's standard dummy text ever since the 1500s,
-                                                                when an unknown printer took a galley of type and
-                                                                scrambled it to make a type specimen book
-                                                            </p>
-                                                            <h4>$500.00</h4>
                                                         </div>
                                                     </div>
-                                                    <div class="product-box">
-                                                        <div class="img-wrapper">
-                                                            <div class="front">
-                                                                <a href="#"><img
-                                                                        src="{{ asset('landing') }}/assets/images/ecommerce/Product/1.jpg"
-                                                                        class="img-fluid" alt=""></a>
-                                                                <div>
-                                                                    <a href="#" data-bs-toggle="modal"
-                                                                        data-bs-target="#quick-view"
-                                                                        class="add_hover add_search" title="Quick View">
-                                                                        <i class="ti-search" aria-hidden="true"></i>
-                                                                    </a>
-                                                                    <a href="#" title="Wish list"
-                                                                        class="add_hover add_wish"><i class="ti-heart"
-                                                                            aria-hidden="true"></i></a>
-                                                                    <a href="#" title="Add to cart"
-                                                                        class="add_hover"><i class="ti-shopping-cart"
-                                                                            aria-hidden="true"></i></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-detail">
-                                                            <div class="rating">
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                            </div>
-                                                            <a href="product-page.html">
-                                                                <h6>Slim Fit Cotton</h6>
-                                                            </a>
-                                                            <p>
-                                                                Lorem Ipsum is simply dummy text of the printing and
-                                                                typesetting industry. Lorem Ipsum has been the
-                                                                industry's standard dummy text ever since the 1500s,
-                                                                when an unknown printer took a galley of type and
-                                                                scrambled it to make a type specimen book
-                                                            </p>
-                                                            <h4>$500.00</h4>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-box">
-                                                        <div class="img-wrapper">
-                                                            <div class="front">
-                                                                <a href="#"><img
-                                                                        src="{{ asset('landing') }}/assets/images/ecommerce/Product/2.jpg"
-                                                                        class="img-fluid" alt=""></a>
-                                                                <div>
-                                                                    <a href="#" data-bs-toggle="modal"
-                                                                        data-bs-target="#quick-view"
-                                                                        class="add_hover add_search" title="Quick View">
-                                                                        <i class="ti-search" aria-hidden="true"></i>
-                                                                    </a>
-                                                                    <a href="#" title="Wish list"
-                                                                        class="add_hover add_wish"><i class="ti-heart"
-                                                                            aria-hidden="true"></i></a>
-                                                                    <a href="#" title="Add to cart"
-                                                                        class="add_hover"><i class="ti-shopping-cart"
-                                                                            aria-hidden="true"></i></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-detail">
-                                                            <div class="rating">
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                            </div>
-                                                            <a href="product-page.html">
-                                                                <h6>Slim Fit Cotton</h6>
-                                                            </a>
-                                                            <p>
-                                                                Lorem Ipsum is simply dummy text of the printing and
-                                                                typesetting industry. Lorem Ipsum has been the
-                                                                industry's standard dummy text ever since the 1500s,
-                                                                when an unknown printer took a galley of type and
-                                                                scrambled it to make a type specimen book
-                                                            </p>
-                                                            <h4>$500.00</h4>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-box">
-                                                        <div class="img-wrapper">
-                                                            <div class="front">
-                                                                <a href="#"><img
-                                                                        src="{{ asset('landing') }}/assets/images/ecommerce/Product/3.jpg"
-                                                                        class="img-fluid" alt=""></a>
-                                                                <div>
-                                                                    <a href="#" data-bs-toggle="modal"
-                                                                        data-bs-target="#quick-view"
-                                                                        class="add_hover add_search" title="Quick View">
-                                                                        <i class="ti-search" aria-hidden="true"></i>
-                                                                    </a>
-                                                                    <a href="#" title="Wish list"
-                                                                        class="add_hover add_wish"><i class="ti-heart"
-                                                                            aria-hidden="true"></i></a>
-                                                                    <a href="#" title="Add to cart"
-                                                                        class="add_hover"><i class="ti-shopping-cart"
-                                                                            aria-hidden="true"></i></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-detail">
-                                                            <div class="rating">
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                            </div>
-                                                            <a href="product-page.html">
-                                                                <h6>Slim Fit Cotton</h6>
-                                                            </a>
-                                                            <p>
-                                                                Lorem Ipsum is simply dummy text of the printing and
-                                                                typesetting industry. Lorem Ipsum has been the
-                                                                industry's standard dummy text ever since the 1500s,
-                                                                when an unknown printer took a galley of type and
-                                                                scrambled it to make a type specimen book
-                                                            </p>
-                                                            <h4>$500.00</h4>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-box">
-                                                        <div class="img-wrapper">
-                                                            <div class="front">
-                                                                <a href="#"><img
-                                                                        src="{{ asset('landing') }}/assets/images/ecommerce/Product/4.jpg"
-                                                                        class="img-fluid" alt=""></a>
-                                                                <div>
-                                                                    <a href="#" data-bs-toggle="modal"
-                                                                        data-bs-target="#quick-view"
-                                                                        class="add_hover add_search" title="Quick View">
-                                                                        <i class="ti-search" aria-hidden="true"></i>
-                                                                    </a>
-                                                                    <a href="#" title="Wish list"
-                                                                        class="add_hover add_wish"><i class="ti-heart"
-                                                                            aria-hidden="true"></i></a>
-                                                                    <a href="#" title="Add to cart"
-                                                                        class="add_hover"><i class="ti-shopping-cart"
-                                                                            aria-hidden="true"></i></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-detail">
-                                                            <div class="rating">
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                            </div>
-                                                            <a href="product-page.html">
-                                                                <h6>Slim Fit Cotton</h6>
-                                                            </a>
-                                                            <p>
-                                                                Lorem Ipsum is simply dummy text of the printing and
-                                                                typesetting industry. Lorem Ipsum has been the
-                                                                industry's standard dummy text ever since the 1500s,
-                                                                when an unknown printer took a galley of type and
-                                                                scrambled it to make a type specimen book
-                                                            </p>
-                                                            <h4>$500.00</h4>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-box">
-                                                        <div class="img-wrapper">
-                                                            <div class="front">
-                                                                <a href="#"><img
-                                                                        src="{{ asset('landing') }}/assets/images/ecommerce/Product/5.jpg"
-                                                                        class="img-fluid" alt=""></a>
-                                                                <div>
-                                                                    <a href="#" data-bs-toggle="modal"
-                                                                        data-bs-target="#quick-view"
-                                                                        class="add_hover add_search" title="Quick View">
-                                                                        <i class="ti-search" aria-hidden="true"></i>
-                                                                    </a>
-                                                                    <a href="#" title="Wish list"
-                                                                        class="add_hover add_wish"><i class="ti-heart"
-                                                                            aria-hidden="true"></i></a>
-                                                                    <a href="#" title="Add to cart"
-                                                                        class="add_hover"><i class="ti-shopping-cart"
-                                                                            aria-hidden="true"></i></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-detail">
-                                                            <div class="rating">
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                            </div>
-                                                            <a href="product-page.html">
-                                                                <h6>Slim Fit Cotton</h6>
-                                                            </a>
-                                                            <p>
-                                                                Lorem Ipsum is simply dummy text of the printing and
-                                                                typesetting industry. Lorem Ipsum has been the
-                                                                industry's standard dummy text ever since the 1500s,
-                                                                when an unknown printer took a galley of type and
-                                                                scrambled it to make a type specimen book
-                                                            </p>
+                                                    <div class="product-detail">
+                                                        <div>
+                                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div><a href="#"><h6>Slim Fit Cotton Shirt</h6></a>
+                                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
                                                             <h4>$500.00</h4>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div id="tab-2" class="tab-content">
-                                                <div class="product-5 product-m no-arrow">
-                                                    <div class="product-box">
-                                                        <div class="img-wrapper">
-                                                            <div class="front">
-                                                                <a href="#"><img
-                                                                        src="{{ asset('landing') }}/assets/images/ecommerce/Product/5.jpg"
-                                                                        class="img-fluid" alt=""></a>
-                                                                <div>
-                                                                    <a href="#" data-bs-toggle="modal"
-                                                                        data-bs-target="#quick-view"
-                                                                        class="add_hover add_search" title="Quick View">
-                                                                        <i class="ti-search" aria-hidden="true"></i>
-                                                                    </a>
-                                                                    <a href="#" title="Wish list"
-                                                                        class="add_hover add_wish"><i class="ti-heart"
-                                                                            aria-hidden="true"></i></a>
-                                                                    <a href="#" title="Add to cart"
-                                                                        class="add_hover"><i class="ti-shopping-cart"
-                                                                            aria-hidden="true"></i></a>
-                                                                </div>
+                                            <div class="col-md-4 col-6 col-grid-box">
+                                                <div class="product-box">
+                                                    <div class="img-wrapper">
+                                                        <div class="front">
+                                                            <a href="#"><img src="assets/images/pro/3.jpg" class="img-fluid" alt=""></a>
+                                                            <div>
+                                                                <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" class="add_hover add_search" title="Quick View"><i class="fa fa-search" aria-hidden="true"></i></a>
+                                                                <a href="#" title="Wish list" class="add_hover add_wish"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                                                                <a href="#" title="Add to cart" class="add_hover"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
                                                             </div>
-                                                        </div>
-                                                        <div class="product-detail">
-                                                            <div class="rating">
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                            </div>
-                                                            <a href="product-page.html">
-                                                                <h6>Slim Fit Cotton</h6>
-                                                            </a>
-                                                            <p>
-                                                                Lorem Ipsum is simply dummy text of the printing and
-                                                                typesetting industry. Lorem Ipsum has been the
-                                                                industry's standard dummy text ever since the 1500s,
-                                                                when an unknown printer took a galley of type and
-                                                                scrambled it to make a type specimen book
-                                                            </p>
-                                                            <h4>$500.00</h4>
                                                         </div>
                                                     </div>
-                                                    <div class="product-box">
-                                                        <div class="img-wrapper">
-                                                            <div class="front">
-                                                                <a href="#"><img
-                                                                        src="{{ asset('landing') }}/assets/images/ecommerce/Product/2.jpg"
-                                                                        class="img-fluid" alt=""></a>
-                                                                <div>
-                                                                    <a href="#" data-bs-toggle="modal"
-                                                                        data-bs-target="#quick-view"
-                                                                        class="add_hover add_search" title="Quick View">
-                                                                        <i class="ti-search" aria-hidden="true"></i>
-                                                                    </a>
-                                                                    <a href="#" title="Wish list"
-                                                                        class="add_hover add_wish"><i class="ti-heart"
-                                                                            aria-hidden="true"></i></a>
-                                                                    <a href="#" title="Add to cart"
-                                                                        class="add_hover"><i class="ti-shopping-cart"
-                                                                            aria-hidden="true"></i></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-detail">
-                                                            <div class="rating">
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                            </div>
-                                                            <a href="product-page.html">
-                                                                <h6>Slim Fit Cotton</h6>
-                                                            </a>
-                                                            <p>
-                                                                Lorem Ipsum is simply dummy text of the printing and
-                                                                typesetting industry. Lorem Ipsum has been the
-                                                                industry's standard dummy text ever since the 1500s,
-                                                                when an unknown printer took a galley of type and
-                                                                scrambled it to make a type specimen book
-                                                            </p>
-                                                            <h4>$500.00</h4>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-box">
-                                                        <div class="img-wrapper">
-                                                            <div class="front">
-                                                                <a href="#"><img
-                                                                        src="{{ asset('landing') }}/assets/images/ecommerce/Product/1.jpg"
-                                                                        class="img-fluid" alt=""></a>
-                                                                <div>
-                                                                    <a href="#" data-bs-toggle="modal"
-                                                                        data-bs-target="#quick-view"
-                                                                        class="add_hover add_search" title="Quick View">
-                                                                        <i class="ti-search" aria-hidden="true"></i>
-                                                                    </a>
-                                                                    <a href="#" title="Wish list"
-                                                                        class="add_hover add_wish"><i class="ti-heart"
-                                                                            aria-hidden="true"></i></a>
-                                                                    <a href="#" title="Add to cart"
-                                                                        class="add_hover"><i class="ti-shopping-cart"
-                                                                            aria-hidden="true"></i></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-detail">
-                                                            <div class="rating">
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                            </div>
-                                                            <a href="product-page.html">
-                                                                <h6>Slim Fit Cotton</h6>
-                                                            </a>
-                                                            <p>
-                                                                Lorem Ipsum is simply dummy text of the printing and
-                                                                typesetting industry. Lorem Ipsum has been the
-                                                                industry's standard dummy text ever since the 1500s,
-                                                                when an unknown printer took a galley of type and
-                                                                scrambled it to make a type specimen book
-                                                            </p>
-                                                            <h4>$500.00</h4>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-box">
-                                                        <div class="img-wrapper">
-                                                            <div class="front">
-                                                                <a href="#"><img
-                                                                        src="{{ asset('landing') }}/assets/images/ecommerce/Product/2.jpg"
-                                                                        class="img-fluid" alt=""></a>
-                                                                <div>
-                                                                    <a href="#" data-bs-toggle="modal"
-                                                                        data-bs-target="#quick-view"
-                                                                        class="add_hover add_search" title="Quick View">
-                                                                        <i class="ti-search" aria-hidden="true"></i>
-                                                                    </a>
-                                                                    <a href="#" title="Wish list"
-                                                                        class="add_hover add_wish"><i class="ti-heart"
-                                                                            aria-hidden="true"></i></a>
-                                                                    <a href="#" title="Add to cart"
-                                                                        class="add_hover"><i class="ti-shopping-cart"
-                                                                            aria-hidden="true"></i></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-detail">
-                                                            <div class="rating">
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                            </div>
-                                                            <a href="product-page.html">
-                                                                <h6>Slim Fit Cotton</h6>
-                                                            </a>
-                                                            <p>
-                                                                Lorem Ipsum is simply dummy text of the printing and
-                                                                typesetting industry. Lorem Ipsum has been the
-                                                                industry's standard dummy text ever since the 1500s,
-                                                                when an unknown printer took a galley of type and
-                                                                scrambled it to make a type specimen book
-                                                            </p>
-                                                            <h4>$500.00</h4>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-box">
-                                                        <div class="img-wrapper">
-                                                            <div class="front">
-                                                                <a href="#"><img
-                                                                        src="{{ asset('landing') }}/assets/images/ecommerce/Product/3.jpg"
-                                                                        class="img-fluid" alt=""></a>
-                                                                <div>
-                                                                    <a href="#" data-bs-toggle="modal"
-                                                                        data-bs-target="#quick-view"
-                                                                        class="add_hover add_search" title="Quick View">
-                                                                        <i class="ti-search" aria-hidden="true"></i>
-                                                                    </a>
-                                                                    <a href="#" title="Wish list"
-                                                                        class="add_hover add_wish"><i class="ti-heart"
-                                                                            aria-hidden="true"></i></a>
-                                                                    <a href="#" title="Add to cart"
-                                                                        class="add_hover"><i class="ti-shopping-cart"
-                                                                            aria-hidden="true"></i></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-detail">
-                                                            <div class="rating">
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                            </div>
-                                                            <a href="product-page.html">
-                                                                <h6>Slim Fit Cotton</h6>
-                                                            </a>
-                                                            <p>
-                                                                Lorem Ipsum is simply dummy text of the printing and
-                                                                typesetting industry. Lorem Ipsum has been the
-                                                                industry's standard dummy text ever since the 1500s,
-                                                                when an unknown printer took a galley of type and
-                                                                scrambled it to make a type specimen book
-                                                            </p>
-                                                            <h4>$500.00</h4>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-box">
-                                                        <div class="img-wrapper">
-                                                            <div class="front">
-                                                                <a href="#"><img
-                                                                        src="{{ asset('landing') }}/assets/images/ecommerce/Product/4.jpg"
-                                                                        class="img-fluid" alt=""></a>
-                                                                <div>
-                                                                    <a href="#" data-bs-toggle="modal"
-                                                                        data-bs-target="#quick-view"
-                                                                        class="add_hover add_search" title="Quick View">
-                                                                        <i class="ti-search" aria-hidden="true"></i>
-                                                                    </a>
-                                                                    <a href="#" title="Wish list"
-                                                                        class="add_hover add_wish"><i class="ti-heart"
-                                                                            aria-hidden="true"></i></a>
-                                                                    <a href="#" title="Add to cart"
-                                                                        class="add_hover"><i class="ti-shopping-cart"
-                                                                            aria-hidden="true"></i></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-detail">
-                                                            <div class="rating">
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                            </div>
-                                                            <a href="product-page.html">
-                                                                <h6>Slim Fit Cotton</h6>
-                                                            </a>
-                                                            <p>
-                                                                Lorem Ipsum is simply dummy text of the printing and
-                                                                typesetting industry. Lorem Ipsum has been the
-                                                                industry's standard dummy text ever since the 1500s,
-                                                                when an unknown printer took a galley of type and
-                                                                scrambled it to make a type specimen book
-                                                            </p>
-                                                            <h4>$500.00</h4>
-                                                        </div>
+                                                    <div class="product-detail">
+                                                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div><a href="#"><h6>Slim Fit Cotton Shirt</h6></a>
+                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+                                                        <h4>$500.00</h4>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div id="tab-3" class="tab-content">
-                                                <div class="product-5 product-m no-arrow">
-                                                    <div class="product-box">
-                                                        <div class="img-wrapper">
-                                                            <div class="front">
-                                                                <a href="#"><img
-                                                                        src="{{ asset('landing') }}/assets/images/ecommerce/Product/5.jpg"
-                                                                        class="img-fluid" alt=""></a>
-                                                                <div>
-                                                                    <a href="#" data-bs-toggle="modal"
-                                                                        data-bs-target="#quick-view"
-                                                                        class="add_hover add_search" title="Quick View">
-                                                                        <i class="ti-search" aria-hidden="true"></i>
-                                                                    </a>
-                                                                    <a href="#" title="Wish list"
-                                                                        class="add_hover add_wish"><i class="ti-heart"
-                                                                            aria-hidden="true"></i></a>
-                                                                    <a href="#" title="Add to cart"
-                                                                        class="add_hover"><i class="ti-shopping-cart"
-                                                                            aria-hidden="true"></i></a>
-                                                                </div>
+                                            <div class="col-md-4 col-6 col-grid-box">
+                                                <div class="product-box">
+                                                    <div class="img-wrapper">
+                                                        <div class="front">
+                                                            <a href="#"><img src="assets/images/pro/9.jpg" class="img-fluid" alt=""></a>
+                                                            <div>
+                                                                <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" class="add_hover add_search" title="Quick View"><i class="fa fa-search" aria-hidden="true"></i></a>
+                                                                <a href="#" title="Wish list" class="add_hover add_wish"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                                                                <a href="#" title="Add to cart" class="add_hover"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
                                                             </div>
-                                                        </div>
-                                                        <div class="product-detail">
-                                                            <div class="rating">
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                            </div>
-                                                            <a href="product-page.html">
-                                                                <h6>Slim Fit Cotton</h6>
-                                                            </a>
-                                                            <p>
-                                                                Lorem Ipsum is simply dummy text of the printing and
-                                                                typesetting industry. Lorem Ipsum has been the
-                                                                industry's standard dummy text ever since the 1500s,
-                                                                when an unknown printer took a galley of type and
-                                                                scrambled it to make a type specimen book
-                                                            </p>
-                                                            <h4>$500.00</h4>
                                                         </div>
                                                     </div>
-                                                    <div class="product-box">
-                                                        <div class="img-wrapper">
-                                                            <div class="front">
-                                                                <a href="#"><img
-                                                                        src="{{ asset('landing') }}/assets/images/ecommerce/Product/1.jpg"
-                                                                        class="img-fluid" alt=""></a>
-                                                                <div>
-                                                                    <a href="#" data-bs-toggle="modal"
-                                                                        data-bs-target="#quick-view"
-                                                                        class="add_hover add_search" title="Quick View">
-                                                                        <i class="ti-search" aria-hidden="true"></i>
-                                                                    </a>
-                                                                    <a href="#" title="Wish list"
-                                                                        class="add_hover add_wish"><i class="ti-heart"
-                                                                            aria-hidden="true"></i></a>
-                                                                    <a href="#" title="Add to cart"
-                                                                        class="add_hover"><i class="ti-shopping-cart"
-                                                                            aria-hidden="true"></i></a>
-                                                                </div>
+                                                    <div class="product-detail">
+                                                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div><a href="#"><h6>Slim Fit Cotton Shirt</h6></a>
+                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+                                                        <h4>$500.00</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-6 col-grid-box">
+                                                <div class="product-box">
+                                                    <div class="img-wrapper">
+                                                        <div class="front">
+                                                            <a href="#"><img src="assets/images/pro/11.jpg" class="img-fluid" alt=""></a>
+                                                            <div>
+                                                                <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" class="add_hover add_search" title="Quick View"><i class="fa fa-search" aria-hidden="true"></i></a>
+                                                                <a href="#" title="Wish list" class="add_hover add_wish"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                                                                <a href="#" title="Add to cart" class="add_hover"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
                                                             </div>
-                                                        </div>
-                                                        <div class="product-detail">
-                                                            <div class="rating">
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                            </div>
-                                                            <a href="product-page.html">
-                                                                <h6>Slim Fit Cotton</h6>
-                                                            </a>
-                                                            <p>
-                                                                Lorem Ipsum is simply dummy text of the printing and
-                                                                typesetting industry. Lorem Ipsum has been the
-                                                                industry's standard dummy text ever since the 1500s,
-                                                                when an unknown printer took a galley of type and
-                                                                scrambled it to make a type specimen book
-                                                            </p>
-                                                            <h4>$500.00</h4>
                                                         </div>
                                                     </div>
-                                                    <div class="product-box">
-                                                        <div class="img-wrapper">
-                                                            <div class="front">
-                                                                <a href="#"><img
-                                                                        src="{{ asset('landing') }}/assets/images/ecommerce/Product/2.jpg"
-                                                                        class="img-fluid" alt=""></a>
-                                                                <div>
-                                                                    <a href="#" data-bs-toggle="modal"
-                                                                        data-bs-target="#quick-view"
-                                                                        class="add_hover add_search" title="Quick View">
-                                                                        <i class="ti-search" aria-hidden="true"></i>
-                                                                    </a>
-                                                                    <a href="#" title="Wish list"
-                                                                        class="add_hover add_wish"><i class="ti-heart"
-                                                                            aria-hidden="true"></i></a>
-                                                                    <a href="#" title="Add to cart"
-                                                                        class="add_hover"><i class="ti-shopping-cart"
-                                                                            aria-hidden="true"></i></a>
-                                                                </div>
+                                                    <div class="product-detail">
+                                                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div><a href="#"><h6>Slim Fit Cotton Shirt</h6></a>
+                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+                                                        <h4>$500.00</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-6 col-grid-box">
+                                                <div class="product-box">
+                                                    <div class="img-wrapper">
+                                                        <div class="front">
+                                                            <a href="#"><img src="assets/images/pro/1.jpg" class="img-fluid" alt=""></a>
+                                                            <div>
+                                                                <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" class="add_hover add_search" title="Quick View"><i class="fa fa-search" aria-hidden="true"></i></a>
+                                                                <a href="#" title="Wish list" class="add_hover add_wish"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                                                                <a href="#" title="Add to cart" class="add_hover"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
                                                             </div>
-                                                        </div>
-                                                        <div class="product-detail">
-                                                            <div class="rating">
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                            </div>
-                                                            <a href="product-page.html">
-                                                                <h6>Slim Fit Cotton</h6>
-                                                            </a>
-                                                            <p>
-                                                                Lorem Ipsum is simply dummy text of the printing and
-                                                                typesetting industry. Lorem Ipsum has been the
-                                                                industry's standard dummy text ever since the 1500s,
-                                                                when an unknown printer took a galley of type and
-                                                                scrambled it to make a type specimen book
-                                                            </p>
-                                                            <h4>$500.00</h4>
                                                         </div>
                                                     </div>
-                                                    <div class="product-box">
-                                                        <div class="img-wrapper">
-                                                            <div class="front">
-                                                                <a href="#"><img
-                                                                        src="{{ asset('landing') }}/assets/images/ecommerce/Product/3.jpg"
-                                                                        class="img-fluid" alt=""></a>
-                                                                <div>
-                                                                    <a href="#" data-bs-toggle="modal"
-                                                                        data-bs-target="#quick-view"
-                                                                        class="add_hover add_search" title="Quick View">
-                                                                        <i class="ti-search" aria-hidden="true"></i>
-                                                                    </a>
-                                                                    <a href="#" title="Wish list"
-                                                                        class="add_hover add_wish"><i class="ti-heart"
-                                                                            aria-hidden="true"></i></a>
-                                                                    <a href="#" title="Add to cart"
-                                                                        class="add_hover"><i class="ti-shopping-cart"
-                                                                            aria-hidden="true"></i></a>
-                                                                </div>
+                                                    <div class="product-detail">
+                                                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div><a href="#"><h6>Slim Fit Cotton Shirt</h6></a>
+                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+                                                        <h4>$500.00</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-6 col-grid-box">
+                                                <div class="product-box">
+                                                    <div class="img-wrapper">
+                                                        <div class="front">
+                                                            <a href="#"><img src="assets/images/pro/27.jpg" class="img-fluid" alt=""></a>
+                                                            <div>
+                                                                <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" class="add_hover add_search" title="Quick View"><i class="fa fa-search" aria-hidden="true"></i></a>
+                                                                <a href="#" title="Wish list" class="add_hover add_wish"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                                                                <a href="#" title="Add to cart" class="add_hover"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
                                                             </div>
-                                                        </div>
-                                                        <div class="product-detail">
-                                                            <div class="rating">
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                            </div>
-                                                            <a href="product-page.html">
-                                                                <h6>Slim Fit Cotton</h6>
-                                                            </a>
-                                                            <p>
-                                                                Lorem Ipsum is simply dummy text of the printing and
-                                                                typesetting industry. Lorem Ipsum has been the
-                                                                industry's standard dummy text ever since the 1500s,
-                                                                when an unknown printer took a galley of type and
-                                                                scrambled it to make a type specimen book
-                                                            </p>
-                                                            <h4>$500.00</h4>
                                                         </div>
                                                     </div>
-                                                    <div class="product-box">
-                                                        <div class="img-wrapper">
-                                                            <div class="front">
-                                                                <a href="#"><img
-                                                                        src="{{ asset('landing') }}/assets/images/ecommerce/Product/4.jpg"
-                                                                        class="img-fluid" alt=""></a>
-                                                                <div>
-                                                                    <a href="#" data-bs-toggle="modal"
-                                                                        data-bs-target="#quick-view"
-                                                                        class="add_hover add_search" title="Quick View">
-                                                                        <i class="ti-search" aria-hidden="true"></i>
-                                                                    </a>
-                                                                    <a href="#" title="Wish list"
-                                                                        class="add_hover add_wish"><i class="ti-heart"
-                                                                            aria-hidden="true"></i></a>
-                                                                    <a href="#" title="Add to cart"
-                                                                        class="add_hover"><i class="ti-shopping-cart"
-                                                                            aria-hidden="true"></i></a>
-                                                                </div>
+                                                    <div class="product-detail">
+                                                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div><a href="#"><h6>Slim Fit Cotton Shirt</h6></a>
+                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+                                                        <h4>$500.00</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-6 col-grid-box">
+                                                <div class="product-box">
+                                                    <div class="img-wrapper">
+                                                        <div class="front">
+                                                            <a href="#"><img src="assets/images/pro/1.jpg" class="img-fluid" alt=""></a>
+                                                            <div>
+                                                                <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" class="add_hover add_search" title="Quick View"><i class="fa fa-search" aria-hidden="true"></i></a>
+                                                                <a href="#" title="Wish list" class="add_hover add_wish"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                                                                <a href="#" title="Add to cart" class="add_hover"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
                                                             </div>
-                                                        </div>
-                                                        <div class="product-detail">
-                                                            <div class="rating">
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                            </div>
-                                                            <a href="product-page.html">
-                                                                <h6>Slim Fit Cotton</h6>
-                                                            </a>
-                                                            <p>
-                                                                Lorem Ipsum is simply dummy text of the printing and
-                                                                typesetting industry. Lorem Ipsum has been the
-                                                                industry's standard dummy text ever since the 1500s,
-                                                                when an unknown printer took a galley of type and
-                                                                scrambled it to make a type specimen book
-                                                            </p>
-                                                            <h4>$500.00</h4>
                                                         </div>
                                                     </div>
-                                                    <div class="product-box">
-                                                        <div class="img-wrapper">
-                                                            <div class="front">
-                                                                <a href="#"><img
-                                                                        src="{{ asset('landing') }}/assets/images/ecommerce/Product/5.jpg"
-                                                                        class="img-fluid" alt=""></a>
-                                                                <div>
-                                                                    <a href="#" data-bs-toggle="modal"
-                                                                        data-bs-target="#quick-view"
-                                                                        class="add_hover add_search" title="Quick View">
-                                                                        <i class="ti-search" aria-hidden="true"></i>
-                                                                    </a>
-                                                                    <a href="#" title="Wish list"
-                                                                        class="add_hover add_wish"><i class="ti-heart"
-                                                                            aria-hidden="true"></i></a>
-                                                                    <a href="#" title="Add to cart"
-                                                                        class="add_hover"><i class="ti-shopping-cart"
-                                                                            aria-hidden="true"></i></a>
-                                                                </div>
+                                                    <div class="product-detail">
+                                                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div><a href="#"><h6>Slim Fit Cotton Shirt</h6></a>
+                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+                                                        <h4>$500.00</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-6 col-grid-box">
+                                                <div class="product-box">
+                                                    <div class="img-wrapper">
+                                                        <div class="front">
+                                                            <a href="#"><img src="assets/images/pro/20.jpg" class="img-fluid" alt=""></a>
+                                                            <div>
+                                                                <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" class="add_hover add_search" title="Quick View"><i class="fa fa-search" aria-hidden="true"></i></a>
+                                                                <a href="#" title="Wish list" class="add_hover add_wish"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                                                                <a href="#" title="Add to cart" class="add_hover"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
                                                             </div>
                                                         </div>
-                                                        <div class="product-detail">
-                                                            <div class="rating">
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
-                                                                <i class="fa fa-star"></i>
+                                                    </div>
+                                                    <div class="product-detail">
+                                                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div><a href="#"><h6>Slim Fit Cotton Shirt</h6></a>
+                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+                                                        <h4>$500.00</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-6 col-grid-box">
+                                                <div class="product-box">
+                                                    <div class="img-wrapper">
+                                                        <div class="front">
+                                                            <a href="#"><img src="assets/images/pro/1.jpg" class="img-fluid" alt=""></a>
+                                                            <div>
+                                                                <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" class="add_hover add_search" title="Quick View"><i class="fa fa-search" aria-hidden="true"></i></a>
+                                                                <a href="#" title="Wish list" class="add_hover add_wish"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                                                                <a href="#" title="Add to cart" class="add_hover"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
                                                             </div>
-                                                            <a href="product-page.html">
-                                                                <h6>Slim Fit Cotton</h6>
-                                                            </a>
-                                                            <p>
-                                                                Lorem Ipsum is simply dummy text of the printing and
-                                                                typesetting industry. Lorem Ipsum has been the
-                                                                industry's standard dummy text ever since the 1500s,
-                                                                when an unknown printer took a galley of type and
-                                                                scrambled it to make a type specimen book
-                                                            </p>
-                                                            <h4>$500.00</h4>
                                                         </div>
+                                                        <div>
+                                                            <a></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-detail">
+                                                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div><a href="#"><h6>Slim Fit Cotton Shirt</h6></a>
+                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+                                                        <h4>$500.00</h4>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- pagination Start -->
                                 </div>
+
+
+
                             </div>
                         </div>
                     </section>
-                    <!-- Product sec End -->
-
-                    <!-- Featured Products Start -->
-                    <section class="home_1_team home_5_team pb-0">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="title">
-                                        <h2>New arrival</h2>
-                                    </div>
-                                </div>
-                                <div class="col-12 collection-product-wrapper">
-                                    <div class="product-five product-m no-arrow  product-wrapper-grid">
-                                        <div class="item">
-                                            <div class="product-box">
-                                                <div class="img-wrapper">
-                                                    <div class="front">
-                                                        <a href="#"><img
-                                                                src="{{ asset('landing') }}/assets/images/ecommerce/Product/1.jpg"
-                                                                class="img-fluid" alt=""></a>
-                                                        <div>
-                                                            <a href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#quick-view" class="add_hover add_search"
-                                                                title="Quick View">
-                                                                <i class="ti-search" aria-hidden="true"></i>
-                                                            </a>
-                                                            <a href="#" title="Wish list"
-                                                                class="add_hover add_wish"><i class="ti-heart"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a href="#" title="Add to cart" class="add_hover"><i
-                                                                    class="ti-shopping-cart" aria-hidden="true"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-detail">
-                                                    <div class="rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
-                                                    <a href="product-page.html">
-                                                        <h6>Slim Fit Cotton</h6>
-                                                    </a>
-                                                    <p>
-                                                        Lorem Ipsum is simply dummy text of the printing and
-                                                        typesetting industry. Lorem Ipsum has been the industry's
-                                                        standard dummy text ever since the 1500s, when an unknown
-                                                        printer took a galley of type and scrambled it to make a
-                                                        type specimen book
-                                                    </p>
-                                                    <h4>$500.00</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="product-box">
-                                                <div class="img-wrapper">
-                                                    <div class="front">
-                                                        <a href="#"><img
-                                                                src="{{ asset('landing') }}/assets/images/ecommerce/Product/2.jpg"
-                                                                class="img-fluid" alt=""></a>
-                                                        <div>
-                                                            <a href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#quick-view" class="add_hover add_search"
-                                                                title="Quick View">
-                                                                <i class="ti-search" aria-hidden="true"></i>
-                                                            </a>
-                                                            <a href="#" title="Wish list"
-                                                                class="add_hover add_wish"><i class="ti-heart"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a href="#" title="Add to cart" class="add_hover"><i
-                                                                    class="ti-shopping-cart" aria-hidden="true"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-detail">
-                                                    <div class="rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
-                                                    <a href="product-page.html">
-                                                        <h6>Slim Fit Cotton</h6>
-                                                    </a>
-                                                    <p>
-                                                        Lorem Ipsum is simply dummy text of the printing and
-                                                        typesetting industry. Lorem Ipsum has been the industry's
-                                                        standard dummy text ever since the 1500s, when an unknown
-                                                        printer took a galley of type and scrambled it to make a
-                                                        type specimen book
-                                                    </p>
-                                                    <h4>$500.00</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="product-box">
-                                                <div class="img-wrapper">
-                                                    <div class="front">
-                                                        <a href="#"><img
-                                                                src="{{ asset('landing') }}/assets/images/ecommerce/Product/4.jpg"
-                                                                class="img-fluid" alt=""></a>
-                                                        <div>
-                                                            <a href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#quick-view" class="add_hover add_search"
-                                                                title="Quick View">
-                                                                <i class="ti-search" aria-hidden="true"></i>
-                                                            </a>
-                                                            <a href="#" title="Wish list"
-                                                                class="add_hover add_wish"><i class="ti-heart"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a href="#" title="Add to cart" class="add_hover"><i
-                                                                    class="ti-shopping-cart" aria-hidden="true"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-detail">
-                                                    <div class="rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
-                                                    <a href="product-page.html">
-                                                        <h6>Slim Fit Cotton</h6>
-                                                    </a>
-                                                    <p>
-                                                        Lorem Ipsum is simply dummy text of the printing and
-                                                        typesetting industry. Lorem Ipsum has been the industry's
-                                                        standard dummy text ever since the 1500s, when an unknown
-                                                        printer took a galley of type and scrambled it to make a
-                                                        type specimen book
-                                                    </p>
-                                                    <h4>$500.00</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="product-box">
-                                                <div class="img-wrapper">
-                                                    <div class="front">
-                                                        <a href="#"><img
-                                                                src="{{ asset('landing') }}/assets/images/ecommerce/Product/5.jpg"
-                                                                class="img-fluid" alt=""></a>
-                                                        <div>
-                                                            <a href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#quick-view" class="add_hover add_search"
-                                                                title="Quick View">
-                                                                <i class="ti-search" aria-hidden="true"></i>
-                                                            </a>
-                                                            <a href="#" title="Wish list"
-                                                                class="add_hover add_wish"><i class="ti-heart"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a href="#" title="Add to cart" class="add_hover"><i
-                                                                    class="ti-shopping-cart" aria-hidden="true"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-detail">
-                                                    <div class="rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
-                                                    <a href="product-page.html">
-                                                        <h6>Slim Fit Cotton</h6>
-                                                    </a>
-                                                    <p>
-                                                        Lorem Ipsum is simply dummy text of the printing and
-                                                        typesetting industry. Lorem Ipsum has been the industry's
-                                                        standard dummy text ever since the 1500s, when an unknown
-                                                        printer took a galley of type and scrambled it to make a
-                                                        type specimen book
-                                                    </p>
-                                                    <h4>$500.00</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="product-box">
-                                                <div class="img-wrapper">
-                                                    <div class="front">
-                                                        <a href="#"><img
-                                                                src="{{ asset('landing') }}/assets/images/ecommerce/Product/2.jpg"
-                                                                class="img-fluid" alt=""></a>
-                                                        <div>
-                                                            <a href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#quick-view" class="add_hover add_search"
-                                                                title="Quick View">
-                                                                <i class="ti-search" aria-hidden="true"></i>
-                                                            </a>
-                                                            <a href="#" title="Wish list"
-                                                                class="add_hover add_wish"><i class="ti-heart"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a href="#" title="Add to cart" class="add_hover"><i
-                                                                    class="ti-shopping-cart" aria-hidden="true"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-detail">
-                                                    <div class="rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
-                                                    <a href="product-page.html">
-                                                        <h6>Slim Fit Cotton</h6>
-                                                    </a>
-                                                    <p>
-                                                        Lorem Ipsum is simply dummy text of the printing and
-                                                        typesetting industry. Lorem Ipsum has been the industry's
-                                                        standard dummy text ever since the 1500s, when an unknown
-                                                        printer took a galley of type and scrambled it to make a
-                                                        type specimen book
-                                                    </p>
-                                                    <h4>$500.00</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="product-box">
-                                                <div class="img-wrapper">
-                                                    <div class="front">
-                                                        <a href="#"><img
-                                                                src="{{ asset('landing') }}/assets/images/ecommerce/Product/4.jpg"
-                                                                class="img-fluid" alt=""></a>
-                                                        <div>
-                                                            <a href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#quick-view" class="add_hover add_search"
-                                                                title="Quick View">
-                                                                <i class="ti-search" aria-hidden="true"></i>
-                                                            </a>
-                                                            <a href="#" title="Wish list"
-                                                                class="add_hover add_wish"><i class="ti-heart"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a href="#" title="Add to cart" class="add_hover"><i
-                                                                    class="ti-shopping-cart" aria-hidden="true"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-detail">
-                                                    <div class="rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
-                                                    <a href="product-page.html">
-                                                        <h6>Slim Fit Cotton</h6>
-                                                    </a>
-                                                    <p>
-                                                        Lorem Ipsum is simply dummy text of the printing and
-                                                        typesetting industry. Lorem Ipsum has been the industry's
-                                                        standard dummy text ever since the 1500s, when an unknown
-                                                        printer took a galley of type and scrambled it to make a
-                                                        type specimen book
-                                                    </p>
-                                                    <h4>$500.00</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-five product-m no-arrow  product-wrapper-grid">
-                                        <div class="item">
-                                            <div class="product-box">
-                                                <div class="img-wrapper">
-                                                    <div class="front">
-                                                        <a href="#"><img
-                                                                src="{{ asset('landing') }}/assets/images/ecommerce/Product/1.jpg"
-                                                                class="img-fluid" alt=""></a>
-                                                        <div>
-                                                            <a href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#quick-view" class="add_hover add_search"
-                                                                title="Quick View">
-                                                                <i class="ti-search" aria-hidden="true"></i>
-                                                            </a>
-                                                            <a href="#" title="Wish list"
-                                                                class="add_hover add_wish"><i class="ti-heart"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a href="#" title="Add to cart" class="add_hover"><i
-                                                                    class="ti-shopping-cart" aria-hidden="true"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-detail">
-                                                    <div class="rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
-                                                    <a href="product-page.html">
-                                                        <h6>Slim Fit Cotton</h6>
-                                                    </a>
-                                                    <p>
-                                                        Lorem Ipsum is simply dummy text of the printing and
-                                                        typesetting industry. Lorem Ipsum has been the industry's
-                                                        standard dummy text ever since the 1500s, when an unknown
-                                                        printer took a galley of type and scrambled it to make a
-                                                        type specimen book
-                                                    </p>
-                                                    <h4>$500.00</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="product-box">
-                                                <div class="img-wrapper">
-                                                    <div class="front">
-                                                        <a href="#"><img
-                                                                src="{{ asset('landing') }}/assets/images/ecommerce/Product/2.jpg"
-                                                                class="img-fluid" alt=""></a>
-                                                        <div>
-                                                            <a href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#quick-view" class="add_hover add_search"
-                                                                title="Quick View">
-                                                                <i class="ti-search" aria-hidden="true"></i>
-                                                            </a>
-                                                            <a href="#" title="Wish list"
-                                                                class="add_hover add_wish"><i class="ti-heart"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a href="#" title="Add to cart" class="add_hover"><i
-                                                                    class="ti-shopping-cart" aria-hidden="true"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-detail">
-                                                    <div class="rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
-                                                    <a href="product-page.html">
-                                                        <h6>Slim Fit Cotton</h6>
-                                                    </a>
-                                                    <p>
-                                                        Lorem Ipsum is simply dummy text of the printing and
-                                                        typesetting industry. Lorem Ipsum has been the industry's
-                                                        standard dummy text ever since the 1500s, when an unknown
-                                                        printer took a galley of type and scrambled it to make a
-                                                        type specimen book
-                                                    </p>
-                                                    <h4>$500.00</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="product-box">
-                                                <div class="img-wrapper">
-                                                    <div class="front">
-                                                        <a href="#"><img
-                                                                src="{{ asset('landing') }}/assets/images/ecommerce/Product/4.jpg"
-                                                                class="img-fluid" alt=""></a>
-                                                        <div>
-                                                            <a href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#quick-view" class="add_hover add_search"
-                                                                title="Quick View">
-                                                                <i class="ti-search" aria-hidden="true"></i>
-                                                            </a>
-                                                            <a href="#" title="Wish list"
-                                                                class="add_hover add_wish"><i class="ti-heart"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a href="#" title="Add to cart" class="add_hover"><i
-                                                                    class="ti-shopping-cart" aria-hidden="true"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-detail">
-                                                    <div class="rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
-                                                    <a href="product-page.html">
-                                                        <h6>Slim Fit Cotton</h6>
-                                                    </a>
-                                                    <p>
-                                                        Lorem Ipsum is simply dummy text of the printing and
-                                                        typesetting industry. Lorem Ipsum has been the industry's
-                                                        standard dummy text ever since the 1500s, when an unknown
-                                                        printer took a galley of type and scrambled it to make a
-                                                        type specimen book
-                                                    </p>
-                                                    <h4>$500.00</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="product-box">
-                                                <div class="img-wrapper">
-                                                    <div class="front">
-                                                        <a href="#"><img
-                                                                src="{{ asset('landing') }}/assets/images/ecommerce/Product/5.jpg"
-                                                                class="img-fluid" alt=""></a>
-                                                        <div>
-                                                            <a href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#quick-view" class="add_hover add_search"
-                                                                title="Quick View">
-                                                                <i class="ti-search" aria-hidden="true"></i>
-                                                            </a>
-                                                            <a href="#" title="Wish list"
-                                                                class="add_hover add_wish"><i class="ti-heart"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a href="#" title="Add to cart" class="add_hover"><i
-                                                                    class="ti-shopping-cart" aria-hidden="true"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-detail">
-                                                    <div class="rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
-                                                    <a href="product-page.html">
-                                                        <h6>Slim Fit Cotton</h6>
-                                                    </a>
-                                                    <p>
-                                                        Lorem Ipsum is simply dummy text of the printing and
-                                                        typesetting industry. Lorem Ipsum has been the industry's
-                                                        standard dummy text ever since the 1500s, when an unknown
-                                                        printer took a galley of type and scrambled it to make a
-                                                        type specimen book
-                                                    </p>
-                                                    <h4>$500.00</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="product-box">
-                                                <div class="img-wrapper">
-                                                    <div class="front">
-                                                        <a href="#"><img
-                                                                src="{{ asset('landing') }}/assets/images/ecommerce/Product/2.jpg"
-                                                                class="img-fluid" alt=""></a>
-                                                        <div>
-                                                            <a href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#quick-view"
-                                                                class="add_hover add_search" title="Quick View">
-                                                                <i class="ti-search" aria-hidden="true"></i>
-                                                            </a>
-                                                            <a href="#" title="Wish list"
-                                                                class="add_hover add_wish"><i class="ti-heart"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a href="#" title="Add to cart" class="add_hover"><i
-                                                                    class="ti-shopping-cart" aria-hidden="true"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-detail">
-                                                    <div class="rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
-                                                    <a href="product-page.html">
-                                                        <h6>Slim Fit Cotton</h6>
-                                                    </a>
-                                                    <p>
-                                                        Lorem Ipsum is simply dummy text of the printing and
-                                                        typesetting industry. Lorem Ipsum has been the industry's
-                                                        standard dummy text ever since the 1500s, when an unknown
-                                                        printer took a galley of type and scrambled it to make a
-                                                        type specimen book
-                                                    </p>
-                                                    <h4>$500.00</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <div class="product-box">
-                                                <div class="img-wrapper">
-                                                    <div class="front">
-                                                        <a href="#"><img
-                                                                src="{{ asset('landing') }}/assets/images/ecommerce/Product/4.jpg"
-                                                                class="img-fluid" alt=""></a>
-                                                        <div>
-                                                            <a href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#quick-view"
-                                                                class="add_hover add_search" title="Quick View">
-                                                                <i class="ti-search" aria-hidden="true"></i>
-                                                            </a>
-                                                            <a href="#" title="Wish list"
-                                                                class="add_hover add_wish"><i class="ti-heart"
-                                                                    aria-hidden="true"></i></a>
-                                                            <a href="#" title="Add to cart" class="add_hover"><i
-                                                                    class="ti-shopping-cart" aria-hidden="true"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="product-detail">
-                                                    <div class="rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
-                                                    <a href="product-page.html">
-                                                        <h6>Slim Fit Cotton</h6>
-                                                    </a>
-                                                    <p>
-                                                        Lorem Ipsum is simply dummy text of the printing and
-                                                        typesetting industry. Lorem Ipsum has been the industry's
-                                                        standard dummy text ever since the 1500s, when an unknown
-                                                        printer took a galley of type and scrambled it to make a
-                                                        type specimen book
-                                                    </p>
-                                                    <h4>$500.00</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <!-- Featured Products End -->
-
-
-
-                    <!-- Brand Start -->
                     <section class="brand_sec pt-0">
                         <div class="container">
                             <div class="row">

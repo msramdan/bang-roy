@@ -109,184 +109,208 @@ return [
      * This code below always changes when you use a generator and maybe you must lint or format the code.
      */
     'sidebars' => [
-        [
-            'header' => 'About',
-            'permissions' => [
-                'vm view',
-                'company view',
-                'certificate view',
-                'social view',
-                'team view'
-            ],
-            'menus' => [
-                [
-                    'title' => 'About Us',
-                    'icon' => '<i data-feather="info"></i>',
-                    'route' => null,
-                    'permission' => null,
-                    'permissions' => [
-                        'vm view',
-                        'company view',
-                        'certificate view',
-                        'social view',
-                        'team view'
-                    ],
-                    'submenus' => [
-                        [
-                            'title' => 'Company',
-                            'route' => '/companies',
-                            'permission' => 'company view'
-                        ],
-                        [
-                            'title' => 'Visi & Misi',
-                            'route' => '/vms',
-                            'permission' => 'vm view'
-                        ],
-                        [
-                            'title' => 'Certificates',
-                            'route' => '/certificates',
-                            'permission' => 'certificate view'
-                        ],
-                        [
-                            'title' => 'Social Media',
-                            'route' => '/socials',
-                            'permission' => 'social view'
-                        ],
-                        [
-                            'title' => 'Teams',
-                            'route' => '/teams',
-                            'permission' => 'team view'
-                        ]
+    [
+        'header' => 'Product',
+        'permissions' => [
+            'categoryproduct view'
+        ],
+        'menus' => [
+            [
+                'title' => 'Product',
+                'icon' => '<i data-feather="box"></i>',
+                'route' => null,
+                'permission' => null,
+                'permissions' => [
+                    'categoryproduct view'
+                ],
+                'submenus' => [
+                    [
+                        'title' => 'Category Products',
+                        'route' => '/categoryproducts',
+                        'permission' => 'categoryproduct view'
                     ]
                 ]
             ]
+        ]
+    ],
+    [
+        'header' => 'About',
+        'permissions' => [
+            'vm view',
+            'company view',
+            'certificate view',
+            'social view',
+            'team view'
         ],
-        [
-            'header' => 'Businesses',
-            'permissions' => [
-                'business view'
-            ],
-            'menus' => [
-                [
-                    'title' => 'Business Units',
-                    'icon' => '<i data-feather="list"></i>',
-                    'route' => '/businesses',
-                    'permission' => 'business view',
-                    'permissions' => [],
-                    'submenus' => []
-                ]
-            ]
-        ],
-        [
-            'header' => 'Portfolios',
-            'permissions' => [
-                'portfolio view'
-            ],
-            'menus' => [
-                [
-                    'title' => 'Portfolio',
-                    'icon' => '<i data-feather="list"></i>',
-                    'route' => '/portfolios',
-                    'permission' => 'portfolio view',
-                    'permissions' => [],
-                    'submenus' => []
-                ]
-            ]
-        ],
-        [
-            'header' => 'Our Clients',
-            'permissions' => [
-                'client view'
-            ],
-            'menus' => [
-                [
-                    'title' => 'Clients',
-                    'icon' => '<i data-feather="users"></i>',
-                    'route' => '/clients',
-                    'permission' => 'client view',
-                    'permissions' => [],
-                    'submenus' => []
-                ]
-            ]
-        ],
-        [
-            'header' => 'Contacts',
-            'permissions' => [
-                'contact view'
-            ],
-            'menus' => [
-                [
-                    'title' => 'Contacts',
-                    'icon' => '<i data-feather="mail"></i>',
-                    'route' => '/contacts',
-                    'permission' => 'contact view',
-                    'permissions' => [],
-                    'submenus' => []
-                ]
-            ]
-        ],
-        [
-            'header' => 'Banners',
-            'permissions' => [
-                'banner view'
-            ],
-            'menus' => [
-                [
-                    'title' => 'Banner Management',
-                    'icon' => '<i data-feather="image"></i>',
-                    'route' => '/banners',
-                    'permission' => 'banner view',
-                    'permissions' => [],
-                    'submenus' => []
-                ]
-            ]
-        ],
-        [
-            'header' => 'Testimonies',
-            'permissions' => [
-                'testimony view'
-            ],
-            'menus' => [
-                [
-                    'title' => 'Testimonies',
-                    'icon' => '<i data-feather="hash"></i>',
-                    'route' => '/testimonies',
-                    'permission' => 'testimony view',
-                    'permissions' => [],
-                    'submenus' => []
-                ]
-            ]
-        ],
-        [
-            'header' => 'Utilities',
-            'permissions' => [
-                'role & permission view',
-                'user view'
-            ],
-            'menus' => [
-                [
-                    'title' => 'Utilities',
-                    'icon' => '<i data-feather="settings"></i>',
-                    'route' => null,
-                    'permission' => null,
-                    'permissions' => [
-                        'role & permission view',
-                        'user view'
+        'menus' => [
+            [
+                'title' => 'About Us',
+                'icon' => '<i data-feather="info"></i>',
+                'route' => null,
+                'permission' => null,
+                'permissions' => [
+                    'vm view',
+                    'company view',
+                    'certificate view',
+                    'social view',
+                    'team view'
+                ],
+                'submenus' => [
+                    [
+                        'title' => 'Company',
+                        'route' => '/companies',
+                        'permission' => 'company view'
                     ],
-                    'submenus' => [
-                        [
-                            'title' => 'Users',
-                            'route' => '/users',
-                            'permission' => 'user view'
-                        ],
-                        [
-                            'title' => 'Roles & permissions',
-                            'route' => '/roles',
-                            'permission' => 'role & permission view'
-                        ]
+                    [
+                        'title' => 'Visi & Misi',
+                        'route' => '/vms',
+                        'permission' => 'vm view'
+                    ],
+                    [
+                        'title' => 'Certificates',
+                        'route' => '/certificates',
+                        'permission' => 'certificate view'
+                    ],
+                    [
+                        'title' => 'Social Media',
+                        'route' => '/socials',
+                        'permission' => 'social view'
+                    ],
+                    [
+                        'title' => 'Teams',
+                        'route' => '/teams',
+                        'permission' => 'team view'
+                    ]
+                ]
+            ]
+        ]
+    ],
+    [
+        'header' => 'Businesses',
+        'permissions' => [
+            'business view'
+        ],
+        'menus' => [
+            [
+                'title' => 'Business Units',
+                'icon' => '<i data-feather="list"></i>',
+                'route' => '/businesses',
+                'permission' => 'business view',
+                'permissions' => [],
+                'submenus' => []
+            ]
+        ]
+    ],
+    [
+        'header' => 'Portfolios',
+        'permissions' => [
+            'portfolio view'
+        ],
+        'menus' => [
+            [
+                'title' => 'Portfolio',
+                'icon' => '<i data-feather="list"></i>',
+                'route' => '/portfolios',
+                'permission' => 'portfolio view',
+                'permissions' => [],
+                'submenus' => []
+            ]
+        ]
+    ],
+    [
+        'header' => 'Our Clients',
+        'permissions' => [
+            'client view'
+        ],
+        'menus' => [
+            [
+                'title' => 'Clients',
+                'icon' => '<i data-feather="users"></i>',
+                'route' => '/clients',
+                'permission' => 'client view',
+                'permissions' => [],
+                'submenus' => []
+            ]
+        ]
+    ],
+    [
+        'header' => 'Contacts',
+        'permissions' => [
+            'contact view'
+        ],
+        'menus' => [
+            [
+                'title' => 'Contacts',
+                'icon' => '<i data-feather="mail"></i>',
+                'route' => '/contacts',
+                'permission' => 'contact view',
+                'permissions' => [],
+                'submenus' => []
+            ]
+        ]
+    ],
+    [
+        'header' => 'Banners',
+        'permissions' => [
+            'banner view'
+        ],
+        'menus' => [
+            [
+                'title' => 'Banner Management',
+                'icon' => '<i data-feather="image"></i>',
+                'route' => '/banners',
+                'permission' => 'banner view',
+                'permissions' => [],
+                'submenus' => []
+            ]
+        ]
+    ],
+    [
+        'header' => 'Testimonies',
+        'permissions' => [
+            'testimony view'
+        ],
+        'menus' => [
+            [
+                'title' => 'Testimonies',
+                'icon' => '<i data-feather="hash"></i>',
+                'route' => '/testimonies',
+                'permission' => 'testimony view',
+                'permissions' => [],
+                'submenus' => []
+            ]
+        ]
+    ],
+    [
+        'header' => 'Utilities',
+        'permissions' => [
+            'role & permission view',
+            'user view'
+        ],
+        'menus' => [
+            [
+                'title' => 'Utilities',
+                'icon' => '<i data-feather="settings"></i>',
+                'route' => null,
+                'permission' => null,
+                'permissions' => [
+                    'role & permission view',
+                    'user view'
+                ],
+                'submenus' => [
+                    [
+                        'title' => 'Users',
+                        'route' => '/users',
+                        'permission' => 'user view'
+                    ],
+                    [
+                        'title' => 'Roles & permissions',
+                        'route' => '/roles',
+                        'permission' => 'role & permission view'
                     ]
                 ]
             ]
         ]
     ]
+]
 ];
