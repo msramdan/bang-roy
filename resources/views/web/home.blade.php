@@ -1,6 +1,42 @@
 @extends('web.main')
 
 @section('content')
+    <!-- Modal -->
+    <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Product Details</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-6 col-xs-12">
+                            <div class="quick-view-img"><img src="assets/images/pro/b1.jpg" alt=""
+                                    class="img-fluid"></div>
+                        </div>
+                        <div class="col-lg-6 rtl-text">
+                            <div class="product-right">
+                                <h2>Women Pink Shirt</h2>
+                                <h3>$32.96</h3>
+                                <div class="border-product">
+                                    <h6 class="product-title">product details</h6>
+                                    <p>Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium
+                                        doloremque laudantium</p>
+                                </div>
+                                <div class="product-buttons">
+                                    <a href="#" class="btn btn-solid" style="color: white">Order Via Whatapps</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div>
         <div class="bottom-header">
             <div class="container">
@@ -126,9 +162,11 @@
                                                 <div class="product-box">
                                                     <div class="img-wrapper">
                                                         <div class="front">
-                                                            <a href="#">
-                                                                <img src="https://themes.pixelstrap.com/reno/theme/assets/images/pro/1.jpg"
-                                                                    class="img-fluid" alt=""></a>
+                                                            <a href="#" data-bs-toggle="modal"
+                                                                data-bs-target="#productModal">
+                                                                <img src="https://themes.pixelstrap.com/reno/theme/assets/images/pro/2.jpg"
+                                                                    class="img-fluid" alt="">
+                                                            </a>
                                                         </div>
                                                     </div>
                                                     <div class="product-detail">
@@ -140,8 +178,9 @@
                                                                 <i class="fa fa-star" style="color: orange"></i>
                                                                 <i class="fa fa-star" style="color: orange"></i>
                                                             </div>
-                                                            <a href="#">
-                                                                <span>Slim Fit Cotton Shirt</span>
+                                                            <a href="#" data-bs-toggle="modal"
+                                                                data-bs-target="#productModal">
+                                                                <span style="color: #327555"><b>Slim Fit Cotton Shirt</b> </span>
                                                             </a>
                                                             <h6>Rp.5000</h6>
                                                         </div>
