@@ -112,7 +112,8 @@ return [
     [
         'header' => 'Product',
         'permissions' => [
-            'categoryproduct view'
+            'categoryproduct view',
+            'product view'
         ],
         'menus' => [
             [
@@ -121,9 +122,15 @@ return [
                 'route' => null,
                 'permission' => null,
                 'permissions' => [
-                    'categoryproduct view'
+                    'categoryproduct view',
+                    'product view'
                 ],
                 'submenus' => [
+                    [
+                        'title' => 'Products',
+                        'route' => '/products',
+                        'permission' => 'product view'
+                    ],
                     [
                         'title' => 'Category Products',
                         'route' => '/categoryproducts',

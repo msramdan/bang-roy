@@ -192,5 +192,5 @@ return [
         ['group' => 'testimonies', 'access' => ['testimony view', 'testimony create', 'testimony edit', 'testimony delete']],
         ['group' => 'businesses', 'access' => ['business view', 'business create', 'business edit', 'business delete']],
         ['group' => 'portfolios', 'access' => ['portfolio view', 'portfolio create', 'portfolio edit', 'portfolio delete']],
-  ['group' => 'categoryproducts', 'access' => ['categoryproduct view', 'categoryproduct create', 'categoryproduct edit', 'categoryproduct delete']], 
+  ['group' => 'categoryproducts', 'access' => ['categoryproduct view', 'categoryproduct create', 'categoryproduct edit', 'categoryproduct delete']],['group' => 'products', 'access' => ['product view', 'product create', 'product edit', 'product delete']], 
 		],];

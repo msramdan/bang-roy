@@ -31,5 +31,14 @@ class ViewServiceProvider extends ServiceProvider
                 Role::select('id', 'name')->get()
             );
         });
-    }
+  
+
+				View::composer(['products.create', 'products.edit'], function ($view) {
+            return $view->with(
+                'categoryproducts',
+                \App\Models\Categoryproduct::select('id', 'category_name')->get()
+            );
+        });
+
+	}
 }
