@@ -33,7 +33,7 @@
             <li></li>
             <li></li>
         </ul>
-        <div class="container">
+        <div class="container" style="padding-left: 20px;padding-right: 20px; ">
             <div class="row">
                 @foreach ($portfolios as $row)
                     <div class="col-lg-4 col-md-6">
@@ -63,7 +63,9 @@
 
             </div>
         </div>
-        <!-- pagination Start -->
-        <!-- pagination End -->
+        <center>
+            {{ $portfolios->links('web.paggination.custom') }}
+        </center>
+
     </section>
 @endsection

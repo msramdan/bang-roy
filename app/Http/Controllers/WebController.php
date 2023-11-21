@@ -15,6 +15,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Categoryproduct;
+use App\Models\Product;
+
+
 
 
 class WebController extends Controller
@@ -25,11 +28,13 @@ class WebController extends Controller
         $testimonies = Testimony::all();
         $banners = Banner::all();
         $categoryproducts = Categoryproduct::all();
+        $products = Product::paginate(8);
         return view('web.home', [
             'clients' => $clients,
             'testimonies' => $testimonies,
             'banners' => $banners,
             'categoryproducts' => $categoryproducts,
+            'products' => $products,
         ]);
     }
 
@@ -54,7 +59,7 @@ class WebController extends Controller
 
     public function team()
     {
-        $teams = Team::all();
+        $teams = Team::paginate(6);
         return view('web.team', [
             'teams' => $teams,
         ]);
@@ -78,7 +83,7 @@ class WebController extends Controller
 
     public function service()
     {
-        $businesses = Business::all();
+        $businesses = Business::paginate(6);
         return view('web.service', [
             'businesses' => $businesses,
         ]);
@@ -91,7 +96,7 @@ class WebController extends Controller
 
     public function portfolio()
     {
-        $portfolios = Portfolio::all();
+        $portfolios = Portfolio::paginate(6);
         return view('web.portfolio', [
             'portfolios' => $portfolios,
         ]);

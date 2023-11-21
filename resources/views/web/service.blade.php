@@ -64,5 +64,9 @@
 
             </div>
         </div>
+        <center>
+            {{ $businesses->links('web.paggination.custom') }}
+        </center>
+
     </section>
 @endsection

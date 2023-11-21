@@ -53,5 +53,9 @@ background-blend-mode: multiply;">
             </div>
         </div>
         <!-- pagination -->
+        <center>
+            {{ $teams->links('web.paggination.custom') }}
+        </center>
+
     </section>
 @endsection
