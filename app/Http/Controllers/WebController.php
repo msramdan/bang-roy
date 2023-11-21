@@ -21,4 +21,41 @@ class WebController extends Controller
             'banners' => $banners,
         ]);
     }
+
+    public function contact()
+    {
+        return view('web.contact');
+    }
+
+    public function team()
+    {
+        return view('web.team');
+    }
+
+    public function company()
+    {
+        return view('web.company');
+    }
+
+    public function certificates()
+    {
+        return view('web.certificates');
+    }
+
+    public function service()
+    {
+        return view('web.service');
+    }
+
+    public function catalog()
+    {
+        return view('web.catalog');
+    }
+
+    public function portfolio()
+    {
+        return view('web.portfolio');
+    }
+
+
 }

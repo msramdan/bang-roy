@@ -13,6 +13,13 @@ use App\Http\Controllers\{
 
 Route::controller(WebController::class)->group(function () {
     Route::get('/', 'index')->name('website');
+    Route::get('/web-contact', 'contact')->name('web-contact');
+    Route::get('/web-team', 'team')->name('web-team');
+    Route::get('/web-company', 'company')->name('web-company');
+    Route::get('/web-certificates', 'certificates')->name('web-certificates');
+    Route::get('/web-service', 'service')->name('web-service');
+    Route::get('/web-catalog', 'catalog')->name('web-catalog');
+    Route::get('/web-portfolio', 'portfolio')->name('web-portfolio');
 });
 
 Route::middleware(['auth', 'web'])->group(function () {

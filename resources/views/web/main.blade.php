@@ -88,20 +88,25 @@
                                             <a href="/">Home</a>
                                         </li>
                                         <li>
-                                            <a href="#">About Us</a>
+                                            <a href="#" class="has-submenu" id="sm-17005289088241277-3" aria-haspopup="true" aria-controls="sm-17005289088241277-4" aria-expanded="false">About Us<span class="sub-arrow"></span></a>
+                                            <ul id="sm-17005289088241277-4" role="group" aria-hidden="true" aria-labelledby="sm-17005289088241277-3" aria-expanded="false">
+                                                <li class="nav-item"><a class="nav-link" href="{{route('web-company')}}">Company</a></li>
+                                                <li class="nav-item"><a class="nav-link" href="{{route('web-certificates')}}">Certificates</a></li>
+                                                <li class="nav-item"><a class="nav-link" href="{{route('web-team')}}">Teams</a></li>
+                                            </ul>
                                         </li>
                                         <li>
-                                            <a href="#">Service</a>
+                                            <a href="{{route('web-service')}}">Service</a>
                                         </li>
                                         <li>
-                                            <a href="#">Catalog</a>
+                                            <a href="{{route('web-catalog')}}">Catalog</a>
                                         </li>
 
                                         <li>
-                                            <a href="#">Portfolio</a>
+                                            <a href="{{route('web-portfolio')}}">Portfolio</a>
                                         </li>
                                         <li>
-                                            <a href="#">Contact Us</a>
+                                            <a href="{{route('web-contact')}}">Contact Us</a>
                                         </li>
                                     </ul>
                                 </nav>

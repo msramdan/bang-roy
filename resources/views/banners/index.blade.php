@@ -70,7 +70,7 @@
                     searchable: false,
                     render: function(data, type, full, meta) {
                         return `<div class="avatar">
-                            <img src="${data}" alt="Banner">
+                            <img src="${data}" alt="Banner" style="width:150px">
                         </div>`;
                         }
                     },
