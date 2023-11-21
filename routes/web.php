@@ -39,3 +39,6 @@ Route::resource('teams', App\Http\Controllers\TeamController::class)->middleware
 
 Route::resource('banners', App\Http\Controllers\BannerController::class)->middleware('auth');
 Route::resource('testimonies', App\Http\Controllers\TestimonyController::class)->middleware('auth');
+
+Route::resource('businesses', App\Http\Controllers\BusinessController::class)->middleware('auth');
+Route::resource('portfolios', App\Http\Controllers\PortfolioController::class)->middleware('auth');

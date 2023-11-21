@@ -96,7 +96,7 @@
                                             </ul>
                                         </li>
                                         <li>
-                                            <a href="{{route('web-service')}}">Service</a>
+                                            <a href="{{route('web-service')}}">Business Units</a>
                                         </li>
                                         <li>
                                             <a href="{{route('web-catalog')}}">Catalog</a>
