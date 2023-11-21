@@ -26,6 +26,11 @@
                 </div>
                 <div class="nav-right col pull-right right-menu p-0">
                     <ul class="nav-menus">
+                        <li class="onhover-dropdown">
+                            <div class="bookmark-box"><a href="/" target="_blank"><i
+                                data-feather="globe"></i></a></div>
+                        </li>
+
                         <li><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i
                                     data-feather="maximize"></i></a></li>
                         <li class="onhover-dropdown p-0">

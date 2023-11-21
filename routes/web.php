@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CallbackController;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\{
     UserController,
     ProfileController,
@@ -9,6 +11,13 @@ use App\Http\Controllers\{
     DashboardController,
     WebController,
 };
+
+
+
+Route::get('/storage-link', function () {
+    Artisan::call('storage:link');
+    return 'Storage link berhasil dibuat!';
+});
 
 
 Route::controller(WebController::class)->group(function () {
