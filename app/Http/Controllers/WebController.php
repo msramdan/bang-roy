@@ -7,10 +7,13 @@ use App\Models\Testimony;
 use App\Models\Banner;
 use App\Models\Business;
 use App\Models\Certificate;
+use App\Models\Contact;
 use App\Models\Portfolio;
 use App\Models\Team;
 use App\Models\Vm;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class WebController extends Controller
@@ -32,6 +35,20 @@ class WebController extends Controller
         return view('web.contact');
     }
 
+    function submitContact(Request $request)
+    {
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'message' => $request->message,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ];
+        DB::table('contacts')->insert($data);
+        Alert::toast('the message was sent successfully', 'success');
+        return redirect()->back();
+    }
+
     public function team()
     {
         $teams = Team::all();
@@ -43,7 +60,7 @@ class WebController extends Controller
     public function company()
     {
         $vm = Vm::findOrFail(1)->first();
-        return view('web.company',[
+        return view('web.company', [
             'vm' => $vm,
         ]);
     }
@@ -76,7 +93,4 @@ class WebController extends Controller
             'portfolios' => $portfolios,
         ]);
     }
-
-
-
 }

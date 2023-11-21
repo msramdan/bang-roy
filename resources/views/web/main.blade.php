@@ -31,13 +31,11 @@
 
 <body>
 
-    <!-- loader start -->
-    <div class="loader-wrapper">
+    {{-- <div class="loader-wrapper">
         <div class="loader">
             <div></div>
         </div>
-    </div>
-    <!-- loader end -->
+    </div> --}}
 
     <div class="ecommerce-layout">
 
@@ -296,6 +294,7 @@
     <script src="{{ asset('landing') }}/assets/js/slick.js"></script>
     <script src="{{ asset('landing') }}/assets/js/script.js"></script>
     <script src="{{ asset('landing') }}/assets/js/ecommerce.js"></script>
+    @include('sweetalert::alert')
 
 </body>
 

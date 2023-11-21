@@ -7,7 +7,7 @@
 
     <div class="bread_crumb"
         style="
-        background-image: url({{asset('landing/assets/images/brad_back.jpg')}});
+        background-image: url({{ asset('landing/assets/images/brad_back.jpg') }});
         background-attachment: fixed;
         background-size: cover;
         background-repeat: no-repeat;
@@ -74,39 +74,37 @@
                                     <div class="row">
                                         <div class="col-12 quote_form">
                                             <h3 class="page-header-comment mb-4">Leave you comment :</h3>
-                                            <form>
+                                            <form action="{{route('web-submit-contact')}}" method="POST">
+                                                @csrf
+                                                @method('POST')
                                                 <div class="form-row row g-3">
                                                     <div class="form-group col-md-6">
                                                         <label>Name :</label>
-                                                        <input type="text" class="form-control"
+                                                        <input type="text" name="name" class="form-control" id="name"
                                                             placeholder="Enter Your Name" required="">
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <label for="inputEmail4">Email :</label>
-                                                        <input type="email" class="form-control" id="inputEmail4"
+                                                        <input type="email" name="email" class="form-control" id="email"
                                                             placeholder="Enter Your Email" required="">
                                                     </div>
                                                     <div class="form-group col-md-12">
                                                         <label for="exampleTextarea">Message :</label>
-                                                        <textarea class="form-control msg_coment" id="exampleTextarea" rows="3" placeholder="Leave a Comment"
+                                                        <textarea class="form-control msg_coment" name="message" id="message" rows="3" placeholder="Leave a Comment"
                                                             required=""></textarea>
                                                     </div>
                                                 </div>
-                                                <a class="quote_btn theme_btn" href="#">
-                                                    Send Your Message
-                                                    <span class="theme_btn_eff"></span>
-                                                </a>
+                                                <button type="submit" class="quote_btn theme_btn">Send Your Message
+                                                    <span class="theme_btn_eff"></span></button>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- leave comment section end-->
                     </div>
                 </div>
             </div>
         </div>
-        <!-- leave comment section end-->
     </section>
 @endsection
