@@ -70,9 +70,10 @@
                         <div class=" col-3">
                             <a href="/" class="brand-logo">
                                 @if (setting_web()->logo != null)
-                                <img style="width: 250px" src="{{ Storage::url('public/uploads/logos/') . setting_web()->logo }}"
-                                    alt="">
-                            @endif
+                                    <img style="width: 250px"
+                                        src="{{ Storage::url('public/uploads/logos/') . setting_web()->logo }}"
+                                        alt="">
+                                @endif
                             </a>
                         </div>
                         <div class="col-9">
@@ -90,25 +91,31 @@
                                             <a href="/">Home</a>
                                         </li>
                                         <li>
-                                            <a href="#" class="has-submenu" id="sm-17005289088241277-3" aria-haspopup="true" aria-controls="sm-17005289088241277-4" aria-expanded="false">About Us<span class="sub-arrow"></span></a>
-                                            <ul id="sm-17005289088241277-4" role="group" aria-hidden="true" aria-labelledby="sm-17005289088241277-3" aria-expanded="false">
-                                                <li class="nav-item"><a class="nav-link" href="{{route('web-company')}}">Company</a></li>
-                                                <li class="nav-item"><a class="nav-link" href="{{route('web-certificates')}}">Certificates</a></li>
-                                                <li class="nav-item"><a class="nav-link" href="{{route('web-team')}}">Teams</a></li>
+                                            <a href="#" class="has-submenu" id="sm-17005289088241277-3"
+                                                aria-haspopup="true" aria-controls="sm-17005289088241277-4"
+                                                aria-expanded="false">About Us<span class="sub-arrow"></span></a>
+                                            <ul id="sm-17005289088241277-4" role="group" aria-hidden="true"
+                                                aria-labelledby="sm-17005289088241277-3" aria-expanded="false">
+                                                <li class="nav-item"><a class="nav-link"
+                                                        href="{{ route('web-company') }}">Company</a></li>
+                                                <li class="nav-item"><a class="nav-link"
+                                                        href="{{ route('web-certificates') }}">Certificates</a></li>
+                                                <li class="nav-item"><a class="nav-link"
+                                                        href="{{ route('web-team') }}">Teams</a></li>
                                             </ul>
                                         </li>
                                         <li>
-                                            <a href="{{route('web-service')}}">Business Units</a>
+                                            <a href="{{ route('web-service') }}">Business Units</a>
                                         </li>
                                         <li>
-                                            <a href="{{route('web-catalog')}}">Catalog</a>
+                                            <a href="{{ route('web-catalog') }}">Catalog</a>
                                         </li>
 
                                         <li>
-                                            <a href="{{route('web-portfolio')}}">Portfolio</a>
+                                            <a href="{{ route('web-portfolio') }}">Portfolio</a>
                                         </li>
                                         <li>
-                                            <a href="{{route('web-contact')}}">Contact Us</a>
+                                            <a href="{{ route('web-contact') }}">Contact Us</a>
                                         </li>
                                     </ul>
                                 </nav>
@@ -131,8 +138,13 @@
                                     <h3>About Us</h3>
                                 </div>
                                 <div class="footer-contant">
-                                    <img src="{{ asset('landing') }}/assets/images/ecommerce/Footer-logo.png"
-                                        class="foot_logo" alt="">
+                                    @if (setting_web()->logo != null)
+                                        <img style="width: 150px" class="foot_logo"
+                                            src="{{ Storage::url('public/uploads/logos/') . setting_web()->logo }}"
+                                            alt="">
+                                    @endif
+
+
                                     <p>Lorem Ipsum is simply dummy text of the printing and type-setting industry.</p>
                                     <div class="footer_social">
                                         <div>
