@@ -106,45 +106,24 @@
                 <!-- sidebar Section end -->
 
                 <div class="col-lg-9">
-                    <!--  Slider_start  -->
                     <div class="home-slider slider-ecommerce">
                         <div class="slide_1 owl-carousel owl-theme">
-                            <div>
-                                <img src="{{ asset('landing') }}/assets/images/ecommerce/slider/1.jpg" class="bg-img">
-                                <div class="slider_content">
-                                    <div>
-                                        <h1 data-animation-in="slideInDown" data-animation-out="animate-out slideOutUp">
-                                            <span class="sec_one">Best
-                                                Machine Tools.</span>
-                                        </h1>
-                                        <h5 data-animation-in="slideInRight" data-animation-out="animate-out fadeOut">
-                                            Lorem Ipsum is simply dummy
-                                            text of the printing and typesetting industry. Lorem Ipsum has been the
-                                            industry's standard dummy. </h5>
+                            @foreach ($banners as $row)
+                                <div>
+                                    <img src="{{ asset('storage/uploads/banners/' . $row->banner) }}" class="bg-img">
+                                    <div class="slider_content">
+                                        <div>
+                                            <h1 data-animation-in="slideInDown" data-animation-out="animate-out slideOutUp">
+                                                <span class="sec_one">{{ $row->title }} </span>
+                                            </h1>
+                                            <h5 data-animation-in="slideInRight" data-animation-out="animate-out fadeOut">
+                                                {{ $row->deksripsi }} </h5>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div>
-                                <img src="{{ asset('landing') }}/assets/images/ecommerce/slider/2.jpg" class="bg-img">
-                                <div class="slider_content">
-                                    <div>
-                                        <h1 data-animation-in="slideInDown" data-animation-out="animate-out slideOutUp">
-                                            <span class="sec_one">Best
-                                                Machine Tools.</span>
-                                        </h1>
-                                        <h5 data-animation-in="slideInRight" data-animation-out="animate-out fadeOut">
-                                            Lorem Ipsum is simply dummy
-                                            text of the printing and typesetting industry. Lorem Ipsum has been the
-                                            industry's standard dummy. </h5>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
-                    <!--  Slider_End  -->
-
-                    <!-- Product sec Start -->
                     <section class="product_sec pb-0">
                         <div class="collection-product-wrapper">
                             <div class="row product-wrapper-grid f_product">
@@ -1346,8 +1325,8 @@
                                                                 class="img-fluid" alt=""></a>
                                                         <div>
                                                             <a href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#quick-view"
-                                                                class="add_hover add_search" title="Quick View">
+                                                                data-bs-target="#quick-view" class="add_hover add_search"
+                                                                title="Quick View">
                                                                 <i class="ti-search" aria-hidden="true"></i>
                                                             </a>
                                                             <a href="#" title="Wish list"
