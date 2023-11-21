@@ -11,7 +11,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-6 col-xs-12">
-                            <div class="quick-view-img"><img src="assets/images/pro/b1.jpg" alt=""
+                            <div class="quick-view-img"><img src="https://themes.pixelstrap.com/reno/theme/assets/images/pro/2.jpg" alt=""
                                     class="img-fluid"></div>
                         </div>
                         <div class="col-lg-6 rtl-text">
@@ -147,7 +147,7 @@
                             @endforeach
                         </div>
                     </div>
-                    <section class="product_sec pt-0">
+                    <section class="product_sec pt-2">
                         <div class="collection-product-wrapper">
                             <div class="row product-wrapper-grid f_product">
                                 <div class="col-12">
@@ -180,7 +180,98 @@
                                                             </div>
                                                             <a href="#" data-bs-toggle="modal"
                                                                 data-bs-target="#productModal">
-                                                                <span style="color: #327555"><b>Slim Fit Cotton Shirt</b> </span>
+                                                                <span style="color: #327555"><b>Slim Fit Cotton
+                                                                        Shirt</b> </span>
+                                                            </a>
+                                                            <h6>Rp.5000</h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3 col-6">
+                                                <div class="product-box">
+                                                    <div class="img-wrapper">
+                                                        <div class="front">
+                                                            <a href="#" data-bs-toggle="modal"
+                                                                data-bs-target="#productModal">
+                                                                <img src="https://themes.pixelstrap.com/reno/theme/assets/images/pro/2.jpg"
+                                                                    class="img-fluid" alt="">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-detail">
+                                                        <div>
+                                                            <div class="rating">
+                                                                <i class="fa fa-star" style="color: orange"></i>
+                                                                <i class="fa fa-star" style="color: orange"></i>
+                                                                <i class="fa fa-star" style="color: orange"></i>
+                                                                <i class="fa fa-star" style="color: orange"></i>
+                                                                <i class="fa fa-star" style="color: orange"></i>
+                                                            </div>
+                                                            <a href="#" data-bs-toggle="modal"
+                                                                data-bs-target="#productModal">
+                                                                <span style="color: #327555"><b>Slim Fit Cotton
+                                                                        Shirt</b> </span>
+                                                            </a>
+                                                            <h6>Rp.5000</h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3 col-6">
+                                                <div class="product-box">
+                                                    <div class="img-wrapper">
+                                                        <div class="front">
+                                                            <a href="#" data-bs-toggle="modal"
+                                                                data-bs-target="#productModal">
+                                                                <img src="https://themes.pixelstrap.com/reno/theme/assets/images/pro/2.jpg"
+                                                                    class="img-fluid" alt="">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-detail">
+                                                        <div>
+                                                            <div class="rating">
+                                                                <i class="fa fa-star" style="color: orange"></i>
+                                                                <i class="fa fa-star" style="color: orange"></i>
+                                                                <i class="fa fa-star" style="color: orange"></i>
+                                                                <i class="fa fa-star" style="color: orange"></i>
+                                                                <i class="fa fa-star" style="color: orange"></i>
+                                                            </div>
+                                                            <a href="#" data-bs-toggle="modal"
+                                                                data-bs-target="#productModal">
+                                                                <span style="color: #327555"><b>Slim Fit Cotton
+                                                                        Shirt</b> </span>
+                                                            </a>
+                                                            <h6>Rp.5000</h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3 col-6">
+                                                <div class="product-box">
+                                                    <div class="img-wrapper">
+                                                        <div class="front">
+                                                            <a href="#" data-bs-toggle="modal"
+                                                                data-bs-target="#productModal">
+                                                                <img src="https://themes.pixelstrap.com/reno/theme/assets/images/pro/2.jpg"
+                                                                    class="img-fluid" alt="">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-detail">
+                                                        <div>
+                                                            <div class="rating">
+                                                                <i class="fa fa-star" style="color: orange"></i>
+                                                                <i class="fa fa-star" style="color: orange"></i>
+                                                                <i class="fa fa-star" style="color: orange"></i>
+                                                                <i class="fa fa-star" style="color: orange"></i>
+                                                                <i class="fa fa-star" style="color: orange"></i>
+                                                            </div>
+                                                            <a href="#" data-bs-toggle="modal"
+                                                                data-bs-target="#productModal">
+                                                                <span style="color: #327555"><b>Slim Fit Cotton
+                                                                        Shirt</b> </span>
                                                             </a>
                                                             <h6>Rp.5000</h6>
                                                         </div>
@@ -193,26 +284,22 @@
                             </div>
                         </div>
                     </section>
-                    <section class="brand_sec pt-0">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="title">
-                                        <h2>Our Client</h2>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="brand_slide_ecommerce owl-carousel owl-theme">
-                                        @foreach ($clients as $row)
-                                            <div class="item">
-                                                <img src="{{ asset('storage/uploads/logos/' . $row->logo) }}"
-                                                    alt="">
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
+                    <section class="brand_sec pt-2">
+                        <div class="col-12">
+                            <div class="title">
+                                <h2>Our Client</h2>
                             </div>
                         </div>
+                        <div class="col">
+                            <div class="brand_slide_ecommerce owl-carousel owl-theme">
+                                @foreach ($clients as $row)
+                                    <div class="item">
+                                        <img src="{{ asset('storage/uploads/logos/' . $row->logo) }}" alt="">
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+
                     </section>
                 </div>
             </div>
