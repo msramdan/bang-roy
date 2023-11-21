@@ -16,13 +16,13 @@
                         <ul id="breadcrumb" class="breadcrumb">
                             <li><a title="Home" href="/"><i class="fa fa-home" aria-hidden="true"></i></a>
                             </li>
-                            <li><strong><i class="fa fa-angle-double-right" aria-hidden="true"></i> Portfolios</strong></li>
+                            <li><strong><i class="fa fa-angle-double-right" aria-hidden="true"></i> Portfolio</strong></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="page-title">
-                        <h2>Portfolios </h2>
+                        <h2>Portfolio</h2>
                     </div>
                 </div>
             </div>

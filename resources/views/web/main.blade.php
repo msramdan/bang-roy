@@ -68,8 +68,12 @@
                 <div class="container">
                     <div class="row">
                         <div class=" col-3">
-                            <a href="/" class="brand-logo"><img
-                                    src="{{ asset('landing') }}/assets/images/ecommerce/logo.png" alt="logo"></a>
+                            <a href="/" class="brand-logo">
+                                @if (setting_web()->logo != null)
+                                <img style="width: 250px" src="{{ Storage::url('public/uploads/logos/') . setting_web()->logo }}"
+                                    alt="">
+                            @endif
+                            </a>
                         </div>
                         <div class="col-9">
                             <div class="nav-section">

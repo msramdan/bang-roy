@@ -16,7 +16,7 @@
                         <a href="{{ route('dashboard') }}">
                             @if (setting_web()->logo != null)
                                 <img class="img-fluid"
-                                    src="{{ Storage::url('public/img/setting_app/') . setting_web()->logo }}"
+                                    src="{{ Storage::url('public/uploads/logos/') . setting_web()->logo }}"
                                     alt="">
                             @endif
                         </a>

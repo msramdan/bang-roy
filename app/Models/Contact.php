@@ -23,6 +23,6 @@ class Contact extends Model
      */
     protected $casts = ['name' => 'string', 'email' => 'string', 'message' => 'string', 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i'];
 
-    
+
 
 }
