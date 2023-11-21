@@ -17,7 +17,7 @@
                             @csrf
                             <center>
                                 @if (setting_web()->logo != null)
-                                    <img src="{{ Storage::url('public/img/setting_app/') . setting_web()->logo }}"
+                                    <img src="{{ Storage::url('public/uploads/logos/') . setting_web()->logo }}"
                                         alt="" style="width: 60%">
                                 @endif
 

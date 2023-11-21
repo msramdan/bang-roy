@@ -143,9 +143,7 @@
                                             src="{{ Storage::url('public/uploads/logos/') . setting_web()->logo }}"
                                             alt="">
                                     @endif
-
-
-                                    <p>Lorem Ipsum is simply dummy text of the printing and type-setting industry.</p>
+                                    <p>our Industrial Instrument, Automation System & Automechatronika needs</p>
                                     <div class="footer_social">
                                         <div>
                                             <ul>
