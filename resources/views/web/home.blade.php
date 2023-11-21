@@ -75,60 +75,25 @@
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12">
                                         <div class="testimonial_slide owl-carousel owl-theme">
-                                            <div class="testimonial_sec">
-                                                <div>
-                                                    <img src="{{ asset('landing') }}/assets/images/testimonial/1.png"
-                                                        alt="testimonialimage">
-                                                    <p>
-                                                        <span class="quote_left">
-                                                            <i class="fa fa-quote-left" aria-hidden="true"></i>
-                                                        </span>
-                                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                                        sed do eiusmod tempor incididunt ut labore et dolore magna
-                                                        <span class="quote_right">
-                                                            <i class="fa fa-quote-right" aria-hidden="true"></i>
-                                                        </span>
-                                                    </p>
-                                                    <h3>Ethen Mark</h3>
-                                                    <h5>Director</h5>
+                                            @foreach ($testimonies as $row)
+                                                <div class="testimonial_sec">
+                                                    <div>
+                                                        <img src="{{ asset('storage/uploads/photos/' . $row->photo) }}"
+                                                            alt="testimonialimage">
+                                                        <p>
+                                                            <span class="quote_left">
+                                                                <i class="fa fa-quote-left" aria-hidden="true"></i>
+                                                            </span>
+                                                            {{ $row->deskripsi_testimony }}
+                                                            <span class="quote_right">
+                                                                <i class="fa fa-quote-right" aria-hidden="true"></i>
+                                                            </span>
+                                                        </p>
+                                                        <h3>{{ $row->nama_user }}</h3>
+                                                        <h5>{{ $row->jabatan }}</h5>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="testimonial_sec">
-                                                <div>
-                                                    <img src="{{ asset('landing') }}/assets/images/testimonial/2.png"
-                                                        alt="testimonialimage">
-                                                    <p>
-                                                        <span class="quote_left">
-                                                            <i class="fa fa-quote-left" aria-hidden="true"></i>
-                                                        </span>
-                                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                                        sed do eiusmod tempor incididunt ut labore et dolore magna
-                                                        <span class="quote_right">
-                                                            <i class="fa fa-quote-right" aria-hidden="true"></i>
-                                                        </span>
-                                                    </p>
-                                                    <h3>Suzen Desoza</h3>
-                                                    <h5>Director</h5>
-                                                </div>
-                                            </div>
-                                            <div class="testimonial_sec">
-                                                <div>
-                                                    <img src="{{ asset('landing') }}/assets/images/testimonial/3.png"
-                                                        alt="testimonialimage">
-                                                    <p>
-                                                        <span class="quote_left">
-                                                            <i class="fa fa-quote-left" aria-hidden="true"></i>
-                                                        </span>
-                                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                                        sed do eiusmod tempor incididunt ut labore et dolore magna.
-                                                        <span class="quote_right">
-                                                            <i class="fa fa-quote-right" aria-hidden="true"></i>
-                                                        </span>
-                                                    </p>
-                                                    <h3>John Deo</h3>
-                                                    <h5>Director</h5>
-                                                </div>
-                                            </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
@@ -992,8 +957,8 @@
                                                                 class="img-fluid" alt=""></a>
                                                         <div>
                                                             <a href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#quick-view"
-                                                                class="add_hover add_search" title="Quick View">
+                                                                data-bs-target="#quick-view" class="add_hover add_search"
+                                                                title="Quick View">
                                                                 <i class="ti-search" aria-hidden="true"></i>
                                                             </a>
                                                             <a href="#" title="Wish list"
@@ -1035,8 +1000,8 @@
                                                                 class="img-fluid" alt=""></a>
                                                         <div>
                                                             <a href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#quick-view"
-                                                                class="add_hover add_search" title="Quick View">
+                                                                data-bs-target="#quick-view" class="add_hover add_search"
+                                                                title="Quick View">
                                                                 <i class="ti-search" aria-hidden="true"></i>
                                                             </a>
                                                             <a href="#" title="Wish list"
@@ -1078,8 +1043,8 @@
                                                                 class="img-fluid" alt=""></a>
                                                         <div>
                                                             <a href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#quick-view"
-                                                                class="add_hover add_search" title="Quick View">
+                                                                data-bs-target="#quick-view" class="add_hover add_search"
+                                                                title="Quick View">
                                                                 <i class="ti-search" aria-hidden="true"></i>
                                                             </a>
                                                             <a href="#" title="Wish list"
@@ -1121,8 +1086,8 @@
                                                                 class="img-fluid" alt=""></a>
                                                         <div>
                                                             <a href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#quick-view"
-                                                                class="add_hover add_search" title="Quick View">
+                                                                data-bs-target="#quick-view" class="add_hover add_search"
+                                                                title="Quick View">
                                                                 <i class="ti-search" aria-hidden="true"></i>
                                                             </a>
                                                             <a href="#" title="Wish list"
@@ -1164,8 +1129,8 @@
                                                                 class="img-fluid" alt=""></a>
                                                         <div>
                                                             <a href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#quick-view"
-                                                                class="add_hover add_search" title="Quick View">
+                                                                data-bs-target="#quick-view" class="add_hover add_search"
+                                                                title="Quick View">
                                                                 <i class="ti-search" aria-hidden="true"></i>
                                                             </a>
                                                             <a href="#" title="Wish list"
@@ -1207,8 +1172,8 @@
                                                                 class="img-fluid" alt=""></a>
                                                         <div>
                                                             <a href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#quick-view"
-                                                                class="add_hover add_search" title="Quick View">
+                                                                data-bs-target="#quick-view" class="add_hover add_search"
+                                                                title="Quick View">
                                                                 <i class="ti-search" aria-hidden="true"></i>
                                                             </a>
                                                             <a href="#" title="Wish list"
@@ -1252,8 +1217,8 @@
                                                                 class="img-fluid" alt=""></a>
                                                         <div>
                                                             <a href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#quick-view"
-                                                                class="add_hover add_search" title="Quick View">
+                                                                data-bs-target="#quick-view" class="add_hover add_search"
+                                                                title="Quick View">
                                                                 <i class="ti-search" aria-hidden="true"></i>
                                                             </a>
                                                             <a href="#" title="Wish list"
@@ -1295,8 +1260,8 @@
                                                                 class="img-fluid" alt=""></a>
                                                         <div>
                                                             <a href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#quick-view"
-                                                                class="add_hover add_search" title="Quick View">
+                                                                data-bs-target="#quick-view" class="add_hover add_search"
+                                                                title="Quick View">
                                                                 <i class="ti-search" aria-hidden="true"></i>
                                                             </a>
                                                             <a href="#" title="Wish list"
@@ -1338,8 +1303,8 @@
                                                                 class="img-fluid" alt=""></a>
                                                         <div>
                                                             <a href="#" data-bs-toggle="modal"
-                                                                data-bs-target="#quick-view"
-                                                                class="add_hover add_search" title="Quick View">
+                                                                data-bs-target="#quick-view" class="add_hover add_search"
+                                                                title="Quick View">
                                                                 <i class="ti-search" aria-hidden="true"></i>
                                                             </a>
                                                             <a href="#" title="Wish list"
@@ -1521,33 +1486,17 @@
                                 </div>
                                 <div class="col">
                                     <div class="brand_slide_ecommerce owl-carousel owl-theme">
-                                        <div class="item">
-                                            <img src="{{ asset('landing') }}/assets/images/ecommerce/brand/1.png"
-                                                alt="">
-                                        </div>
-                                        <div class="item">
-                                            <img src="{{ asset('landing') }}/assets/images/ecommerce/brand/2.png"
-                                                alt="">
-                                        </div>
-                                        <div class="item">
-                                            <img src="{{ asset('landing') }}/assets/images/ecommerce/brand/3.png"
-                                                alt="">
-                                        </div>
-                                        <div class="item">
-                                            <img src="{{ asset('landing') }}/assets/images/ecommerce/brand/4.png"
-                                                alt="">
-                                        </div>
-                                        <div class="item">
-                                            <img src="{{ asset('landing') }}/assets/images/ecommerce/brand/5.png"
-                                                alt="">
-                                        </div>
+                                        @foreach ($clients as $row)
+                                            <div class="item">
+                                                <img src="{{ asset('storage/uploads/logos/' . $row->logo) }}"
+                                                    alt="">
+                                            </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </section>
-                    <!-- Brand End -->
-
                 </div>
             </div>
         </div>
