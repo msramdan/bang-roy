@@ -1,7 +1,14 @@
 @extends('web.main')
 
 @section('content')
-    <div class="bread_crumb">
+    <div class="bread_crumb" style="
+    background-image: url({{asset('landing/assets/images/brad_back.jpg')}});
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgba(187, 187, 187, 0.3);
+    background-blend-mode: multiply;">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 sec_low">
