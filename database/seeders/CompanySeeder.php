@@ -21,6 +21,7 @@ class CompanySeeder extends Seeder
             'nib' => '1406230027193',
             'sppkp' => 'S-197/PKP/KPP.330503/2023',
             'logo' => null,
+            'deskripsi' => 'Is a contractor company engaged in the field of procurement and services as well as manufacturing ELECTREICAL INSTRUMENTS, and AUTOMATION MECHATRONIC IN INDUSTRIES which is committed to build a trusted company by prioritizing professionalism and implementing law-abiding business ethics and prioritizing customer satisfaction by prioritizing quality of work, timeliness and operating efficiency.',
         ]);
     }
 }

@@ -25,15 +25,16 @@ class UpdateCompanyRequest extends FormRequest
     {
         return [
             'nama_perusahaan' => 'required|string|max:150',
-			'telepon' => 'required|string|max:15',
-			'alamat' => 'required|string',
-			'email' => 'required|email|unique:companies,email,' . $this->company->id,
-			'akte_notaris' => 'required|string|max:150',
-			'kep_men_kum_ham' => 'required|string|max:150',
-			'npwp' => 'required|string|max:150',
-			'nib' => 'required|string|max:150',
-			'sppkp' => 'required|string|max:150',
-			'logo' => 'image|max:3000',
+            'telepon' => 'required|string|max:15',
+            'alamat' => 'required|string',
+            'email' => 'required|email|unique:companies,email,' . $this->company->id,
+            'akte_notaris' => 'required|string|max:150',
+            'kep_men_kum_ham' => 'required|string|max:150',
+            'npwp' => 'required|string|max:150',
+            'nib' => 'required|string|max:150',
+            'sppkp' => 'required|string|max:150',
+            'logo' => 'image|max:3000',
+            'deskripsi' =>  'required|string',
         ];
     }
 }

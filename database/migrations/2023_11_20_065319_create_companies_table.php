@@ -25,6 +25,7 @@ return new class extends Migration
 			$table->string('nib', 150);
 			$table->string('sppkp', 150);
 			$table->string('logo')->nullable();
+            $table->text('deskripsi');
             $table->timestamps();
         });
     }
