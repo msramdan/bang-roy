@@ -16,6 +16,8 @@ class SocialSeeder extends Seeder
             'link_instagram' => '-',
             'link_youtube' => '-',
             'link_twitter' => '-',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
         ]);
     }
 }

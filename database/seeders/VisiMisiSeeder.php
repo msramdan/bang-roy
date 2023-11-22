@@ -13,6 +13,8 @@ class VisiMisiSeeder extends Seeder
         Vm::create([
             'visi' => 'Being a reliable and committed company by offering products and services with quality service to consumers in Industrial appliances and Engineering.',
             'misi' => 'As a company that is reliable in its field by offering quality products and services and is able to increase human resources and can support national economic development by providing professional services',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
         ]);
     }
 }
