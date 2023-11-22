@@ -2,49 +2,50 @@
 
 @section('content')
 
- <style>
-    #productList {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    border: none; /* Menghilangkan garis batas */
-    position: absolute;
-    width: 100%;
-    background-color: #fff;
-    z-index: 1000;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-}
+    <style>
+        #productList {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            border: none;
+            /* Menghilangkan garis batas */
+            position: absolute;
+            width: 100%;
+            background-color: #fff;
+            z-index: 1000;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        }
 
-#productList li {
-    display: flex;
-    align-items: center;
-    padding: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    border-bottom: 1px solid #eee;
-}
+        #productList li {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-bottom: 1px solid #eee;
+        }
 
-#productList li:last-child {
-    border-bottom: none;
-}
+        #productList li:last-child {
+            border-bottom: none;
+        }
 
-#productList img {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
+        #productList img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
 
-#productList .product-name {
-    margin: 0;
-    font-size: 14px;
-    color: #333;
-}
+        #productList .product-name {
+            margin: 0;
+            font-size: 14px;
+            color: #333;
+        }
 
-#productList .product-name:hover {
-    text-decoration: underline;
-}
- </style>
+        #productList .product-name:hover {
+            text-decoration: underline;
+        }
+    </style>
 
     <!-- Modal -->
     <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -75,9 +76,11 @@
                     <div class="col-md-9 set-order-1">
                         <form class="ecommerce-from">
                             <div class="input-group">
-                                <input type="text" class="form-control" id="searchProducts" aria-label="Amount (to the nearest dollar)" placeholder="Search Products...">
+                                <input type="text" class="form-control" id="searchProducts"
+                                    aria-label="Amount (to the nearest dollar)" placeholder="Search Products...">
                                 <div class="input-group-append">
-                                    <a class="btn btn_inverse" href="#"> Search <i class="fa fa-search" aria-hidden="true"></i></a>
+                                    <a class="btn btn_inverse" href="#"> Search <i class="fa fa-search"
+                                            aria-hidden="true"></i></a>
                                 </div>
                             </div>
                         </form>
@@ -342,7 +345,7 @@
 
                 if (products.length > 0) {
                     $.each(products, function(index, product) {
-                        var listItem = '<li>';
+                        var listItem = '<li data-product-id="' + product.id + '">';
                         listItem += '<img src="{{ asset('storage/uploads/photos/') }}/' + product.photo +
                             '" alt="' + product.nama + '" class="product-image">';
                         listItem += '<div class="product-details">';
@@ -355,6 +358,45 @@
                     productList.append('<li>No products found</li>');
                 }
             }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            // Tangani klik pada item produk dalam daftar pencarian
+            $('#productList').on('click', 'li', function() {
+                // Periksa apakah data-product-id diatur
+                var productId = $(this).data('product-id');
+                if (productId === undefined) {
+                    console.error('Data-product-id is not set on the clicked element.');
+                    return;
+                }
+
+                // Load detail produk menggunakan AJAX
+                $.ajax({
+                    url: '/get-product-details/' + productId, // Ganti dengan URL yang sesuai
+                    type: 'GET',
+                    success: function(response) {
+                        // Pastikan response tidak null
+                        if (response) {
+                            // Gantilah baris berikut dengan implementasi sesungguhnya
+                            var productDetailsHtml =
+                            response; // Anggap server mengembalikan HTML
+
+                            // Tampilkan detail produk di dalam modal
+                            $('#productModalBody').html(productDetailsHtml);
+
+                            // Buka modal
+                            $('#productModal').modal('show');
+                        } else {
+                            console.log('Product details not found.');
+                        }
+                    },
+                    error: function(error) {
+                        console.log('Error fetching product details:', error);
+                    }
+                });
+            });
         });
     </script>
 @endpush

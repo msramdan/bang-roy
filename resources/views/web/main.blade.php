@@ -237,40 +237,6 @@
                 <i class="fa fa-angle-double-up"></i>
             </div>
         </div>
-        <div class="modal fade bd-example-modal-lg theme-modal" id="quick-view" tabindex="-1" role="dialog"
-            aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                <div class="modal-content quick-view-modal">
-                    <div class="modal-body">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <div class="row">
-                            <div class="col-lg-6 col-xs-12">
-                                <div class="quick-view-img">
-                                    <img src="{{ asset('landing') }}/assets/images/pro/9.jpg" alt="">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 rtl-text">
-                                <div class="product-right">
-                                    <h2>Hammer Drill</h2>
-                                    <h3>$32.96</h3>
-                                    <div class="border-product">
-                                        <h6 class="product-title">product details</h6>
-                                        <p>Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium
-                                            doloremque laudantium</p>
-                                    </div>
-                                    <div class="product-buttons">
-                                        <a href="#" class="btn btn-solid">add to cart</a>
-                                        <a href="#" class="btn btn-solid">view detail</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     <script src="{{ asset('landing') }}/assets/js/jquery-3.3.1.min.js"></script>
     <script src="{{ asset('landing') }}/assets/js/jquery.magnific-popup.js"></script>
