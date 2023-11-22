@@ -170,16 +170,13 @@
                                     </div>
                                     <div class="footer-contant">
                                         <ul>
-                                            <li><a href="#"><i class="fa fa-chevron-circle-right"></i>-</a>
-                                            </li>
-                                            <li><a href="#"><i class="fa fa-chevron-circle-right"></i>-</a>
-                                            </li>
-                                            <li><a href="#"><i class="fa fa-chevron-circle-right"></i>-</a>
-                                            </li>
-                                            <li><a href="#"><i class="fa fa-chevron-circle-right"></i>-</a>
-                                            </li>
-                                            <li><a href="#"><i class="fa fa-chevron-circle-right"></i>-</a>
-                                            </li>
+                                            @php
+                                                $categoryproducts = \App\Models\Categoryproduct::all();
+                                            @endphp
+                                            @foreach ($categoryproducts as $row)
+                                                <li><a href="{{ url()->current() . '?category=' . $row->id }}"><i class="fa fa-chevron-circle-right"></i>{{ $row->category_name }}</a>
+                                                </li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
@@ -252,6 +249,25 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     @include('sweetalert::alert')
     @stack('js')
+    <script async src='https://d2mpatx37cqexb.cloudfront.net/delightchat-whatsapp-widget/embeds/embed.min.js'></script>
+    <script>
+        var wa_btnSetting = {
+            "btnColor": "#16BE45",
+            "ctaText": "WhatsApp Us",
+            "cornerRadius": 40,
+            "marginBottom": 20,
+            "marginLeft": 20,
+            "marginRight": 20,
+            "btnPosition": "right",
+            "whatsAppNumber": "{{ $company->no_whatsapp }}",
+            "welcomeMessage": "Hello",
+            "zIndex": 999999,
+            "btnColorScheme": "light"
+        };
+        window.onload = () => {
+            _waEmbed(wa_btnSetting);
+        };
+    </script>
 
 </body>
 
