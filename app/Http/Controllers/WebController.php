@@ -22,13 +22,18 @@ use App\Models\Product;
 
 class WebController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->query('category') != null) {
+            $products = Product::where('categoryproducts_id', $request->query('category'))->paginate(8);
+        } else {
+            $products = Product::paginate(8);
+        }
         $clients = Client::all();
         $testimonies = Testimony::all();
         $banners = Banner::all();
         $categoryproducts = Categoryproduct::all();
-        $products = Product::paginate(8);
+
         return view('web.home', [
             'clients' => $clients,
             'testimonies' => $testimonies,

@@ -53,7 +53,8 @@
                                 <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
                                     placeholder="Search Products...">
                                 <div class="input-group-append">
-                                    <a class="btn btn_inverse" href="#">  Search <i class="fa fa-search" aria-hidden="true"></i></a>
+                                    <a class="btn btn_inverse" href="#"> Search <i class="fa fa-search"
+                                            aria-hidden="true"></i></a>
                                 </div>
                             </div>
                         </form>
@@ -73,8 +74,11 @@
                         <div class="collection-filter-block cat-block">
                             <ul>
                                 @foreach ($categoryproducts as $row)
-                                    <li><a href="#"><i class="fa fa-circle-o"
-                                                aria-hidden="true"></i>{{ $row->category_name }}</a>
+                                    <li><a
+                                            href="{{ request()->fullUrlWithQuery([
+                                                'category' => $row->id,
+                                            ]) }}"><i
+                                                class="fa fa-circle-o" aria-hidden="true"></i>{{ $row->category_name }}</a>
                                     </li>
                                 @endforeach
                             </ul>
@@ -143,41 +147,61 @@
                             <div class="row product-wrapper-grid f_product">
                                 <div class="col-12">
                                     <div class="title">
-                                        <h2>Catalog Products</h2>
+                                        @if (request()->has('category'))
+                                            @php
+                                                $categoryId = request('category');
+                                                $category = \App\Models\Categoryproduct::find($categoryId);
+                                            @endphp
+                                            <h2 class="d-inline-block">Products By category:
+                                                {{ $category ? $category->category_name : 'Unknown Category' }}</h2>
+                                            <a href="{{ url('/') }}" class="btn btn-warning btn-sm ml-auto"><i
+                                                    class="fa fa-refresh"></i> Reset Filter</a>
+                                        @else
+                                            <h2>All Products</h2>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="collection-product-wrapper">
                                     <div class="product-wrapper-grid">
                                         <div class="row">
-                                            @foreach ($products as $product)
-                                                <div class="col-sm-3 col-6">
-                                                    <div class="product-box">
-                                                        <div class="img-wrapper">
-                                                            <div class="front">
-                                                                <a href="#" data-bs-toggle="modal" data-bs-target="#productModal">
-                                                                    <img src="{{ asset('storage/uploads/photos/' . $product->photo) }}"
-                                                                        class="img-fluid" alt="">
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-detail">
-                                                            <div>
-                                                                <div class="rating">
-                                                                    <i class="fa fa-star" style="color: orange"></i>
-                                                                    <i class="fa fa-star" style="color: orange"></i>
-                                                                    <i class="fa fa-star" style="color: orange"></i>
-                                                                    <i class="fa fa-star" style="color: orange"></i>
-                                                                    <i class="fa fa-star" style="color: orange"></i>
+                                            @if ($products->count() > 0)
+                                                @foreach ($products as $product)
+                                                    <div class="col-sm-3 col-6">
+                                                        <div class="product-box">
+                                                            <div class="img-wrapper">
+                                                                <div class="front">
+                                                                    <a href="#" data-bs-toggle="modal"
+                                                                        data-bs-target="#productModal">
+                                                                        <img src="{{ asset('storage/uploads/photos/' . $product->photo) }}"
+                                                                            class="img-fluid" alt="">
+                                                                    </a>
                                                                 </div>
-                                                                <a href="#" data-bs-toggle="modal" data-bs-target="#productModal">
-                                                                    <span style="color: #327555"><b>{{ $product->nama }}</b></span>
-                                                                </a>
-                                                                <h6>{{ rupiah($product->harga) }}</h6>
+                                                            </div>
+                                                            <div class="product-detail">
+                                                                <div>
+                                                                    <div class="rating">
+                                                                        <i class="fa fa-star" style="color: orange"></i>
+                                                                        <i class="fa fa-star" style="color: orange"></i>
+                                                                        <i class="fa fa-star" style="color: orange"></i>
+                                                                        <i class="fa fa-star" style="color: orange"></i>
+                                                                        <i class="fa fa-star" style="color: orange"></i>
+                                                                    </div>
+                                                                    <a href="#" data-bs-toggle="modal"
+                                                                        data-bs-target="#productModal">
+                                                                        <span
+                                                                            style="color: #327555"><b>{{ $product->nama }}</b></span>
+                                                                    </a>
+                                                                    <h6>{{ rupiah($product->harga) }}</h6>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                @endforeach
+                                            @else
+                                                <div class="alert alert-warning" role="alert">
+                                                    Tidak ada produk yang ditemukan.
                                                 </div>
-                                            @endforeach
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
