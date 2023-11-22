@@ -8,6 +8,7 @@ use Yajra\DataTables\Facades\DataTables;
 use Image;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -196,4 +197,13 @@ class ProductController extends Controller
         // Return the product details in a blade view
         return view('products.modal_content', ['product' => $product]);
     }
+
+    public function searchProducts(Request $request)
+{
+    $query = $request->input('query');
+
+    $products = Product::where('nama', 'like', '%' . $query . '%')->get();
+
+    return response()->json($products);
+}
 }

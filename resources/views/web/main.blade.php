@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="{{ asset('landing') }}/assets/css/magnific-popup.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('landing') }}/assets/css/color5.css" media="screen"
         id="color">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 </head>
 
 <body>
@@ -281,6 +283,7 @@
     <script src="{{ asset('landing') }}/assets/js/slick.js"></script>
     <script src="{{ asset('landing') }}/assets/js/script.js"></script>
     <script src="{{ asset('landing') }}/assets/js/ecommerce.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     @include('sweetalert::alert')
     @stack('js')
 

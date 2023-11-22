@@ -57,4 +57,5 @@ Route::resource('portfolios', App\Http\Controllers\PortfolioController::class)->
 
 Route::resource('categoryproducts', App\Http\Controllers\CategoryproductController::class)->middleware('auth');
 Route::get('/get-product-details/{id}', [App\Http\Controllers\ProductController::class, 'getProductDetails']);
+Route::get('/search-products', [App\Http\Controllers\ProductController::class, 'searchProducts'])->name('search.products');
 Route::resource('products', App\Http\Controllers\ProductController::class)->middleware('auth');

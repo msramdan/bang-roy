@@ -1,6 +1,51 @@
 @extends('web.main')
 
 @section('content')
+
+ <style>
+    #productList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: none; /* Menghilangkan garis batas */
+    position: absolute;
+    width: 100%;
+    background-color: #fff;
+    z-index: 1000;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#productList li {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-bottom: 1px solid #eee;
+}
+
+#productList li:last-child {
+    border-bottom: none;
+}
+
+#productList img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+#productList .product-name {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+}
+
+#productList .product-name:hover {
+    text-decoration: underline;
+}
+ </style>
+
     <!-- Modal -->
     <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -30,21 +75,22 @@
                     <div class="col-md-9 set-order-1">
                         <form class="ecommerce-from">
                             <div class="input-group">
-                                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
-                                    placeholder="Search Products...">
+                                <input type="text" class="form-control" id="searchProducts" aria-label="Amount (to the nearest dollar)" placeholder="Search Products...">
                                 <div class="input-group-append">
-                                    <a class="btn btn_inverse" href="#"> Search <i class="fa fa-search"
-                                            aria-hidden="true"></i></a>
+                                    <a class="btn btn_inverse" href="#"> Search <i class="fa fa-search" aria-hidden="true"></i></a>
                                 </div>
                             </div>
                         </form>
+                        <ul id="productList"></ul>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
     <div class="main-body">
         <div class="container">
+
             <div class="row">
                 <!-- sidebar Section Start -->
                 <div class="col-lg-3 sidebar ecommerce-sidebar">
@@ -54,14 +100,8 @@
                         <div class="collection-filter-block cat-block">
                             <ul>
                                 @foreach ($categoryproducts as $row)
-                                    {{-- <li><a
-                                            href="{{ request()->fullUrlWithQuery([
-                                                'category' => $row->id,
-                                            ]) }}"><i
-                                                class="fa fa-circle-o" aria-hidden="true"></i>{{ $row->category_name }}</a>
-                                    </li> --}}
                                     <li>
-                                        <a href="{{ url()->current().'?category='.$row->id }}">
+                                        <a href="{{ url()->current() . '?category=' . $row->id }}">
                                             <i class="fa fa-circle-o" aria-hidden="true"></i>{{ $row->category_name }}
                                         </a>
                                     </li>
@@ -244,6 +284,77 @@
                     }
                 });
             });
+        });
+    </script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(document).ready(function() {
+            var productList = $('#productList');
+
+            $("#searchProducts").autocomplete({
+                source: function(request, response) {
+                    $.ajax({
+                        url: "{{ route('search.products') }}",
+                        method: "GET",
+                        data: {
+                            query: request.term
+                        },
+                        success: function(data) {
+                            displayResults(data);
+                        }
+                    });
+                },
+                minLength: 2,
+                select: function(event, ui) {
+                    // Callback saat item dipilih, bisa diisi dengan aksi yang sesuai
+                    console.log("Selected: " + ui.item.nama);
+                },
+                close: function(event, ui) {
+                    // Callback saat hasil ketikan dihapus
+                    var query = $("#searchProducts").val();
+                    performSearch(query);
+                }
+            }).on('input', function() {
+                // Callback saat nilai input berubah (termasuk saat dihapus)
+                var query = $(this).val();
+                performSearch(query);
+            });
+
+            // Ajax search on button click
+            $("#btnSearch").on("click", function() {
+                var query = $("#searchProducts").val();
+                performSearch(query);
+            });
+
+            function performSearch(query) {
+                // Bersihkan daftar hasil pencarian jika query kosong
+                if (query === '') {
+                    productList.empty();
+                    return;
+                }
+
+                // Lakukan aksi pencarian atau tampilkan hasil pencarian sesuai kebutuhan
+                console.log("Performing search for: " + query);
+            }
+
+            function displayResults(products) {
+                productList.empty();
+
+                if (products.length > 0) {
+                    $.each(products, function(index, product) {
+                        var listItem = '<li>';
+                        listItem += '<img src="{{ asset('storage/uploads/photos/') }}/' + product.photo +
+                            '" alt="' + product.nama + '" class="product-image">';
+                        listItem += '<div class="product-details">';
+                        listItem += '<p class="product-name">' + product.nama + '</p>';
+                        listItem += '</div>';
+                        listItem += '</li>';
+                        productList.append(listItem);
+                    });
+                } else {
+                    productList.append('<li>No products found</li>');
+                }
+            }
         });
     </script>
 @endpush
