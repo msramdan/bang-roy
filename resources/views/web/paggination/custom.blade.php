@@ -7,7 +7,7 @@
                     <i class="fa fa-angle-double-left" aria-hidden="true"></i>prev
                 </a>
             @else
-                <a href="{{ $paginator->previousPageUrl() }}" rel="prev" class="cdp_i">
+                <a href="{{ $paginator->previousPageUrl() . '&' . http_build_query(request()->except('page')) }}" rel="prev" class="cdp_i">
                     <i class="fa fa-angle-double-left" aria-hidden="true"></i>prev
                 </a>
             @endif
@@ -23,9 +23,9 @@
                 @if (is_array($element))
                     @foreach ($element as $page => $url)
                         @if ($page == $paginator->currentPage())
-                            <a href="#" class="cdp_i current">{{ $page }}</a>
+                            <span class="cdp_i current">{{ $page }}</span>
                         @else
-                            <a href="{{ $url }}" class="cdp_i">{{ $page }}</a>
+                            <a href="{{ $url . '&' . http_build_query(request()->except('page')) }}" class="cdp_i">{{ $page }}</a>
                         @endif
                     @endforeach
                 @endif
@@ -33,7 +33,7 @@
 
             {{-- Next Page Link --}}
             @if ($paginator->hasMorePages())
-                <a href="{{ $paginator->nextPageUrl() }}" rel="next" class="cdp_i">
+                <a href="{{ $paginator->nextPageUrl() . '&' . http_build_query(request()->except('page')) }}" rel="next" class="cdp_i">
                     next <i class="fa fa-angle-double-right" aria-hidden="true"></i>
                 </a>
             @else
