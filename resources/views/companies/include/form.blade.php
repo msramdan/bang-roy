@@ -23,8 +23,9 @@
     </div>
     <div class="col-md-6">
         <div class="form-group">
-            <label for="no_whatsapp">{{ __('No Whatapps') }}</label>
+            <label for="no_whatsapp">{{ __('No Whatapp') }}</label>
             <input type="text" name="no_whatsapp" id="no_whatsapp" class="form-control @error('no_whatsapp') is-invalid @enderror" value="{{ isset($company) ? $company->no_whatsapp : old('no_whatsapp') }}" placeholder="{{ __('No Whatsapp') }}" required />
+            <p style="color: red">Harus 62 depan nya Cth : 62838XXX</p>
             @error('no_whatsapp')
                 <span class="text-danger">
                     {{ $message }}
