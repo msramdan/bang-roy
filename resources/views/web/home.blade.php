@@ -8,28 +8,8 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Product Details</h5>
                 </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-lg-6 col-xs-12">
-                            <div class="quick-view-img"><img
-                                    src="https://themes.pixelstrap.com/reno/theme/assets/images/pro/2.jpg" alt=""
-                                    class="img-fluid"></div>
-                        </div>
-                        <div class="col-lg-6 rtl-text">
-                            <div class="product-right">
-                                <h2>Women Pink Shirt</h2>
-                                <h3>$32.96</h3>
-                                <div class="border-product">
-                                    <h6 class="product-title">product details</h6>
-                                    <p>Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium
-                                        doloremque laudantium</p>
-                                </div>
-                                <div class="product-buttons">
-                                    <a href="#" class="btn btn-solid" style="color: white">Order Via Whatapps</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="modal-body" id="productModalBody">
+                    <!-- Product details will be loaded here -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -74,11 +54,16 @@
                         <div class="collection-filter-block cat-block">
                             <ul>
                                 @foreach ($categoryproducts as $row)
-                                    <li><a
+                                    {{-- <li><a
                                             href="{{ request()->fullUrlWithQuery([
                                                 'category' => $row->id,
                                             ]) }}"><i
                                                 class="fa fa-circle-o" aria-hidden="true"></i>{{ $row->category_name }}</a>
+                                    </li> --}}
+                                    <li>
+                                        <a href="{{ url()->current().'?category='.$row->id }}">
+                                            <i class="fa fa-circle-o" aria-hidden="true"></i>{{ $row->category_name }}
+                                        </a>
                                     </li>
                                 @endforeach
                             </ul>
@@ -171,7 +156,8 @@
                                                             <div class="img-wrapper">
                                                                 <div class="front">
                                                                     <a href="#" data-bs-toggle="modal"
-                                                                        data-bs-target="#productModal">
+                                                                        data-bs-target="#productModal"
+                                                                        data-product-id="{{ $product->id }}">
                                                                         <img src="{{ asset('storage/uploads/photos/' . $product->photo) }}"
                                                                             class="img-fluid" alt="">
                                                                     </a>
@@ -187,7 +173,8 @@
                                                                         <i class="fa fa-star" style="color: orange"></i>
                                                                     </div>
                                                                     <a href="#" data-bs-toggle="modal"
-                                                                        data-bs-target="#productModal">
+                                                                        data-bs-target="#productModal"
+                                                                        data-product-id="{{ $product->id }}">
                                                                         <span
                                                                             style="color: #327555"><b>{{ $product->nama }}</b></span>
                                                                     </a>
@@ -234,3 +221,29 @@
         </div>
     </div>
 @endsection
+
+@push('js')
+    <script>
+        $(document).ready(function() {
+            $('#productModal').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget);
+                var productId = button.data('product-id');
+
+                // Load product details using AJAX
+                $.ajax({
+                    url: '/get-product-details/' + productId, // Ganti dengan URL yang sesuai
+                    type: 'GET',
+                    success: function(response) {
+                        // Replace the following line with your actual implementation
+                        var productDetailsHtml = response; // Assume the server returns HTML
+
+                        $('#productModalBody').html(productDetailsHtml);
+                    },
+                    error: function(error) {
+                        console.log('Error fetching product details:', error);
+                    }
+                });
+            });
+        });
+    </script>
+@endpush

@@ -188,4 +188,12 @@ class ProductController extends Controller
                 ->with('error', __("The product can't be deleted because it's related to another table."));
         }
     }
+
+    public function getProductDetails($id)
+    {
+        $product = Product::find($id);
+
+        // Return the product details in a blade view
+        return view('products.modal_content', ['product' => $product]);
+    }
 }

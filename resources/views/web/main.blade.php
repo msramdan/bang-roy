@@ -279,6 +279,7 @@
     <script src="{{ asset('landing') }}/assets/js/script.js"></script>
     <script src="{{ asset('landing') }}/assets/js/ecommerce.js"></script>
     @include('sweetalert::alert')
+    @stack('js')
 
 </body>
 

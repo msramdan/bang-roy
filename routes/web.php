@@ -11,7 +11,7 @@ use App\Http\Controllers\{
     DashboardController,
     WebController,
 };
-use App\Models\Categoryproduct;
+
 
 
 
@@ -56,4 +56,5 @@ Route::resource('businesses', App\Http\Controllers\BusinessController::class)->m
 Route::resource('portfolios', App\Http\Controllers\PortfolioController::class)->middleware('auth');
 
 Route::resource('categoryproducts', App\Http\Controllers\CategoryproductController::class)->middleware('auth');
+Route::get('/get-product-details/{id}', [App\Http\Controllers\ProductController::class, 'getProductDetails']);
 Route::resource('products', App\Http\Controllers\ProductController::class)->middleware('auth');
