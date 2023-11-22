@@ -14,8 +14,8 @@
             <h2>{{ $product->nama }}</h2>
             <h3>{{ rupiah($product->harga) }}</h3>
             <div class="border-product">
-                <h6 class="product-title">Product Details</h6>
-                <p>{{ $product->deskripsi }}</p>
+                <p class="product-title">Product Details</p>
+                <p style="text-align: justify">{{ $product->keterangan }}</p>
             </div>
             <div class="product-buttons">
                 <a href="https://wa.me/{{ setting_web()->no_whatsapp }}?text=Hello%20Admin,%0ASaya%20ingin%20bertanya%20terkait%20product%20{{ urlencode($product->nama) }}"
