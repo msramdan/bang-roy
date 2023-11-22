@@ -13,8 +13,9 @@ class CompanySeeder extends Seeder
         Company::create([
             'nama_perusahaan' => 'PT CONTROMEKA SYSTEM',
             'telepon' => '(0895) 30605050',
+            'no_whatsapp' => '6283874731480',
             'alamat' => 'Jl. SMP 10 No.123 Rt.003 Rw.001, Kel. Bedahan Sawangan, Depok 16518 Jawa Barat',
-            'email' => 'wigunacontromekasystem@gmail.com',
+            'email' => 'admin@ptwcs-system.com',
             'akte_notaris' => 'No. 2 08 Juni 2023',
             'kep_men_kum_ham' => 'AHU-0042740.AH.01.01.TAHUN 2023 ',
             'npwp' => '39.274.444.7-448.000',

@@ -26,6 +26,7 @@ class UpdateCompanyRequest extends FormRequest
         return [
             'nama_perusahaan' => 'required|string|max:150',
             'telepon' => 'required|string|max:15',
+            'no_whatsapp' => 'required|string|max:15',
             'alamat' => 'required|string',
             'email' => 'required|email|unique:companies,email,' . $this->company->id,
             'akte_notaris' => 'required|string|max:150',

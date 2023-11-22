@@ -217,8 +217,11 @@
                                         </li>
                                         <li><i class="fa fa-phone" aria-hidden="true"></i>Call Us:
                                             {{ $company->telepon }}</li>
+                                        <li><i class="fa fa-whatsapp" aria-hidden="true"></i>WA:
+                                            {{ $company->no_whatsapp }}</li>
                                         <li><i class="fa fa-envelope-o" aria-hidden="true"></i>Email Us:
                                             {{ $company->email }}</li>
+
                                     </ul>
                                 </div>
                             </div>

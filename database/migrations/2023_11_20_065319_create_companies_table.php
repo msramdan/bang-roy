@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_perusahaan', 150);
 			$table->string('telepon', 15);
+            $table->string('no_whatsapp', 15);
 			$table->string('alamat');
 			$table->string('email')->unique();
 			$table->string('akte_notaris', 150);

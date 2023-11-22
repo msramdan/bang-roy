@@ -23,6 +23,17 @@
     </div>
     <div class="col-md-6">
         <div class="form-group">
+            <label for="no_whatsapp">{{ __('No Whatapps') }}</label>
+            <input type="text" name="no_whatsapp" id="no_whatsapp" class="form-control @error('no_whatsapp') is-invalid @enderror" value="{{ isset($company) ? $company->no_whatsapp : old('no_whatsapp') }}" placeholder="{{ __('No Whatsapp') }}" required />
+            @error('no_whatsapp')
+                <span class="text-danger">
+                    {{ $message }}
+                </span>
+            @enderror
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
             <label for="alamat">{{ __('Alamat') }}</label>
             <textarea name="alamat" id="alamat" class="form-control @error('alamat') is-invalid @enderror" placeholder="{{ __('Alamat') }}" required>{{ isset($company) ? $company->alamat : old('alamat') }}</textarea>
             @error('alamat')
