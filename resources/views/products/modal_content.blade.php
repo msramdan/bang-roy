@@ -15,7 +15,7 @@
                 <p>{{ $product->deskripsi }}</p>
             </div>
             <div class="product-buttons">
-                <a href="#" class="btn btn-solid" style="color: white">Order Via Whatapps</a>
+                <a href="https://wa.me/{{ setting_web()->no_whatsapp }}?text=Hello%20Admin,%0ASaya%20ingin%20bertanya%20terkait%20product%20{{ urlencode($product->nama) }}" class="btn btn-solid" style="color: white" target="_blank">Order Via WhatsApp</a>
             </div>
         </div>
     </div>
