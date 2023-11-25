@@ -174,7 +174,8 @@
                                                 $categoryproducts = \App\Models\Categoryproduct::all();
                                             @endphp
                                             @foreach ($categoryproducts as $row)
-                                                <li><a href="{{ url()->current() . '?category=' . $row->id }}"><i class="fa fa-chevron-circle-right"></i>{{ $row->category_name }}</a>
+                                                <li><a href="{{ url()->current() . '?category=' . $row->id }}"><i
+                                                            class="fa fa-chevron-circle-right"></i>{{ $row->category_name }}</a>
                                                 </li>
                                             @endforeach
                                         </ul>
@@ -229,6 +230,15 @@
                 </div>
             </div>
         </footer>
+
+        <div style="position:fixed;right:20px;bottom:20px;">
+            <button id="emailButton" style="background:gray;vertical-align:center;height:36px;border-radius:5px">
+                <span style="color:white"><i class="fa fa-envelope" aria-hidden="true"></i> <b>Send us a
+                        Mail</b></span>
+            </button>
+        </div>
+
+
         <div class="tap-top top-cls top_5">
             <div>
                 <i class="fa fa-angle-double-up"></i>
@@ -248,8 +258,15 @@
     <script src="{{ asset('landing') }}/assets/js/ecommerce.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     @include('sweetalert::alert')
+    <script>
+        document.getElementById("emailButton").addEventListener("click", function() {
+            var companyEmail = "{{ $company->email }}";
+            var mailtoLink = "mailto:" + encodeURIComponent(companyEmail);
+            window.location.href = mailtoLink;
+        });
+    </script>
     @stack('js')
-    <script async src='https://d2mpatx37cqexb.cloudfront.net/delightchat-whatsapp-widget/embeds/embed.min.js'></script>
+    {{-- <script async src='https://d2mpatx37cqexb.cloudfront.net/delightchat-whatsapp-widget/embeds/embed.min.js'></script>
     <script>
         var wa_btnSetting = {
             "btnColor": "#16BE45",
@@ -267,7 +284,7 @@
         window.onload = () => {
             _waEmbed(wa_btnSetting);
         };
-    </script>
+    </script> --}}
 
 </body>
 
